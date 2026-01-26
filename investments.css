@@ -8,11 +8,12 @@
    =================================== */
 :root {
     /* Brand Colors */
-    --color-navy: #19375F;
+    --color-navy: #193D5F;
+    --color-lime: #9DFF20;
     --color-white: #FFFFFF;
-    --color-gray: #A6A6A6;
+    --color-black: #000000;
 
-    /* Extended Grays */
+    /* Grays */
     --color-gray-50: #F9FAFB;
     --color-gray-100: #F3F4F6;
     --color-gray-200: #E5E7EB;
@@ -74,7 +75,7 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-white);
+    color: var(--color-lime);
 }
 
 .nav__list {
@@ -91,7 +92,7 @@ body {
 }
 
 .nav__link:hover {
-    color: var(--color-gray);
+    color: var(--color-lime);
 }
 
 /* ===================================
@@ -111,7 +112,7 @@ body {
 }
 
 .investments-hero__label {
-    color: var(--color-gray);
+    color: var(--color-lime);
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -256,8 +257,8 @@ body {
 }
 
 .property-card__type {
-    background: var(--color-navy);
-    color: var(--color-white);
+    background: var(--color-lime);
+    color: var(--color-navy);
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.25rem 0.75rem;
