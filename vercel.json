@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/investments.html"
+    }
+  ],
+  "cleanUrls": true
+}
