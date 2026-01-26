@@ -132,6 +132,69 @@ async function loadProperties() {
 // ===================================
 
 /**
+ * Get custom marker icon based on property type
+ */
+function getMarkerIcon(propertyType) {
+    const icons = {
+        'Multifamily': {
+            // Apartment building icon
+            path: 'M12 2L2 7v13h8v-6h4v6h8V7L12 2zm6 16h-2v-4h-8v4H6V8l6-4 6 4v10z M8 10h2v2H8v-2z M14 10h2v2h-2v-2z M8 14h2v2H8v-2z M14 14h2v2h-2v-2z',
+            fillColor: '#9DFF20',
+            strokeColor: '#193D5F',
+            scale: 1.5
+        },
+        'Office': {
+            // Office building icon (tall building)
+            path: 'M3 3v18h8v-6h2v6h8V3H3zm6 14H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm4 4h-2v-2h2v2zm0-4h-2V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z',
+            fillColor: '#00B8D4',
+            strokeColor: '#193D5F',
+            scale: 1.5
+        },
+        'Industrial': {
+            // Warehouse/factory icon
+            path: 'M22 21V7L12 3 2 7v14h5v-9h10v9h5zm-11-2H9v-2h2v2zm0-4H9v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2z',
+            fillColor: '#FF6B35',
+            strokeColor: '#193D5F',
+            scale: 1.5
+        },
+        'Self Storage': {
+            // Storage unit icon
+            path: 'M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z M6 10h12v2H6v-2z M6 14h12v2H6v-2z',
+            fillColor: '#9C27B0',
+            strokeColor: '#193D5F',
+            scale: 1.5
+        },
+        'Retail': {
+            // Storefront icon
+            path: 'M21 9h-1V6c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v3H3c-.55 0-1 .45-1 1v3c0 1.1.9 2 2 2v5c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c1.1 0 2-.9 2-2v-3c0-.55-.45-1-1-1zm-2-3v3h-2V6h2zM8 6h2v3H8V6zm-2 0h1v3H6V6zm12 14H6v-5h12v5z',
+            fillColor: '#FFD700',
+            strokeColor: '#193D5F',
+            scale: 1.5
+        }
+    };
+
+    // Default icon if property type not found
+    const defaultIcon = {
+        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z M12 11.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+        fillColor: '#9DFF20',
+        strokeColor: '#193D5F',
+        scale: 1.5
+    };
+
+    const icon = icons[propertyType] || defaultIcon;
+
+    return {
+        path: icon.path,
+        fillColor: icon.fillColor,
+        fillOpacity: 1,
+        strokeColor: icon.strokeColor,
+        strokeWeight: 2,
+        scale: icon.scale,
+        anchor: new google.maps.Point(12, 24)
+    };
+}
+
+/**
  * Geocode addresses and add map markers
  */
 async function geocodeAndRenderProperties(properties) {
@@ -142,19 +205,12 @@ async function geocodeAndRenderProperties(properties) {
             const result = await geocodeAddress(property.fullAddress);
 
             if (result) {
-                // Create marker
+                // Create marker with custom icon based on property type
                 const marker = new google.maps.Marker({
                     position: result,
                     map: map,
                     title: property.name,
-                    icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        scale: 8,
-                        fillColor: '#9DFF20',
-                        fillOpacity: 1,
-                        strokeColor: '#FFFFFF',
-                        strokeWeight: 2
-                    }
+                    icon: getMarkerIcon(property.propertyType)
                 });
 
                 // Create info window
