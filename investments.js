@@ -91,19 +91,13 @@ async function loadProperties() {
     const propertiesError = document.getElementById('propertiesError');
 
     try {
-        console.log('Fetching properties from:', PROPERTIES_API_URL);
-        const response = await fetch(PROPERTIES_API_URL, {
-            redirect: 'follow'
-        });
-
-        console.log('Response status:', response.status, response.statusText);
+        const response = await fetch(PROPERTIES_API_URL);
 
         if (!response.ok) {
-            throw new Error(`Failed to fetch properties: ${response.status} ${response.statusText}`);
+            throw new Error('Failed to fetch properties');
         }
 
         const data = await response.json();
-        console.log('Properties loaded:', data.count, 'properties');
 
         // Handle API error response
         if (data.error) {
@@ -126,7 +120,6 @@ async function loadProperties() {
 
     } catch (error) {
         console.error('Properties load error:', error);
-        console.error('Error details:', error.message);
         mapLoading.style.display = 'none';
         mapError.style.display = 'flex';
         propertiesLoading.style.display = 'none';
