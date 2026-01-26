@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Portfolio - iAM Capital | Global Alternative Investment Group</title>
+    <meta name="description" content="Explore iAM Capital's global investment portfolio. Professional alternative investment opportunities across real estate, infrastructure, and private equity.">
+
+    <!-- Preload critical assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="investments.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="header__container">
+            <div class="logo">iAM Capital</div>
+            <!-- Navigation placeholder for future expansion -->
+            <nav class="nav" aria-label="Main navigation">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#investments" class="nav__link">Investments</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="investments-hero">
+        <div class="investments-hero__container">
+            <p class="investments-hero__label">GLOBAL PORTFOLIO</p>
+            <h1 class="investments-hero__title">Investment Properties</h1>
+            <p class="investments-hero__subtitle">Strategic investments across diversified asset classes</p>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-section__container">
+            <div id="map" class="map-section__map">
+                <!-- Google Maps renders here -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="mapLoading" class="map-section__loading">
+                <div class="loading-spinner"></div>
+                <p>Loading investment properties...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="mapError" class="map-section__error" style="display: none;">
+                <p>Unable to load property map. Please try again later.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Cards Section -->
+    <section class="properties-section">
+        <div class="properties-section__container">
+            <h2 class="properties-section__title">Portfolio Overview</h2>
+            <div id="propertiesGrid" class="properties-grid">
+                <!-- JavaScript populates cards here -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="propertiesLoading" class="properties-section__loading">
+                <p>Loading property details...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="propertiesError" class="properties-section__error" style="display: none;">
+                <p>Unable to load property details.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__container">
+            <p>&copy; 2026 iAM Capital. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="investments.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c&callback=initMap&libraries=marker">
+    </script>
+</body>
+</html>

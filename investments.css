@@ -1,0 +1,421 @@
+/* ===================================
+   iAM Capital - Investment Properties CSS
+   Professional corporate design system
+   =================================== */
+
+/* ===================================
+   CSS Variables - Design System
+   =================================== */
+:root {
+    /* Brand Colors */
+    --color-navy: #193D5F;
+    --color-lime: #9DFF20;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+
+    /* Grays */
+    --color-gray-50: #F9FAFB;
+    --color-gray-100: #F3F4F6;
+    --color-gray-200: #E5E7EB;
+    --color-gray-300: #D1D5DB;
+    --color-gray-700: #374151;
+    --color-gray-900: #111827;
+
+    /* Typography */
+    --font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Spacing */
+    --container-max: 1400px;
+    --container-padding: 2rem;
+
+    /* Transitions */
+    --transition-base: 0.3s ease;
+}
+
+/* ===================================
+   Reset & Base Styles
+   =================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--color-gray-700);
+    background: var(--color-white);
+}
+
+/* ===================================
+   Header & Navigation
+   =================================== */
+.header {
+    background: var(--color-navy);
+    color: var(--color-white);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-lime);
+}
+
+.nav__list {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav__link {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color var(--transition-base);
+}
+
+.nav__link:hover {
+    color: var(--color-lime);
+}
+
+/* ===================================
+   Hero Section
+   =================================== */
+.investments-hero {
+    background: linear-gradient(135deg, var(--color-navy) 0%, #0F2A3F 100%);
+    color: var(--color-white);
+    padding: 6rem 0 4rem;
+    text-align: center;
+}
+
+.investments-hero__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.investments-hero__label {
+    color: var(--color-lime);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.investments-hero__title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.investments-hero__subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===================================
+   Map Section
+   =================================== */
+.map-section {
+    background: var(--color-gray-50);
+    padding: 0;
+}
+
+.map-section__container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+}
+
+.map-section__map {
+    width: 100%;
+    height: 100%;
+}
+
+.map-section__loading,
+.map-section__error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-gray-50);
+    z-index: 10;
+}
+
+.map-section__loading p,
+.map-section__error p {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--color-gray-700);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--color-gray-200);
+    border-top-color: var(--color-navy);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===================================
+   Properties Section
+   =================================== */
+.properties-section {
+    background: var(--color-white);
+    padding: 5rem 0;
+}
+
+.properties-section__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.properties-section__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.properties-section__loading,
+.properties-section__error {
+    text-align: center;
+    padding: 3rem 0;
+    font-size: 1rem;
+    color: var(--color-gray-700);
+}
+
+.properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* ===================================
+   Property Cards
+   =================================== */
+.property-card {
+    background: var(--color-white);
+    border: 2px solid var(--color-gray-200);
+    border-radius: 0;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.property-card:hover {
+    border-color: var(--color-navy);
+    box-shadow: 0 8px 24px rgba(25, 61, 95, 0.12);
+    transform: translateY(-4px);
+}
+
+.property-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.property-card__name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin: 0;
+}
+
+.property-card__type {
+    background: var(--color-lime);
+    color: var(--color-navy);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.property-card__body {
+    color: var(--color-gray-700);
+}
+
+.property-card__location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    margin-bottom: 0.5rem;
+}
+
+.property-card__icon {
+    flex-shrink: 0;
+}
+
+.property-card__size,
+.property-card__date {
+    font-size: 0.875rem;
+    margin: 0.25rem 0;
+}
+
+/* ===================================
+   Info Window Styles
+   =================================== */
+.info-window {
+    font-family: var(--font-family);
+    padding: 0.5rem;
+    max-width: 250px;
+}
+
+.info-window__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin: 0 0 0.5rem;
+}
+
+.info-window__address,
+.info-window__type,
+.info-window__size {
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+    margin: 0.25rem 0;
+}
+
+/* ===================================
+   Footer
+   =================================== */
+.footer {
+    background: var(--color-navy);
+    color: var(--color-white);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer__container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.footer p {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+    .investments-hero__title {
+        font-size: 2.5rem;
+    }
+
+    .map-section__container {
+        height: 500px;
+    }
+
+    .properties-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+    .header {
+        padding: 1rem 0;
+    }
+
+    .header__container {
+        padding: 0 1rem;
+    }
+
+    .nav__list {
+        gap: 1rem;
+    }
+
+    .investments-hero {
+        padding: 4rem 0 3rem;
+    }
+
+    .investments-hero__title {
+        font-size: 2rem;
+    }
+
+    .investments-hero__subtitle {
+        font-size: 1rem;
+    }
+
+    .map-section__container {
+        height: 400px;
+    }
+
+    .properties-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .properties-section {
+        padding: 3rem 0;
+    }
+
+    .properties-section__title {
+        font-size: 1.75rem;
+    }
+
+    .property-card__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* Mobile Small (< 375px) */
+@media (max-width: 374px) {
+    .investments-hero__title {
+        font-size: 1.75rem;
+    }
+
+    .properties-section__title {
+        font-size: 1.5rem;
+    }
+
+    .property-card {
+        padding: 1rem;
+    }
+}
