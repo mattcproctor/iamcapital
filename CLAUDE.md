@@ -3,12 +3,18 @@
 ## Project Overview
 Professional investment property map page for iAM Capital displaying properties from a Google Sheet with interactive Google Maps integration. Built using the proven Blue Devil Jiu Jitsu schedule.html pattern (serverless architecture with Google Apps Script).
 
-**Project Status:** ✅ Configured & Ready for Testing
+**Project Status:** ✅ Deployed to Vercel
+
+**Live Site:**
+- **Production URL**: https://iamcapital.vercel.app/
+- **GitHub Repository**: https://github.com/websitelab/iamcapital
+- **Hosting**: Vercel (auto-deploys from main branch)
 
 **Live Configuration:**
 - Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzFiDn31ne4CISFqjzCcpMwSve5FAJXKgNALoh1kzFw3IRrZtVBUIEUbTf_5whW_weMkQ/exec`
 - Google Maps API Key: `AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c`
 - Steps 1-3 Complete: ✅ Google Sheet, ✅ Apps Script, ✅ Google Maps API
+- Deployment: ✅ GitHub, ✅ Vercel
 
 **Technology Stack:**
 - Pure HTML5/CSS3/Vanilla JavaScript
@@ -17,6 +23,8 @@ Professional investment property map page for iAM Capital displaying properties 
 - Google Maps JavaScript API (map rendering)
 - Geocoding API (address to coordinates)
 - Serverless architecture (no backend needed)
+- Vercel hosting (static site deployment)
+- GitHub repository (version control)
 
 ---
 
@@ -53,13 +61,16 @@ Map Markers + Property Cards
 
 ```
 iamcapital.com/
+├── index.html                    # Root redirect to investments page
 ├── investments.html              # Main page (93 lines)
 ├── investments.css               # Styling (403 lines)
 ├── investments.js                # Logic (270 lines) - CONFIGURED ✅
 ├── google-apps-script.js         # Server code reference (88 lines)
 ├── sample-properties.csv         # Sample data for import (10 properties)
+├── vercel.json                   # Vercel configuration (clean URLs)
 ├── README-INVESTMENTS.md         # Setup guide (380 lines)
-└── CLAUDE.md                     # This documentation
+├── CLAUDE.md                     # This documentation
+└── .git/                         # Git repository
 ```
 
 **Total Production Code:** ~766 lines (HTML + CSS + JS)
@@ -145,18 +156,27 @@ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
 - [x] Updated `investments.html` with Google Maps API key (line 91)
 - [x] Verified file structure
 
-### ⏳ Phase 5: Testing (NEXT STEP)
-- [ ] Local testing with `python3 -m http.server`
-- [ ] Verify map loads with markers
+### ✅ Phase 5: Git Repository Setup (COMPLETE)
+- [x] Initialized git repository
+- [x] Configured git user: hello@websitelab.biz
+- [x] Added remote: https://github.com/websitelab/iamcapital
+- [x] Pushed to GitHub main branch
+- [x] All files committed and versioned
+
+### ✅ Phase 6: Vercel Deployment (COMPLETE)
+- [x] Created vercel.json configuration
+- [x] Deployed to Vercel
+- [x] Auto-deploy enabled (pushes to main trigger redeployment)
+- [x] Production URL: https://iamcapital.vercel.app/
+- [x] Clean URLs enabled (no .html extensions)
+
+### ⏳ Phase 7: Testing (NEXT STEP)
+- [ ] Add Vercel URL to Google Maps API restrictions
+- [ ] Verify map loads with markers on production
 - [ ] Test marker clicks (info windows)
 - [ ] Test card clicks (zoom to marker)
 - [ ] Test responsive design (mobile, tablet, desktop)
-
-### ⏳ Phase 6: Production Deployment (PENDING)
-- [ ] Upload files to web server
-- [ ] Test on production domain
-- [ ] Monitor API usage
-- [ ] Add real property data
+- [ ] Add real property data to Google Sheet
 
 ---
 
@@ -828,24 +848,106 @@ Blue Devil Jiu Jitsu schedule.html - Proven pattern this project follows
 - ✅ Property cards with click-to-zoom
 - ✅ Complete documentation (README + CLAUDE.md)
 - ✅ Configured with live URLs (Steps 1-3 complete)
+- ✅ GitHub repository setup
+- ✅ Deployed to Vercel with auto-deploy
 
 **Files Created:**
+- index.html (redirect to investments page)
 - investments.html (93 lines)
 - investments.css (403 lines)
 - investments.js (270 lines, configured)
 - google-apps-script.js (88 lines)
 - sample-properties.csv (10 properties)
+- vercel.json (Vercel configuration)
 - README-INVESTMENTS.md (380 lines)
 - CLAUDE.md (this file)
 
 **Configuration:**
 - Apps Script URL: ✅ Configured
 - Google Maps API Key: ✅ Configured
-- API Restrictions: ✅ Applied
+- API Restrictions: ✅ Applied (need to add Vercel URL)
 - Sample Data: ✅ Ready for import
+- Git Repository: ✅ https://github.com/websitelab/iamcapital
+- Git User: ✅ hello@websitelab.biz
+- Vercel Deployment: ✅ https://iamcapital.vercel.app/
+
+---
+
+## Deployment Information
+
+### GitHub Repository
+- **URL**: https://github.com/websitelab/iamcapital
+- **Branch**: main
+- **Git User**: hello@websitelab.biz (Website Lab)
+- **Auto-deploy**: Enabled (pushes to main trigger Vercel redeployment)
+
+### Vercel Hosting
+- **Production URL**: https://iamcapital.vercel.app/
+- **Framework**: Static HTML
+- **Configuration**: vercel.json (clean URLs enabled)
+- **Auto-deploy**: ✅ Enabled from GitHub main branch
+- **Clean URLs**: /investments (no .html extension needed)
+
+### vercel.json Configuration
+```json
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/investments.html"
+    }
+  ],
+  "cleanUrls": true
+}
+```
+
+**What this does:**
+- Routes root URL (/) to investments.html
+- Enables clean URLs (access pages without .html extension)
+- Allows /investments to work (instead of /investments.html)
+
+---
+
+## Next Steps for Production
+
+### 1. Update Google Maps API Restrictions
+**IMPORTANT**: Add Vercel URL to API key restrictions for the map to work:
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com)
+2. Navigate to: APIs & Services → Credentials
+3. Click your API key: `AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c`
+4. Under **HTTP referrers**, add:
+   - `iamcapital.vercel.app/*`
+   - `*.vercel.app/*` (for all Vercel preview deployments)
+5. Click **Save**
+
+### 2. Test Production Site
+Visit: https://iamcapital.vercel.app/
+
+**Expected behavior:**
+- Navy/lime Google Map with 10 lime green markers
+- Property cards below map
+- Click marker → Info window opens
+- Click card → Map zooms to property
+- Responsive design on mobile/tablet/desktop
+
+### 3. Replace Sample Data
+In your Google Sheet:
+1. Delete sample property rows (Harbor View Apartments, etc.)
+2. Add real iAM Capital investment properties
+3. Ensure required fields: Property Name, Address, City, State
+4. Changes appear on site within 1-5 minutes
+
+### 4. Future Enhancements
+- Add custom domain (iamcapital.com)
+- Add property photos
+- Pre-geocode addresses (add lat/lng columns)
+- Add property filtering by type
+- Implement search functionality
 
 ---
 
 **Last Updated**: 2026-01-26
-**Status**: Ready for Testing
-**Next Step**: Local testing with `python3 -m http.server`
+**Status**: Deployed to Production
+**Live URL**: https://iamcapital.vercel.app/
+**Next Step**: Add Vercel URL to Google Maps API restrictions
