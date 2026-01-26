@@ -139,36 +139,36 @@ function getMarkerIcon(propertyType) {
         'Multifamily': {
             // Apartment building icon
             path: 'M12 2L2 7v13h8v-6h4v6h8V7L12 2zm6 16h-2v-4h-8v4H6V8l6-4 6 4v10z M8 10h2v2H8v-2z M14 10h2v2h-2v-2z M8 14h2v2H8v-2z M14 14h2v2h-2v-2z',
-            fillColor: '#9DFF20',
-            strokeColor: '#193D5F',
+            fillColor: '#19375F',
+            strokeColor: '#FFFFFF',
             scale: 1.5
         },
         'Office': {
             // Office building icon (tall building)
             path: 'M3 3v18h8v-6h2v6h8V3H3zm6 14H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm4 4h-2v-2h2v2zm0-4h-2V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z',
-            fillColor: '#00B8D4',
-            strokeColor: '#193D5F',
+            fillColor: '#19375F',
+            strokeColor: '#FFFFFF',
             scale: 1.5
         },
         'Industrial': {
             // Warehouse/factory icon
             path: 'M22 21V7L12 3 2 7v14h5v-9h10v9h5zm-11-2H9v-2h2v2zm0-4H9v-2h2v2zm4 4h-2v-2h2v2zm0-4h-2v-2h2v2z',
-            fillColor: '#FF6B35',
-            strokeColor: '#193D5F',
+            fillColor: '#19375F',
+            strokeColor: '#FFFFFF',
             scale: 1.5
         },
         'Self Storage': {
             // Storage unit icon
             path: 'M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm10 16H4V8h16v12z M6 10h12v2H6v-2z M6 14h12v2H6v-2z',
-            fillColor: '#9C27B0',
-            strokeColor: '#193D5F',
+            fillColor: '#A6A6A6',
+            strokeColor: '#FFFFFF',
             scale: 1.5
         },
         'Retail': {
             // Storefront icon
             path: 'M21 9h-1V6c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v3H3c-.55 0-1 .45-1 1v3c0 1.1.9 2 2 2v5c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5c1.1 0 2-.9 2-2v-3c0-.55-.45-1-1-1zm-2-3v3h-2V6h2zM8 6h2v3H8V6zm-2 0h1v3H6V6zm12 14H6v-5h12v5z',
-            fillColor: '#FFD700',
-            strokeColor: '#193D5F',
+            fillColor: '#A6A6A6',
+            strokeColor: '#FFFFFF',
             scale: 1.5
         }
     };
