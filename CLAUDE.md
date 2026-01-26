@@ -185,12 +185,11 @@ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
 ### Color Palette
 ```css
 /* Primary Colors */
---color-navy: #193D5F;        /* Deep navy (primary brand) */
---color-lime: #9DFF20;        /* Lime green (accent) */
+--color-navy: #19375F;        /* Navy blue (primary brand) */
 --color-white: #FFFFFF;       /* White */
---color-black: #000000;       /* Black */
+--color-gray: #A6A6A6;        /* Medium gray (accent) */
 
-/* Grays */
+/* Extended Grays */
 --color-gray-50: #F9FAFB;     /* Lightest gray */
 --color-gray-100: #F3F4F6;    /* Light gray */
 --color-gray-200: #E5E7EB;    /* Border gray */
@@ -200,10 +199,9 @@ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
 ```
 
 **Color Usage:**
-- **Navy (#193D5F)**: Header, hero gradient, property card titles, map base color
-- **Lime (#9DFF20)**: Logo accent, map markers, property type badges
-- **White (#FFFFFF)**: Text on dark backgrounds, card backgrounds
-- **Gray**: Body text, borders, secondary elements
+- **Navy (#19375F)**: Header, hero gradient, property card titles, map markers, map base color
+- **White (#FFFFFF)**: Text on dark backgrounds, card backgrounds, logo, marker outlines
+- **Gray (#A6A6A6)**: Accent color, hover states, labels, storage/retail markers
 
 ### Typography
 **Font Family:** Overpass (Google Fonts)
@@ -277,12 +275,19 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - Custom map styling (navy/lime theme)
 
 **Map Features:**
-- Custom navy base color
-- Lime green circular markers (scale: 8px)
+- Custom navy base color (#19375F)
+- Custom building icons per property type (navy or gray)
 - White stroke on markers (2px)
 - Info windows on marker click
 - Auto-zoom to fit all markers
 - Fullscreen control enabled
+
+**Custom Marker Icons:**
+- 🏢 **Multifamily**: Apartment building (navy)
+- 🏛️ **Office**: Office building (navy)
+- 🏭 **Industrial**: Warehouse (navy)
+- 📦 **Self Storage**: Storage units (gray)
+- 🏪 **Retail**: Storefront (gray)
 
 **Geocoding:**
 - Client-side via Google Geocoding API
@@ -302,7 +307,7 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 **Card Structure:**
 - Header:
   - Property name (navy, bold)
-  - Property type badge (lime background, navy text)
+  - Property type badge (navy background, white text)
 - Body:
   - Location (with pin icon)
   - Units/Size

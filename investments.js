@@ -47,7 +47,7 @@ function getMapStyles() {
         {
             "featureType": "all",
             "elementType": "geometry",
-            "stylers": [{ "color": "#193D5F" }]
+            "stylers": [{ "color": "#19375F" }]
         },
         {
             "featureType": "all",
@@ -57,22 +57,22 @@ function getMapStyles() {
         {
             "featureType": "all",
             "elementType": "labels.text.stroke",
-            "stylers": [{ "color": "#193D5F" }]
+            "stylers": [{ "color": "#19375F" }]
         },
         {
             "featureType": "water",
             "elementType": "geometry",
-            "stylers": [{ "color": "#0F2A3F" }]
+            "stylers": [{ "color": "#0F2540" }]
         },
         {
             "featureType": "road",
             "elementType": "geometry",
-            "stylers": [{ "color": "#2A4A6A" }]
+            "stylers": [{ "color": "#2A4565" }]
         },
         {
             "featureType": "poi",
             "elementType": "geometry",
-            "stylers": [{ "color": "#1E3D5F" }]
+            "stylers": [{ "color": "#1E385F" }]
         }
     ];
 }
@@ -303,8 +303,8 @@ function renderPropertyCards(properties) {
             <div class="property-card__body">
                 <p class="property-card__location">
                     <svg class="property-card__icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#9DFF20"/>
-                        <circle cx="12" cy="9" r="2.5" fill="#193D5F"/>
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#19375F"/>
+                        <circle cx="12" cy="9" r="2.5" fill="#FFFFFF"/>
                     </svg>
                     ${escapeHtml(property.city)}, ${escapeHtml(property.state)}
                 </p>
