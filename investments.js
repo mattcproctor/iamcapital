@@ -381,6 +381,24 @@ function handleFilterClick(e) {
 
     // Filter properties
     applyFilters();
+
+    // Close filter menu on mobile after selection
+    if (window.innerWidth <= 767) {
+        const filterPills = document.getElementById('filterPills');
+        const filterToggle = document.getElementById('filterToggle');
+
+        if (filterPills && filterToggle) {
+            filterPills.classList.remove('active');
+            filterToggle.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+                Filters
+            `;
+        }
+    }
 }
 
 /**
