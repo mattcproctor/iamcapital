@@ -3,18 +3,20 @@
 ## Project Overview
 Professional investment property map page for iAM Capital displaying properties from a Google Sheet with interactive Google Maps integration. Built using the proven Blue Devil Jiu Jitsu schedule.html pattern (serverless architecture with Google Apps Script).
 
-**Project Status:** ✅ Deployed to Vercel
+**Project Status:** ✅ Live in Production
 
 **Live Site:**
 - **Production URL**: https://iamcapital.vercel.app/
 - **GitHub Repository**: https://github.com/websitelab/iamcapital
 - **Hosting**: Vercel (auto-deploys from main branch)
+- **Last Updated**: January 26, 2026
 
 **Live Configuration:**
-- Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzFiDn31ne4CISFqjzCcpMwSve5FAJXKgNALoh1kzFw3IRrZtVBUIEUbTf_5whW_weMkQ/exec`
+- Google Apps Script URL: `https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9M-TukPqbsmabsnI49DAjRSGZ4qKAA/exec`
 - Google Maps API Key: `AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c`
-- Steps 1-3 Complete: ✅ Google Sheet, ✅ Apps Script, ✅ Google Maps API
-- Deployment: ✅ GitHub, ✅ Vercel
+- Map Center: Europe (Italy/France region, lat: 45.0, lng: 10.0)
+- Property Data: 10 European properties (Italy, France, Spain, Portugal)
+- Deployment: ✅ GitHub, ✅ Vercel, ✅ Fully Operational
 
 **Technology Stack:**
 - Pure HTML5/CSS3/Vanilla JavaScript
@@ -62,13 +64,17 @@ Map Markers + Property Cards
 ```
 iamcapital.com/
 ├── index.html                    # Root redirect to investments page
-├── investments.html              # Main page (93 lines)
-├── investments.css               # Styling (403 lines)
-├── investments.js                # Logic (270 lines) - CONFIGURED ✅
-├── google-apps-script.js         # Server code reference (88 lines)
-├── sample-properties.csv         # Sample data for import (10 properties)
+├── investments.html              # Main page with map and filters
+├── investments.css               # Styling with filter pills, hero bg
+├── investments.js                # Map logic, filters, animations
+├── google-apps-script.js         # Server code reference (European properties)
+├── sample-properties.csv         # European property data (10 properties)
 ├── vercel.json                   # Vercel configuration (clean URLs)
-├── README-INVESTMENTS.md         # Setup guide (380 lines)
+├── .gitignore                    # Git ignore (.DS_Store, node_modules)
+├── images/
+│   └── hero/
+│       └── milan-cathedral-hero.webp  # Hero background (247KB WebP)
+├── README-INVESTMENTS.md         # Setup guide
 ├── CLAUDE.md                     # This documentation
 └── .git/                         # Git repository
 ```
@@ -85,19 +91,20 @@ iamcapital.com/
 - [x] Imported sample property data (10 properties)
 - [x] Formatted columns as Plain Text
 
-**Sheet Structure:**
+**Sheet Structure (International Properties):**
 | Column | Name | Example |
 |--------|------|---------|
-| A | Property Name | "Harbor View Apartments" |
-| B | Address | "123 Waterfront Drive" |
-| C | City | "Miami" |
-| D | State | "FL" |
-| E | Zip Code | "33132" |
+| A | Property Name | "Palazzo Residences" |
+| B | Address | "Via dei Condotti 45" |
+| C | City | "Rome" |
+| D | Country | "Italy" |
+| E | Postal Code | "00187" |
 | F | Property Type | "Multifamily" |
-| G | Units/Size | "120 units" |
+| G | Units/Size | "85 units" |
 | H | Acquisition Date | "Q2 2024" |
 | I | Status | "Active" |
-| J | Description | "Class A waterfront development" |
+| J | Description | "Luxury residential in historic center" |
+| K | Portfolio URL | "/portfolio/palazzo-residences" |
 
 ### ✅ Phase 2: Google Apps Script Deployment (COMPLETE)
 - [x] Created Apps Script project
@@ -106,27 +113,28 @@ iamcapital.com/
 - [x] Obtained deployment URL
 - [x] Tested API endpoint (returns JSON)
 
-**Apps Script URL:**
+**Apps Script URL (Current Deployment):**
 ```
-https://script.google.com/macros/s/AKfycbzFiDn31ne4CISFqjzCcpMwSve5FAJXKgNALoh1kzFw3IRrZtVBUIEUbTf_5whW_weMkQ/exec
+https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9M-TukPqbsmabsnI49DAjRSGZ4qKAA/exec
 ```
 
-**API Response Format:**
+**API Response Format (Current):**
 ```json
 {
   "properties": [
     {
-      "name": "Harbor View Apartments",
-      "address": "123 Waterfront Drive",
-      "city": "Miami",
-      "state": "FL",
-      "zip": "33132",
-      "fullAddress": "123 Waterfront Drive, Miami, FL 33132",
+      "name": "Palazzo Residences",
+      "address": "Via dei Condotti 45",
+      "city": "Rome",
+      "country": "Italy",
+      "postalCode": "00187",
+      "fullAddress": "Via dei Condotti 45, Rome, 00187 Italy",
       "propertyType": "Multifamily",
-      "unitsSize": "120 units",
+      "unitsSize": "85 units",
       "acquisitionDate": "Q2 2024",
       "status": "Active",
-      "description": "Class A waterfront development"
+      "description": "Luxury residential in historic center",
+      "portfolioUrl": "/portfolio/palazzo-residences"
     }
   ],
   "count": 10,
@@ -264,9 +272,18 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - Subtitle: "Strategic investments across diversified asset classes"
 
 **Styling:**
-- Background: Linear gradient (navy #193D5F → darker #0F2A3F)
+- Background: Milan Duomo cathedral image (milan-cathedral-hero.webp, 247KB)
+- Overlay: Linear gradient (navy 85% → 90% opacity) for text readability
+- Image: Cover, center positioned
 - Text alignment: Center
 - Padding: 6rem desktop → 4rem mobile
+
+**Image Details:**
+- File: `images/hero/milan-cathedral-hero.webp`
+- Size: 247KB (WebP optimized)
+- Dimensions: 1920px width
+- Quality: 85
+- Subject: Milan Duomo cathedral with lion statue (European architecture)
 
 ### 3. Map Section
 **Structure:**
@@ -275,18 +292,35 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - Loading state (spinner + message)
 - Error state (fallback message)
 - Custom map styling (navy/lime theme)
+- **Floating filter pills** (vertical layout, left side)
 
 **Map Features:**
-- Custom navy base color
-- Lime green circular markers (scale: 8px)
+- **Default center**: Europe (lat: 45.0, lng: 10.0) - Italy/France region
+- **Default zoom**: 5 (shows all European properties)
+- Custom navy base color (#193D5F)
+- Lime green circular markers (#9DFF20, scale: 8px)
 - White stroke on markers (2px)
-- Info windows on marker click
-- Auto-zoom to fit all markers
+- **Animated marker drops** (Google Maps DROP animation)
+- Info windows on marker click with "View Portfolio" button
+- Auto-zoom to fit filtered markers
 - Fullscreen control enabled
+
+**Filter Pills (Floating Overlay):**
+- Position: Top-left corner (1rem from edges)
+- Layout: Vertical stack (max-width: 250px)
+- Style: Glassmorphism (white 95% + backdrop blur)
+- Two filter groups:
+  - **Property Type**: All, Multifamily, Office, Self Storage, Retail, Industrial
+  - **Country**: All, Italy, France, Spain, Portugal
+- Active state: Navy background with white text
+- Hover state: Lime background on active pills
+- Click to filter: Updates both map markers and property cards
+- Auto-zoom to visible markers after filtering
 
 **Geocoding:**
 - Client-side via Google Geocoding API
-- Converts addresses to lat/lng on page load
+- Converts European addresses to lat/lng on page load
+- International format: "Address, City, Postal Code Country"
 - Error tolerance (skip failed geocodes)
 - Free tier: 25,000 requests/day
 
@@ -381,73 +415,82 @@ let geocoder;      // Google Geocoder instance
 
 ---
 
-## Sample Property Data
+## Sample Property Data (European Portfolio)
 
-**10 Mock Investment Properties:**
+**10 European Investment Properties:**
 
-1. **Harbor View Apartments**
-   - Miami, FL (Multifamily, 120 units)
-   - 123 Waterfront Drive, 33132
-   - Class A waterfront development
+1. **Palazzo Residences**
+   - Rome, Italy (Multifamily, 85 units)
+   - Via dei Condotti 45, 00187
+   - Luxury residential in historic center
+   - Portfolio: /portfolio/palazzo-residences
 
-2. **Sunset Plaza Office**
-   - Austin, TX (Office, 85,000 sq ft)
-   - 456 Commerce Blvd, 78701
-   - Downtown mixed-use complex
+2. **Milan Office Tower**
+   - Milan, Italy (Office, 120,000 sq ft)
+   - Corso Buenos Aires 123, 20124
+   - Modern Class A office complex
+   - Portfolio: /portfolio/milan-office-tower
 
-3. **Mountain Ridge Storage**
-   - Denver, CO (Self Storage, 450 units)
-   - 789 Mountain View Rd, 80202
-   - Climate-controlled facility
+3. **Tuscan Storage Solutions**
+   - Florence, Italy (Self Storage, 380 units)
+   - Via Aretina 234, 50136
+   - Climate-controlled premium facility
+   - Portfolio: /portfolio/tuscan-storage
 
-4. **Lakeside Retail Center**
-   - Chicago, IL (Retail, 42,000 sq ft)
-   - 321 Lake Shore Dr, 60611
-   - Anchored shopping center
+4. **Paris Marais Apartments**
+   - Paris, France (Multifamily, 65 units)
+   - Rue de Rivoli 78, 75004
+   - Historic Marais district residences
+   - Portfolio: /portfolio/paris-marais
 
-5. **Tech Park Industrial**
-   - San Jose, CA (Industrial, 250,000 sq ft)
-   - 654 Innovation Way, 95113
-   - Modern logistics hub
+5. **Lyon Industrial Park**
+   - Lyon, France (Industrial, 185,000 sq ft)
+   - Avenue Jean Jaurès 456, 69007
+   - Distribution and logistics hub
+   - Portfolio: /portfolio/lyon-industrial
 
-6. **Riverside Student Housing**
-   - Boston, MA (Multifamily, 200 beds)
-   - 987 University Ave, 02215
-   - Purpose-built student living
+6. **Côte d'Azur Retail**
+   - Nice, France (Retail, 52,000 sq ft)
+   - Promenade des Anglais 89, 06000
+   - Premium waterfront retail center
+   - Portfolio: /portfolio/cote-azur-retail
 
-7. **Gateway Business Park**
-   - Atlanta, GA (Office, 120,000 sq ft)
-   - 159 Enterprise Dr, 30303
-   - Suburban office campus
+7. **Venice Canal Residences**
+   - Venice, Italy (Multifamily, 45 units)
+   - Calle Larga San Marco 321, 30124
+   - Historic canal-side apartments
+   - Portfolio: /portfolio/venice-canal
 
-8. **Coastal Self Storage**
-   - San Diego, CA (Self Storage, 600 units)
-   - 753 Coastal Hwy, 92101
-   - Premium climate control
+8. **Marseille Port Office**
+   - Marseille, France (Office, 95,000 sq ft)
+   - Quai du Port 567, 13002
+   - Vieux Port business district
+   - Portfolio: /portfolio/marseille-port
 
-9. **Metro Apartments**
-   - Seattle, WA (Multifamily, 180 units)
-   - 852 Downtown St, 98101
-   - Urban core development
+9. **Barcelona Gothic Quarter**
+   - Barcelona, Spain (Multifamily, 72 units)
+   - Carrer del Bisbe 12, 08002
+   - Gothic Quarter luxury residences
+   - Portfolio: /portfolio/barcelona-gothic
 
-10. **Parkway Industrial**
-    - Dallas, TX (Industrial, 180,000 sq ft)
-    - 951 Logistics Ln, 75201
-    - Distribution center
+10. **Lisbon Alfama Storage**
+    - Lisbon, Portugal (Self Storage, 420 units)
+    - Rua de São Tomé 34, 1100-567
+    - Historic district storage facility
+    - Portfolio: /portfolio/lisbon-alfama
 
-**Diversity:**
-- 3 Multifamily properties
+**Property Type Diversity:**
+- 4 Multifamily properties
 - 2 Office properties
 - 2 Self Storage properties
-- 2 Industrial properties
+- 1 Industrial property
 - 1 Retail property
 
 **Geographic Distribution:**
-- West Coast: 3 (CA, WA)
-- Southwest: 2 (TX)
-- Midwest: 2 (IL, CO)
-- Southeast: 2 (FL, GA)
-- Northeast: 1 (MA)
+- Italy: 4 properties (Rome, Milan, Florence, Venice)
+- France: 4 properties (Paris, Lyon, Nice, Marseille)
+- Spain: 1 property (Barcelona)
+- Portugal: 1 property (Lisbon)
 
 ---
 
@@ -837,36 +880,57 @@ Blue Devil Jiu Jitsu schedule.html - Proven pattern this project follows
 
 ## Version History
 
-### Version 1.0 (2026-01-26) - Current
+### Version 1.2 (2026-01-26) - Current Production
+**European Properties Update:**
+- ✅ Migrated from US to European properties (IT, FR, ES, PT)
+- ✅ Updated schema: Country + Postal Code (international format)
+- ✅ Added Portfolio URL field with "View Portfolio" buttons
+- ✅ Map centered on Europe (Italy/France focus)
+- ✅ Floating filter pills (vertical layout, left side)
+- ✅ Animated marker drops (Google Maps DROP animation)
+- ✅ Milan cathedral hero background (WebP optimized, 247KB)
+- ✅ Glassmorphism filter UI with backdrop blur
+- ✅ Filter by property type and country
+- ✅ Auto-zoom to filtered properties
+
+**New Features:**
+- Info window "View Portfolio" buttons (navy → lime hover)
+- Filter pills: Property Type (Multifamily, Office, etc.)
+- Filter pills: Country (Italy, France, Spain, Portugal)
+- Hero background: Milan Duomo with lion statue
+- Vertical filter layout on map (better UX)
+- Property cards show "City, Country" format
+
+**Files Updated:**
+- investments.html (added filter pills container)
+- investments.css (filter pills, hero bg, responsive)
+- investments.js (Europe center, filters, animations)
+- google-apps-script.js (international schema, portfolioUrl)
+- sample-properties.csv (10 European properties)
+- images/hero/milan-cathedral-hero.webp (247KB)
+
+### Version 1.1 (2026-01-26)
+**Initial Deployment:**
+- ✅ GitHub repository setup (hello@websitelab.biz)
+- ✅ Vercel deployment with auto-deploy
+- ✅ vercel.json configuration (clean URLs)
+- ✅ .gitignore added
+
+### Version 1.0 (2026-01-26)
 **Initial Release:**
 - ✅ Complete serverless architecture implementation
 - ✅ Google Sheets + Apps Script + Google Maps integration
 - ✅ Professional navy/lime corporate design
-- ✅ 10 sample investment properties
+- ✅ 10 sample investment properties (originally US)
 - ✅ Responsive design (mobile, tablet, desktop)
 - ✅ Interactive map with custom markers
 - ✅ Property cards with click-to-zoom
 - ✅ Complete documentation (README + CLAUDE.md)
-- ✅ Configured with live URLs (Steps 1-3 complete)
-- ✅ GitHub repository setup
-- ✅ Deployed to Vercel with auto-deploy
-
-**Files Created:**
-- index.html (redirect to investments page)
-- investments.html (93 lines)
-- investments.css (403 lines)
-- investments.js (270 lines, configured)
-- google-apps-script.js (88 lines)
-- sample-properties.csv (10 properties)
-- vercel.json (Vercel configuration)
-- README-INVESTMENTS.md (380 lines)
-- CLAUDE.md (this file)
 
 **Configuration:**
-- Apps Script URL: ✅ Configured
-- Google Maps API Key: ✅ Configured
-- API Restrictions: ✅ Applied (need to add Vercel URL)
-- Sample Data: ✅ Ready for import
+- Apps Script URL: ✅ https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9M-TukPqbsmabsnI49DAjRSGZ4qKAA/exec
+- Google Maps API Key: ✅ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
+- API Restrictions: ✅ Applied (iamcapital.vercel.app/*)
 - Git Repository: ✅ https://github.com/websitelab/iamcapital
 - Git User: ✅ hello@websitelab.biz
 - Vercel Deployment: ✅ https://iamcapital.vercel.app/
