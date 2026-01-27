@@ -33,27 +33,28 @@ function doGet() {
 
     // Skip header row (row 0), process data rows
     for (let i = 1; i < data.length; i++) {
-      const [name, address, city, state, zip, propertyType, unitsSize, acquisitionDate, status, description] = data[i];
+      const [name, address, city, country, postalCode, propertyType, unitsSize, acquisitionDate, status, description, portfolioUrl] = data[i];
 
-      // Skip empty rows (require name, address, city, state at minimum)
-      if (!name || !address || !city || !state) continue;
+      // Skip empty rows (require name, address, city, country at minimum)
+      if (!name || !address || !city || !country) continue;
 
-      // Build full address for geocoding
-      const fullAddress = `${address}, ${city}, ${state} ${zip || ''}`.trim();
+      // Build full address for geocoding (international format)
+      const fullAddress = `${address}, ${city}, ${postalCode || ''} ${country}`.trim();
 
       // Build property object
       properties.push({
         name: name,
         address: address,
         city: city,
-        state: state,
-        zip: zip || '',
+        country: country,
+        postalCode: postalCode || '',
         fullAddress: fullAddress,
         propertyType: propertyType || '',
         unitsSize: unitsSize || '',
         acquisitionDate: acquisitionDate || '',
         status: status || 'Active',
-        description: description || ''
+        description: description || '',
+        portfolioUrl: portfolioUrl || ''
       });
     }
 

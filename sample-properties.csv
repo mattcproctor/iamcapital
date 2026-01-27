@@ -1,11 +1,11 @@
-Property Name,Address,City,State,Zip Code,Property Type,Units/Size,Acquisition Date,Status,Description
-Harbor View Apartments,123 Waterfront Drive,Miami,FL,33132,Multifamily,120 units,Q2 2024,Active,Class A waterfront development
-Sunset Plaza Office,456 Commerce Blvd,Austin,TX,78701,Office,85000 sq ft,Q1 2023,Active,Downtown mixed-use complex
-Mountain Ridge Storage,789 Mountain View Rd,Denver,CO,80202,Self Storage,450 units,Q3 2024,Active,Climate-controlled facility
-Lakeside Retail Center,321 Lake Shore Dr,Chicago,IL,60611,Retail,42000 sq ft,Q4 2022,Active,Anchored shopping center
-Tech Park Industrial,654 Innovation Way,San Jose,CA,95113,Industrial,250000 sq ft,Q1 2024,Active,Modern logistics hub
-Riverside Student Housing,987 University Ave,Boston,MA,02215,Multifamily,200 beds,Q2 2023,Active,Purpose-built student living
-Gateway Business Park,159 Enterprise Dr,Atlanta,GA,30303,Office,120000 sq ft,Q3 2022,Active,Suburban office campus
-Coastal Self Storage,753 Coastal Hwy,San Diego,CA,92101,Self Storage,600 units,Q1 2025,Active,Premium climate control
-Metro Apartments,852 Downtown St,Seattle,WA,98101,Multifamily,180 units,Q4 2023,Active,Urban core development
-Parkway Industrial,951 Logistics Ln,Dallas,TX,75201,Industrial,180000 sq ft,Q2 2024,Active,Distribution center
+Property Name,Address,City,Country,Postal Code,Property Type,Units/Size,Acquisition Date,Status,Description,Portfolio URL
+Palazzo Residences,Via dei Condotti 45,Rome,Italy,00187,Multifamily,85 units,Q2 2024,Active,Luxury residential in historic center,/portfolio/palazzo-residences
+Milan Office Tower,Corso Buenos Aires 123,Milan,Italy,20124,Office,120000 sq ft,Q1 2023,Active,Modern Class A office complex,/portfolio/milan-office-tower
+Tuscan Storage Solutions,Via Aretina 234,Florence,Italy,50136,Self Storage,380 units,Q3 2024,Active,Climate-controlled premium facility,/portfolio/tuscan-storage
+Paris Marais Apartments,Rue de Rivoli 78,Paris,France,75004,Multifamily,65 units,Q4 2022,Active,Historic Marais district residences,/portfolio/paris-marais
+Lyon Industrial Park,Avenue Jean Jaurès 456,Lyon,France,69007,Industrial,185000 sq ft,Q1 2024,Active,Distribution and logistics hub,/portfolio/lyon-industrial
+Côte d'Azur Retail,Promenade des Anglais 89,Nice,France,06000,Retail,52000 sq ft,Q2 2023,Active,Premium waterfront retail center,/portfolio/cote-azur-retail
+Venice Canal Residences,Calle Larga San Marco 321,Venice,Italy,30124,Multifamily,45 units,Q3 2022,Active,Historic canal-side apartments,/portfolio/venice-canal
+Marseille Port Office,Quai du Port 567,Marseille,France,13002,Office,95000 sq ft,Q1 2025,Active,Vieux Port business district,/portfolio/marseille-port
+Barcelona Gothic Quarter,Carrer del Bisbe 12,Barcelona,Spain,08002,Multifamily,72 units,Q4 2023,Active,Gothic Quarter luxury residences,/portfolio/barcelona-gothic
+Lisbon Alfama Storage,Rua de São Tomé 34,Lisbon,Portugal,1100-567,Self Storage,420 units,Q2 2024,Active,Historic district storage facility,/portfolio/lisbon-alfama

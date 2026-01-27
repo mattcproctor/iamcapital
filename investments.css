@@ -314,6 +314,24 @@ body {
     margin: 0.25rem 0;
 }
 
+.info-window__button {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: var(--color-navy);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0;
+    transition: all var(--transition-base);
+}
+
+.info-window__button:hover {
+    background: var(--color-lime);
+    color: var(--color-navy);
+}
+
 /* ===================================
    Footer
    =================================== */

@@ -214,12 +214,17 @@ function geocodeAddress(address) {
  * Create info window HTML content
  */
 function createInfoWindowContent(property) {
+    const portfolioButton = property.portfolioUrl
+        ? `<a href="${escapeHtml(property.portfolioUrl)}" class="info-window__button">View Portfolio</a>`
+        : '';
+
     return `
         <div class="info-window">
-            <h3 class="info-window__title">${property.name}</h3>
-            <p class="info-window__address">${property.fullAddress}</p>
-            <p class="info-window__type">${property.propertyType}</p>
-            <p class="info-window__size">${property.unitsSize}</p>
+            <h3 class="info-window__title">${escapeHtml(property.name)}</h3>
+            <p class="info-window__address">${escapeHtml(property.fullAddress)}</p>
+            <p class="info-window__type">${escapeHtml(property.propertyType)}</p>
+            <p class="info-window__size">${escapeHtml(property.unitsSize)}</p>
+            ${portfolioButton}
         </div>
     `;
 }
@@ -250,7 +255,7 @@ function renderPropertyCards(properties) {
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#9DFF20"/>
                         <circle cx="12" cy="9" r="2.5" fill="#193D5F"/>
                     </svg>
-                    ${escapeHtml(property.city)}, ${escapeHtml(property.state)}
+                    ${escapeHtml(property.city)}, ${escapeHtml(property.country)}
                 </p>
                 <p class="property-card__size">${escapeHtml(property.unitsSize)}</p>
                 <p class="property-card__date">Acquired: ${escapeHtml(property.acquisitionDate)}</p>
