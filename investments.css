@@ -99,7 +99,9 @@ body {
    Hero Section
    =================================== */
 .investments-hero {
-    background: url('images/hero/milan-cathedral-hero.webp') center center/cover no-repeat;
+    background:
+        linear-gradient(135deg, rgba(25, 55, 95, 0.4) 0%, rgba(15, 42, 63, 0.5) 100%),
+        url('images/hero/milan-cathedral-hero.webp') center center/cover no-repeat;
     color: var(--color-white);
     padding: 6rem 0 4rem;
     text-align: center;
