@@ -337,10 +337,7 @@ function renderFilterPills(properties) {
     const propertyTypes = [...new Set(properties.map(p => p.propertyType).filter(Boolean))];
     const countries = [...new Set(properties.map(p => p.country).filter(Boolean))];
 
-    const filterContainer = document.getElementById('filterPills');
-    if (!filterContainer) return;
-
-    filterContainer.innerHTML = `
+    const filterHTML = `
         <div class="filter-pills__group">
             <span class="filter-pills__label">Type:</span>
             <button class="filter-pill filter-pill--active" data-filter-type="propertyType" data-filter-value="all">All</button>
@@ -357,10 +354,23 @@ function renderFilterPills(properties) {
         </div>
     `;
 
-    // Add click handlers
-    filterContainer.querySelectorAll('.filter-pill').forEach(pill => {
-        pill.addEventListener('click', handleFilterClick);
-    });
+    // Render in map overlay (mobile)
+    const filterContainer = document.getElementById('filterPills');
+    if (filterContainer) {
+        filterContainer.innerHTML = filterHTML;
+        filterContainer.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', handleFilterClick);
+        });
+    }
+
+    // Render in desktop filters section
+    const desktopFilters = document.getElementById('desktopFilters');
+    if (desktopFilters) {
+        desktopFilters.innerHTML = filterHTML;
+        desktopFilters.querySelectorAll('.filter-pill').forEach(pill => {
+            pill.addEventListener('click', handleFilterClick);
+        });
+    }
 }
 
 /**
@@ -371,13 +381,28 @@ function handleFilterClick(e) {
     const filterType = pill.dataset.filterType;
     const filterValue = pill.dataset.filterValue;
 
-    // Update active state for this filter group
-    const group = pill.closest('.filter-pills__group');
-    group.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('filter-pill--active'));
-    pill.classList.add('filter-pill--active');
-
     // Update active filters
     activeFilters[filterType] = filterValue;
+
+    // Sync active state across both filter sets (map overlay + desktop)
+    const allFilterContainers = [
+        document.getElementById('filterPills'),
+        document.getElementById('desktopFilters')
+    ];
+
+    allFilterContainers.forEach(container => {
+        if (container) {
+            // Find all pills with matching filter type
+            const pills = container.querySelectorAll(`[data-filter-type="${filterType}"]`);
+            pills.forEach(p => {
+                if (p.dataset.filterValue === filterValue) {
+                    p.classList.add('filter-pill--active');
+                } else {
+                    p.classList.remove('filter-pill--active');
+                }
+            });
+        }
+    });
 
     // Filter properties
     applyFilters();
