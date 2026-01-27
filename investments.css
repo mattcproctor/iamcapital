@@ -8,8 +8,8 @@
    =================================== */
 :root {
     /* Brand Colors */
-    --color-navy: #193D5F;
-    --color-lime: #9DFF20;
+    --color-navy: #19375F;
+    --color-lime: #FFFFFF;
     --color-white: #FFFFFF;
     --color-black: #000000;
 
@@ -75,7 +75,7 @@ body {
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-lime);
+    color: var(--color-white);
 }
 
 .nav__list {
@@ -92,19 +92,17 @@ body {
 }
 
 .nav__link:hover {
-    color: var(--color-lime);
+    opacity: 0.8;
 }
 
 /* ===================================
    Hero Section
    =================================== */
 .investments-hero {
-    background:
-        linear-gradient(135deg, rgba(25, 61, 95, 0.85) 0%, rgba(15, 42, 63, 0.90) 100%),
-        url('images/hero/milan-cathedral-hero.webp') center center/cover no-repeat;
+    background: url('images/hero/milan-cathedral-hero.webp') center center/cover no-repeat;
     color: var(--color-white);
     padding: 6rem 0 4rem;
-    text-align: center;
+    text-align: left;
     position: relative;
 }
 
@@ -112,10 +110,11 @@ body {
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 var(--container-padding);
+    text-align: left;
 }
 
 .investments-hero__label {
-    color: var(--color-lime);
+    color: var(--color-white);
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -131,9 +130,11 @@ body {
 }
 
 .investments-hero__subtitle {
-    font-size: 1.25rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--color-white);
+    max-width: 900px;
 }
 
 /* ===================================
@@ -226,8 +227,7 @@ body {
 }
 
 .filter-toggle:hover {
-    background: var(--color-lime);
-    color: var(--color-navy);
+    opacity: 0.9;
 }
 
 .filter-toggle svg {
@@ -272,8 +272,8 @@ body {
 }
 
 .filter-pill--active:hover {
-    background: var(--color-lime);
-    border-color: var(--color-lime);
+    background: var(--color-white);
+    border-color: var(--color-white);
     color: var(--color-navy);
 }
 
@@ -347,8 +347,8 @@ body {
 }
 
 .property-card__type {
-    background: var(--color-lime);
-    color: var(--color-navy);
+    background: var(--color-navy);
+    color: var(--color-white);
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.25rem 0.75rem;
@@ -418,7 +418,7 @@ body {
 }
 
 .info-window__button:hover {
-    background: var(--color-lime);
+    background: var(--color-white);
     color: var(--color-navy);
 }
 
