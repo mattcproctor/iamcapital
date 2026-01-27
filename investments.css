@@ -314,26 +314,32 @@ body {
 .desktop-filters {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+    margin: 0 auto 3rem;
+    padding: 1.5rem 2rem;
+    background: var(--color-gray-50);
+    border-radius: 8px;
+    max-width: fit-content;
 }
 
 .desktop-filters .filter-pills__group {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
 .desktop-filters .filter-pills__label {
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-navy);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 0.25rem;
 }
 
 .desktop-filters .filter-pill {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.25rem;
     background: var(--color-white);
     border: 2px solid var(--color-gray-200);
     color: var(--color-gray-700);
@@ -341,24 +347,28 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-base);
-    border-radius: 20px;
+    border-radius: 6px;
+    white-space: nowrap;
 }
 
 .desktop-filters .filter-pill:hover {
     border-color: var(--color-navy);
     color: var(--color-navy);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .desktop-filters .filter-pill--active {
     background: var(--color-navy);
     border-color: var(--color-navy);
     color: var(--color-white);
+    box-shadow: 0 2px 8px rgba(25, 55, 95, 0.2);
 }
 
 .desktop-filters .filter-pill--active:hover {
-    background: var(--color-white);
-    border-color: var(--color-white);
-    color: var(--color-navy);
+    background: #15294A;
+    border-color: #15294A;
+    transform: translateY(-1px);
 }
 
 .properties-section__loading,
