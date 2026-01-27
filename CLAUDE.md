@@ -193,9 +193,9 @@ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
 ### Color Palette
 ```css
 /* Primary Colors */
---color-navy: #193D5F;        /* Deep navy (primary brand) */
---color-lime: #9DFF20;        /* Lime green (accent) */
---color-white: #FFFFFF;       /* White */
+--color-navy: #19375F;        /* Deep navy (primary brand) */
+--color-gold: #D4AF37;        /* Gold (accent for markers, buttons) */
+--color-white: #FFFFFF;       /* Pure white */
 --color-black: #000000;       /* Black */
 
 /* Grays */
@@ -208,10 +208,10 @@ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
 ```
 
 **Color Usage:**
-- **Navy (#193D5F)**: Header, hero gradient, property card titles, map base color
-- **Lime (#9DFF20)**: Logo accent, map markers, property type badges
-- **White (#FFFFFF)**: Text on dark backgrounds, card backgrounds
-- **Gray**: Body text, borders, secondary elements
+- **Navy (#19375F)**: Header, hero gradient, property card titles, map base color, active filter pills
+- **Gold (#D4AF37)**: Map markers, mobile filter toggle button, property location icons
+- **White (#FFFFFF)**: Text on dark backgrounds, card backgrounds, logo, navigation
+- **Gray**: Body text, borders, secondary elements, filter backgrounds
 
 ### Typography
 **Font Family:** Overpass (Google Fonts)
@@ -267,16 +267,17 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 
 ### 2. Hero Section
 **Content:**
-- Eyebrow label: "GLOBAL PORTFOLIO" (lime, uppercase)
+- Eyebrow label: "GLOBAL PORTFOLIO" (white, uppercase)
 - Main title: "Investment Properties" (white, 900 weight)
-- Subtitle: "Strategic investments across diversified asset classes"
+- Subtitle: "Strategic investments across diversified asset classes" (white, light weight)
 
 **Styling:**
 - Background: Milan Duomo cathedral image (milan-cathedral-hero.webp, 247KB)
-- Overlay: Linear gradient (navy 85% → 90% opacity) for text readability
-- Image: Cover, center positioned
+- Overlay: Subtle linear gradient (navy 40% → 50% opacity) for text readability
+- Image: Cover, center positioned - more visible than before
 - Text alignment: Center
 - Padding: 6rem desktop → 4rem mobile
+- Color scheme: Pure white text on cathedral background with subtle navy tint
 
 **Image Details:**
 - File: `images/hero/milan-cathedral-hero.webp`
@@ -284,6 +285,7 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - Dimensions: 1920px width
 - Quality: 85
 - Subject: Milan Duomo cathedral with lion statue (European architecture)
+- Overlay: Reduced opacity (40-50%) to show more of image detail
 
 ### 3. Map Section
 **Structure:**
@@ -291,30 +293,41 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - Height: 600px desktop → 400px mobile
 - Loading state (spinner + message)
 - Error state (fallback message)
-- Custom map styling (navy/lime theme)
-- **Floating filter pills** (vertical layout, left side)
+- Custom map styling (navy/gold theme)
+- **Collapsible filter toggle button** (mobile/desktop)
 
 **Map Features:**
 - **Default center**: Europe (lat: 45.0, lng: 10.0) - Italy/France region
 - **Default zoom**: 5 (shows all European properties)
-- Custom navy base color (#193D5F)
-- Lime green circular markers (#9DFF20, scale: 8px)
-- White stroke on markers (2px)
+- Custom navy base color (#19375F)
+- **Gold pin markers** (#D4AF37) - standard teardrop/pin shape
+- White stroke on markers (2px) for contrast
 - **Animated marker drops** (Google Maps DROP animation)
 - Info windows on marker click with "View Portfolio" button
 - Auto-zoom to fit filtered markers
 - Fullscreen control enabled
 
-**Filter Pills (Floating Overlay):**
+**Filter Toggle Button:**
 - Position: Top-left corner (1rem from edges)
-- Layout: Vertical stack (max-width: 250px)
-- Style: Glassmorphism (white 95% + backdrop blur)
+- Style: Gold background (#D4AF37) with white text/icon
+- Mobile: Collapsible (hidden by default, toggle to show)
+- Desktop: Same gold button, always visible
+- Hover: Darker gold (#C9A632) with lift effect
+- Icon: Hamburger menu (3 lines) → X when open
+
+**Filter Pills (Collapsible Overlay):**
+- Hidden by default - click toggle button to show
+- Position: Below toggle button on mobile, overlay on map
+- Layout: Vertical stack in glassmorphism container
+- Style: White 95% background + backdrop blur
 - Two filter groups:
   - **Property Type**: All, Multifamily, Office, Self Storage, Retail, Industrial
   - **Country**: All, Italy, France, Spain, Portugal
 - Active state: Navy background with white text
-- Hover state: Lime background on active pills
+- Hover state: White background on active pills
 - Click to filter: Updates both map markers and property cards
+- Auto-close after selection (mobile)
+- Click outside to close
 - Auto-zoom to visible markers after filtering
 
 **Geocoding:**
@@ -328,6 +341,7 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 **Layout:**
 - Max-width container (1400px)
 - Section title: "Portfolio Overview"
+- Company description below title (center-aligned)
 - Responsive grid:
   - Desktop: auto-fill, min 320px columns
   - Tablet: auto-fill, min 280px columns
@@ -336,9 +350,9 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 **Card Structure:**
 - Header:
   - Property name (navy, bold)
-  - Property type badge (lime background, navy text)
+  - Property type badge (navy background, white text)
 - Body:
-  - Location (with pin icon)
+  - Location (with gold pin icon)
   - Units/Size
   - Acquisition date
 
@@ -880,7 +894,39 @@ Blue Devil Jiu Jitsu schedule.html - Proven pattern this project follows
 
 ## Version History
 
-### Version 1.2 (2026-01-26) - Current Production
+### Version 1.3 (2026-01-26) - Current Production
+**Design Refinement & UX Improvements:**
+- ✅ Mobile filter collapsible toggle button (gold background)
+- ✅ Color scheme updated to #19375F navy and pure white (removed lime green)
+- ✅ Map markers changed to gold (#D4AF37) pin/teardrop shape (best practices)
+- ✅ Hero section with subtle gradient overlay (40-50% opacity)
+- ✅ Company description moved below "Portfolio Overview"
+- ✅ Filter toggle button: gold background with white text/icon
+- ✅ Improved mobile UX - filters hidden by default, toggle to show
+- ✅ Auto-close filter menu after selection on mobile
+- ✅ Click outside to close filters
+
+**Design Changes:**
+- Gold map markers (#D4AF37) with standard pin SVG path
+- White text and icons on gold filter toggle button
+- Subtle navy gradient overlay on hero image (maintains readability)
+- Filters accessible via map overlay toggle only (desktop filters removed)
+- Property card icons updated to match gold color scheme
+- Info window buttons: navy background with white text
+
+**UX Improvements:**
+- Mobile filters: Collapsible by default, toggle to open
+- Filter menu auto-closes after selection
+- Click outside filter menu to close
+- Reduced screen coverage on mobile
+- Gold button provides visual consistency with markers
+
+**Files Updated:**
+- investments.html (filter toggle button, company description moved)
+- investments.css (gold colors, filter toggle styles, mobile responsive)
+- investments.js (gold markers, filter sync, auto-close behavior)
+
+### Version 1.2 (2026-01-26)
 **European Properties Update:**
 - ✅ Migrated from US to European properties (IT, FR, ES, PT)
 - ✅ Updated schema: Country + Postal Code (international format)
@@ -1011,7 +1057,7 @@ In your Google Sheet:
 
 ---
 
-**Last Updated**: 2026-01-26
+**Last Updated**: 2026-01-26 (Version 1.3)
 **Status**: Deployed to Production
 **Live URL**: https://iamcapital.vercel.app/
-**Next Step**: Add Vercel URL to Google Maps API restrictions
+**Current Version**: 1.3 - Gold markers, collapsible filters, refined UX
