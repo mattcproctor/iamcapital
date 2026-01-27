@@ -10,6 +10,11 @@ const PROPERTIES_API_URL = 'https://script.google.com/macros/s/AKfycbyY3TsuK56cy
 let map;
 let markers = [];
 let geocoder;
+let allProperties = [];
+let activeFilters = {
+    propertyType: 'all',
+    country: 'all'
+};
 
 // ===================================
 // Map Initialization
@@ -20,11 +25,11 @@ let geocoder;
  * Called by Google Maps API callback
  */
 function initMap() {
-    // Center on US (default view before markers load)
-    const defaultCenter = { lat: 39.8283, lng: -98.5795 };
+    // Center on Europe (Italy/France focus)
+    const defaultCenter = { lat: 45.0, lng: 10.0 };
 
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 4,
+        zoom: 5,
         center: defaultCenter,
         styles: getMapStyles(),
         mapTypeControl: false,
@@ -110,8 +115,10 @@ async function loadProperties() {
 
         // Process properties
         if (data.properties && data.properties.length > 0) {
+            allProperties = data.properties;
             await geocodeAndRenderProperties(data.properties);
             renderPropertyCards(data.properties);
+            renderFilterPills(data.properties);
         } else {
             // No properties case
             mapError.style.display = 'flex';
@@ -142,11 +149,12 @@ async function geocodeAndRenderProperties(properties) {
             const result = await geocodeAddress(property.fullAddress);
 
             if (result) {
-                // Create marker
+                // Create marker with drop animation
                 const marker = new google.maps.Marker({
                     position: result,
                     map: map,
                     title: property.name,
+                    animation: google.maps.Animation.DROP,
                     icon: {
                         path: google.maps.SymbolPath.CIRCLE,
                         scale: 8,
@@ -316,6 +324,101 @@ window.gm_authFailure = function() {
     document.getElementById('mapLoading').style.display = 'none';
     document.getElementById('mapError').style.display = 'flex';
 };
+
+// ===================================
+// Filter Pills Rendering
+// ===================================
+
+/**
+ * Render filter pills from property data
+ */
+function renderFilterPills(properties) {
+    // Get unique property types and countries
+    const propertyTypes = [...new Set(properties.map(p => p.propertyType).filter(Boolean))];
+    const countries = [...new Set(properties.map(p => p.country).filter(Boolean))];
+
+    const filterContainer = document.getElementById('filterPills');
+    if (!filterContainer) return;
+
+    filterContainer.innerHTML = `
+        <div class="filter-pills__group">
+            <span class="filter-pills__label">Type:</span>
+            <button class="filter-pill filter-pill--active" data-filter-type="propertyType" data-filter-value="all">All</button>
+            ${propertyTypes.map(type => `
+                <button class="filter-pill" data-filter-type="propertyType" data-filter-value="${type}">${type}</button>
+            `).join('')}
+        </div>
+        <div class="filter-pills__group">
+            <span class="filter-pills__label">Country:</span>
+            <button class="filter-pill filter-pill--active" data-filter-type="country" data-filter-value="all">All</button>
+            ${countries.map(country => `
+                <button class="filter-pill" data-filter-type="country" data-filter-value="${country}">${country}</button>
+            `).join('')}
+        </div>
+    `;
+
+    // Add click handlers
+    filterContainer.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.addEventListener('click', handleFilterClick);
+    });
+}
+
+/**
+ * Handle filter pill clicks
+ */
+function handleFilterClick(e) {
+    const pill = e.target;
+    const filterType = pill.dataset.filterType;
+    const filterValue = pill.dataset.filterValue;
+
+    // Update active state for this filter group
+    const group = pill.closest('.filter-pills__group');
+    group.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('filter-pill--active'));
+    pill.classList.add('filter-pill--active');
+
+    // Update active filters
+    activeFilters[filterType] = filterValue;
+
+    // Filter properties
+    applyFilters();
+}
+
+/**
+ * Apply active filters to map and cards
+ */
+function applyFilters() {
+    const filtered = allProperties.filter(property => {
+        const typeMatch = activeFilters.propertyType === 'all' || property.propertyType === activeFilters.propertyType;
+        const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
+        return typeMatch && countryMatch;
+    });
+
+    // Update markers visibility
+    markers.forEach(marker => {
+        const property = allProperties.find(p => p.name === marker.title);
+        if (property) {
+            const typeMatch = activeFilters.propertyType === 'all' || property.propertyType === activeFilters.propertyType;
+            const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
+            marker.setVisible(typeMatch && countryMatch);
+        }
+    });
+
+    // Update property cards
+    renderPropertyCards(filtered);
+
+    // Fit map to visible markers
+    const bounds = new google.maps.LatLngBounds();
+    let hasVisibleMarkers = false;
+    markers.forEach(marker => {
+        if (marker.getVisible()) {
+            bounds.extend(marker.getPosition());
+            hasVisibleMarkers = true;
+        }
+    });
+    if (hasVisibleMarkers) {
+        map.fitBounds(bounds);
+    }
+}
 
 // Note: initMap() is called by Google Maps API callback
 // No DOMContentLoaded needed - async defer script handles timing
