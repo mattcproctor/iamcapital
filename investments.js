@@ -420,5 +420,61 @@ function applyFilters() {
     }
 }
 
+// ===================================
+// Mobile Filter Toggle
+// ===================================
+
+/**
+ * Setup mobile filter toggle button
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const filterToggle = document.getElementById('filterToggle');
+    const filterPills = document.getElementById('filterPills');
+
+    if (filterToggle && filterPills) {
+        filterToggle.addEventListener('click', () => {
+            filterPills.classList.toggle('active');
+
+            // Update button text
+            if (filterPills.classList.contains('active')) {
+                filterToggle.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Close
+                `;
+            } else {
+                filterToggle.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="4" y1="6" x2="20" y2="6"></line>
+                        <line x1="4" y1="12" x2="20" y2="12"></line>
+                        <line x1="4" y1="18" x2="20" y2="18"></line>
+                    </svg>
+                    Filters
+                `;
+            }
+        });
+
+        // Close filters when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 767 &&
+                !filterToggle.contains(e.target) &&
+                !filterPills.contains(e.target) &&
+                filterPills.classList.contains('active')) {
+                filterPills.classList.remove('active');
+                filterToggle.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="4" y1="6" x2="20" y2="6"></line>
+                        <line x1="4" y1="12" x2="20" y2="12"></line>
+                        <line x1="4" y1="18" x2="20" y2="18"></line>
+                    </svg>
+                    Filters
+                `;
+            }
+        });
+    }
+});
+
 // Note: initMap() is called by Google Maps API callback
 // No DOMContentLoaded needed - async defer script handles timing
