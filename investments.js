@@ -149,19 +149,20 @@ async function geocodeAndRenderProperties(properties) {
             const result = await geocodeAddress(property.fullAddress);
 
             if (result) {
-                // Create marker with drop animation
+                // Create marker with drop animation (custom pin shape)
                 const marker = new google.maps.Marker({
                     position: result,
                     map: map,
                     title: property.name,
                     animation: google.maps.Animation.DROP,
                     icon: {
-                        path: google.maps.SymbolPath.CIRCLE,
-                        scale: 8,
-                        fillColor: '#FFFFFF',
+                        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
+                        fillColor: '#D4AF37',
                         fillOpacity: 1,
-                        strokeColor: '#19375F',
-                        strokeWeight: 2
+                        strokeColor: '#FFFFFF',
+                        strokeWeight: 2,
+                        scale: 1.5,
+                        anchor: new google.maps.Point(12, 24)
                     }
                 });
 
@@ -260,8 +261,8 @@ function renderPropertyCards(properties) {
             <div class="property-card__body">
                 <p class="property-card__location">
                     <svg class="property-card__icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#FFFFFF"/>
-                        <circle cx="12" cy="9" r="2.5" fill="#19375F"/>
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#D4AF37"/>
+                        <circle cx="12" cy="9" r="2.5" fill="#FFFFFF"/>
                     </svg>
                     ${escapeHtml(property.city)}, ${escapeHtml(property.country)}
                 </p>
