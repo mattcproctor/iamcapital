@@ -9,13 +9,13 @@ Professional investment property map page for iAM Capital displaying properties 
 - **Production URL**: https://iamcapital.vercel.app/
 - **GitHub Repository**: https://github.com/websitelab/iamcapital
 - **Hosting**: Vercel (auto-deploys from main branch)
-- **Last Updated**: January 26, 2026
+- **Last Updated**: January 29, 2026
 
 **Live Configuration:**
-- Google Apps Script URL: `https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9M-TukPqbsmabsnI49DAjRSGZ4qKAA/exec`
+- Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw/exec`
 - Google Maps API Key: `AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c`
 - Map Center: Europe (Italy/France region, lat: 45.0, lng: 10.0)
-- Property Data: 10 European properties (Italy, France, Spain, Portugal)
+- Property Data: 12 European properties across 4 categories (Italy, France, Spain, Portugal)
 - Deployment: ✅ GitHub, ✅ Vercel, ✅ Fully Operational
 
 **Technology Stack:**
@@ -68,7 +68,7 @@ iamcapital.com/
 ├── investments.css               # Styling with filter pills, hero bg
 ├── investments.js                # Map logic, filters, animations
 ├── google-apps-script.js         # Server code reference (European properties)
-├── sample-properties.csv         # European property data (10 properties)
+├── sample-properties.csv         # European property data (12 properties, 4 categories)
 ├── vercel.json                   # Vercel configuration (clean URLs)
 ├── .gitignore                    # Git ignore (.DS_Store, node_modules)
 ├── images/
@@ -87,11 +87,11 @@ iamcapital.com/
 
 ### ✅ Phase 1: Google Sheets Setup (COMPLETE)
 - [x] Created Google Sheet: "iAM Capital Investment Properties"
-- [x] Added column headers (10 columns)
-- [x] Imported sample property data (10 properties)
+- [x] Added column headers (13 columns - updated with image-based design)
+- [x] Imported sample property data (12 properties)
 - [x] Formatted columns as Plain Text
 
-**Sheet Structure (International Properties):**
+**Sheet Structure (International Properties - Version 1.4):**
 | Column | Name | Example |
 |--------|------|---------|
 | A | Property Name | "Palazzo Residences" |
@@ -99,12 +99,14 @@ iamcapital.com/
 | C | City | "Rome" |
 | D | Country | "Italy" |
 | E | Postal Code | "00187" |
-| F | Property Type | "Multifamily" |
-| G | Units/Size | "85 units" |
-| H | Acquisition Date | "Q2 2024" |
-| I | Status | "Active" |
-| J | Description | "Luxury residential in historic center" |
-| K | Portfolio URL | "/portfolio/palazzo-residences" |
+| F | Category | "Residential" |
+| G | Property Type | "Multifamily" |
+| H | Size SQM | "7650" |
+| I | Image URL | "https://images.unsplash.com/..." |
+| J | Acquisition Date | "Q2 2024" |
+| K | Status | "Active" |
+| L | Description | "Luxury residential in historic center" |
+| M | Portfolio URL | "/portfolio/palazzo-residences" |
 
 ### ✅ Phase 2: Google Apps Script Deployment (COMPLETE)
 - [x] Created Apps Script project
@@ -113,12 +115,12 @@ iamcapital.com/
 - [x] Obtained deployment URL
 - [x] Tested API endpoint (returns JSON)
 
-**Apps Script URL (Current Deployment):**
+**Apps Script URL (Current Deployment - Version 1.4):**
 ```
-https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9M-TukPqbsmabsnI49DAjRSGZ4qKAA/exec
+https://script.google.com/macros/s/AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw/exec
 ```
 
-**API Response Format (Current):**
+**API Response Format (Version 1.4 - Image-Based Design):**
 ```json
 {
   "properties": [
@@ -129,16 +131,18 @@ https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9
       "country": "Italy",
       "postalCode": "00187",
       "fullAddress": "Via dei Condotti 45, Rome, 00187 Italy",
+      "category": "Residential",
       "propertyType": "Multifamily",
-      "unitsSize": "85 units",
+      "sizeSqm": "7650",
+      "imageUrl": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=640&h=360&fit=crop&auto=format&q=80",
       "acquisitionDate": "Q2 2024",
       "status": "Active",
       "description": "Luxury residential in historic center",
       "portfolioUrl": "/portfolio/palazzo-residences"
     }
   ],
-  "count": 10,
-  "timestamp": "2026-01-26T..."
+  "count": 12,
+  "timestamp": "2026-01-29T..."
 }
 ```
 
@@ -431,78 +435,89 @@ let geocoder;      // Google Geocoder instance
 
 ## Sample Property Data (European Portfolio)
 
-**10 European Investment Properties:**
+**12 European Investment Properties (Version 1.4):**
 
 1. **Palazzo Residences**
-   - Rome, Italy (Multifamily, 85 units)
+   - Rome, Italy (Residential - Multifamily, 7,650 sqm)
    - Via dei Condotti 45, 00187
    - Luxury residential in historic center
    - Portfolio: /portfolio/palazzo-residences
 
 2. **Milan Office Tower**
-   - Milan, Italy (Office, 120,000 sq ft)
+   - Milan, Italy (Commercial - Office, 11,148 sqm)
    - Corso Buenos Aires 123, 20124
    - Modern Class A office complex
    - Portfolio: /portfolio/milan-office-tower
 
 3. **Tuscan Storage Solutions**
-   - Florence, Italy (Self Storage, 380 units)
+   - Florence, Italy (Commercial - Self Storage, 17,100 sqm)
    - Via Aretina 234, 50136
    - Climate-controlled premium facility
    - Portfolio: /portfolio/tuscan-storage
 
 4. **Paris Marais Apartments**
-   - Paris, France (Multifamily, 65 units)
+   - Paris, France (Residential - Multifamily, 5,850 sqm)
    - Rue de Rivoli 78, 75004
    - Historic Marais district residences
    - Portfolio: /portfolio/paris-marais
 
 5. **Lyon Industrial Park**
-   - Lyon, France (Industrial, 185,000 sq ft)
+   - Lyon, France (Commercial - Industrial, 17,187 sqm)
    - Avenue Jean Jaurès 456, 69007
    - Distribution and logistics hub
    - Portfolio: /portfolio/lyon-industrial
 
 6. **Côte d'Azur Retail**
-   - Nice, France (Retail, 52,000 sq ft)
+   - Nice, France (Commercial - Retail, 4,831 sqm)
    - Promenade des Anglais 89, 06000
    - Premium waterfront retail center
    - Portfolio: /portfolio/cote-azur-retail
 
 7. **Venice Canal Residences**
-   - Venice, Italy (Multifamily, 45 units)
+   - Venice, Italy (Residential - Multifamily, 4,050 sqm)
    - Calle Larga San Marco 321, 30124
    - Historic canal-side apartments
    - Portfolio: /portfolio/venice-canal
 
 8. **Marseille Port Office**
-   - Marseille, France (Office, 95,000 sq ft)
+   - Marseille, France (Commercial - Office, 8,826 sqm)
    - Quai du Port 567, 13002
    - Vieux Port business district
    - Portfolio: /portfolio/marseille-port
 
 9. **Barcelona Gothic Quarter**
-   - Barcelona, Spain (Multifamily, 72 units)
+   - Barcelona, Spain (Residential - Multifamily, 6,480 sqm)
    - Carrer del Bisbe 12, 08002
    - Gothic Quarter luxury residences
    - Portfolio: /portfolio/barcelona-gothic
 
 10. **Lisbon Alfama Storage**
-    - Lisbon, Portugal (Self Storage, 420 units)
+    - Lisbon, Portugal (Commercial - Self Storage, 18,900 sqm)
     - Rua de São Tomé 34, 1100-567
     - Historic district storage facility
     - Portfolio: /portfolio/lisbon-alfama
 
-**Property Type Diversity:**
-- 4 Multifamily properties
-- 2 Office properties
-- 2 Self Storage properties
-- 1 Industrial property
-- 1 Retail property
+11. **Grand Hotel Portofino**
+    - Portofino, Italy (Hospitality - Hotel, 8,500 sqm)
+    - Via Roma 82, 16034
+    - Luxury coastal resort hotel
+    - Portfolio: /portfolio/grand-hotel-portofino
+
+12. **Provence Solar Farm**
+    - Avignon, France (Renewable Energy - Solar, 125,000 sqm)
+    - Route de Cavaillon, 84000
+    - 50MW solar energy facility
+    - Portfolio: /portfolio/provence-solar-farm
+
+**Category System (4 Categories):**
+- **Residential**: 4 properties (Palazzo, Paris Marais, Venice Canal, Barcelona Gothic)
+- **Commercial**: 6 properties (Milan Office, Tuscan Storage, Lyon Industrial, Côte d'Azur Retail, Marseille Port, Lisbon Alfama)
+- **Hospitality**: 1 property (Grand Hotel Portofino)
+- **Renewable Energy**: 1 property (Provence Solar Farm)
 
 **Geographic Distribution:**
-- Italy: 4 properties (Rome, Milan, Florence, Venice)
-- France: 4 properties (Paris, Lyon, Nice, Marseille)
+- Italy: 5 properties (Rome, Milan, Florence, Venice, Portofino)
+- France: 5 properties (Paris, Lyon, Nice, Marseille, Avignon)
 - Spain: 1 property (Barcelona)
 - Portugal: 1 property (Lisbon)
 
@@ -837,9 +852,9 @@ git push -u origin main
 ## Quick Reference
 
 ### Configuration URLs
-**Apps Script API:**
+**Apps Script API (Version 1.4):**
 ```
-https://script.google.com/macros/s/AKfycbzFiDn31ne4CISFqjzCcpMwSve5FAJXKgNALoh1kzFw3IRrZtVBUIEUbTf_5whW_weMkQ/exec
+https://script.google.com/macros/s/AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw/exec
 ```
 
 **Google Maps API Key:**
@@ -894,7 +909,51 @@ Blue Devil Jiu Jitsu schedule.html - Proven pattern this project follows
 
 ## Version History
 
-### Version 1.3 (2026-01-26) - Current Production
+### Version 1.4 (2026-01-29) - Current Production
+**Image-Based Property Cards & Category System:**
+- ✅ Complete card redesign with professional property images
+- ✅ Implemented 4-category system (Residential, Commercial, Hospitality, Renewable Energy)
+- ✅ Added 2 new properties: Grand Hotel Portofino (Hospitality), Provence Solar Farm (Renewable Energy)
+- ✅ Updated data schema with Category, Size SQM, and Image URL fields
+- ✅ Integrated Unsplash CDN for high-quality property photos (12 images)
+- ✅ Size formatting with commas (e.g., "7,650 sqm")
+- ✅ Changed filters from "Property Type" to "Category"
+- ✅ Section title updated to "Portfolio by Category"
+
+**Card Design (Image-First Layout):**
+- 16:9 aspect ratio images (320x180px)
+- Dark gradient overlay for text readability
+- Property name and location badge on image overlay
+- Category badge and acquisition date below image
+- Professional Unsplash CDN images with WebP optimization
+- Maintained corporate aesthetic with hover effects
+
+**Data Schema Updates:**
+- Added `category` field (Residential, Commercial, Hospitality, Renewable Energy)
+- Added `sizeSqm` field (converted from sq ft and units)
+- Added `imageUrl` field (Unsplash CDN URLs)
+- Total: 12 properties across 4 categories
+
+**Backend & Frontend Changes:**
+- Google Apps Script: Updated to parse new CSV schema
+- investments.js: Category filters, image-based card rendering, country code helper
+- investments.css: Complete card style rewrite for image layout
+- investments.html: Section title change to "Portfolio by Category"
+- sample-properties.csv: Updated with new schema and 2 additional properties
+
+**API Configuration:**
+- New Apps Script URL: `AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw`
+- API Response: Now includes category, sizeSqm, imageUrl fields
+- Total properties: 12 (increased from 10)
+
+**Files Updated:**
+- sample-properties.csv (new schema, 12 properties)
+- google-apps-script.js (parse new fields)
+- investments.js (category filters, image cards, country codes)
+- investments.css (image-based card styles)
+- investments.html (section title)
+
+### Version 1.3 (2026-01-26)
 **Design Refinement & UX Improvements:**
 - ✅ Mobile filter collapsible toggle button (gold background)
 - ✅ Color scheme updated to #19375F navy and pure white (removed lime green)
@@ -1057,7 +1116,7 @@ In your Google Sheet:
 
 ---
 
-**Last Updated**: 2026-01-26 (Version 1.3)
+**Last Updated**: 2026-01-29 (Version 1.4)
 **Status**: Deployed to Production
 **Live URL**: https://iamcapital.vercel.app/
-**Current Version**: 1.3 - Gold markers, collapsible filters, refined UX
+**Current Version**: 1.4 - Image-based cards, 4-category system, 12 properties
