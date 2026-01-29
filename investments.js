@@ -45,39 +45,39 @@ function initMap() {
 }
 
 /**
- * Custom map styling - Navy/Lime theme
+ * Custom map styling - Clean minimal theme with blue tones
  */
 function getMapStyles() {
     return [
+        // Hide all POIs (airports, parks, businesses, etc.)
         {
-            "featureType": "all",
-            "elementType": "geometry",
-            "stylers": [{ "color": "#19375F" }]
+            "featureType": "poi",
+            "elementType": "all",
+            "stylers": [{ "visibility": "off" }]
         },
+        // Hide transit stations and labels
         {
-            "featureType": "all",
-            "elementType": "labels.text.fill",
-            "stylers": [{ "color": "#FFFFFF" }]
+            "featureType": "transit",
+            "elementType": "all",
+            "stylers": [{ "visibility": "off" }]
         },
+        // Hide road labels/numbers
         {
-            "featureType": "all",
-            "elementType": "labels.text.stroke",
-            "stylers": [{ "color": "#19375F" }]
+            "featureType": "road",
+            "elementType": "labels",
+            "stylers": [{ "visibility": "off" }]
         },
+        // Keep simple blue water
         {
             "featureType": "water",
             "elementType": "geometry",
-            "stylers": [{ "color": "#0F2A3F" }]
+            "stylers": [{ "color": "#a2daf2" }]
         },
+        // Keep place labels (cities, countries) visible
         {
-            "featureType": "road",
-            "elementType": "geometry",
-            "stylers": [{ "color": "#2A4A6A" }]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "geometry",
-            "stylers": [{ "color": "#19375F" }]
+            "featureType": "administrative",
+            "elementType": "labels",
+            "stylers": [{ "visibility": "on" }]
         }
     ];
 }
@@ -224,7 +224,7 @@ function geocodeAddress(address) {
  */
 function createInfoWindowContent(property) {
     const portfolioButton = property.portfolioUrl
-        ? `<a href="${escapeHtml(property.portfolioUrl)}" class="info-window__button">View Portfolio</a>`
+        ? `<a href="${escapeHtml(property.portfolioUrl)}" class="info-window__button">View Property</a>`
         : '';
 
     const formattedSize = property.sizeSqm ? `${parseInt(property.sizeSqm).toLocaleString()} sqm` : '';

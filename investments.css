@@ -449,8 +449,8 @@ body {
 }
 
 .info-window__button:hover {
-    background: var(--color-white);
-    color: var(--color-navy);
+    background: var(--color-gold);
+    color: var(--color-white);
 }
 
 /* ===================================
