@@ -164,18 +164,27 @@ async function loadProperties() {
 
 /**
  * Geocode addresses and add map markers
+ * Uses pre-geocoded coordinates if available (fast), falls back to geocoding (slow)
  */
 async function geocodeAndRenderProperties(properties) {
     const bounds = new google.maps.LatLngBounds();
 
     for (const property of properties) {
         try {
-            const result = await geocodeAddress(property.fullAddress);
+            let position;
 
-            if (result) {
+            // Use pre-geocoded coordinates if available (FAST PATH)
+            if (property.latitude && property.longitude) {
+                position = new google.maps.LatLng(property.latitude, property.longitude);
+            } else {
+                // Fall back to geocoding if coordinates missing (SLOW PATH)
+                position = await geocodeAddress(property.fullAddress);
+            }
+
+            if (position) {
                 // Create marker with drop animation (custom pin shape)
                 const marker = new google.maps.Marker({
-                    position: result,
+                    position: position,
                     map: map,
                     title: property.name,
                     animation: google.maps.Animation.DROP,
@@ -208,10 +217,10 @@ async function geocodeAndRenderProperties(properties) {
 
                 marker.infoWindow = infoWindow;
                 markers.push(marker);
-                bounds.extend(result);
+                bounds.extend(position);
             }
         } catch (error) {
-            console.warn(`Geocoding failed for ${property.name}:`, error);
+            console.warn(`Failed to render marker for ${property.name}:`, error);
             // Continue with other properties
         }
     }
