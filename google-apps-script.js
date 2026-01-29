@@ -33,7 +33,7 @@ function doGet() {
 
     // Skip header row (row 0), process data rows
     for (let i = 1; i < data.length; i++) {
-      const [name, address, city, country, postalCode, propertyType, unitsSize, acquisitionDate, status, description, portfolioUrl] = data[i];
+      const [name, address, city, country, postalCode, category, propertyType, sizeSqm, imageUrl, acquisitionDate, status, description, portfolioUrl] = data[i];
 
       // Skip empty rows (require name, address, city, country at minimum)
       if (!name || !address || !city || !country) continue;
@@ -49,8 +49,10 @@ function doGet() {
         country: country,
         postalCode: postalCode || '',
         fullAddress: fullAddress,
+        category: category || '',
         propertyType: propertyType || '',
-        unitsSize: unitsSize || '',
+        sizeSqm: sizeSqm || '',
+        imageUrl: imageUrl || '',
         acquisitionDate: acquisitionDate || '',
         status: status || 'Active',
         description: description || '',

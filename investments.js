@@ -12,7 +12,7 @@ let markers = [];
 let geocoder;
 let allProperties = [];
 let activeFilters = {
-    propertyType: 'all',
+    category: 'all',
     country: 'all'
 };
 
@@ -227,12 +227,14 @@ function createInfoWindowContent(property) {
         ? `<a href="${escapeHtml(property.portfolioUrl)}" class="info-window__button">View Portfolio</a>`
         : '';
 
+    const formattedSize = property.sizeSqm ? `${parseInt(property.sizeSqm).toLocaleString()} sqm` : '';
+
     return `
         <div class="info-window">
             <h3 class="info-window__title">${escapeHtml(property.name)}</h3>
             <p class="info-window__address">${escapeHtml(property.fullAddress)}</p>
-            <p class="info-window__type">${escapeHtml(property.propertyType)}</p>
-            <p class="info-window__size">${escapeHtml(property.unitsSize)}</p>
+            <p class="info-window__type">${escapeHtml(property.category)} • ${escapeHtml(property.propertyType)}</p>
+            <p class="info-window__size">${formattedSize}</p>
             ${portfolioButton}
         </div>
     `;
@@ -243,7 +245,7 @@ function createInfoWindowContent(property) {
 // ===================================
 
 /**
- * Render property cards grid
+ * Render property cards grid with image-based design
  */
 function renderPropertyCards(properties) {
     const grid = document.getElementById('propertiesGrid');
@@ -253,21 +255,23 @@ function renderPropertyCards(properties) {
         const card = document.createElement('div');
         card.className = 'property-card';
 
+        // Format size with commas (e.g., 7650 → 7,650)
+        const formattedSize = property.sizeSqm ? parseInt(property.sizeSqm).toLocaleString() : '';
+        const countryCode = getCountryCode(property.country);
+
+        // Fallback placeholder image if none provided
+        const imageUrl = property.imageUrl || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=360&fit=crop&auto=format&q=80';
+
         card.innerHTML = `
-            <div class="property-card__header">
-                <h3 class="property-card__name">${escapeHtml(property.name)}</h3>
-                <span class="property-card__type">${escapeHtml(property.propertyType)}</span>
+            <div class="property-card__image" style="background-image: url('${escapeHtml(imageUrl)}')">
+                <div class="property-card__overlay">
+                    <h3 class="property-card__name">${escapeHtml(property.name)}</h3>
+                    <span class="property-card__location-badge">${escapeHtml(property.city)}, ${countryCode} • ${formattedSize} sqm</span>
+                </div>
             </div>
             <div class="property-card__body">
-                <p class="property-card__location">
-                    <svg class="property-card__icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#D4AF37"/>
-                        <circle cx="12" cy="9" r="2.5" fill="#FFFFFF"/>
-                    </svg>
-                    ${escapeHtml(property.city)}, ${escapeHtml(property.country)}
-                </p>
-                <p class="property-card__size">${escapeHtml(property.unitsSize)}</p>
-                <p class="property-card__date">Acquired: ${escapeHtml(property.acquisitionDate)}</p>
+                <span class="property-card__category">${escapeHtml(property.category)}</span>
+                <span class="property-card__date">${escapeHtml(property.acquisitionDate)}</span>
             </div>
         `;
 
@@ -298,6 +302,19 @@ function renderPropertyCards(properties) {
 
         grid.appendChild(card);
     });
+}
+
+/**
+ * Get country code abbreviation
+ */
+function getCountryCode(country) {
+    const codes = {
+        'Italy': 'IT',
+        'France': 'FR',
+        'Spain': 'ES',
+        'Portugal': 'PT'
+    };
+    return codes[country] || country;
 }
 
 // ===================================
@@ -334,16 +351,16 @@ window.gm_authFailure = function() {
  * Render filter pills from property data
  */
 function renderFilterPills(properties) {
-    // Get unique property types and countries
-    const propertyTypes = [...new Set(properties.map(p => p.propertyType).filter(Boolean))];
+    // Get unique categories and countries
+    const categories = [...new Set(properties.map(p => p.category).filter(Boolean))];
     const countries = [...new Set(properties.map(p => p.country).filter(Boolean))];
 
     const filterHTML = `
         <div class="filter-pills__group">
-            <span class="filter-pills__label">Type:</span>
-            <button class="filter-pill filter-pill--active" data-filter-type="propertyType" data-filter-value="all">All</button>
-            ${propertyTypes.map(type => `
-                <button class="filter-pill" data-filter-type="propertyType" data-filter-value="${type}">${type}</button>
+            <span class="filter-pills__label">Category:</span>
+            <button class="filter-pill filter-pill--active" data-filter-type="category" data-filter-value="all">All</button>
+            ${categories.map(cat => `
+                <button class="filter-pill" data-filter-type="category" data-filter-value="${cat}">${cat}</button>
             `).join('')}
         </div>
         <div class="filter-pills__group">
@@ -408,18 +425,18 @@ function handleFilterClick(e) {
  */
 function applyFilters() {
     const filtered = allProperties.filter(property => {
-        const typeMatch = activeFilters.propertyType === 'all' || property.propertyType === activeFilters.propertyType;
+        const categoryMatch = activeFilters.category === 'all' || property.category === activeFilters.category;
         const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
-        return typeMatch && countryMatch;
+        return categoryMatch && countryMatch;
     });
 
     // Update markers visibility
     markers.forEach(marker => {
         const property = allProperties.find(p => p.name === marker.title);
         if (property) {
-            const typeMatch = activeFilters.propertyType === 'all' || property.propertyType === activeFilters.propertyType;
+            const categoryMatch = activeFilters.category === 'all' || property.category === activeFilters.category;
             const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
-            marker.setVisible(typeMatch && countryMatch);
+            marker.setVisible(categoryMatch && countryMatch);
         }
     });
 
