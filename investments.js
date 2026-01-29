@@ -4,7 +4,7 @@
 // ===================================
 
 // Configuration
-const PROPERTIES_API_URL = 'https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9M-TukPqbsmabsnI49DAjRSGZ4qKAA/exec';
+const PROPERTIES_API_URL = 'https://script.google.com/macros/s/AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw/exec';
 
 // Global state
 let map;
