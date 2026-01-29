@@ -169,7 +169,9 @@ async function loadProperties() {
 async function geocodeAndRenderProperties(properties) {
     const bounds = new google.maps.LatLngBounds();
 
-    for (const property of properties) {
+    for (let i = 0; i < properties.length; i++) {
+        const property = properties[i];
+
         try {
             let position;
 
@@ -182,12 +184,14 @@ async function geocodeAndRenderProperties(properties) {
             }
 
             if (position) {
-                // Create marker with drop animation (custom pin shape)
-                const marker = new google.maps.Marker({
-                    position: position,
-                    map: map,
-                    title: property.name,
-                    animation: google.maps.Animation.DROP,
+                // Staggered drop animation for visual effect
+                setTimeout(() => {
+                    // Create marker with drop animation (custom pin shape)
+                    const marker = new google.maps.Marker({
+                        position: position,
+                        map: map,
+                        title: property.name,
+                        animation: google.maps.Animation.DROP,
                     icon: {
                         path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
                         fillColor: '#D4AF37',
@@ -215,9 +219,10 @@ async function geocodeAndRenderProperties(properties) {
                     infoWindow.open(map, marker);
                 });
 
-                marker.infoWindow = infoWindow;
-                markers.push(marker);
-                bounds.extend(position);
+                    marker.infoWindow = infoWindow;
+                    markers.push(marker);
+                    bounds.extend(position);
+                }, i * 100); // 100ms delay between each marker
             }
         } catch (error) {
             console.warn(`Failed to render marker for ${property.name}:`, error);
@@ -225,16 +230,18 @@ async function geocodeAndRenderProperties(properties) {
         }
     }
 
-    // Fit map to show all markers
-    if (markers.length > 0) {
-        map.fitBounds(bounds);
+    // Fit map to show all markers (wait for animation to complete)
+    setTimeout(() => {
+        if (markers.length > 0) {
+            map.fitBounds(bounds);
 
-        // Adjust zoom if too close
-        const listener = google.maps.event.addListener(map, 'idle', () => {
-            if (map.getZoom() > 12) map.setZoom(12);
-            google.maps.event.removeListener(listener);
-        });
-    }
+            // Adjust zoom if too close
+            const listener = google.maps.event.addListener(map, 'idle', () => {
+                if (map.getZoom() > 12) map.setZoom(12);
+                google.maps.event.removeListener(listener);
+            });
+        }
+    }, properties.length * 100 + 200);
 }
 
 /**
