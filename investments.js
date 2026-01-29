@@ -45,10 +45,52 @@ function initMap() {
 }
 
 /**
- * Custom map styling - Clean minimal theme with blue tones
+ * Custom map styling - Clean blue theme
  */
 function getMapStyles() {
     return [
+        // Blue base map color
+        {
+            "featureType": "all",
+            "elementType": "geometry",
+            "stylers": [{ "color": "#2c5f8d" }]
+        },
+        // Lighter blue for landscape
+        {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [{ "color": "#3d7099" }]
+        },
+        // Deep blue water
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{ "color": "#1a4d6d" }]
+        },
+        // Roads in lighter blue
+        {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [{ "color": "#4a87b3" }]
+        },
+        // Hide road labels/numbers
+        {
+            "featureType": "road",
+            "elementType": "labels",
+            "stylers": [{ "visibility": "off" }]
+        },
+        // White text for labels
+        {
+            "featureType": "all",
+            "elementType": "labels.text.fill",
+            "stylers": [{ "color": "#ffffff" }]
+        },
+        // Blue text stroke
+        {
+            "featureType": "all",
+            "elementType": "labels.text.stroke",
+            "stylers": [{ "color": "#2c5f8d" }, { "weight": 2 }]
+        },
         // Hide all POIs (airports, parks, businesses, etc.)
         {
             "featureType": "poi",
@@ -60,24 +102,6 @@ function getMapStyles() {
             "featureType": "transit",
             "elementType": "all",
             "stylers": [{ "visibility": "off" }]
-        },
-        // Hide road labels/numbers
-        {
-            "featureType": "road",
-            "elementType": "labels",
-            "stylers": [{ "visibility": "off" }]
-        },
-        // Keep simple blue water
-        {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [{ "color": "#a2daf2" }]
-        },
-        // Keep place labels (cities, countries) visible
-        {
-            "featureType": "administrative",
-            "elementType": "labels",
-            "stylers": [{ "visibility": "on" }]
         }
     ];
 }
