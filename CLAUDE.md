@@ -7,9 +7,9 @@ Professional investment property map page for iAM Capital displaying properties 
 
 **Live Site:**
 - **Production URL**: https://iamcapital.vercel.app/
-- **GitHub Repository**: https://github.com/websitelab/iamcapital
+- **GitHub Repository**: https://github.com/websitelab/iamcapital/
 - **Hosting**: Vercel (auto-deploys from main branch)
-- **Last Updated**: January 29, 2026
+- **Last Updated**: January 29, 2026 (Version 1.5)
 
 **Live Configuration:**
 - Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw/exec`
@@ -171,7 +171,7 @@ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
 ### ✅ Phase 5: Git Repository Setup (COMPLETE)
 - [x] Initialized git repository
 - [x] Configured git user: hello@websitelab.biz
-- [x] Added remote: https://github.com/websitelab/iamcapital
+- [x] Added remote: https://github.com/websitelab/iamcapital/
 - [x] Pushed to GitHub main branch
 - [x] All files committed and versioned
 
@@ -909,7 +909,29 @@ Blue Devil Jiu Jitsu schedule.html - Proven pattern this project follows
 
 ## Version History
 
-### Version 1.4 (2026-01-29) - Current Production
+### Version 1.5 (2026-01-29) - Current Production
+**UX Improvements & Bug Fixes:**
+- ✅ Added "Filter:" label before category filter buttons for improved clarity
+- ✅ Fixed View Property button hover issue (button disappearing on hover)
+- ✅ Added missing --color-gold CSS variable (#D4AF37)
+- ✅ Restored to stable commit 5f5ae4d with selective improvements
+
+**Changes:**
+- investments.html: Added filter label with proper styling
+- investments.css: Added --color-gold variable, styled filter label
+- Info window buttons now show gold background on hover (instead of disappearing)
+- Category filters display "Filter:" label for better UX
+
+**Files Updated:**
+- investments.html (filter label added)
+- investments.css (--color-gold variable, filter label styles)
+
+**Commits:**
+- 5f5ae4d: Restored to stable base
+- 69076ad: Add 'Filter:' label to category filter buttons
+- d0f12e5: Fix View Property button hover disappearing issue
+
+### Version 1.4 (2026-01-29)
 **Image-Based Property Cards & Category System:**
 - ✅ Complete card redesign with professional property images
 - ✅ Implemented 4-category system (Residential, Commercial, Hospitality, Renewable Energy)
@@ -1036,7 +1058,7 @@ Blue Devil Jiu Jitsu schedule.html - Proven pattern this project follows
 - Apps Script URL: ✅ https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9M-TukPqbsmabsnI49DAjRSGZ4qKAA/exec
 - Google Maps API Key: ✅ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
 - API Restrictions: ✅ Applied (iamcapital.vercel.app/*)
-- Git Repository: ✅ https://github.com/websitelab/iamcapital
+- Git Repository: ✅ https://github.com/websitelab/iamcapital/
 - Git User: ✅ hello@websitelab.biz
 - Vercel Deployment: ✅ https://iamcapital.vercel.app/
 
@@ -1045,7 +1067,7 @@ Blue Devil Jiu Jitsu schedule.html - Proven pattern this project follows
 ## Deployment Information
 
 ### GitHub Repository
-- **URL**: https://github.com/websitelab/iamcapital
+- **URL**: https://github.com/websitelab/iamcapital/
 - **Branch**: main
 - **Git User**: hello@websitelab.biz (Website Lab)
 - **Auto-deploy**: Enabled (pushes to main trigger Vercel redeployment)
@@ -1116,7 +1138,7 @@ In your Google Sheet:
 
 ---
 
-**Last Updated**: 2026-01-29 (Version 1.4)
+**Last Updated**: 2026-01-29 (Version 1.5)
 **Status**: Deployed to Production
 **Live URL**: https://iamcapital.vercel.app/
-**Current Version**: 1.4 - Image-based cards, 4-category system, 12 properties
+**Current Version**: 1.5 - UX improvements, filter label, button hover fix
