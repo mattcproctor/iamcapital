@@ -398,6 +398,17 @@ function handleFilterClick(e) {
     // Update active filters
     activeFilters[filterType] = filterValue;
 
+    // Sync with category filter buttons if category changed
+    if (filterType === 'category') {
+        const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
+        categoryFilterBtns.forEach(btn => {
+            btn.classList.remove('category-filter-btn--active');
+            if (btn.dataset.category === filterValue) {
+                btn.classList.add('category-filter-btn--active');
+            }
+        });
+    }
+
     // Filter properties
     applyFilters();
 
@@ -511,6 +522,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ===================================
+    // Category Filter Buttons (Cards Section)
+    // ===================================
+
+    const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
+
+    categoryFilterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const category = btn.dataset.category;
+
+            // Update button active states
+            categoryFilterBtns.forEach(b => b.classList.remove('category-filter-btn--active'));
+            btn.classList.add('category-filter-btn--active');
+
+            // Update global filter state
+            activeFilters.category = category;
+
+            // Sync with map overlay filters if they exist
+            const mapCategoryPills = document.querySelectorAll('[data-filter-type="category"]');
+            mapCategoryPills.forEach(pill => {
+                pill.classList.remove('filter-pill--active');
+                if (pill.dataset.filterValue === category) {
+                    pill.classList.add('filter-pill--active');
+                }
+            });
+
+            // Apply filters
+            applyFilters();
+        });
+    });
 });
 
 // Note: initMap() is called by Google Maps API callback
