@@ -328,6 +328,13 @@ body {
     max-width: 900px;
 }
 
+.category-filters__label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    margin-right: 0.5rem;
+}
+
 .category-filter-btn {
     background: var(--color-white);
     color: var(--color-navy);
