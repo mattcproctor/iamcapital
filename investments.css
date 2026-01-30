@@ -73,17 +73,22 @@ body {
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    position: relative;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    margin-left: 150px;
 }
 
 .logo img {
     height: 50px;
     width: auto;
+}
+
+.nav {
+    margin-left: auto;
+    margin-right: 3rem;
 }
 
 .nav__list {
@@ -93,21 +98,25 @@ body {
     align-items: center;
 }
 
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #19375F;
+    font-size: 28px;
+    cursor: pointer;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .nav__link {
     color: #19375F;
     text-decoration: none;
     font-weight: 400;
     font-size: 16px;
     font-family: 'Overpass', sans-serif;
-}
-
-.mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #19375F;
-    font-size: 24px;
-    cursor: pointer;
 }
 
 /* ===================================
@@ -533,11 +542,13 @@ body {
 }
 
 .footer__grid {
-    display: flex;
-    justify-content: center;
-    gap: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer__column {
@@ -697,8 +708,13 @@ body {
         height: 35px;
     }
 
+    .nav {
+        margin-right: 0;
+    }
+
     .mobile-menu-toggle {
         display: block;
+        right: 1rem;
     }
 
     .nav__list {
@@ -717,6 +733,11 @@ body {
 
     .nav__list.active {
         transform: translateX(0);
+    }
+
+    .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
     .investments-hero {
