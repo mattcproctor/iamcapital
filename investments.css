@@ -56,12 +56,13 @@ body {
    =================================== */
 .header {
     background: var(--color-white);
-    color: var(--color-black);
-    padding: 1rem 0;
+    color: var(--color-navy);
+    height: 80px;
     position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Overpass', sans-serif;
 }
 
 .header__container {
@@ -71,15 +72,17 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%;
 }
 
 .logo {
     display: flex;
     align-items: center;
+    margin-left: 150px;
 }
 
 .logo img {
-    height: 40px;
+    height: 50px;
     width: auto;
 }
 
@@ -91,10 +94,11 @@ body {
 }
 
 .nav__link {
-    color: var(--color-black);
+    color: #19375F;
     text-decoration: none;
     font-weight: 400;
-    font-size: 0.95rem;
+    font-size: 16px;
+    font-family: 'Overpass', sans-serif;
     transition: color var(--transition-base);
 }
 
@@ -511,9 +515,11 @@ body {
    Footer
    =================================== */
 .footer {
-    background: var(--color-navy);
+    background: #19375F;
     color: rgba(255, 255, 255, 0.7);
-    padding: 4rem 0 2rem;
+    padding: 3rem 0 1.5rem;
+    font-family: 'Overpass', sans-serif;
+    font-size: 16px;
 }
 
 .footer__container {
@@ -525,27 +531,27 @@ body {
 .footer__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    margin-bottom: 3rem;
+    gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .footer__column h3 {
     color: var(--color-white);
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    font-size: 16px;
+    margin-bottom: 0.75rem;
     font-weight: 600;
 }
 
 .footer__logo {
-    width: 150px;
+    width: 131px;
     height: auto;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .footer__address {
-    font-size: 0.875rem;
-    line-height: 1.8;
-    margin-bottom: 1rem;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
 }
 
 .footer__address p {
@@ -556,19 +562,19 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1.25rem;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.3);
     color: var(--color-white);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 16px;
     transition: all var(--transition-base);
-    margin-top: 1rem;
+    margin-top: 0.75rem;
 }
 
 .footer__button:hover {
     background: var(--color-white);
-    color: var(--color-navy);
+    color: #19375F;
     border-color: var(--color-white);
 }
 
@@ -576,7 +582,7 @@ body {
     display: block;
     color: var(--color-white);
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 16px;
     margin-bottom: 0.5rem;
     transition: color var(--transition-base);
 }
@@ -587,7 +593,7 @@ body {
 
 .footer__email-list {
     list-style: none;
-    margin: 1rem 0;
+    margin: 0.75rem 0;
 }
 
 .footer__email-list li {
@@ -597,7 +603,7 @@ body {
 .footer__email-list a {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 16px;
     transition: color var(--transition-base);
 }
 
@@ -606,7 +612,7 @@ body {
 }
 
 .footer__social {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .footer__social-link {
@@ -632,13 +638,13 @@ body {
 }
 
 .footer__links li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .footer__links a {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 16px;
     transition: color var(--transition-base);
 }
 
@@ -648,9 +654,9 @@ body {
 
 .footer__copyright {
     text-align: center;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 0.875rem;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -677,32 +683,34 @@ body {
 /* Mobile (< 768px) */
 @media (max-width: 767px) {
     .header {
-        padding: 1rem 0;
+        height: 60px;
     }
 
     .header__container {
         padding: 0 1rem;
-        flex-wrap: wrap;
+    }
+
+    .logo {
+        margin-left: 0;
     }
 
     .logo img {
-        height: 30px;
+        height: 35px;
     }
 
     .nav {
-        width: 100%;
-        margin-top: 1rem;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav__list {
         gap: 1.5rem;
-        font-size: 0.85rem;
         white-space: nowrap;
+        padding: 0 1rem;
     }
 
     .nav__link {
-        font-size: 0.85rem;
+        font-size: 14px;
     }
 
     .investments-hero {
