@@ -174,9 +174,9 @@ function getMarkerIcon(category) {
             size: 40
         },
         'Commercial': {
-            path: 'M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h89.9c-6.3-10.2-9.9-22.2-9.9-35.1c0-46.9 25.8-87.8 64-109.2V271.8 48c0-26.5-21.5-48-48-48H272 48zM152 64h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H152c-8.8 0-16-7.2-16-16V80c0-8.8 7.2-16 16-16zm0 88h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H152c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm0 88h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H152c-8.8 0-16-7.2-16-16V256c0-8.8 7.2-16 16-16zM264 64h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H264c-8.8 0-16-7.2-16-16V80c0-8.8 7.2-16 16-16zm0 88h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H264c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm0 88h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H264c-8.8 0-16-7.2-16-16V256c0-8.8 7.2-16 16-16zM640 256c0-35.3-28.7-64-64-64s-64 28.7-64 64v64c0 35.3 28.7 64 64 64s64-28.7 64-64V256zm-96 0c0-17.7 14.3-32 32-32s32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256zM512 480a48 48 0 1 0 0-96 48 48 0 1 0 0 96z',
+            path: 'M48 0C21.5 0 0 21.5 0 48L0 464c0 26.5 21.5 48 48 48l96 0 0-80c0-26.5 21.5-48 48-48s48 21.5 48 48l0 80 96 0c26.5 0 48-21.5 48-48l0-416c0-26.5-21.5-48-48-48L48 0zM64 240c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zm112-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM80 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM272 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16z',
             color: '#19375F',
-            viewBox: '0 0 640 512',
+            viewBox: '0 0 384 512',
             size: 40
         },
         'Hospitality': {
@@ -202,8 +202,7 @@ function getMarkerIcon(category) {
             </svg>
         `),
         scaledSize: new google.maps.Size(config.size, config.size),
-        anchor: new google.maps.Point(config.size / 2, config.size),
-        labelOrigin: new google.maps.Point(config.size / 2, config.size / 2)
+        anchor: new google.maps.Point(config.size / 2, config.size)
     };
 }
 
@@ -237,7 +236,8 @@ async function geocodeAndRenderProperties(properties) {
                         map: map,
                         title: property.name,
                         animation: google.maps.Animation.DROP,
-                        icon: getMarkerIcon(property.category)
+                        icon: getMarkerIcon(property.category),
+                        label: '' // Prevent any label from appearing
                     });
 
                 // Create info window
