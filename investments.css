@@ -524,10 +524,15 @@ body {
 }
 
 .footer__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.footer__column {
+    text-align: left;
 }
 
 .footer__column h3 {
@@ -557,20 +562,14 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1.25rem;
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: var(--color-white);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     font-size: 16px;
-    transition: all var(--transition-base);
     margin-top: 0.75rem;
 }
 
 .footer__button:hover {
-    background: var(--color-white);
-    color: #19375F;
-    border-color: var(--color-white);
+    color: var(--color-white);
 }
 
 .footer__contact-link {
