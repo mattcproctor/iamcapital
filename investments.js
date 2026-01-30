@@ -163,6 +163,46 @@ async function loadProperties() {
 // ===================================
 
 /**
+ * Get FontAwesome marker icon based on property category
+ */
+function getMarkerIcon(category) {
+    const iconConfig = {
+        'Residential': {
+            path: 'M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z',
+            color: '#4A90E2', // Bright blue
+            size: 40
+        },
+        'Commercial': {
+            path: 'M48 0C21.5 0 0 21.5 0 48V464c0 26.5 21.5 48 48 48h96V432c0-26.5 21.5-48 48-48s48 21.5 48 48v80h89.9c-6.3-10.2-9.9-22.2-9.9-35.1c0-46.9 25.8-87.8 64-109.2V271.8 48c0-26.5-21.5-48-48-48H272 48zM152 64h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H152c-8.8 0-16-7.2-16-16V80c0-8.8 7.2-16 16-16zm0 88h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H152c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm0 88h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H152c-8.8 0-16-7.2-16-16V256c0-8.8 7.2-16 16-16zM264 64h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H264c-8.8 0-16-7.2-16-16V80c0-8.8 7.2-16 16-16zm0 88h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H264c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm0 88h16c8.8 0 16 7.2 16 16v24c0 8.8-7.2 16-16 16H264c-8.8 0-16-7.2-16-16V256c0-8.8 7.2-16 16-16zM640 256c0-35.3-28.7-64-64-64s-64 28.7-64 64v64c0 35.3 28.7 64 64 64s64-28.7 64-64V256zm-96 0c0-17.7 14.3-32 32-32s32 14.3 32 32v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V256zM512 480a48 48 0 1 0 0-96 48 48 0 1 0 0 96z',
+            color: '#19375F', // Navy (brand color)
+            size: 40
+        },
+        'Hospitality': {
+            path: 'M0 32C0 14.3 14.3 0 32 0H480c17.7 0 32 14.3 32 32s-14.3 32-32 32V448c17.7 0 32 14.3 32 32s-14.3 32-32 32H304V464c0-26.5-21.5-48-48-48s-48 21.5-48 48v48H32c-17.7 0-32-14.3-32-32s14.3-32 32-32V64C14.3 64 0 49.7 0 32zm96 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H112c-8.8 0-16 7.2-16 16zM240 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H240zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H368c-8.8 0-16 7.2-16 16zM112 192c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H112zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H240c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V208c0-8.8-7.2-16-16-16H368zM328 384c13.3 0 24.3-10.9 21-23.8c-10.6-41.5-48.2-72.2-93-72.2s-82.5 30.7-93 72.2c-3.3 12.8 7.8 23.8 21 23.8H328z',
+            color: '#7B68EE', // Medium slate blue
+            size: 40
+        },
+        'Renewable Energy': {
+            path: 'M272 96c-78.6 0-145.1 51.5-167.7 122.5c33.6-17 71.5-26.5 111.7-26.5h88c8.8 0 16 7.2 16 16s-7.2 16-16 16H288 216s0 0 0 0c-16.6 0-32.7 1.9-48.3 5.4c-25.9 5.9-49.9 16.4-71.4 30.7c0 0 0 0 0 0C38.3 298.8 0 364.9 0 440v16c0 13.3 10.7 24 24 24s24-10.7 24-24V440c0-48.7 20.7-92.5 53.8-123.2C121.6 392.3 190.3 448 272 448l1 0c132.1-.7 239-130.9 239-291.4c0-42.6-7.5-83.1-21.1-119.6c-2.6-6.9-12.7-6.6-16.2-.1C455.9 72.1 418.7 96 376 96L272 96z',
+            color: '#27AE60', // Green
+            size: 40
+        }
+    };
+
+    const config = iconConfig[category] || iconConfig['Commercial']; // Default to commercial
+
+    return {
+        url: 'data:image/svg+xml;utf-8,' + encodeURIComponent(`
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="${config.color}">
+                <path d="${config.path}"/>
+            </svg>
+        `),
+        scaledSize: new google.maps.Size(config.size, config.size),
+        anchor: new google.maps.Point(config.size / 2, config.size)
+    };
+}
+
+/**
  * Geocode addresses and add map markers
  * Uses pre-geocoded coordinates if available (fast), falls back to geocoding (slow)
  */
@@ -186,22 +226,14 @@ async function geocodeAndRenderProperties(properties) {
             if (position) {
                 // Staggered drop animation for visual effect
                 setTimeout(() => {
-                    // Create marker with drop animation (custom pin shape)
+                    // Create marker with drop animation (FontAwesome icon)
                     const marker = new google.maps.Marker({
                         position: position,
                         map: map,
                         title: property.name,
                         animation: google.maps.Animation.DROP,
-                    icon: {
-                        path: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z',
-                        fillColor: '#D4AF37',
-                        fillOpacity: 1,
-                        strokeColor: '#FFFFFF',
-                        strokeWeight: 2,
-                        scale: 1.5,
-                        anchor: new google.maps.Point(12, 24)
-                    }
-                });
+                        icon: getMarkerIcon(property.category)
+                    });
 
                 // Create info window
                 const infoWindow = new google.maps.InfoWindow({
