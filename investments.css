@@ -771,15 +771,6 @@ body {
         stroke: #19375F;
     }
 
-    .filter-toggle:hover {
-        background: #19375F;
-        color: #FFFFFF;
-    }
-
-    .filter-toggle:hover svg {
-        stroke: #FFFFFF;
-    }
-
     .filter-pills {
         display: none;
         left: 1rem;
