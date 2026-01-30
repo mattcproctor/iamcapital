@@ -476,6 +476,23 @@ body {
     letter-spacing: 0.03em;
 }
 
+/* Category-specific colors (match map markers) */
+.property-card__category[data-category="Residential"] {
+    background: #4A90E2;
+}
+
+.property-card__category[data-category="Commercial"] {
+    background: #19375F;
+}
+
+.property-card__category[data-category="Hospitality"] {
+    background: #7B68EE;
+}
+
+.property-card__category[data-category="Renewable Energy"] {
+    background: #27AE60;
+}
+
 /* Acquisition Date */
 .property-card__date {
     font-size: 0.875rem;

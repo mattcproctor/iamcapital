@@ -347,7 +347,7 @@ function renderPropertyCards(properties) {
                 </div>
             </div>
             <div class="property-card__body">
-                <span class="property-card__category">${escapeHtml(property.category)}</span>
+                <span class="property-card__category" data-category="${escapeHtml(property.category)}">${escapeHtml(property.category)}</span>
                 <span class="property-card__date">${escapeHtml(property.acquisitionDate)}</span>
             </div>
         `;
