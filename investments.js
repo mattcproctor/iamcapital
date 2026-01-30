@@ -602,3 +602,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // Dynamic Footer Year
 // ===================================
 document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// ===================================
+// Mobile Menu Toggle
+// ===================================
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navList = document.querySelector('.nav__list');
+
+    if (mobileMenuToggle && navList) {
+        mobileMenuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav__link').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    }
+});
