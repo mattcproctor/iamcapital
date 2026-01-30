@@ -780,12 +780,12 @@ body {
     .filter-toggle {
         display: flex;
         align-items: center;
-        background: #FFFFFF;
-        color: #19375F;
+        background: #19375F;
+        color: #FFFFFF;
     }
 
     .filter-toggle svg {
-        stroke: #19375F;
+        stroke: #FFFFFF;
     }
 
     .filter-pills {
