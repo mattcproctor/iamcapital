@@ -198,7 +198,7 @@ function getMarkerIcon(category) {
     return {
         url: 'data:image/svg+xml;utf-8,' + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="${config.viewBox}">
-                <path d="${config.path}" fill="${config.color}" stroke="white" stroke-width="15"/>
+                <path d="${config.path}" fill="${config.color}" stroke="white" stroke-width="25"/>
             </svg>
         `),
         scaledSize: new google.maps.Size(config.size, config.size),
