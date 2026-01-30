@@ -763,6 +763,21 @@ body {
     .filter-toggle {
         display: flex;
         align-items: center;
+        background: #FFFFFF;
+        color: #19375F;
+    }
+
+    .filter-toggle svg {
+        stroke: #19375F;
+    }
+
+    .filter-toggle:hover {
+        background: #19375F;
+        color: #FFFFFF;
+    }
+
+    .filter-toggle:hover svg {
+        stroke: #FFFFFF;
     }
 
     .filter-pills {
