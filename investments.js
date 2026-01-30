@@ -597,3 +597,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Note: initMap() is called by Google Maps API callback
 // No DOMContentLoaded needed - async defer script handles timing
+
+// ===================================
+// Dynamic Footer Year
+// ===================================
+document.getElementById('currentYear').textContent = new Date().getFullYear();

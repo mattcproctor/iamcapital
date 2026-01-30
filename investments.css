@@ -55,9 +55,9 @@ body {
    Header & Navigation
    =================================== */
 .header {
-    background: var(--color-navy);
-    color: var(--color-white);
-    padding: 1.5rem 0;
+    background: var(--color-white);
+    color: var(--color-black);
+    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -74,26 +74,32 @@ body {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-white);
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
 }
 
 .nav__list {
     display: flex;
     list-style: none;
     gap: 2rem;
+    align-items: center;
 }
 
 .nav__link {
-    color: var(--color-white);
+    color: var(--color-black);
     text-decoration: none;
     font-weight: 400;
+    font-size: 0.95rem;
     transition: color var(--transition-base);
 }
 
 .nav__link:hover {
-    opacity: 0.8;
+    color: var(--color-gold);
 }
 
 /* ===================================
@@ -228,7 +234,7 @@ body {
 }
 
 .filter-toggle:hover {
-    background: #C9A632;
+    background: var(--color-black);
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
@@ -362,8 +368,8 @@ body {
 }
 
 .category-filter-btn--active:hover {
-    background: var(--color-gold);
-    border-color: var(--color-gold);
+    background: var(--color-black);
+    border-color: var(--color-black);
 }
 
 .properties-section__loading,
@@ -497,7 +503,7 @@ body {
 }
 
 .info-window__button:hover {
-    background: var(--color-gold);
+    background: var(--color-black);
     color: var(--color-white);
 }
 
@@ -506,9 +512,8 @@ body {
    =================================== */
 .footer {
     background: var(--color-navy);
-    color: var(--color-white);
-    padding: 2rem 0;
-    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4rem 0 2rem;
 }
 
 .footer__container {
@@ -517,9 +522,136 @@ body {
     padding: 0 var(--container-padding);
 }
 
-.footer p {
+.footer__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.footer__column h3 {
+    color: var(--color-white);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.footer__logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+.footer__address {
     font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.footer__address p {
+    margin: 0;
+}
+
+.footer__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all var(--transition-base);
+    margin-top: 1rem;
+}
+
+.footer__button:hover {
+    background: var(--color-white);
+    color: var(--color-navy);
+    border-color: var(--color-white);
+}
+
+.footer__contact-link {
+    display: block;
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    transition: color var(--transition-base);
+}
+
+.footer__contact-link:hover {
+    color: var(--color-gold);
+}
+
+.footer__email-list {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.footer__email-list li {
+    margin-bottom: 0.5rem;
+}
+
+.footer__email-list a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color var(--transition-base);
+}
+
+.footer__email-list a:hover {
+    color: var(--color-white);
+}
+
+.footer__social {
+    margin-top: 1.5rem;
+}
+
+.footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--color-white);
+    text-decoration: none;
+    transition: all var(--transition-base);
+}
+
+.footer__social-link:hover {
+    background: var(--color-white);
+    color: var(--color-navy);
+}
+
+.footer__links {
+    list-style: none;
+}
+
+.footer__links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer__links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color var(--transition-base);
+}
+
+.footer__links a:hover {
+    color: var(--color-white);
+}
+
+.footer__copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
 }
 
 /* ===================================
@@ -550,10 +682,27 @@ body {
 
     .header__container {
         padding: 0 1rem;
+        flex-wrap: wrap;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .nav {
+        width: 100%;
+        margin-top: 1rem;
+        overflow-x: auto;
     }
 
     .nav__list {
-        gap: 1rem;
+        gap: 1.5rem;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    .nav__link {
+        font-size: 0.85rem;
     }
 
     .investments-hero {
