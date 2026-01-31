@@ -1,7 +1,7 @@
 # iAM Capital - Investment Properties Map
 
 ## Project Overview
-Professional investment property map page for iAM Capital displaying properties from a Google Sheet with interactive Google Maps integration. Built using the proven Blue Devil Jiu Jitsu schedule.html pattern (serverless architecture with Google Apps Script).
+Professional investment property map page for iAM Capital displaying properties from a Google Sheet with interactive Google Maps integration. Built using serverless architecture with Google Apps Script.
 
 **Project Status:** ✅ Live in Production
 
@@ -9,21 +9,21 @@ Professional investment property map page for iAM Capital displaying properties 
 - **Production URL**: https://iamcapital.vercel.app/
 - **GitHub Repository**: https://github.com/websitelab/iamcapital/
 - **Hosting**: Vercel (auto-deploys from main branch)
-- **Last Updated**: January 29, 2026 (Version 1.5)
+- **Last Updated**: January 30, 2026 (Version 2.1)
 
 **Live Configuration:**
-- Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw/exec`
+- Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec`
 - Google Maps API Key: `AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c`
 - Map Center: Europe (Italy/France region, lat: 45.0, lng: 10.0)
-- Property Data: 12 European properties across 4 categories (Italy, France, Spain, Portugal)
+- Property Data: 12 European properties across 4 categories
 - Deployment: ✅ GitHub, ✅ Vercel, ✅ Fully Operational
 
 **Technology Stack:**
 - Pure HTML5/CSS3/Vanilla JavaScript
-- Google Sheets (data storage/CMS)
-- Google Apps Script (JSON API endpoint)
+- Google Sheets (data storage/CMS with pre-geocoded coordinates)
+- Google Apps Script v2 (JSON API endpoint with lat/lng support)
 - Google Maps JavaScript API (map rendering)
-- Geocoding API (address to coordinates)
+- FontAwesome SVG icons (category-based map markers)
 - Serverless architecture (no backend needed)
 - Vercel hosting (static site deployment)
 - GitHub repository (version control)
@@ -32,20 +32,18 @@ Professional investment property map page for iAM Capital displaying properties 
 
 ## Architecture Overview
 
-### Serverless 3-Layer Design (BDJJ Pattern)
+### Serverless 3-Layer Design
 
 ```
-Google Sheet (Data Storage)
+Google Sheet (Data Storage + Pre-Geocoded Coords)
     ↓
-Google Apps Script (API Layer)
+Google Apps Script v2 (API Layer)
     ↓
-HTTPS JSON Endpoint
+HTTPS JSON Endpoint (with lat/lng)
     ↓
 JavaScript fetch() (Frontend)
     ↓
-Google Maps Geocoding API
-    ↓
-Map Markers + Property Cards
+FontAwesome SVG Markers + Property Cards
 ```
 
 **Key Benefits:**
@@ -53,7 +51,8 @@ Map Markers + Property Cards
 - ✅ Real-time updates (edit sheet → live in 1-5 minutes)
 - ✅ HTTPS by default (Google Apps Script)
 - ✅ GDPR compliant (no cookies, no tracking, no PII)
-- ✅ Free (Google free tiers: 25k geocodes/day, unlimited sheet reads)
+- ✅ Fast loading (~1-2 seconds with pre-geocoded coords)
+- ✅ Zero geocoding API calls (coordinates in sheet)
 - ✅ Scalable (handles 10-50 properties easily)
 - ✅ Easy updates (non-technical staff can edit Google Sheet)
 
@@ -65,33 +64,40 @@ Map Markers + Property Cards
 iamcapital.com/
 ├── index.html                    # Root redirect to investments page
 ├── investments.html              # Main page with map and filters
-├── investments.css               # Styling with filter pills, hero bg
-├── investments.js                # Map logic, filters, animations
-├── google-apps-script.js         # Server code reference (European properties)
-├── sample-properties.csv         # European property data (12 properties, 4 categories)
+├── investments.css               # Styling (header, footer, cards, filters)
+├── investments.js                # Map logic, FA markers, filters, mobile menu
 ├── vercel.json                   # Vercel configuration (clean URLs)
-├── .gitignore                    # Git ignore (.DS_Store, node_modules)
+├── .gitignore                    # Git ignore (working-files, .DS_Store, etc.)
 ├── images/
-│   └── hero/
-│       └── milan-cathedral-hero.webp  # Hero background (247KB WebP)
-├── README-INVESTMENTS.md         # Setup guide
+│   ├── hero/
+│   │   └── milan-cathedral-hero.webp  # Hero background (247KB WebP)
+│   └── branding/
+│       ├── iam-capital-logo.webp      # Header logo (6.8KB)
+│       └── logo-white.png             # Footer logo (2KB)
+├── working-files/                # Non-production files (not in GitHub)
+│   ├── DEPLOYMENT-GUIDE-v2.md
+│   ├── README-INVESTMENTS.md
+│   ├── google-apps-script.js     # Old version
+│   ├── google-apps-script-v2.js  # Current version (reference)
+│   └── sample-properties.csv     # Property data with lat/lng
 ├── CLAUDE.md                     # This documentation
 └── .git/                         # Git repository
 ```
 
-**Total Production Code:** ~766 lines (HTML + CSS + JS)
+**Total Production Code:** ~1,000 lines (HTML + CSS + JS)
 
 ---
 
-## Setup Status
+## Current Live Configuration
 
-### ✅ Phase 1: Google Sheets Setup (COMPLETE)
-- [x] Created Google Sheet: "iAM Capital Investment Properties"
-- [x] Added column headers (13 columns - updated with image-based design)
-- [x] Imported sample property data (12 properties)
-- [x] Formatted columns as Plain Text
+### Google Apps Script v2 (with Pre-Geocoded Coordinates)
 
-**Sheet Structure (International Properties - Version 1.4):**
+**Deployment URL:**
+```
+https://script.google.com/macros/s/AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec
+```
+
+**Sheet Structure (15 columns):**
 | Column | Name | Example |
 |--------|------|---------|
 | A | Property Name | "Palazzo Residences" |
@@ -107,115 +113,51 @@ iamcapital.com/
 | K | Status | "Active" |
 | L | Description | "Luxury residential in historic center" |
 | M | Portfolio URL | "/portfolio/palazzo-residences" |
+| N | Latitude | "41.9055" |
+| O | Longitude | "12.4823" |
 
-### ✅ Phase 2: Google Apps Script Deployment (COMPLETE)
-- [x] Created Apps Script project
-- [x] Deployed `doGet()` function
-- [x] Configured as public web app
-- [x] Obtained deployment URL
-- [x] Tested API endpoint (returns JSON)
-
-**Apps Script URL (Current Deployment - Version 1.4):**
-```
-https://script.google.com/macros/s/AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw/exec
-```
-
-**API Response Format (Version 1.4 - Image-Based Design):**
+**API Response Format:**
 ```json
 {
   "properties": [
     {
       "name": "Palazzo Residences",
-      "address": "Via dei Condotti 45",
-      "city": "Rome",
-      "country": "Italy",
-      "postalCode": "00187",
-      "fullAddress": "Via dei Condotti 45, Rome, 00187 Italy",
       "category": "Residential",
-      "propertyType": "Multifamily",
-      "sizeSqm": "7650",
-      "imageUrl": "https://images.unsplash.com/photo-1523217582562-09d0def993a6?w=640&h=360&fit=crop&auto=format&q=80",
-      "acquisitionDate": "Q2 2024",
-      "status": "Active",
-      "description": "Luxury residential in historic center",
-      "portfolioUrl": "/portfolio/palazzo-residences"
+      "latitude": 41.9055,
+      "longitude": 12.4823,
+      ...
     }
   ],
   "count": 12,
-  "timestamp": "2026-01-29T..."
+  "timestamp": "2026-01-30T..."
 }
 ```
 
-### ✅ Phase 3: Google Maps API Setup (COMPLETE)
-- [x] Created Google Cloud project: "iAM Capital Website"
-- [x] Enabled Maps JavaScript API
-- [x] Enabled Geocoding API
-- [x] Created API key
-- [x] Restricted API key (HTTP referrers + API restrictions)
-
-**Google Maps API Key:**
-```
-AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
-```
-
-**API Restrictions (Security):**
-- HTTP referrers: `iamcapital.com/*`, `*.iamcapital.com/*`, `localhost:*`
-- API restrictions: Maps JavaScript API, Geocoding API only
-- Billing: Free tier ($200/month credit)
-
-### ✅ Phase 4: Frontend Configuration (COMPLETE)
-- [x] Updated `investments.js` with Apps Script URL (line 6)
-- [x] Updated `investments.html` with Google Maps API key (line 91)
-- [x] Verified file structure
-
-### ✅ Phase 5: Git Repository Setup (COMPLETE)
-- [x] Initialized git repository
-- [x] Configured git user: hello@websitelab.biz
-- [x] Added remote: https://github.com/websitelab/iamcapital/
-- [x] Pushed to GitHub main branch
-- [x] All files committed and versioned
-
-### ✅ Phase 6: Vercel Deployment (COMPLETE)
-- [x] Created vercel.json configuration
-- [x] Deployed to Vercel
-- [x] Auto-deploy enabled (pushes to main trigger redeployment)
-- [x] Production URL: https://iamcapital.vercel.app/
-- [x] Clean URLs enabled (no .html extensions)
-
-### ⏳ Phase 7: Testing (NEXT STEP)
-- [ ] Add Vercel URL to Google Maps API restrictions
-- [ ] Verify map loads with markers on production
-- [ ] Test marker clicks (info windows)
-- [ ] Test card clicks (zoom to marker)
-- [ ] Test responsive design (mobile, tablet, desktop)
-- [ ] Add real property data to Google Sheet
-
 ---
 
-## Brand Design System
+## Design System
 
-### Color Palette
+### Brand Colors
 ```css
-/* Primary Colors */
---color-navy: #19375F;        /* Deep navy (primary brand) */
---color-gold: #D4AF37;        /* Gold (accent for markers, buttons) */
---color-white: #FFFFFF;       /* Pure white */
---color-black: #000000;       /* Black */
+/* Primary */
+--color-navy: #19375F;        /* Brand blue (headers, footer, commercial markers) */
+--color-gold: #D4AF37;        /* Accent (unused in current design) */
+--color-white: #FFFFFF;       /* White backgrounds, text */
+--color-black: #000000;       /* Button hovers */
+
+/* Category Marker Colors */
+Residential: #4A90E2          /* Bright blue */
+Commercial: #19375F           /* Navy (brand color) */
+Hospitality: #7B68EE          /* Slate blue */
+Renewable Energy: #27AE60     /* Green */
 
 /* Grays */
---color-gray-50: #F9FAFB;     /* Lightest gray */
---color-gray-100: #F3F4F6;    /* Light gray */
---color-gray-200: #E5E7EB;    /* Border gray */
---color-gray-300: #D1D5DB;    /* Disabled gray */
---color-gray-700: #374151;    /* Body text gray */
---color-gray-900: #111827;    /* Dark text */
+--color-gray-50: #F9FAFB;
+--color-gray-100: #F3F4F6;
+--color-gray-200: #E5E7EB;
+--color-gray-700: #374151;
+--color-gray-900: #111827;
 ```
-
-**Color Usage:**
-- **Navy (#19375F)**: Header, hero gradient, property card titles, map base color, active filter pills
-- **Gold (#D4AF37)**: Map markers, mobile filter toggle button, property location icons
-- **White (#FFFFFF)**: Text on dark backgrounds, card backgrounds, logo, navigation
-- **Gray**: Body text, borders, secondary elements, filter backgrounds
 
 ### Typography
 **Font Family:** Overpass (Google Fonts)
@@ -223,297 +165,140 @@ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
 font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 ```
 
+**Font Sizes:**
+- Header nav: 16px
+- Footer: 16px
+- Hero title: 3.5rem → 2rem (mobile)
+- Section title: 2.5rem → 1.75rem (mobile)
+- Body text: 1rem (16px)
+
 **Font Weights:**
-- Light: 300 (hero subtitle)
-- Regular: 400 (body text)
-- Semi-bold: 600 (property card names)
-- Bold: 700 (section titles, labels)
-- Black: 900 (hero headline)
-
-**Type Scale:**
-- Hero Title: 3.5rem (56px) desktop → 2rem (32px) mobile
-- Section Title: 2.5rem (40px) → 1.75rem (28px) mobile
-- Property Card Name: 1.25rem (20px)
-- Body Text: 1rem (16px)
-- Labels: 0.875rem (14px) uppercase
-
-### Design Style
-**Corporate Investment Aesthetic:**
-- Clean, minimalist layout
-- Sharp corners (no border-radius on cards)
-- High contrast (white on navy, navy on white)
-- Professional typography (Overpass sans-serif)
-- Subtle animations (hover effects only)
-- Modern, trustworthy appearance
-
-**Inspiration:**
-- BlackRock investor pages
-- KKR portfolio showcase
-- Brookfield asset management
-- Enterprise SaaS dashboards
+- Light: 300
+- Regular: 400
+- Semi-bold: 600
+- Bold: 700
+- Black: 900
 
 ---
 
-## Page Sections
+## Page Structure
 
-### 1. Header/Navigation
-**Structure:**
-- Sticky header with navy background
-- Logo: "iAM Capital" in lime green (#9DFF20)
-- Simple navigation: Investments, Contact
-- Responsive: full nav desktop, minimal mobile
+### 1. Header/Navigation (80px height)
 
-**Styling:**
-- Background: var(--color-navy)
-- Logo color: var(--color-lime)
-- Link color: white → lime on hover
-- Sticky position (z-index: 1000)
+**Design:**
+- White background (#FFFFFF)
+- iAM Capital logo (WebP, 50px height)
+- 7 navigation items (Overpass 16px, #19375F)
+- Sticky positioning (z-index: 1000)
+- Mobile: Slide-in hamburger menu (navy background)
+
+**Navigation Links:**
+- About → https://iamcapital.com/about/
+- Investments → https://iamcapital.com/investments/
+- Team → https://iamcapital.com/team/
+- Responsibility → https://iamcapital.com/responsibility/
+- Investor Relations → https://iamcapital.com/investor-relations/
+- News → https://iamcapital.com/latest-news/
+- Contact → https://iamcapital.com/contact/
+
+**Mobile:**
+- Hamburger button (☰) - top right corner
+- Slide-in menu from left
+- Navy background (#19375F)
+- White text links
+- Auto-closes on link click
 
 ### 2. Hero Section
+
 **Content:**
-- Eyebrow label: "GLOBAL PORTFOLIO" (white, uppercase)
-- Main title: "Investment Properties" (white, 900 weight)
-- Subtitle: "Strategic investments across diversified asset classes" (white, light weight)
+- Eyebrow: "GLOBAL PORTFOLIO"
+- Title: "Investment Properties"
+- Subtitle: "Strategic investments across diversified asset classes"
 
 **Styling:**
-- Background: Milan Duomo cathedral image (milan-cathedral-hero.webp, 247KB)
-- Overlay: Subtle linear gradient (navy 40% → 50% opacity) for text readability
-- Image: Cover, center positioned - more visible than before
-- Text alignment: Center
-- Padding: 6rem desktop → 4rem mobile
-- Color scheme: Pure white text on cathedral background with subtle navy tint
-
-**Image Details:**
-- File: `images/hero/milan-cathedral-hero.webp`
-- Size: 247KB (WebP optimized)
-- Dimensions: 1920px width
-- Quality: 85
-- Subject: Milan Duomo cathedral with lion statue (European architecture)
-- Overlay: Reduced opacity (40-50%) to show more of image detail
+- Background: Milan cathedral image with subtle navy gradient
+- Text: Center-aligned, white
+- Padding: 6rem → 4rem (mobile)
 
 ### 3. Map Section
-**Structure:**
-- Full-width map container (no padding)
-- Height: 600px desktop → 400px mobile
-- Loading state (spinner + message)
-- Error state (fallback message)
-- Custom map styling (navy/gold theme)
-- **Collapsible filter toggle button** (mobile/desktop)
 
 **Map Features:**
-- **Default center**: Europe (lat: 45.0, lng: 10.0) - Italy/France region
-- **Default zoom**: 5 (shows all European properties)
-- Custom navy base color (#19375F)
-- **Gold pin markers** (#D4AF37) - standard teardrop/pin shape
-- White stroke on markers (2px) for contrast
-- **Animated marker drops** (Google Maps DROP animation)
-- Info windows on marker click with "View Portfolio" button
-- Auto-zoom to fit filtered markers
-- Fullscreen control enabled
+- Height: 600px → 400px (mobile)
+- Center: Europe (45.0, 10.0)
+- Zoom: 5 (shows all European properties)
+- Custom blue styling (#19375F base)
+- FontAwesome category-based markers
+- White outline (stroke-width: 20) on all markers
+- Animated marker drops (staggered 100ms intervals)
+- Info windows with "View Property" buttons
 
-**Filter Toggle Button:**
-- Position: Top-left corner (1rem from edges)
-- Style: Gold background (#D4AF37) with white text/icon
-- Mobile: Collapsible (hidden by default, toggle to show)
-- Desktop: Same gold button, always visible
-- Hover: Darker gold (#C9A632) with lift effect
-- Icon: Hamburger menu (3 lines) → X when open
+**FontAwesome Marker Icons:**
+- **Residential** (house): #4A90E2 bright blue
+- **Commercial** (building): #19375F navy
+- **Hospitality** (hotel): #7B68EE slate blue
+- **Renewable Energy** (leaf): #27AE60 green
 
-**Filter Pills (Collapsible Overlay):**
-- Hidden by default - click toggle button to show
-- Position: Below toggle button on mobile, overlay on map
-- Layout: Vertical stack in glassmorphism container
-- Style: White 95% background + backdrop blur
-- Two filter groups:
-  - **Property Type**: All, Multifamily, Office, Self Storage, Retail, Industrial
-  - **Country**: All, Italy, France, Spain, Portugal
-- Active state: Navy background with white text
-- Hover state: White background on active pills
-- Click to filter: Updates both map markers and property cards
-- Auto-close after selection (mobile)
-- Click outside to close
-- Auto-zoom to visible markers after filtering
+All markers: 40px size, white 20px stroke outline
 
-**Geocoding:**
-- Client-side via Google Geocoding API
-- Converts European addresses to lat/lng on page load
-- International format: "Address, City, Postal Code Country"
-- Error tolerance (skip failed geocodes)
-- Free tier: 25,000 requests/day
+**Filter System:**
+- Mobile: White filter toggle button (top-left, navy bg on mobile)
+- Collapsible filter overlay (glassmorphism)
+- Two filter groups: Category, Country
+- Active filters: Navy background, white text
+- Auto-zoom to filtered markers
+- Syncs with property cards
 
 ### 4. Property Cards Section
+
 **Layout:**
-- Max-width container (1400px)
 - Section title: "Portfolio Overview"
-- Company description below title (center-aligned)
-- Responsive grid:
-  - Desktop: auto-fill, min 320px columns
-  - Tablet: auto-fill, min 280px columns
-  - Mobile: 1 column
+- Responsive grid: auto-fill, min 320px columns
+- Image-first card design (16:9 ratio)
 
 **Card Structure:**
-- Header:
-  - Property name (navy, bold)
-  - Property type badge (navy background, white text)
-- Body:
-  - Location (with gold pin icon)
-  - Units/Size
-  - Acquisition date
+- Property image with dark gradient overlay
+- Property name + location badge (on image)
+- Category badge (colored by category, matches markers)
+- Acquisition date
 
-**Card Interactions:**
-- Hover: Lift (-4px) + border color change (gray → navy) + shadow
-- Click: Zoom map to marker + open info window + smooth scroll to map
+**Category Badge Colors:**
+- Residential: #4A90E2
+- Commercial: #19375F
+- Hospitality: #7B68EE
+- Renewable Energy: #27AE60
+
+**Interactions:**
+- Hover: Lift + border color + shadow
+- Click: Zoom map + open info window + scroll to map
 - Cursor: pointer
 
 ### 5. Footer
-**Content:**
-- Copyright: "© 2026 iAM Capital. All rights reserved."
-- Navy background
-- White text (80% opacity)
-- Center aligned
+
+**Structure:**
+- 3-column grid layout (centered, max-width 1200px)
+- Navy background (#19375F)
+- White logo (PNG, 131x21px)
+- Overpass 16px throughout
+
+**Columns:**
+1. **Logo & Address**: Company address (London), "Get directions →" link
+2. **Contact**: Phone, emails (info@, ir@), LinkedIn icon
+3. **Legal Links**: Disclaimer, Legal, Fraud Awareness, Privacy, Cookie Policy
+
+**Copyright:**
+- Dynamic year (JavaScript)
+- "© Copyright 2026, iAM Capital Group Ltd. All Rights Reserved"
+
+**Mobile:**
+- Single column stack
+- All text left-aligned
+- Footer components centered
 
 ---
 
-## JavaScript Architecture
+## Property Data
 
-### Global State
-```javascript
-let map;           // Google Maps instance
-let markers = [];  // Array of map markers
-let geocoder;      // Google Geocoder instance
-```
-
-### Core Functions
-
-**1. `initMap()`** - Map Initialization
-- Called by Google Maps API callback
-- Creates map with custom navy/lime styling
-- Centers on US (default view)
-- Initializes geocoder
-- Calls `loadProperties()`
-
-**2. `loadProperties()`** - Data Fetching
-- Fetches from Apps Script API
-- Handles loading/error states
-- Calls geocoding + card rendering
-- Error handling with try/catch
-
-**3. `geocodeAndRenderProperties()`** - Geocoding & Markers
-- Loops through properties
-- Geocodes each address to lat/lng
-- Creates lime green circular markers
-- Creates info windows
-- Fits map bounds to show all markers
-- Max zoom limit: 12
-
-**4. `geocodeAddress()`** - Single Address Geocoding
-- Returns Promise
-- Uses Google Geocoder
-- Resolves with LatLng or rejects
-
-**5. `createInfoWindowContent()`** - Info Window HTML
-- Returns HTML string
-- Property name, address, type, size
-- Styled with `.info-window` classes
-
-**6. `renderPropertyCards()`** - Card Rendering
-- Clears grid
-- Creates card for each property
-- Adds click handlers (zoom to marker)
-- Appends to DOM
-
-**7. `escapeHtml()`** - XSS Prevention
-- Escapes HTML in user data
-- Uses textContent method
-- Prevents script injection
-
-**8. `gm_authFailure()`** - Error Handling
-- Handles Google Maps auth failures
-- Shows error state
-
----
-
-## Sample Property Data (European Portfolio)
-
-**12 European Investment Properties (Version 1.4):**
-
-1. **Palazzo Residences**
-   - Rome, Italy (Residential - Multifamily, 7,650 sqm)
-   - Via dei Condotti 45, 00187
-   - Luxury residential in historic center
-   - Portfolio: /portfolio/palazzo-residences
-
-2. **Milan Office Tower**
-   - Milan, Italy (Commercial - Office, 11,148 sqm)
-   - Corso Buenos Aires 123, 20124
-   - Modern Class A office complex
-   - Portfolio: /portfolio/milan-office-tower
-
-3. **Tuscan Storage Solutions**
-   - Florence, Italy (Commercial - Self Storage, 17,100 sqm)
-   - Via Aretina 234, 50136
-   - Climate-controlled premium facility
-   - Portfolio: /portfolio/tuscan-storage
-
-4. **Paris Marais Apartments**
-   - Paris, France (Residential - Multifamily, 5,850 sqm)
-   - Rue de Rivoli 78, 75004
-   - Historic Marais district residences
-   - Portfolio: /portfolio/paris-marais
-
-5. **Lyon Industrial Park**
-   - Lyon, France (Commercial - Industrial, 17,187 sqm)
-   - Avenue Jean Jaurès 456, 69007
-   - Distribution and logistics hub
-   - Portfolio: /portfolio/lyon-industrial
-
-6. **Côte d'Azur Retail**
-   - Nice, France (Commercial - Retail, 4,831 sqm)
-   - Promenade des Anglais 89, 06000
-   - Premium waterfront retail center
-   - Portfolio: /portfolio/cote-azur-retail
-
-7. **Venice Canal Residences**
-   - Venice, Italy (Residential - Multifamily, 4,050 sqm)
-   - Calle Larga San Marco 321, 30124
-   - Historic canal-side apartments
-   - Portfolio: /portfolio/venice-canal
-
-8. **Marseille Port Office**
-   - Marseille, France (Commercial - Office, 8,826 sqm)
-   - Quai du Port 567, 13002
-   - Vieux Port business district
-   - Portfolio: /portfolio/marseille-port
-
-9. **Barcelona Gothic Quarter**
-   - Barcelona, Spain (Residential - Multifamily, 6,480 sqm)
-   - Carrer del Bisbe 12, 08002
-   - Gothic Quarter luxury residences
-   - Portfolio: /portfolio/barcelona-gothic
-
-10. **Lisbon Alfama Storage**
-    - Lisbon, Portugal (Commercial - Self Storage, 18,900 sqm)
-    - Rua de São Tomé 34, 1100-567
-    - Historic district storage facility
-    - Portfolio: /portfolio/lisbon-alfama
-
-11. **Grand Hotel Portofino**
-    - Portofino, Italy (Hospitality - Hotel, 8,500 sqm)
-    - Via Roma 82, 16034
-    - Luxury coastal resort hotel
-    - Portfolio: /portfolio/grand-hotel-portofino
-
-12. **Provence Solar Farm**
-    - Avignon, France (Renewable Energy - Solar, 125,000 sqm)
-    - Route de Cavaillon, 84000
-    - 50MW solar energy facility
-    - Portfolio: /portfolio/provence-solar-farm
-
-**Category System (4 Categories):**
-- **Residential**: 4 properties (Palazzo, Paris Marais, Venice Canal, Barcelona Gothic)
-- **Commercial**: 6 properties (Milan Office, Tuscan Storage, Lyon Industrial, Côte d'Azur Retail, Marseille Port, Lisbon Alfama)
-- **Hospitality**: 1 property (Grand Hotel Portofino)
-- **Renewable Energy**: 1 property (Provence Solar Farm)
+### 12 European Investment Properties
 
 **Geographic Distribution:**
 - Italy: 5 properties (Rome, Milan, Florence, Venice, Portofino)
@@ -521,202 +306,91 @@ let geocoder;      // Google Geocoder instance
 - Spain: 1 property (Barcelona)
 - Portugal: 1 property (Lisbon)
 
----
+**Category Distribution:**
+- **Residential**: 4 properties (house icon, bright blue)
+- **Commercial**: 6 properties (building icon, navy)
+- **Hospitality**: 1 property (hotel icon, slate blue)
+- **Renewable Energy**: 1 property (leaf icon, green)
 
-## Security Implementation
+**Sample Properties:**
+1. Palazzo Residences - Rome, Italy (Residential, 7,650 sqm)
+2. Milan Office Tower - Milan, Italy (Commercial, 11,148 sqm)
+3. Paris Marais Apartments - Paris, France (Residential, 5,850 sqm)
+4. Grand Hotel Portofino - Portofino, Italy (Hospitality, 8,500 sqm)
+5. Provence Solar Farm - Avignon, France (Renewable Energy, 125,000 sqm)
 
-### API Key Protection
-**Google Maps API Key Restrictions:**
-- ✅ HTTP referrers: `iamcapital.com/*`, `*.iamcapital.com/*`, `localhost:*`
-- ✅ API restrictions: Maps JavaScript API, Geocoding API only
-- ✅ Billing alerts: $50, $100, $150 thresholds
-- ✅ Free tier: $200/month credit (sufficient for most traffic)
-
-**Best Practices:**
-- Never commit API keys to public repos
-- Rotate keys every 90 days
-- Monitor usage in Google Cloud Console
-- Set up billing alerts
-
-### Apps Script Security
-**Read-Only Architecture:**
-- ✅ Only `doGet()` function (no POST/PUT/DELETE)
-- ✅ No write access to sheet from frontend
-- ✅ Public read-only endpoint
-- ✅ HTTPS by default (Google infrastructure)
-
-**Data Validation:**
-- Server-side: Skips empty rows, validates required fields
-- Client-side: HTML escaping via `escapeHtml()`
-- No SQL injection risk (no database)
-- No XSS vulnerabilities (textContent, not innerHTML)
-
-### GDPR Compliance
-**Privacy-Friendly:**
-- ✅ No personal data collected
-- ✅ No cookies or tracking
-- ✅ Public property data only (like real estate listings)
-- ✅ No user analytics
-- ✅ EU website audit ready
-
-**Data Processing:**
-- Property data is public information
-- No user consent required
-- No privacy policy changes needed
-
-### Rate Limiting
-**Google Quotas:**
-- Maps JavaScript API: Free tier ($200/month credit)
-- Geocoding API: 25,000 requests/day free
-- Apps Script: Unlimited reads (generous quotas)
-
-**Monitoring:**
-- Google Cloud Console → APIs & Services → Dashboard
-- Track daily usage
-- Set up alerts for quota approaching
-
----
-
-## Testing Procedures
-
-### Local Testing
-
-**Step 1: Start Local Server**
-```bash
-cd /Users/davidpeyton/Documents/Coding-Projects/Website-Lab/Websites/iamcapital.com
-python3 -m http.server 8000
-```
-
-**Step 2: Open in Browser**
-```
-http://localhost:8000/investments.html
-```
-
-**Step 3: Verify Map Loading**
-- ✅ See "Loading investment properties..." (briefly)
-- ✅ Google Map appears with navy/lime styling
-- ✅ 10 lime green markers appear
-- ✅ Map auto-zooms to fit all markers
-
-**Step 4: Test Marker Interactions**
-- Click marker → Info window opens
-- Info window shows: property name, address, type, size
-- Click another marker → Previous info window closes
-- Map centers on clicked marker
-
-**Step 5: Test Property Cards**
-- 10 cards appear below map in grid
-- Cards show: name, type badge, location, size, date
-- Hover card → Lifts + border turns navy + shadow appears
-- Click card → Map zooms to marker + info window opens + smooth scroll to map
-
-**Step 6: Test Responsive Design**
-Open DevTools (F12) → Device toolbar (📱)
-
-- **Desktop (1920x1080):**
-  - Map: 600px height
-  - Cards: 3-4 columns
-  - Hero title: 3.5rem
-
-- **Tablet (768x1024):**
-  - Map: 500px height
-  - Cards: 2 columns
-  - Hero title: 2.5rem
-
-- **Mobile (375x667):**
-  - Map: 400px height
-  - Cards: 1 column
-  - Hero title: 2rem
-
-**Step 7: Check Browser Console**
-- F12 → Console tab
-- Should see NO red errors
-- May see geocoding logs (normal)
-
-### Production Testing
-
-**After Deploying to iamcapital.com:**
-
-1. Test on production URL
-2. Verify API key domain restrictions work
-3. Test from different devices (mobile, tablet, desktop)
-4. Check Google Cloud Console for API usage
-5. Monitor for errors
-
----
-
-## Responsive Breakpoints
-
-```css
-/* Desktop First → Mobile First */
-
-/* Large Desktop (1440px+) */
-Default styles
-
-/* Desktop (1200-1439px) */
-@media (max-width: 1023px) {
-  - Hero title: 3.5rem → 2.5rem
-  - Map height: 600px → 500px
-  - Cards: auto-fill (min 280px)
-}
-
-/* Mobile (<768px) */
-@media (max-width: 767px) {
-  - Header padding: 1rem
-  - Hero padding: 4rem → 3rem
-  - Hero title: 2.5rem → 2rem
-  - Hero subtitle: 1.25rem → 1rem
-  - Map height: 500px → 400px
-  - Cards: 1 column
-  - Section padding: 5rem → 3rem
-  - Section title: 2.5rem → 1.75rem
-}
-
-/* Mobile Small (<375px) */
-@media (max-width: 374px) {
-  - Hero title: 2rem → 1.75rem
-  - Section title: 1.75rem → 1.5rem
-  - Card padding: 1.5rem → 1rem
-}
-```
+All properties include:
+- Pre-geocoded lat/lng coordinates
+- High-quality Unsplash images (WebP optimized)
+- Full address, size, category, acquisition date
+- Portfolio URLs
 
 ---
 
 ## Performance Optimization
 
-### Load Time Targets
-- Initial page load: < 3 seconds
-- Maps API load: < 1 second
-- Apps Script response: < 500ms
-- Geocoding (10 properties): < 2 seconds
-- Total interactive time: < 5 seconds
+### Load Time Performance
+- **Before (v1.0)**: ~3-5 seconds (client-side geocoding)
+- **After (v2.0)**: ~1-2 seconds (pre-geocoded)
+- **Improvement**: ~2 seconds faster
 
-### Optimization Techniques
-**Font Loading:**
-- Preconnect to Google Fonts
-- Font-display: swap (fallback text visible immediately)
+**Optimizations:**
+- Pre-geocoded coordinates (zero geocoding API calls)
+- SVG data URLs for markers (no external requests)
+- Single CSS/JS files (no framework overhead)
+- Preconnect to Google Maps/Fonts
+- WebP images (hero: 247KB)
+- Staggered marker animations (visual polish without blocking)
 
-**CSS:**
-- Single CSS file (403 lines)
-- Minimal animations (GPU-accelerated: transform, opacity)
-- CSS custom properties (no runtime calculation)
+### API Usage
+- Google Maps API: $200/month free credit (sufficient)
+- Geocoding API: 0 calls per page load (was 12)
+- Apps Script: Unlimited reads
+- Total cost: $0/month for typical traffic
 
-**JavaScript:**
-- Vanilla JS (no framework overhead)
-- Async map loading (doesn't block page)
-- Defer script execution
-- Minimal DOM manipulation
+---
 
-**API Calls:**
-- Single Apps Script fetch
-- Batch geocoding (all at once)
-- No polling or unnecessary requests
+## Mobile Responsive Design
 
-**Future Enhancements:**
-- Pre-geocode addresses (add lat/lng to sheet)
-- Lazy load map (IntersectionObserver)
-- Service worker for offline support
-- Image optimization (if property photos added)
+### Breakpoints
+```css
+Desktop:  1024px+ (80px header, 3-column footer)
+Tablet:   768px - 1023px (responsive grid)
+Mobile:   < 768px (60px header, hamburger menu, 1-column)
+```
+
+### Mobile Features
+- Hamburger menu (slide-in from left, navy background)
+- Horizontal scrollable navigation (fallback)
+- Filter toggle button (white on navy)
+- Single column property cards
+- Stacked footer layout
+- Touch-optimized buttons
+- Auto-close menus on interaction
+
+---
+
+## Security & Privacy
+
+### API Key Protection
+- Google Maps API: Restricted to iamcapital.vercel.app
+- HTTP referrer restrictions enabled
+- API-specific restrictions (Maps JS API only)
+- Billing alerts configured
+
+### GDPR Compliance
+- No cookies or tracking
+- No personal data collection
+- Public property data only
+- No analytics
+- EU-ready deployment
+
+### Data Architecture
+- Read-only API endpoint
+- No write access from frontend
+- Server-side validation
+- XSS prevention (escapeHtml function)
+- No SQL injection risk (no database)
 
 ---
 
@@ -724,421 +398,193 @@ Default styles
 
 ### Adding New Properties
 
-**In Google Sheet:**
-1. Add new row with property data
-2. Required: Property Name, Address, City, State
-3. Optional: Zip, Type, Units/Size, Date, Status, Description
-4. Changes appear on website within 1-5 minutes
+**Option 1: With Pre-Geocoded Coordinates (Recommended)**
+1. Add property data to Google Sheet (columns A-M)
+2. Get coordinates from Google Maps (right-click → "What's here?")
+3. Add latitude (column N) and longitude (column O)
+4. Map loads instantly (no geocoding needed)
 
-**Data Format:**
-- All fields as Plain Text
-- Dates: "Q2 2024" format (not date cells)
-- Addresses: Full street address (for geocoding)
-- States: 2-letter codes (FL, TX, CA, etc.)
+**Option 2: Auto-Geocode (Fallback)**
+1. Add property data (columns A-M)
+2. Leave lat/lng empty
+3. Frontend will geocode on load (slower, uses API quota)
 
-### Editing Existing Properties
+### Changing Marker Colors
 
-**In Google Sheet:**
-1. Find property row
-2. Edit any field
-3. Save (Ctrl+S or Cmd+S)
-4. Refresh website to see changes (1-5 min delay)
+Edit `getMarkerIcon()` function in investments.js:
+```javascript
+'Residential': {
+    color: '#4A90E2',  // Change this hex code
+    ...
+}
+```
 
-**Note:** Property names used to match markers. If changing name, markers will re-geocode.
+### Changing Category Colors in Cards
 
-### Troubleshooting Common Issues
+Edit CSS in investments.css:
+```css
+.property-card__category[data-category="Residential"] {
+    background: #4A90E2;  /* Change this */
+}
+```
 
-**Issue: Map not loading**
-- Check browser console for errors
-- Verify API key in investments.html
-- Check API key restrictions (domain, APIs)
-- Ensure Maps JavaScript API is enabled
+### Updating Navigation
 
-**Issue: No markers appearing**
-- Check Apps Script URL returns JSON (test in browser)
-- Verify addresses in sheet are valid
-- Check geocoding API quotas (25k/day limit)
-- Look for console errors
-
-**Issue: Cards not rendering**
-- Check Apps Script response format
-- Verify JSON structure matches expected
-- Check browser console for JavaScript errors
-
-**Issue: "Unable to load property map"**
-- Test Apps Script URL directly
-- Verify sheet is named "Sheet1"
-- Check sheet has data (at least 1 row + header)
-- Review Apps Script execution logs
+Edit investments.html header section:
+```html
+<li class="nav__item"><a href="URL" class="nav__link">Link Text</a></li>
+```
 
 ---
 
-## Future Enhancements
+## Version History
 
-### Phase 1 (Short-term: 1-3 months)
-- [ ] **Property Photos**: Add image column to sheet, display in cards
-- [ ] **Pre-geocoded Addresses**: Add lat/lng columns (faster, no API calls)
-- [ ] **Property Filtering**: Filter by type (Multifamily, Office, etc.)
-- [ ] **Search Functionality**: Search by property name or city
-- [ ] **Property Detail Modal**: Click card → Full-screen modal with details
+### Version 2.1 (2026-01-30) - Current Production
+**Major Design & UX Updates:**
+- ✅ FontAwesome category-based map markers (house, building, hotel, leaf)
+- ✅ Category color coding (markers + card badges match)
+- ✅ White header with full iAM Capital navigation (7 menu items)
+- ✅ Footer matching iamcapital.com exactly (3-column layout)
+- ✅ Mobile hamburger menu (slide-in, navy background)
+- ✅ White outline on markers (stroke-width: 20)
+- ✅ Navy filter button on mobile
+- ✅ Overpass 16px throughout header/footer
+- ✅ Logo updates (header: WebP, footer: PNG)
+- ✅ Dynamic copyright year
+- ✅ Working-files folder structure
 
-### Phase 2 (Medium-term: 3-6 months)
-- [ ] **Advanced Map Features**: Marker clustering, heatmap view
-- [ ] **Custom Property Icons**: Different icons per property type
-- [ ] **Performance Optimization**: Lazy loading, service workers
-- [ ] **Analytics Integration**: Track user interactions
-- [ ] **SEO Enhancement**: JSON-LD structured data, SSR
+**Files Updated:**
+- investments.js (FontAwesome markers, mobile menu, category colors)
+- investments.css (header/footer redesign, category badges, mobile responsive)
+- investments.html (navigation, footer, mobile toggle)
+- .gitignore (working-files exclusion)
 
-### Phase 3 (Long-term: 6-12 months)
-- [ ] **Database Migration**: Move from Sheets to PostgreSQL/MongoDB
-- [ ] **Admin Dashboard**: CRUD interface for properties
-- [ ] **Investment Portal**: Investor login, document library
-- [ ] **Multi-language Support**: i18n for global investors
-- [ ] **Real-time Updates**: WebSocket for instant updates
+**Commits:**
+- 72 commits total
+- Latest: Category color matching, marker outlines, mobile menu
+
+### Version 2.0 (2026-01-29)
+**Performance Optimization:**
+- ✅ Pre-geocoded coordinates (lat/lng in sheet)
+- ✅ Apps Script v2 with coordinate support
+- ✅ ~2 second load time improvement
+- ✅ Zero geocoding API calls
+
+### Version 1.5 (2026-01-29)
+**UX Improvements:**
+- ✅ Filter label improvements
+- ✅ Button hover fixes
+- ✅ Stable commit restoration
+
+### Version 1.4 (2026-01-29)
+**Image-Based Cards:**
+- ✅ Professional property images (Unsplash CDN)
+- ✅ 4-category system (Residential, Commercial, Hospitality, Renewable)
+- ✅ 12 properties total
+
+### Version 1.0 (2026-01-26)
+**Initial Release:**
+- ✅ Serverless architecture
+- ✅ 10 sample properties
+- ✅ Basic map + cards
+- ✅ GitHub + Vercel deployment
 
 ---
 
 ## Development Workflow
 
-### When Making Changes
+### Making Changes
 
-**Editing Property Data:**
-1. Open Google Sheet
-2. Edit data directly
-3. Changes appear on site within 1-5 minutes
-4. No code changes needed
+**Update Property Data:**
+1. Edit Google Sheet directly
+2. Changes appear in 1-5 minutes
+3. No code deployment needed
 
-**Updating Styles (investments.css):**
-1. Edit CSS file
-2. Test locally with `python3 -m http.server`
-3. Upload to production via FTP/SFTP
-4. Hard refresh browser (Ctrl+Shift+R)
+**Update Styles:**
+1. Edit investments.css
+2. Test locally: `python3 -m http.server 8000`
+3. Commit + push to GitHub
+4. Vercel auto-deploys
 
-**Modifying Logic (investments.js):**
-1. Edit JavaScript file
+**Update JavaScript:**
+1. Edit investments.js
 2. Test locally
 3. Check browser console for errors
-4. Upload to production
-5. Clear browser cache
+4. Commit + push
 
-**Changing Map Styling:**
-1. Edit `getMapStyles()` function in investments.js
-2. Test map appearance
-3. Adjust colors as needed
-4. Upload changes
-
-### Version Control (Recommended)
-
-**Git Workflow:**
+**Deploy:**
 ```bash
-cd /Users/davidpeyton/Documents/Coding-Projects/Website-Lab/Websites/iamcapital.com
-
-# Initialize repository (first time)
-git init
 git add .
-git commit -m "Initial commit: Investment properties map"
-
-# Making changes
-git add investments.css
-git commit -m "Update property card hover effects"
-
-# Pushing to GitHub
-git remote add origin https://github.com/yourorg/iamcapital-website.git
-git push -u origin main
+git commit -m "Description"
+git push origin main
+# Vercel auto-deploys in ~30 seconds
 ```
+
+### File Organization
+
+**Production Files (in Git):**
+- index.html, investments.html
+- investments.css, investments.js
+- images/, vercel.json
+- .gitignore, CLAUDE.md
+
+**Working Files (not in Git):**
+- working-files/ directory
+- Reference scripts
+- Deployment guides
+- Sample data
 
 ---
 
 ## Quick Reference
 
-### Configuration URLs
-**Apps Script API (Version 1.4):**
-```
-https://script.google.com/macros/s/AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw/exec
-```
+### Live URLs
+- **Production**: https://iamcapital.vercel.app/
+- **GitHub**: https://github.com/websitelab/iamcapital/
+- **Apps Script v2**: https://script.google.com/.../AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec
 
-**Google Maps API Key:**
-```
-AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
-```
-
-### Brand Colors
+### Colors
 ```css
-Navy:  #193D5F
-Lime:  #9DFF20
+Navy:  #19375F (brand, commercial markers)
+Blue:  #4A90E2 (residential markers)
+Slate: #7B68EE (hospitality markers)
+Green: #27AE60 (renewable markers)
 White: #FFFFFF
-Gray:  #374151
+Black: #000000 (button hovers)
 ```
 
-### Breakpoints
+### Key Dimensions
 ```css
-Desktop:  1024px+
-Tablet:   768px - 1023px
-Mobile:   < 768px
-```
-
-### File Locations
-```
-HTML:  /investments.html (line 91: API key)
-JS:    /investments.js (line 6: Apps Script URL)
-CSS:   /investments.css (colors: lines 10-30)
+Header: 80px (60px mobile)
+Hero padding: 6rem → 4rem (mobile)
+Map height: 600px → 400px (mobile)
+Marker size: 40px (stroke: 20px white)
+Logo header: 50px (35px mobile)
+Logo footer: 131px × 21px
 ```
 
 ---
 
 ## Support & Documentation
 
-**Complete Setup Guide:**
-`README-INVESTMENTS.md` - Step-by-step instructions for all phases
-
-**Reference Implementation:**
-Blue Devil Jiu Jitsu schedule.html - Proven pattern this project follows
+**Working Files (Local Only):**
+- `working-files/DEPLOYMENT-GUIDE-v2.md` - Setup instructions
+- `working-files/README-INVESTMENTS.md` - Original setup guide
+- `working-files/google-apps-script-v2.js` - Current server code
+- `working-files/sample-properties.csv` - Property data with coordinates
 
 **Google Documentation:**
 - [Google Sheets API](https://developers.google.com/sheets/api)
 - [Google Apps Script](https://developers.google.com/apps-script)
 - [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript)
-- [Geocoding API](https://developers.google.com/maps/documentation/geocoding)
+- [FontAwesome Icons](https://fontawesome.com/icons)
 
-**API Quotas:**
+**API Console:**
 - [Google Cloud Console](https://console.cloud.google.com) - Monitor usage
-- Maps API: $200/month free credit
-- Geocoding: 25,000 requests/day free
 
 ---
 
-## Version History
-
-### Version 1.5 (2026-01-29) - Current Production
-**UX Improvements & Bug Fixes:**
-- ✅ Added "Filter:" label before category filter buttons for improved clarity
-- ✅ Fixed View Property button hover issue (button disappearing on hover)
-- ✅ Added missing --color-gold CSS variable (#D4AF37)
-- ✅ Restored to stable commit 5f5ae4d with selective improvements
-
-**Changes:**
-- investments.html: Added filter label with proper styling
-- investments.css: Added --color-gold variable, styled filter label
-- Info window buttons now show gold background on hover (instead of disappearing)
-- Category filters display "Filter:" label for better UX
-
-**Files Updated:**
-- investments.html (filter label added)
-- investments.css (--color-gold variable, filter label styles)
-
-**Commits:**
-- 5f5ae4d: Restored to stable base
-- 69076ad: Add 'Filter:' label to category filter buttons
-- d0f12e5: Fix View Property button hover disappearing issue
-
-### Version 1.4 (2026-01-29)
-**Image-Based Property Cards & Category System:**
-- ✅ Complete card redesign with professional property images
-- ✅ Implemented 4-category system (Residential, Commercial, Hospitality, Renewable Energy)
-- ✅ Added 2 new properties: Grand Hotel Portofino (Hospitality), Provence Solar Farm (Renewable Energy)
-- ✅ Updated data schema with Category, Size SQM, and Image URL fields
-- ✅ Integrated Unsplash CDN for high-quality property photos (12 images)
-- ✅ Size formatting with commas (e.g., "7,650 sqm")
-- ✅ Changed filters from "Property Type" to "Category"
-- ✅ Section title updated to "Portfolio by Category"
-
-**Card Design (Image-First Layout):**
-- 16:9 aspect ratio images (320x180px)
-- Dark gradient overlay for text readability
-- Property name and location badge on image overlay
-- Category badge and acquisition date below image
-- Professional Unsplash CDN images with WebP optimization
-- Maintained corporate aesthetic with hover effects
-
-**Data Schema Updates:**
-- Added `category` field (Residential, Commercial, Hospitality, Renewable Energy)
-- Added `sizeSqm` field (converted from sq ft and units)
-- Added `imageUrl` field (Unsplash CDN URLs)
-- Total: 12 properties across 4 categories
-
-**Backend & Frontend Changes:**
-- Google Apps Script: Updated to parse new CSV schema
-- investments.js: Category filters, image-based card rendering, country code helper
-- investments.css: Complete card style rewrite for image layout
-- investments.html: Section title change to "Portfolio by Category"
-- sample-properties.csv: Updated with new schema and 2 additional properties
-
-**API Configuration:**
-- New Apps Script URL: `AKfycbzkVLtzgGl37uerEhA8USWI-ZmTQ77aTqDbTqKJL2Pqx8KEAmGSeDqZk7DCcwLaipmQJw`
-- API Response: Now includes category, sizeSqm, imageUrl fields
-- Total properties: 12 (increased from 10)
-
-**Files Updated:**
-- sample-properties.csv (new schema, 12 properties)
-- google-apps-script.js (parse new fields)
-- investments.js (category filters, image cards, country codes)
-- investments.css (image-based card styles)
-- investments.html (section title)
-
-### Version 1.3 (2026-01-26)
-**Design Refinement & UX Improvements:**
-- ✅ Mobile filter collapsible toggle button (gold background)
-- ✅ Color scheme updated to #19375F navy and pure white (removed lime green)
-- ✅ Map markers changed to gold (#D4AF37) pin/teardrop shape (best practices)
-- ✅ Hero section with subtle gradient overlay (40-50% opacity)
-- ✅ Company description moved below "Portfolio Overview"
-- ✅ Filter toggle button: gold background with white text/icon
-- ✅ Improved mobile UX - filters hidden by default, toggle to show
-- ✅ Auto-close filter menu after selection on mobile
-- ✅ Click outside to close filters
-
-**Design Changes:**
-- Gold map markers (#D4AF37) with standard pin SVG path
-- White text and icons on gold filter toggle button
-- Subtle navy gradient overlay on hero image (maintains readability)
-- Filters accessible via map overlay toggle only (desktop filters removed)
-- Property card icons updated to match gold color scheme
-- Info window buttons: navy background with white text
-
-**UX Improvements:**
-- Mobile filters: Collapsible by default, toggle to open
-- Filter menu auto-closes after selection
-- Click outside filter menu to close
-- Reduced screen coverage on mobile
-- Gold button provides visual consistency with markers
-
-**Files Updated:**
-- investments.html (filter toggle button, company description moved)
-- investments.css (gold colors, filter toggle styles, mobile responsive)
-- investments.js (gold markers, filter sync, auto-close behavior)
-
-### Version 1.2 (2026-01-26)
-**European Properties Update:**
-- ✅ Migrated from US to European properties (IT, FR, ES, PT)
-- ✅ Updated schema: Country + Postal Code (international format)
-- ✅ Added Portfolio URL field with "View Portfolio" buttons
-- ✅ Map centered on Europe (Italy/France focus)
-- ✅ Floating filter pills (vertical layout, left side)
-- ✅ Animated marker drops (Google Maps DROP animation)
-- ✅ Milan cathedral hero background (WebP optimized, 247KB)
-- ✅ Glassmorphism filter UI with backdrop blur
-- ✅ Filter by property type and country
-- ✅ Auto-zoom to filtered properties
-
-**New Features:**
-- Info window "View Portfolio" buttons (navy → lime hover)
-- Filter pills: Property Type (Multifamily, Office, etc.)
-- Filter pills: Country (Italy, France, Spain, Portugal)
-- Hero background: Milan Duomo with lion statue
-- Vertical filter layout on map (better UX)
-- Property cards show "City, Country" format
-
-**Files Updated:**
-- investments.html (added filter pills container)
-- investments.css (filter pills, hero bg, responsive)
-- investments.js (Europe center, filters, animations)
-- google-apps-script.js (international schema, portfolioUrl)
-- sample-properties.csv (10 European properties)
-- images/hero/milan-cathedral-hero.webp (247KB)
-
-### Version 1.1 (2026-01-26)
-**Initial Deployment:**
-- ✅ GitHub repository setup (hello@websitelab.biz)
-- ✅ Vercel deployment with auto-deploy
-- ✅ vercel.json configuration (clean URLs)
-- ✅ .gitignore added
-
-### Version 1.0 (2026-01-26)
-**Initial Release:**
-- ✅ Complete serverless architecture implementation
-- ✅ Google Sheets + Apps Script + Google Maps integration
-- ✅ Professional navy/lime corporate design
-- ✅ 10 sample investment properties (originally US)
-- ✅ Responsive design (mobile, tablet, desktop)
-- ✅ Interactive map with custom markers
-- ✅ Property cards with click-to-zoom
-- ✅ Complete documentation (README + CLAUDE.md)
-
-**Configuration:**
-- Apps Script URL: ✅ https://script.google.com/macros/s/AKfycbyY3TsuK56cyYpxZ22p9VLCwROthD4mYLmL9Jvb9M-TukPqbsmabsnI49DAjRSGZ4qKAA/exec
-- Google Maps API Key: ✅ AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c
-- API Restrictions: ✅ Applied (iamcapital.vercel.app/*)
-- Git Repository: ✅ https://github.com/websitelab/iamcapital/
-- Git User: ✅ hello@websitelab.biz
-- Vercel Deployment: ✅ https://iamcapital.vercel.app/
-
----
-
-## Deployment Information
-
-### GitHub Repository
-- **URL**: https://github.com/websitelab/iamcapital/
-- **Branch**: main
-- **Git User**: hello@websitelab.biz (Website Lab)
-- **Auto-deploy**: Enabled (pushes to main trigger Vercel redeployment)
-
-### Vercel Hosting
-- **Production URL**: https://iamcapital.vercel.app/
-- **Framework**: Static HTML
-- **Configuration**: vercel.json (clean URLs enabled)
-- **Auto-deploy**: ✅ Enabled from GitHub main branch
-- **Clean URLs**: /investments (no .html extension needed)
-
-### vercel.json Configuration
-```json
-{
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/investments.html"
-    }
-  ],
-  "cleanUrls": true
-}
-```
-
-**What this does:**
-- Routes root URL (/) to investments.html
-- Enables clean URLs (access pages without .html extension)
-- Allows /investments to work (instead of /investments.html)
-
----
-
-## Next Steps for Production
-
-### 1. Update Google Maps API Restrictions
-**IMPORTANT**: Add Vercel URL to API key restrictions for the map to work:
-
-1. Go to [Google Cloud Console](https://console.cloud.google.com)
-2. Navigate to: APIs & Services → Credentials
-3. Click your API key: `AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c`
-4. Under **HTTP referrers**, add:
-   - `iamcapital.vercel.app/*`
-   - `*.vercel.app/*` (for all Vercel preview deployments)
-5. Click **Save**
-
-### 2. Test Production Site
-Visit: https://iamcapital.vercel.app/
-
-**Expected behavior:**
-- Navy/lime Google Map with 10 lime green markers
-- Property cards below map
-- Click marker → Info window opens
-- Click card → Map zooms to property
-- Responsive design on mobile/tablet/desktop
-
-### 3. Replace Sample Data
-In your Google Sheet:
-1. Delete sample property rows (Harbor View Apartments, etc.)
-2. Add real iAM Capital investment properties
-3. Ensure required fields: Property Name, Address, City, State
-4. Changes appear on site within 1-5 minutes
-
-### 4. Future Enhancements
-- Add custom domain (iamcapital.com)
-- Add property photos
-- Pre-geocode addresses (add lat/lng columns)
-- Add property filtering by type
-- Implement search functionality
-
----
-
-**Last Updated**: 2026-01-29 (Version 1.5)
-**Status**: Deployed to Production
+**Last Updated**: January 30, 2026
+**Status**: Live in Production
+**Version**: 2.1
 **Live URL**: https://iamcapital.vercel.app/
-**Current Version**: 1.5 - UX improvements, filter label, button hover fix
