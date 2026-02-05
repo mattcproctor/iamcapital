@@ -18,6 +18,23 @@ let activeFilters = {
     status: 'all'
 };
 
+/**
+ * Parse categories from combined strings
+ * "Residential & Retail" → ["Residential", "Retail"]
+ */
+function parseCategories(categoryString) {
+    if (!categoryString) return [];
+    return categoryString.split('&').map(cat => cat.trim());
+}
+
+/**
+ * Get all unique base categories from properties
+ */
+function getUniqueCategories(properties) {
+    const allCats = properties.flatMap(p => parseCategories(p.category));
+    return [...new Set(allCats)].filter(Boolean).sort();
+}
+
 // ===================================
 // Map Initialization
 // ===================================
@@ -403,7 +420,7 @@ function createInfoWindowContent(property) {
  * Render category filter buttons dynamically
  */
 function renderCategoryFilterButtons(properties) {
-    const categories = [...new Set(properties.map(p => p.category).filter(Boolean))];
+    const categories = getUniqueCategories(properties);
     const categoryGroup = document.querySelector('#categoryFilters .category-filters__group:nth-child(2)');
 
     if (categoryGroup) {
@@ -580,8 +597,8 @@ window.gm_authFailure = function() {
  * Render filter pills from property data
  */
 function renderFilterPills(properties) {
-    // Get unique categories, countries, and statuses
-    const categories = [...new Set(properties.map(p => p.category).filter(Boolean))];
+    // Get unique base categories, countries, and statuses
+    const categories = getUniqueCategories(properties);
     const countries = [...new Set(properties.map(p => p.country).filter(Boolean))];
     const statuses = [...new Set(properties.map(p => p.status).filter(Boolean))];
 
@@ -673,7 +690,9 @@ function handleFilterClick(e) {
  */
 function applyFilters() {
     const filtered = allProperties.filter(property => {
-        const categoryMatch = activeFilters.category === 'all' || property.category === activeFilters.category;
+        // Check if property's categories include the selected filter
+        const propertyCats = parseCategories(property.category);
+        const categoryMatch = activeFilters.category === 'all' || propertyCats.includes(activeFilters.category);
         const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
         const statusMatch = activeFilters.status === 'all' || property.status === activeFilters.status;
         return categoryMatch && countryMatch && statusMatch;
@@ -683,7 +702,8 @@ function applyFilters() {
     markers.forEach(marker => {
         const property = allProperties.find(p => p.name === marker.title);
         if (property) {
-            const categoryMatch = activeFilters.category === 'all' || property.category === activeFilters.category;
+            const propertyCats = parseCategories(property.category);
+            const categoryMatch = activeFilters.category === 'all' || propertyCats.includes(activeFilters.category);
             const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
             const statusMatch = activeFilters.status === 'all' || property.status === activeFilters.status;
             marker.setVisible(categoryMatch && countryMatch && statusMatch);
