@@ -547,6 +547,20 @@ body {
     font-family: var(--font-family);
     padding: 0.5rem;
     max-width: 250px;
+    position: relative;
+}
+
+.info-window__sold-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: #DC2626;
+    color: white;
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
 }
 
 .info-window__title {
@@ -554,6 +568,7 @@ body {
     font-weight: 600;
     color: var(--color-navy);
     margin: 0 0 0.5rem;
+    padding-right: 3.5rem;
 }
 
 .info-window__address,

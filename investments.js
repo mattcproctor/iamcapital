@@ -380,8 +380,13 @@ function createInfoWindowContent(property) {
 
     const formattedSize = property.sizeSqm ? `${parseInt(property.sizeSqm).toLocaleString()} sqm` : '';
 
+    const soldBadge = property.status === 'Sold'
+        ? `<span class="info-window__sold-badge">SOLD</span>`
+        : '';
+
     return `
         <div class="info-window">
+            ${soldBadge}
             <h3 class="info-window__title">${escapeHtml(property.name)}</h3>
             <p class="info-window__address">${escapeHtml(property.city)}, ${escapeHtml(property.country)}</p>
             <p class="info-window__type">${escapeHtml(property.category)}${formattedSize ? ' • ' + formattedSize : ''}</p>
