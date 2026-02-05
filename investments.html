@@ -82,10 +82,17 @@
 
             <!-- Category Filters -->
             <div class="category-filters" id="categoryFilters">
-                <span class="category-filters__label">Filter:</span>
-                <button class="category-filter-btn category-filter-btn--active" data-filter-type="status" data-filter-value="all">All</button>
-                <button class="category-filter-btn" data-filter-type="status" data-filter-value="Active">Active</button>
-                <button class="category-filter-btn" data-filter-type="status" data-filter-value="Sold">Sold</button>
+                <div class="category-filters__group">
+                    <span class="category-filters__label">Status:</span>
+                    <button class="category-filter-btn category-filter-btn--active" data-filter-type="status" data-filter-value="all">All</button>
+                    <button class="category-filter-btn" data-filter-type="status" data-filter-value="Active">Active</button>
+                    <button class="category-filter-btn" data-filter-type="status" data-filter-value="Sold">Sold</button>
+                </div>
+                <div class="category-filters__group">
+                    <span class="category-filters__label">Category:</span>
+                    <button class="category-filter-btn category-filter-btn--active" data-filter-type="category" data-filter-value="all">All</button>
+                    <!-- Dynamic category buttons will be added here by JavaScript -->
+                </div>
             </div>
 
             <div id="propertiesGrid" class="properties-grid">

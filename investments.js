@@ -147,6 +147,7 @@ async function loadProperties() {
             await geocodeAndRenderProperties(data.properties);
             renderPropertyCards(data.properties);
             renderFilterPills(data.properties);
+            renderCategoryFilterButtons(data.properties);
         } else {
             // No properties case
             mapError.style.display = 'flex';
@@ -392,6 +393,24 @@ function createInfoWindowContent(property) {
 // ===================================
 // Property Cards Rendering
 // ===================================
+
+/**
+ * Render category filter buttons dynamically
+ */
+function renderCategoryFilterButtons(properties) {
+    const categories = [...new Set(properties.map(p => p.category).filter(Boolean))];
+    const categoryGroup = document.querySelector('#categoryFilters .category-filters__group:nth-child(2)');
+
+    if (categoryGroup) {
+        // Keep the label and "All" button, add category buttons
+        const existingButtons = categoryGroup.innerHTML;
+        const categoryButtons = categories.map(cat =>
+            `<button class="category-filter-btn" data-filter-type="category" data-filter-value="${cat}">${cat}</button>`
+        ).join('');
+
+        categoryGroup.innerHTML = existingButtons + categoryButtons;
+    }
+}
 
 /**
  * Render property cards grid with image-based design
