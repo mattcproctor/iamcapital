@@ -39,7 +39,7 @@ function initMap() {
         fullscreenControl: true,
         zoomControl: true,
         minZoom: 5,  // Allow Europe overview
-        maxZoom: 12  // Prevent street-level zoom for privacy
+        maxZoom: 15  // Allow cluster expansion while preventing street-level detail
     });
 
     geocoder = new google.maps.Geocoder();
@@ -382,9 +382,8 @@ function createInfoWindowContent(property) {
     return `
         <div class="info-window">
             <h3 class="info-window__title">${escapeHtml(property.name)}</h3>
-            <p class="info-window__address">${escapeHtml(property.fullAddress)}</p>
-            <p class="info-window__type">${escapeHtml(property.category)} • ${escapeHtml(property.propertyType)}</p>
-            <p class="info-window__size">${formattedSize}</p>
+            <p class="info-window__address">${escapeHtml(property.city)}, ${escapeHtml(property.country)}</p>
+            <p class="info-window__type">${escapeHtml(property.category)}${formattedSize ? ' • ' + formattedSize : ''}</p>
             ${portfolioButton}
         </div>
     `;
@@ -412,11 +411,14 @@ function renderPropertyCards(properties) {
         // Fallback placeholder image if none provided
         const imageUrl = property.imageUrl || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=360&fit=crop&auto=format&q=80';
 
+        const soldBadge = property.status === 'Sold' ? '<span class="property-card__sold-badge">SOLD</span>' : '';
+
         card.innerHTML = `
             <div class="property-card__image" style="background-image: url('${escapeHtml(imageUrl)}')">
+                ${soldBadge}
                 <div class="property-card__overlay">
                     <h3 class="property-card__name">${escapeHtml(property.name)}</h3>
-                    <span class="property-card__location-badge">${escapeHtml(property.city)}, ${countryCode} • ${formattedSize} sqm</span>
+                    <span class="property-card__location-badge">${escapeHtml(property.city)}, ${countryCode}${formattedSize ? ' • ' + formattedSize + ' sqm' : ''}</span>
                 </div>
             </div>
             <div class="property-card__body">
@@ -696,27 +698,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================
-    // Category Filter Buttons (Cards Section)
+    // Status Filter Buttons (Cards Section)
     // ===================================
 
     const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
 
     categoryFilterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const category = btn.dataset.category;
+            const filterType = btn.dataset.filterType;
+            const filterValue = btn.dataset.filterValue;
 
             // Update button active states
             categoryFilterBtns.forEach(b => b.classList.remove('category-filter-btn--active'));
             btn.classList.add('category-filter-btn--active');
 
             // Update global filter state
-            activeFilters.category = category;
+            if (filterType === 'status') {
+                activeFilters.status = filterValue;
+            } else if (filterType === 'category') {
+                activeFilters.category = filterValue;
+            }
 
             // Sync with map overlay filters if they exist
-            const mapCategoryPills = document.querySelectorAll('[data-filter-type="category"]');
-            mapCategoryPills.forEach(pill => {
+            const mapPills = document.querySelectorAll(`[data-filter-type="${filterType}"]`);
+            mapPills.forEach(pill => {
                 pill.classList.remove('filter-pill--active');
-                if (pill.dataset.filterValue === category) {
+                if (pill.dataset.filterValue === filterValue) {
                     pill.classList.add('filter-pill--active');
                 }
             });
