@@ -9,7 +9,7 @@ Professional investment property map page for iAM Capital displaying properties 
 - **Production URL**: https://iamcapital.vercel.app/
 - **GitHub Repository**: https://github.com/websitelab/iamcapital/
 - **Hosting**: Vercel (auto-deploys from main branch)
-- **Last Updated**: January 30, 2026 (Version 2.1)
+- **Last Updated**: February 5, 2026 (Version 2.2)
 
 **Live Configuration:**
 - Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec`
@@ -208,24 +208,14 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - White text links
 - Auto-closes on link click
 
-### 2. Hero Section
-
-**Content:**
-- Eyebrow: "GLOBAL PORTFOLIO"
-- Title: "Investment Properties"
-- Subtitle: "Strategic investments across diversified asset classes"
-
-**Styling:**
-- Background: Milan cathedral image with subtle navy gradient
-- Text: Center-aligned, white
-- Padding: 6rem → 4rem (mobile)
-
-### 3. Map Section
+### 2. Map Section
 
 **Map Features:**
 - Height: 600px → 400px (mobile)
 - Center: Europe (45.0, 10.0)
 - Zoom: 5 (shows all European properties)
+- **Privacy Protection:** minZoom: 5, maxZoom: 12 (prevents street-level viewing)
+- **Responsive Padding:** Auto-adjusts bounds for mobile/desktop filter overlays
 - Custom blue styling (#19375F base)
 - FontAwesome category-based markers
 - White outline (stroke-width: 20) on all markers
@@ -236,7 +226,7 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - **Residential** (house): #4A90E2 bright blue
 - **Commercial** (building): #19375F navy
 - **Hospitality** (hotel): #7B68EE slate blue
-- **Renewable Energy** (leaf): #27AE60 green
+- **Renewable Energy** (lightning bolt): #FFC107 yellow
 
 All markers: 40px size, white 20px stroke outline
 
@@ -248,10 +238,10 @@ All markers: 40px size, white 20px stroke outline
 - Auto-zoom to filtered markers
 - Syncs with property cards
 
-### 4. Property Cards Section
+### 3. Property Cards Section
 
 **Layout:**
-- Section title: "Portfolio Overview"
+- Section title: "Investment Portfolio"
 - Responsive grid: auto-fill, min 320px columns
 - Image-first card design (16:9 ratio)
 
@@ -265,14 +255,14 @@ All markers: 40px size, white 20px stroke outline
 - Residential: #4A90E2
 - Commercial: #19375F
 - Hospitality: #7B68EE
-- Renewable Energy: #27AE60
+- Renewable Energy: #FFC107
 
 **Interactions:**
 - Hover: Lift + border color + shadow
 - Click: Zoom map + open info window + scroll to map
 - Cursor: pointer
 
-### 5. Footer
+### 4. Footer
 
 **Structure:**
 - 3-column grid layout (centered, max-width 1200px)
@@ -439,7 +429,22 @@ Edit investments.html header section:
 
 ## Version History
 
-### Version 2.1 (2026-01-30) - Current Production
+### Version 2.2 (2026-02-05) - Current Production
+**Privacy & UI Updates:**
+- ✅ Removed hero section (GLOBAL PORTFOLIO banner)
+- ✅ Removed company description paragraph
+- ✅ Privacy protection: maxZoom 12 prevents street-level viewing
+- ✅ Renewable energy icon: Leaf → Yellow lightning bolt (#FFC107)
+- ✅ Mobile map centering: Responsive padding adjustments
+
+**Commits:**
+- Remove hero section and company description
+- Add minimum zoom restriction for property privacy
+- Change renewable energy icon to yellow lightning bolt
+- Fix zoom restriction: use maxZoom instead of minZoom
+- Fix mobile map centering with padding adjustment
+
+### Version 2.1 (2026-01-30)
 **Major Design & UX Updates:**
 - ✅ FontAwesome category-based map markers (house, building, hotel, leaf)
 - ✅ Category color coding (markers + card badges match)
@@ -545,19 +550,19 @@ git push origin main
 
 ### Colors
 ```css
-Navy:  #19375F (brand, commercial markers)
-Blue:  #4A90E2 (residential markers)
-Slate: #7B68EE (hospitality markers)
-Green: #27AE60 (renewable markers)
-White: #FFFFFF
-Black: #000000 (button hovers)
+Navy:   #19375F (brand, commercial markers)
+Blue:   #4A90E2 (residential markers)
+Slate:  #7B68EE (hospitality markers)
+Yellow: #FFC107 (renewable markers)
+White:  #FFFFFF
+Black:  #000000 (button hovers)
 ```
 
 ### Key Dimensions
 ```css
 Header: 80px (60px mobile)
-Hero padding: 6rem → 4rem (mobile)
 Map height: 600px → 400px (mobile)
+Map zoom: min 5, max 12 (privacy protection)
 Marker size: 40px (stroke: 20px white)
 Logo header: 50px (35px mobile)
 Logo footer: 131px × 21px
@@ -584,7 +589,7 @@ Logo footer: 131px × 21px
 
 ---
 
-**Last Updated**: January 30, 2026
+**Last Updated**: February 5, 2026
 **Status**: Live in Production
-**Version**: 2.1
+**Version**: 2.2
 **Live URL**: https://iamcapital.vercel.app/
