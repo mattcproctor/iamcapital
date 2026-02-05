@@ -35,7 +35,8 @@ function initMap() {
         mapTypeControl: false,
         streetViewControl: false,
         fullscreenControl: true,
-        zoomControl: true
+        zoomControl: true,
+        minZoom: 10  // Prevent zooming closer than city level for privacy
     });
 
     geocoder = new google.maps.Geocoder();
