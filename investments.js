@@ -409,7 +409,60 @@ function renderCategoryFilterButtons(properties) {
         ).join('');
 
         categoryGroup.innerHTML = existingButtons + categoryButtons;
+
+        // Attach event listeners to all filter buttons
+        attachFilterButtonListeners();
     }
+}
+
+/**
+ * Attach event listeners to category filter buttons
+ */
+function attachFilterButtonListeners() {
+    const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
+
+    categoryFilterBtns.forEach(btn => {
+        // Remove existing listener to avoid duplicates
+        btn.replaceWith(btn.cloneNode(true));
+    });
+
+    // Re-query after cloning
+    const newBtns = document.querySelectorAll('.category-filter-btn');
+
+    newBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filterType = btn.dataset.filterType;
+            const filterValue = btn.dataset.filterValue;
+
+            // Update button active states within the same group
+            const group = btn.closest('.category-filters__group');
+            if (group) {
+                group.querySelectorAll('.category-filter-btn').forEach(b =>
+                    b.classList.remove('category-filter-btn--active')
+                );
+            }
+            btn.classList.add('category-filter-btn--active');
+
+            // Update global filter state
+            if (filterType === 'status') {
+                activeFilters.status = filterValue;
+            } else if (filterType === 'category') {
+                activeFilters.category = filterValue;
+            }
+
+            // Sync with map overlay filters if they exist
+            const mapPills = document.querySelectorAll(`[data-filter-type="${filterType}"]`);
+            mapPills.forEach(pill => {
+                pill.classList.remove('filter-pill--active');
+                if (pill.dataset.filterValue === filterValue) {
+                    pill.classList.add('filter-pill--active');
+                }
+            });
+
+            // Apply filters
+            applyFilters();
+        });
+    });
 }
 
 /**
@@ -716,41 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===================================
-    // Status Filter Buttons (Cards Section)
-    // ===================================
-
-    const categoryFilterBtns = document.querySelectorAll('.category-filter-btn');
-
-    categoryFilterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const filterType = btn.dataset.filterType;
-            const filterValue = btn.dataset.filterValue;
-
-            // Update button active states
-            categoryFilterBtns.forEach(b => b.classList.remove('category-filter-btn--active'));
-            btn.classList.add('category-filter-btn--active');
-
-            // Update global filter state
-            if (filterType === 'status') {
-                activeFilters.status = filterValue;
-            } else if (filterType === 'category') {
-                activeFilters.category = filterValue;
-            }
-
-            // Sync with map overlay filters if they exist
-            const mapPills = document.querySelectorAll(`[data-filter-type="${filterType}"]`);
-            mapPills.forEach(pill => {
-                pill.classList.remove('filter-pill--active');
-                if (pill.dataset.filterValue === filterValue) {
-                    pill.classList.add('filter-pill--active');
-                }
-            });
-
-            // Apply filters
-            applyFilters();
-        });
-    });
+    // Filter button listeners will be attached after data loads
 });
 
 // Note: initMap() is called by Google Maps API callback
