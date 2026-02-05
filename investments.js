@@ -197,14 +197,17 @@ function getMarkerIcon(category) {
 
     const config = iconConfig[category] || iconConfig['Commercial'];
 
+    // Responsive marker size: 30% smaller on desktop
+    const size = window.innerWidth <= 768 ? config.size : config.size * 0.7;
+
     return {
         url: 'data:image/svg+xml;utf-8,' + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="${config.viewBox}">
                 <path d="${config.path}" fill="${config.color}" stroke="white" stroke-width="20"/>
             </svg>
         `),
-        scaledSize: new google.maps.Size(config.size, config.size),
-        anchor: new google.maps.Point(config.size / 2, config.size)
+        scaledSize: new google.maps.Size(size, size),
+        anchor: new google.maps.Point(size / 2, size)
     };
 }
 
