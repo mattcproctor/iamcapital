@@ -482,8 +482,7 @@ body {
 }
 
 .property-card__category[data-category="Commercial"] {
-    background: #FFFFFF;
-    color: #19375F;
+    background: #000000;
 }
 
 .property-card__category[data-category="Hospitality"] {
