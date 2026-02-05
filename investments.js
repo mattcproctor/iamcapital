@@ -9,6 +9,7 @@ const PROPERTIES_API_URL = 'https://script.google.com/macros/s/AKfycbzd8F3e1nlUP
 // Global state
 let map;
 let markers = [];
+let markerCluster;
 let geocoder;
 let allProperties = [];
 let activeFilters = {
@@ -324,6 +325,31 @@ async function geocodeAndRenderProperties(properties) {
                 if (map.getZoom() > 12) map.setZoom(12);
                 google.maps.event.removeListener(listener);
             });
+
+            // Initialize marker clusterer
+            markerCluster = new markerClusterer.MarkerClusterer({
+                map,
+                markers: markers,
+                renderer: {
+                    render: ({ count, position }) => {
+                        return new google.maps.Marker({
+                            position,
+                            icon: {
+                                url: 'data:image/svg+xml;utf-8,' + encodeURIComponent(`
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+                                        <circle cx="30" cy="30" r="28" fill="#19375F" stroke="white" stroke-width="4"/>
+                                        <text x="30" y="38" font-size="20" font-weight="bold" fill="white" text-anchor="middle">${count}</text>
+                                    </svg>
+                                `),
+                                scaledSize: new google.maps.Size(60, 60),
+                                anchor: new google.maps.Point(30, 30)
+                            },
+                            label: '',
+                            zIndex: 1000
+                        });
+                    }
+                }
+            });
         }
     }, properties.length * 100 + 200);
 }
@@ -584,6 +610,13 @@ function applyFilters() {
             marker.setVisible(categoryMatch && countryMatch && statusMatch);
         }
     });
+
+    // Update clusterer with visible markers only
+    if (markerCluster) {
+        markerCluster.clearMarkers();
+        const visibleMarkers = markers.filter(m => m.getVisible());
+        markerCluster.addMarkers(visibleMarkers);
+    }
 
     // Update property cards
     renderPropertyCards(filtered);
