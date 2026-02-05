@@ -13,7 +13,8 @@ let geocoder;
 let allProperties = [];
 let activeFilters = {
     category: 'all',
-    country: 'all'
+    country: 'all',
+    status: 'all'
 };
 
 // ===================================
@@ -167,7 +168,7 @@ async function loadProperties() {
 /**
  * Get FontAwesome marker icon based on property category
  */
-function getMarkerIcon(category) {
+function getMarkerIcon(category, status) {
     const iconConfig = {
         'Residential': {
             path: 'M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z',
@@ -192,18 +193,53 @@ function getMarkerIcon(category) {
             color: '#FFC107',
             viewBox: '0 0 640 640',
             size: 40
+        },
+        // New category mappings
+        'Office': {
+            path: 'M48 0C21.5 0 0 21.5 0 48L0 464c0 26.5 21.5 48 48 48l96 0 0-80c0-26.5 21.5-48 48-48s48 21.5 48 48l0 80 96 0c26.5 0 48-21.5 48-48l0-416c0-26.5-21.5-48-48-48L48 0zM64 240c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zm112-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM80 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM272 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16z',
+            color: '#000000',
+            viewBox: '0 0 384 512',
+            size: 40
+        },
+        'Residential & Retail': {
+            path: 'M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z',
+            color: '#2ECC71',
+            viewBox: '0 0 576 512',
+            size: 40
+        },
+        'Residential & Office': {
+            path: 'M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z',
+            color: '#2ECC71',
+            viewBox: '0 0 576 512',
+            size: 40
+        },
+        'Retail & Office': {
+            path: 'M48 0C21.5 0 0 21.5 0 48L0 464c0 26.5 21.5 48 48 48l96 0 0-80c0-26.5 21.5-48 48-48s48 21.5 48 48l0 80 96 0c26.5 0 48-21.5 48-48l0-416c0-26.5-21.5-48-48-48L48 0zM64 240c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zm112-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM80 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM272 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16z',
+            color: '#000000',
+            viewBox: '0 0 384 512',
+            size: 40
+        },
+        'Office & Retail': {
+            path: 'M48 0C21.5 0 0 21.5 0 48L0 464c0 26.5 21.5 48 48 48l96 0 0-80c0-26.5 21.5-48 48-48s48 21.5 48 48l0 80 96 0c26.5 0 48-21.5 48-48l0-416c0-26.5-21.5-48-48-48L48 0zM64 240c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zm112-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM80 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm80 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM272 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16z',
+            color: '#000000',
+            viewBox: '0 0 384 512',
+            size: 40
         }
     };
 
-    const config = iconConfig[category] || iconConfig['Commercial'];
+    // Map category to icon config
+    let config = iconConfig[category] || iconConfig['Commercial'];
 
     // Responsive marker size: 30% smaller on desktop
     const size = window.innerWidth <= 768 ? config.size : config.size * 0.7;
 
+    // Lower opacity for sold properties
+    const opacity = status === 'Sold' ? 0.4 : 1.0;
+
     return {
         url: 'data:image/svg+xml;utf-8,' + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="${config.viewBox}">
-                <path d="${config.path}" fill="${config.color}" stroke="white" stroke-width="20"/>
+                <path d="${config.path}" fill="${config.color}" stroke="white" stroke-width="20" opacity="${opacity}"/>
             </svg>
         `),
         scaledSize: new google.maps.Size(size, size),
@@ -241,8 +277,9 @@ async function geocodeAndRenderProperties(properties) {
                         map: map,
                         title: property.name,
                         animation: google.maps.Animation.DROP,
-                        icon: getMarkerIcon(property.category),
-                        label: '' // Prevent any label from appearing
+                        icon: getMarkerIcon(property.category, property.status),
+                        label: '', // Prevent any label from appearing
+                        opacity: property.status === 'Sold' ? 0.6 : 1.0
                     });
 
                 // Create info window
@@ -438,11 +475,19 @@ window.gm_authFailure = function() {
  * Render filter pills from property data
  */
 function renderFilterPills(properties) {
-    // Get unique categories and countries
+    // Get unique categories, countries, and statuses
     const categories = [...new Set(properties.map(p => p.category).filter(Boolean))];
     const countries = [...new Set(properties.map(p => p.country).filter(Boolean))];
+    const statuses = [...new Set(properties.map(p => p.status).filter(Boolean))];
 
     const filterHTML = `
+        <div class="filter-pills__group">
+            <span class="filter-pills__label">Status:</span>
+            <button class="filter-pill filter-pill--active" data-filter-type="status" data-filter-value="all">All</button>
+            ${statuses.map(status => `
+                <button class="filter-pill" data-filter-type="status" data-filter-value="${status}">${status}</button>
+            `).join('')}
+        </div>
         <div class="filter-pills__group">
             <span class="filter-pills__label">Category:</span>
             <button class="filter-pill filter-pill--active" data-filter-type="category" data-filter-value="all">All</button>
@@ -525,7 +570,8 @@ function applyFilters() {
     const filtered = allProperties.filter(property => {
         const categoryMatch = activeFilters.category === 'all' || property.category === activeFilters.category;
         const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
-        return categoryMatch && countryMatch;
+        const statusMatch = activeFilters.status === 'all' || property.status === activeFilters.status;
+        return categoryMatch && countryMatch && statusMatch;
     });
 
     // Update markers visibility
@@ -534,7 +580,8 @@ function applyFilters() {
         if (property) {
             const categoryMatch = activeFilters.category === 'all' || property.category === activeFilters.category;
             const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
-            marker.setVisible(categoryMatch && countryMatch);
+            const statusMatch = activeFilters.status === 'all' || property.status === activeFilters.status;
+            marker.setVisible(categoryMatch && countryMatch && statusMatch);
         }
     });
 
