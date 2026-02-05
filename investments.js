@@ -272,7 +272,12 @@ async function geocodeAndRenderProperties(properties) {
     // Fit map to show all markers (wait for animation to complete)
     setTimeout(() => {
         if (markers.length > 0) {
-            map.fitBounds(bounds);
+            // Add padding to account for filter overlay (especially on mobile)
+            const padding = window.innerWidth <= 768 ?
+                { top: 120, right: 20, bottom: 20, left: 20 } :  // Mobile
+                { top: 80, right: 80, bottom: 80, left: 280 };    // Desktop
+
+            map.fitBounds(bounds, padding);
 
             // Adjust zoom if too close
             const listener = google.maps.event.addListener(map, 'idle', () => {
@@ -543,7 +548,12 @@ function applyFilters() {
         }
     });
     if (hasVisibleMarkers) {
-        map.fitBounds(bounds);
+        // Add padding to account for filter overlay
+        const padding = window.innerWidth <= 768 ?
+            { top: 120, right: 20, bottom: 20, left: 20 } :  // Mobile
+            { top: 80, right: 80, bottom: 80, left: 280 };    // Desktop
+
+        map.fitBounds(bounds, padding);
     }
 }
 
