@@ -490,7 +490,21 @@ body {
 }
 
 .property-card__category[data-category="Renewable Energy"] {
-    background: #27AE60;
+    background: #FFC107;
+}
+
+.property-card__category[data-category="Office"] {
+    background: #000000;
+}
+
+.property-card__category[data-category="Residential & Retail"],
+.property-card__category[data-category="Residential & Office"] {
+    background: #2ECC71;
+}
+
+.property-card__category[data-category="Retail & Office"],
+.property-card__category[data-category="Office & Retail"] {
+    background: #000000;
 }
 
 /* Acquisition Date */
