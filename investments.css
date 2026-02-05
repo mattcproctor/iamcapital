@@ -478,11 +478,11 @@ body {
 
 /* Category-specific colors (match map markers) */
 .property-card__category[data-category="Residential"] {
-    background: #4A90E2;
+    background: #2ECC71;
 }
 
 .property-card__category[data-category="Commercial"] {
-    background: #19375F;
+    background: #E67E22;
 }
 
 .property-card__category[data-category="Hospitality"] {
