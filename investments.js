@@ -191,31 +191,16 @@ function getMarkerIcon(category, status) {
     // Classic location-dot pin path (FA Free)
     const pinPath = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z';
 
-    // Softer category colors
-    const colorMap = {
-        'Residential':          '#7DCEA0',
-        'Commercial':           '#19375F',
-        'Hospitality':          '#9B8EC8',
-        'Renewable Energy':     '#E2B93B',
-        'Office':               '#19375F',
-        'Residential & Retail': '#7DCEA0',
-        'Residential & Office': '#7DCEA0',
-        'Retail & Office':      '#19375F',
-        'Office & Retail':      '#19375F'
-    };
-
-    const color = colorMap[category] || '#19375F';
+    const color = '#A7A6A7';
 
     // Responsive size (pin is 384×512, ratio 0.75)
     const height = window.innerWidth <= 768 ? 40 : 32;
     const width = height * 0.75;
 
-    const opacity = status === 'Sold' ? 0.4 : 1.0;
-
     return {
         url: 'data:image/svg+xml;utf-8,' + encodeURIComponent(`
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                <path d="${pinPath}" fill="${color}" stroke="white" stroke-width="16" opacity="${opacity}"/>
+                <path d="${pinPath}" fill="${color}" stroke="white" stroke-width="16"/>
             </svg>
         `),
         scaledSize: new google.maps.Size(width, height),
@@ -239,8 +224,8 @@ async function geocodeAndRenderProperties(properties) {
             // Use pre-geocoded coordinates if available (FAST PATH)
             // Jitter position ~500m-1km to protect exact asset locations
             if (property.latitude && property.longitude) {
-                const jitterLat = (Math.random() - 0.5) * 0.012;
-                const jitterLng = (Math.random() - 0.5) * 0.012;
+                const jitterLat = (Math.random() - 0.5) * 0.04;
+                const jitterLng = (Math.random() - 0.5) * 0.04;
                 position = new google.maps.LatLng(
                     property.latitude + jitterLat,
                     property.longitude + jitterLng
@@ -261,7 +246,7 @@ async function geocodeAndRenderProperties(properties) {
                         animation: google.maps.Animation.DROP,
                         icon: getMarkerIcon(property.category, property.status),
                         label: '', // Prevent any label from appearing
-                        opacity: property.status === 'Sold' ? 0.6 : 1.0
+                        opacity: 1.0
                     });
 
                 // Create info window
