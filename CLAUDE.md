@@ -26,6 +26,7 @@ Professional investment property map page for iAM Capital displaying properties 
 - FontAwesome SVG icons (category-based map markers)
 - Serverless architecture (no backend needed)
 - Vercel hosting (static site deployment)
+- Vercel Web Analytics (cookieless, privacy-compliant tracking)
 - GitHub repository (version control)
 
 ---
@@ -415,10 +416,10 @@ Mobile:   < 768px (60px header, hamburger menu, 1-column)
 - Billing alerts configured
 
 ### GDPR Compliance
-- No cookies or tracking
+- No cookies (Vercel Analytics is cookieless and privacy-friendly)
 - No personal data collection
 - Public property data only
-- No analytics
+- Vercel Web Analytics enabled (privacy-compliant, no PII)
 - EU-ready deployment
 
 ### Data Architecture
@@ -498,6 +499,11 @@ Edit investments.html header section:
 - ✅ Changed card images from CSS `background-image` to `<img>` with alt text + `loading="lazy"`
 - ✅ Removed redundant index.html (vercel.json rewrite handles `/`)
 - ✅ Updated meta description with real portfolio details
+
+**Analytics:**
+- ✅ Vercel Web Analytics integrated (cookieless, privacy-friendly)
+- ⚠️ Analytics scripts are in `investments.html` `<head>` — must be preserved on any HTML updates
+- Dashboard: Vercel project → Analytics tab
 
 **Commits:**
 - Add property header images from iamcapital.com
