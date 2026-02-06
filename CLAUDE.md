@@ -9,13 +9,13 @@ Professional investment property map page for iAM Capital displaying properties 
 - **Production URL**: https://iamcapital.vercel.app/
 - **GitHub Repository**: https://github.com/websitelab/iamcapital/
 - **Hosting**: Vercel (auto-deploys from main branch)
-- **Last Updated**: February 6, 2026 (Version 2.4)
+- **Last Updated**: February 6, 2026 (Version 2.5)
 
 **Live Configuration:**
 - Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec`
 - Google Maps API Key: `AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c`
-- Map Center: Europe (Italy/Spain region, lat: 45.0, lng: 10.0)
-- Property Data: 27 real properties (18 Sold, 9 Active) across Italy and Spain
+- Map Center: Europe (Italy/France/Spain region, lat: 45.0, lng: 10.0)
+- Property Data: 27 real properties (18 Sold, 9 Active) across Italy, France, and Spain
 - Deployment: ✅ GitHub, ✅ Vercel, ✅ Fully Operational
 
 **Technology Stack:**
@@ -71,15 +71,39 @@ iamcapital.com/
 ├── images/
 │   ├── hero/
 │   │   └── milan-cathedral-hero.webp  # Hero background (247KB WebP)
-│   └── branding/
-│       ├── iam-capital-logo.webp      # Header logo (6.8KB)
-│       └── logo-white.png             # Footer logo (2KB)
+│   ├── branding/
+│   │   ├── iam-capital-logo.webp      # Header logo (6.8KB)
+│   │   └── logo-white.png             # Footer logo (2KB)
+│   └── properties/                    # Property card images (WebP, 800px wide)
+│       ├── abruzzi.webp               # 21 optimized property images
+│       ├── berthe-ravignan.webp       # Sourced from iamcapital.com
+│       ├── bourbon.webp               # header/carousel images
+│       ├── bressanone.webp            # Resized to 800px wide
+│       ├── capo-mimosa.webp           # Converted to WebP @ quality 80
+│       ├── depretis.webp              # Total: ~1.2MB (was 11MB)
+│       ├── fulvio-testi.webp
+│       ├── galerie.webp
+│       ├── gobetti.webp
+│       ├── govone.webp
+│       ├── murat.webp
+│       ├── patay.webp
+│       ├── repubblica.webp
+│       ├── roquette.webp
+│       ├── saint-ouen.webp
+│       ├── sanzio.webp
+│       ├── sevres.webp
+│       ├── sirtori.webp
+│       ├── temple.webp
+│       ├── valassina.webp
+│       └── via-torino.webp
 ├── working-files/                # Non-production files (not in GitHub)
 │   ├── DEPLOYMENT-GUIDE-v2.md
 │   ├── README-INVESTMENTS.md
 │   ├── google-apps-script.js     # Old version
 │   ├── google-apps-script-v2.js  # Current version (reference)
-│   └── sample-properties.csv     # Property data with lat/lng
+│   ├── sample-properties.csv     # Property data with lat/lng
+│   ├── property-image-urls.csv   # Image URLs mapped to spreadsheet order
+│   └── new-images/               # Source images for replacements
 ├── CLAUDE.md                     # This documentation
 └── .git/                         # Git repository
 ```
@@ -303,8 +327,9 @@ All markers: 40px size, white 20px stroke outline
 ### 27 Real Investment Properties
 
 **Geographic Distribution:**
-- Italy: Majority (Milan, Rome, Cervo, Cernusco)
-- Spain: Multiple (Madrid, Cordoba, San Sebastian)
+- France: Paris (12 properties - Bourbon, Patay, Roquette, Berthe & Ravignan, Sevres, Temple, Terre Rares, Saint Ouen, Galerie)
+- Italy: Milan, Rome, Cervo, Cernusco (12 properties)
+- Spain: Madrid, Cordoba, San Sebastian (3 properties)
 
 **Status Distribution:**
 - **Active**: 9 properties
@@ -320,11 +345,18 @@ All markers: 40px size, white 20px stroke outline
 - **Office & Retail**: 1 property (building icon, black)
 - **Retail & Office**: 1 property (building icon, black)
 
+**Property Images:**
+- 21 of 27 properties have real images sourced from iamcapital.com
+- Images stored in `images/properties/` as optimized WebP (800px wide, quality 80)
+- Total image size: ~1.2MB (down from 11MB originals, ~90% reduction)
+- 4 properties missing images (no page on iamcapital.com): Canizares, Cordoba, San Sebastian, Terre Rares
+- Image URL mapping in `working-files/property-image-urls.csv`
+
 **Key Features:**
 - Real client properties (not placeholder data)
 - Pre-geocoded lat/lng coordinates (zero geocoding API cost)
 - City/country display only (no street addresses for privacy)
-- Placeholder images (client to provide real photos)
+- Real property photos for 21/27 properties (4 missing, 2 duplicates share images)
 - Portfolio URLs for future detail pages
 
 ---
@@ -341,7 +373,8 @@ All markers: 40px size, white 20px stroke outline
 - SVG data URLs for markers (no external requests)
 - Single CSS/JS files (no framework overhead)
 - Preconnect to Google Maps/Fonts
-- WebP images (hero: 247KB)
+- WebP images (hero: 247KB, property images: ~1.2MB total for 21 images)
+- Property images resized to 800px wide (2x retina for ~400px card width)
 - Staggered marker animations (visual polish without blocking)
 
 ### API Usage
@@ -441,7 +474,36 @@ Edit investments.html header section:
 
 ## Version History
 
-### Version 2.4 (2026-02-06) - Current Production
+### Version 2.5 (2026-02-06) - Current Production
+**Property Images + SEO Review**
+
+**Property Images:**
+- ✅ 21 real property images downloaded from iamcapital.com (header/carousel sources)
+- ✅ All images resized to 800px wide and converted to WebP (quality 80)
+- ✅ Total image payload: ~1.2MB (down from 11MB originals, ~90% reduction)
+- ✅ 5 images upgraded to higher-quality carousel sources (Temple, Patay, Fulvio Testi, Depretis, Valassina)
+- ✅ Image URL mapping CSV created for spreadsheet integration
+- ❌ 4 properties missing (no page on iamcapital.com): Canizares, Cordoba, San Sebastian, Terre Rares
+
+**SEO Audit (findings, not yet implemented):**
+- Missing `<h1>` tag (page only has `<h2>`)
+- No canonical URL (page accessible at `/`, `/investments`, `/investments.html`)
+- No Open Graph / Twitter Card meta tags (important for LinkedIn sharing)
+- No favicon reference
+- No structured data / JSON-LD (Organization, ItemList)
+- No robots.txt or sitemap.xml on Vercel deployment
+- No `<meta name="robots">` directive
+- Property content entirely JS-rendered (invisible to crawlers without JS execution)
+- Property card images use CSS `background-image` (no alt text possible)
+- Redundant index.html redirect (vercel.json rewrite handles it)
+
+**Commits:**
+- Add property header images from iamcapital.com
+- Optimize property images: resize to 800px, convert to WebP
+- Replace 5 property images with better carousel sources
+- Replace Fulvio Testi image with facade photo
+
+### Version 2.4 (2026-02-06)
 **Typography & UX Refinements**
 
 **Cluster Marker Improvements:**
@@ -634,6 +696,8 @@ SOLD badge: Red (#DC2626), top-right corner
 - `working-files/README-INVESTMENTS.md` - Original setup guide
 - `working-files/google-apps-script-v2.js` - Current server code
 - `working-files/sample-properties.csv` - Property data with coordinates
+- `working-files/property-image-urls.csv` - Image URLs in spreadsheet order
+- `working-files/new-images/` - Source images for replacements
 
 **Google Documentation:**
 - [Google Sheets API](https://developers.google.com/sheets/api)
@@ -648,8 +712,9 @@ SOLD badge: Red (#DC2626), top-right corner
 
 **Last Updated**: February 6, 2026
 **Status**: Live in Production
-**Version**: 2.4
+**Version**: 2.5
 **Live URL**: https://iamcapital.vercel.app/
 
 **Property Count**: 27 real properties (18 Sold, 9 Active)
+**Property Images**: 21/27 with real photos (4 missing: Canizares, Cordoba, San Sebastian, Terre Rares)
 **Zero Cost**: Pre-geocoded coordinates = $0/month API usage
