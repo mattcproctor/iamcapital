@@ -9,7 +9,7 @@ Professional investment property map page for iAM Capital displaying properties 
 - **Production URL**: https://iamcapital.vercel.app/
 - **GitHub Repository**: https://github.com/websitelab/iamcapital/
 - **Hosting**: Vercel (auto-deploys from main branch)
-- **Last Updated**: February 5, 2026 (Version 2.3)
+- **Last Updated**: February 6, 2026 (Version 2.4)
 
 **Live Configuration:**
 - Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec`
@@ -214,8 +214,8 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - Height: 600px → 400px (mobile)
 - Center: Europe (45.0, 10.0)
 - Zoom: 5 (shows all European properties)
-- **Privacy Protection:** minZoom: 5, maxZoom: 15 (prevents street-level viewing, allows cluster expansion)
-- **Marker Clustering:** Groups nearby properties, navy circles with white count
+- **Privacy Protection:** minZoom: 5, maxZoom: 17 (prevents street-level viewing, allows cluster expansion)
+- **Marker Clustering:** Groups nearby properties, navy circles with white count (Overpass font)
 - **Responsive Padding:** Auto-adjusts bounds for mobile/desktop filter overlays
 - Custom blue styling (#19375F base)
 - FontAwesome category-based markers
@@ -441,7 +441,19 @@ Edit investments.html header section:
 
 ## Version History
 
-### Version 2.3 (2026-02-05) - Current Production
+### Version 2.4 (2026-02-06) - Current Production
+**Typography & UX Refinements**
+
+**Cluster Marker Improvements:**
+- ✅ Cluster marker text uses Overpass font (matches page typography)
+- ✅ Increased maxZoom from 15 to 17 for better cluster expansion
+- ✅ Clusters now properly separate when clicked
+
+**Commits:**
+- Update cluster marker font to Overpass
+- Increase maxZoom to 17 for better cluster expansion
+
+### Version 2.3 (2026-02-05)
 **Major Update: Real Properties + Enhanced Privacy**
 
 **Real Property Data:**
@@ -605,9 +617,9 @@ White:  #FFFFFF
 ```css
 Header: 80px (60px mobile)
 Map height: 600px → 400px (mobile)
-Map zoom: min 5, max 15 (privacy + cluster expansion)
+Map zoom: min 5, max 17 (privacy + cluster expansion)
 Marker size: 28px desktop, 40px mobile (stroke: 20px white)
-Cluster size: 60px (navy circle, white count)
+Cluster size: 60px (navy circle, white count, Overpass font)
 Logo header: 50px (35px mobile)
 Logo footer: 131px × 21px
 SOLD badge: Red (#DC2626), top-right corner
@@ -634,9 +646,9 @@ SOLD badge: Red (#DC2626), top-right corner
 
 ---
 
-**Last Updated**: February 5, 2026
+**Last Updated**: February 6, 2026
 **Status**: Live in Production
-**Version**: 2.3
+**Version**: 2.4
 **Live URL**: https://iamcapital.vercel.app/
 
 **Property Count**: 27 real properties (18 Sold, 9 Active)
