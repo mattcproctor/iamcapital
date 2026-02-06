@@ -56,7 +56,7 @@ function initMap() {
         fullscreenControl: true,
         zoomControl: true,
         minZoom: 5,  // Allow Europe overview
-        maxZoom: 15  // Allow cluster expansion while preventing street-level detail
+        maxZoom: 17  // Allow cluster expansion while preventing street-level detail
     });
 
     geocoder = new google.maps.Geocoder();
