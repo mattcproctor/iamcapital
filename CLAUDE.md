@@ -9,13 +9,13 @@ Professional investment property map page for iAM Capital displaying properties 
 - **Production URL**: https://iamcapital.vercel.app/
 - **GitHub Repository**: https://github.com/websitelab/iamcapital/
 - **Hosting**: Vercel (auto-deploys from main branch)
-- **Last Updated**: February 5, 2026 (Version 2.2)
+- **Last Updated**: February 5, 2026 (Version 2.3)
 
 **Live Configuration:**
 - Google Apps Script URL: `https://script.google.com/macros/s/AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec`
 - Google Maps API Key: `AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c`
-- Map Center: Europe (Italy/France region, lat: 45.0, lng: 10.0)
-- Property Data: 12 European properties across 4 categories
+- Map Center: Europe (Italy/Spain region, lat: 45.0, lng: 10.0)
+- Property Data: 27 real properties (18 Sold, 9 Active) across Italy and Spain
 - Deployment: ✅ GitHub, ✅ Vercel, ✅ Fully Operational
 
 **Technology Stack:**
@@ -214,29 +214,37 @@ font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
 - Height: 600px → 400px (mobile)
 - Center: Europe (45.0, 10.0)
 - Zoom: 5 (shows all European properties)
-- **Privacy Protection:** minZoom: 5, maxZoom: 12 (prevents street-level viewing)
+- **Privacy Protection:** minZoom: 5, maxZoom: 15 (prevents street-level viewing, allows cluster expansion)
+- **Marker Clustering:** Groups nearby properties, navy circles with white count
 - **Responsive Padding:** Auto-adjusts bounds for mobile/desktop filter overlays
 - Custom blue styling (#19375F base)
 - FontAwesome category-based markers
 - White outline (stroke-width: 20) on all markers
 - Animated marker drops (staggered 100ms intervals)
-- Info windows with "View Property" buttons
+- Info windows with city/country only (no street addresses)
+- SOLD badges on sold property info windows
+- Sold properties display with 40-60% opacity
 
 **FontAwesome Marker Icons:**
-- **Residential** (house): #4A90E2 bright blue
-- **Commercial** (building): #19375F navy
+- **Residential** (house): #2ECC71 green
+- **Office** (building): #000000 black
+- **Commercial** (building): #000000 black
 - **Hospitality** (hotel): #7B68EE slate blue
 - **Renewable Energy** (lightning bolt): #FFC107 yellow
+- **Retail** (building): #000000 black
+- Combined categories use appropriate primary icon
 
 All markers: 40px size, white 20px stroke outline
 
 **Filter System:**
 - Mobile: White filter toggle button (top-left, navy bg on mobile)
-- Collapsible filter overlay (glassmorphism)
-- Two filter groups: Category, Country
+- Collapsible filter overlay (glassmorphism, scrollable, compact)
+- Three filter groups: Status, Category, Country
+- **Multi-category filtering:** "Residential & Retail" shows under both filters
 - Active filters: Navy background, white text
 - Auto-zoom to filtered markers
-- Syncs with property cards
+- Syncs with property cards section filters
+- Responsive marker sizing: 28px desktop, 40px mobile
 
 ### 3. Property Cards Section
 
@@ -247,15 +255,19 @@ All markers: 40px size, white 20px stroke outline
 
 **Card Structure:**
 - Property image with dark gradient overlay
-- Property name + location badge (on image)
+- SOLD badge (top-right, red) for sold properties
+- Property name + location badge (city, country only)
 - Category badge (colored by category, matches markers)
 - Acquisition date
 
 **Category Badge Colors:**
-- Residential: #4A90E2
-- Commercial: #19375F
-- Hospitality: #7B68EE
-- Renewable Energy: #FFC107
+- Residential: #2ECC71 (green)
+- Office: #000000 (black)
+- Commercial: #000000 (black)
+- Hospitality: #7B68EE (purple)
+- Renewable Energy: #FFC107 (yellow)
+- Retail: #000000 (black)
+- Combined categories display full name, colored by primary category
 
 **Interactions:**
 - Hover: Lift + border color + shadow
@@ -288,32 +300,32 @@ All markers: 40px size, white 20px stroke outline
 
 ## Property Data
 
-### 12 European Investment Properties
+### 27 Real Investment Properties
 
 **Geographic Distribution:**
-- Italy: 5 properties (Rome, Milan, Florence, Venice, Portofino)
-- France: 5 properties (Paris, Lyon, Nice, Marseille, Avignon)
-- Spain: 1 property (Barcelona)
-- Portugal: 1 property (Lisbon)
+- Italy: Majority (Milan, Rome, Cervo, Cernusco)
+- Spain: Multiple (Madrid, Cordoba, San Sebastian)
+
+**Status Distribution:**
+- **Active**: 9 properties
+- **Sold**: 18 properties
 
 **Category Distribution:**
-- **Residential**: 4 properties (house icon, bright blue)
-- **Commercial**: 6 properties (building icon, navy)
-- **Hospitality**: 1 property (hotel icon, slate blue)
-- **Renewable Energy**: 1 property (leaf icon, green)
+- **Residential**: 8 properties (house icon, green)
+- **Office**: 5 properties (building icon, black)
+- **Residential & Retail**: 5 properties (house icon, green)
+- **Hospitality**: 3 properties (hotel icon, purple)
+- **Commercial**: 2 properties (building icon, black)
+- **Residential & Office**: 2 properties (house icon, green)
+- **Office & Retail**: 1 property (building icon, black)
+- **Retail & Office**: 1 property (building icon, black)
 
-**Sample Properties:**
-1. Palazzo Residences - Rome, Italy (Residential, 7,650 sqm)
-2. Milan Office Tower - Milan, Italy (Commercial, 11,148 sqm)
-3. Paris Marais Apartments - Paris, France (Residential, 5,850 sqm)
-4. Grand Hotel Portofino - Portofino, Italy (Hospitality, 8,500 sqm)
-5. Provence Solar Farm - Avignon, France (Renewable Energy, 125,000 sqm)
-
-All properties include:
-- Pre-geocoded lat/lng coordinates
-- High-quality Unsplash images (WebP optimized)
-- Full address, size, category, acquisition date
-- Portfolio URLs
+**Key Features:**
+- Real client properties (not placeholder data)
+- Pre-geocoded lat/lng coordinates (zero geocoding API cost)
+- City/country display only (no street addresses for privacy)
+- Placeholder images (client to provide real photos)
+- Portfolio URLs for future detail pages
 
 ---
 
@@ -429,20 +441,50 @@ Edit investments.html header section:
 
 ## Version History
 
-### Version 2.2 (2026-02-05) - Current Production
-**Privacy & UI Updates:**
-- ✅ Removed hero section (GLOBAL PORTFOLIO banner)
-- ✅ Removed company description paragraph
-- ✅ Privacy protection: maxZoom 12 prevents street-level viewing
-- ✅ Renewable energy icon: Leaf → Yellow lightning bolt (#FFC107)
-- ✅ Mobile map centering: Responsive padding adjustments
+### Version 2.3 (2026-02-05) - Current Production
+**Major Update: Real Properties + Enhanced Privacy**
 
-**Commits:**
+**Real Property Data:**
+- ✅ 27 real client properties (18 Sold, 9 Active)
+- ✅ Pre-geocoded coordinates (zero ongoing API cost)
+- ✅ Italy and Spain locations
+- ✅ 8 category types (including combinations)
+
+**Privacy & Security:**
+- ✅ Removed all street addresses (city/country only)
+- ✅ MaxZoom: 15 (allows cluster expansion, prevents street detail)
+- ✅ SOLD badges on cards and info windows
+- ✅ Sold properties display with reduced opacity (40-60%)
+
+**Filtering & UX:**
+- ✅ Marker clustering (navy circles, groups nearby properties)
+- ✅ Status filters (All/Active/Sold) on map and cards
+- ✅ Multi-category filtering (combined categories work correctly)
+- ✅ Compact filter menu (scrollable, smaller fonts)
+- ✅ Responsive marker sizing (28px desktop, 40px mobile)
+- ✅ Two-row filter layout in cards section
+
+**Design Updates:**
+- ✅ Removed hero section
+- ✅ Removed company description
+- ✅ Updated category colors (green residential, black office/commercial)
+- ✅ Lightning bolt icon for renewable energy (yellow)
+
+**Commits (20+ today):**
 - Remove hero section and company description
-- Add minimum zoom restriction for property privacy
-- Change renewable energy icon to yellow lightning bolt
-- Fix zoom restriction: use maxZoom instead of minZoom
-- Fix mobile map centering with padding adjustment
+- Add status filter and support for new property categories
+- Add marker clustering for overlapping properties
+- Privacy improvements (remove addresses, SOLD badges)
+- Fix cluster zoom expansion (maxZoom 12→15)
+- Split combined categories for better filtering
+- Add full filter set to property cards section
+- Fix category filter buttons event listeners
+
+### Version 2.2 (2026-02-05)
+**Initial Privacy & UI Updates:**
+- Privacy protection: maxZoom 12
+- Renewable energy icon: Yellow lightning bolt
+- Mobile map centering fixes
 
 ### Version 2.1 (2026-01-30)
 **Major Design & UX Updates:**
@@ -550,22 +592,25 @@ git push origin main
 
 ### Colors
 ```css
-Navy:   #19375F (brand, commercial markers)
-Blue:   #4A90E2 (residential markers)
-Slate:  #7B68EE (hospitality markers)
+Navy:   #19375F (brand, header, footer)
+Green:  #2ECC71 (residential markers)
+Black:  #000000 (office/commercial/retail markers)
+Purple: #7B68EE (hospitality markers)
 Yellow: #FFC107 (renewable markers)
+Red:    #DC2626 (SOLD badges)
 White:  #FFFFFF
-Black:  #000000 (button hovers)
 ```
 
 ### Key Dimensions
 ```css
 Header: 80px (60px mobile)
 Map height: 600px → 400px (mobile)
-Map zoom: min 5, max 12 (privacy protection)
-Marker size: 40px (stroke: 20px white)
+Map zoom: min 5, max 15 (privacy + cluster expansion)
+Marker size: 28px desktop, 40px mobile (stroke: 20px white)
+Cluster size: 60px (navy circle, white count)
 Logo header: 50px (35px mobile)
 Logo footer: 131px × 21px
+SOLD badge: Red (#DC2626), top-right corner
 ```
 
 ---
@@ -591,5 +636,8 @@ Logo footer: 131px × 21px
 
 **Last Updated**: February 5, 2026
 **Status**: Live in Production
-**Version**: 2.2
+**Version**: 2.3
 **Live URL**: https://iamcapital.vercel.app/
+
+**Property Count**: 27 real properties (18 Sold, 9 Active)
+**Zero Cost**: Pre-geocoded coordinates = $0/month API usage
