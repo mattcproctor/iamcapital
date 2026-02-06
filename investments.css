@@ -449,9 +449,15 @@ body {
 .property-card__image {
     width: 100%;
     height: 180px;
-    background-size: cover;
-    background-position: center;
     position: relative;
+    overflow: hidden;
+}
+
+.property-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Dark Overlay for Text Readability */
@@ -551,6 +557,23 @@ body {
 .property-card__date {
     font-size: 0.875rem;
     color: var(--color-gray-700);
+}
+
+/* Noscript Fallback (SEO) */
+.properties-noscript {
+    max-width: 800px;
+    margin: 2rem auto;
+    font-family: var(--font-family);
+    line-height: 1.8;
+}
+
+.properties-noscript h3 {
+    color: var(--color-navy);
+    margin: 1.5rem 0 0.75rem;
+}
+
+.properties-noscript a {
+    color: var(--color-navy);
 }
 
 /* ===================================

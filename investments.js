@@ -508,7 +508,8 @@ function renderPropertyCards(properties) {
         const soldBadge = property.status === 'Sold' ? '<span class="property-card__sold-badge">SOLD</span>' : '';
 
         card.innerHTML = `
-            <div class="property-card__image" style="background-image: url('${escapeHtml(imageUrl)}')">
+            <div class="property-card__image">
+                <img class="property-card__img" src="${escapeHtml(imageUrl)}" alt="${escapeHtml(property.name)} - ${escapeHtml(property.city)}, ${escapeHtml(property.country)}" loading="lazy">
                 ${soldBadge}
                 <div class="property-card__overlay">
                     <h3 class="property-card__name">${escapeHtml(property.name)}</h3>

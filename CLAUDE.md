@@ -278,7 +278,8 @@ All markers: 40px size, white 20px stroke outline
 - Image-first card design (16:9 ratio)
 
 **Card Structure:**
-- Property image with dark gradient overlay
+- Property `<img>` with `object-fit: cover`, alt text, and `loading="lazy"`
+- Dark gradient overlay for text readability
 - SOLD badge (top-right, red) for sold properties
 - Property name + location badge (city, country only)
 - Category badge (colored by category, matches markers)
@@ -485,23 +486,26 @@ Edit investments.html header section:
 - ✅ Image URL mapping CSV created for spreadsheet integration
 - ❌ 4 properties missing (no page on iamcapital.com): Canizares, Cordoba, San Sebastian, Terre Rares
 
-**SEO Audit (findings, not yet implemented):**
-- Missing `<h1>` tag (page only has `<h2>`)
-- No canonical URL (page accessible at `/`, `/investments`, `/investments.html`)
-- No Open Graph / Twitter Card meta tags (important for LinkedIn sharing)
-- No favicon reference
-- No structured data / JSON-LD (Organization, ItemList)
-- No robots.txt or sitemap.xml on Vercel deployment
-- No `<meta name="robots">` directive
-- Property content entirely JS-rendered (invisible to crawlers without JS execution)
-- Property card images use CSS `background-image` (no alt text possible)
-- Redundant index.html redirect (vercel.json rewrite handles it)
+**SEO Improvements (all implemented):**
+- ✅ Added `<h1>` tag (visually hidden via `.sr-only` class)
+- ✅ Added canonical URL (`/investments`)
+- ✅ Added Open Graph + Twitter Card meta tags (LinkedIn sharing)
+- ✅ Added favicon (32px, 192px, apple-touch-icon from iamcapital.com)
+- ✅ Added JSON-LD structured data (Organization schema)
+- ✅ Added robots.txt + sitemap.xml
+- ✅ Added `<meta name="robots" content="index, follow">`
+- ✅ Added `<noscript>` fallback with all 27 properties (static HTML for crawlers)
+- ✅ Changed card images from CSS `background-image` to `<img>` with alt text + `loading="lazy"`
+- ✅ Removed redundant index.html (vercel.json rewrite handles `/`)
+- ✅ Updated meta description with real portfolio details
 
 **Commits:**
 - Add property header images from iamcapital.com
 - Optimize property images: resize to 800px, convert to WebP
 - Replace 5 property images with better carousel sources
 - Replace Fulvio Testi image with facade photo
+- SEO improvements: meta tags, structured data, favicon, sitemap
+- SEO: property card img alt text and noscript fallback
 
 ### Version 2.4 (2026-02-06)
 **Typography & UX Refinements**
