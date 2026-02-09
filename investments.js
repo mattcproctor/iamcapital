@@ -359,7 +359,7 @@ function createInfoWindowContent(property) {
             ${imageHtml}
             ${soldBadge}
             <h3 class="info-window__title">${escapeHtml(property.name)}</h3>
-            <p class="info-window__address">${escapeHtml(property.city)}, ${escapeHtml(property.country)}</p>
+            <p class="info-window__address">${escapeHtml(property.city)}, ${escapeHtml(property.country)}${property.acquisitionDate ? ' • ' + escapeHtml(property.acquisitionDate) : ''}</p>
             <p class="info-window__type">${escapeHtml(property.category)}${formattedSize ? ' • ' + formattedSize : ''}</p>
             ${portfolioButton}
         </div>
