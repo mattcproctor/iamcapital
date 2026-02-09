@@ -349,8 +349,14 @@ function createInfoWindowContent(property) {
         ? `<span class="info-window__sold-badge">SOLD</span>`
         : '';
 
+    const imageUrl = property.imageUrl || '';
+    const imageHtml = imageUrl
+        ? `<div class="info-window__image"><img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(property.name)}"></div>`
+        : '';
+
     return `
         <div class="info-window">
+            ${imageHtml}
             ${soldBadge}
             <h3 class="info-window__title">${escapeHtml(property.name)}</h3>
             <p class="info-window__address">${escapeHtml(property.city)}, ${escapeHtml(property.country)}</p>

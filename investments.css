@@ -571,9 +571,24 @@ body {
    =================================== */
 .info-window {
     font-family: var(--font-family);
-    padding: 0.5rem;
+    padding: 0;
     max-width: 250px;
     position: relative;
+}
+
+.info-window__image {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0.5rem;
+}
+
+.info-window__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .info-window__sold-badge {
@@ -594,7 +609,7 @@ body {
     font-weight: 600;
     color: var(--color-navy);
     margin: 0 0 0.5rem;
-    padding-right: 3.5rem;
+    padding: 0 0.75rem;
 }
 
 .info-window__address,
@@ -603,18 +618,19 @@ body {
     font-size: 0.875rem;
     color: var(--color-gray-700);
     margin: 0.25rem 0;
+    padding: 0 0.75rem;
 }
 
 .info-window__button {
     display: inline-block;
-    margin-top: 0.75rem;
+    margin: 0.75rem 0.75rem 0.5rem;
     padding: 0.5rem 1rem;
     background: var(--color-navy);
     color: var(--color-white);
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 600;
-    border-radius: 0;
+    border-radius: 4px;
     transition: all var(--transition-base);
 }
 
