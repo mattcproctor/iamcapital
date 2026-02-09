@@ -466,9 +466,9 @@ function renderPropertyCards(properties) {
             </div>
             <div class="property-card__body">
                 <span class="property-card__category" data-category="${escapeHtml(property.category)}">${escapeHtml(property.category)}</span>
+                ${property.portfolioUrl ? `<a href="${escapeHtml(property.portfolioUrl)}" class="property-card__view-btn" onclick="event.stopPropagation()">View &rarr;</a>` : ''}
                 <span class="property-card__date">${escapeHtml(property.acquisitionDate)}</span>
             </div>
-            ${property.portfolioUrl ? `<div class="property-card__footer"><a href="${escapeHtml(property.portfolioUrl)}" class="property-card__view-btn" onclick="event.stopPropagation()">View &rarr;</a></div>` : ''}
         `;
 
         // Card click handler - zoom to marker on map
