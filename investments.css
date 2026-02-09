@@ -530,6 +530,29 @@ body {
     color: #999999;
 }
 
+/* View Property Button */
+.property-card__footer {
+    padding: 0 1rem 0.75rem;
+}
+
+.property-card__view-btn {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: var(--color-navy);
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-family: var(--font-family);
+    border-radius: 4px;
+    transition: all var(--transition-base);
+}
+
+.property-card__view-btn:hover {
+    background: var(--color-black);
+    color: var(--color-white);
+}
+
 /* Noscript Fallback (SEO) */
 .properties-noscript {
     max-width: 800px;
