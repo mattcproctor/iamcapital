@@ -461,13 +461,12 @@ function renderPropertyCards(properties) {
                 ${soldBadge}
                 <div class="property-card__overlay">
                     <h3 class="property-card__name">${escapeHtml(property.name)}</h3>
-                    <span class="property-card__location-badge">${escapeHtml(property.city)}, ${countryCode}${formattedSize ? ' • ' + formattedSize + ' sqm' : ''}</span>
+                    <span class="property-card__location-badge">${escapeHtml(property.city)}, ${countryCode}${formattedSize ? ' • ' + formattedSize + ' sqm' : ''}${property.acquisitionDate ? ' • ' + escapeHtml(property.acquisitionDate) : ''}</span>
                 </div>
             </div>
             <div class="property-card__body">
                 <span class="property-card__category" data-category="${escapeHtml(property.category)}">${escapeHtml(property.category)}</span>
-                ${property.portfolioUrl ? `<a href="${escapeHtml(property.portfolioUrl)}" class="property-card__view-btn" onclick="event.stopPropagation()">View &rarr;</a>` : ''}
-                <span class="property-card__date">${escapeHtml(property.acquisitionDate)}</span>
+                ${property.portfolioUrl ? `<a href="${escapeHtml(property.portfolioUrl)}" class="property-card__view-btn" onclick="event.stopPropagation()">View Property &rarr;</a>` : ''}
             </div>
         `;
 
