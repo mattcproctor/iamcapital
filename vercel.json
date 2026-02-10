@@ -1,8 +1,9 @@
 {
-  "rewrites": [
+  "redirects": [
     {
       "source": "/",
-      "destination": "/investments.html"
+      "destination": "/investments",
+      "permanent": true
     }
   ],
   "cleanUrls": true
