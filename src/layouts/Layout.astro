@@ -4,6 +4,10 @@
 // "scripts" slot, which comes after the footer.
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+// Fonts and styles go inline, so the first paint waits for no stylesheet request. Overpass is self-hosted with
+// Google Fonts' own @font-face rules and files (src/styles/overpass.css); public/investments.css stays served as it was.
+import fontFaces from '../styles/overpass.css?raw';
+import styles from '../../public/investments.css?raw';
 
 interface Props {
   title: string;
@@ -43,15 +47,29 @@ const { title, socialTitle, description, url } = Astro.props;
     <meta name="twitter:description" content={description}>
     <meta name="twitter:image" content="https://iamcapital.vercel.app/images/branding/favicon-192x192.png">
 
-    <!-- Preload critical assets -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Preload critical assets (the Latin font at low priority: text paints in the fallback first, as before) -->
     <link rel="preconnect" href="https://maps.googleapis.com">
     <link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/overpass/qFdH35WCmI96Ajtm81GlU9vgwBcI.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="investments.css">
+    <style is:inline set:html={fontFaces}></style>
+    <style is:inline set:html={styles}></style>
+
+    <!-- afterFirstPaint(fn): runs fn once the page has painted (the Google Map and its data load then, behind the
+         loading overlay that covers the map until the properties arrive) -->
+    <script is:inline>
+        window.afterFirstPaint = function (fn) {
+            var done = false;
+            function run() { if (!done) { done = true; setTimeout(fn, 0); } }
+            try {
+                new PerformanceObserver(function (list) {
+                    if (list.getEntriesByName('first-contentful-paint').length) run();
+                }).observe({ type: 'paint', buffered: true });
+            } catch (e) { addEventListener('load', run); }
+            setTimeout(run, 3000);
+        };
+    </script>
 
     <!-- Structured Data -->
     <script is:inline type="application/ld+json">
@@ -86,7 +104,9 @@ const { title, socialTitle, description, url } = Astro.props;
 <body>
     <!-- Header/Navigation -->
     <Header />
+    <main>
     <slot />
+    </main>
     <!-- Footer -->
     <!-- Footer -->
     <Footer />

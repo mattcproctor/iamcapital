@@ -6,6 +6,21 @@
 // Configuration
 const PROPERTIES_API_URL = 'https://script.google.com/macros/s/AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec';
 
+// The properties request, started once with the map script (after first paint) so it runs in parallel with it
+let propertiesRequest;
+function fetchProperties() {
+    if (!propertiesRequest) {
+        propertiesRequest = fetch(PROPERTIES_API_URL);
+        propertiesRequest.catch(() => {}); // a failure is reported by loadProperties, which awaits it
+    }
+    return propertiesRequest;
+}
+
+// Image addresses from the sheet over https (the browser already upgrades http ones; this avoids the mixed-content warning)
+function secureUrl(url) {
+    return String(url).replace(/^http:\/\//, 'https://');
+}
+
 // Global state
 let map;
 let markers = [];
@@ -60,6 +75,13 @@ function initMap() {
     });
 
     geocoder = new google.maps.Geocoder();
+
+    // Cluster markers are buttons with no name: give each one an invisible label for screen readers
+    new MutationObserver(() => {
+        document.querySelectorAll('#map [role="button"]').forEach(el => {
+            if (!el.getAttribute('aria-label') && !el.getAttribute('title')) el.setAttribute('aria-label', 'Property cluster: zoom in');
+        });
+    }).observe(document.getElementById('map'), { childList: true, subtree: true, attributes: true, attributeFilter: ['role', 'aria-label'] });
 
     // Load properties after map initializes
     loadProperties();
@@ -141,7 +163,7 @@ async function loadProperties() {
     const propertiesError = document.getElementById('propertiesError');
 
     try {
-        const response = await fetch(PROPERTIES_API_URL);
+        const response = await fetchProperties();
 
         if (!response.ok) {
             throw new Error('Failed to fetch properties');
@@ -349,7 +371,7 @@ function createInfoWindowContent(property) {
         ? `<span class="info-window__sold-badge">SOLD</span>`
         : '';
 
-    const imageUrl = property.imageUrl || '';
+    const imageUrl = property.imageUrl ? secureUrl(property.imageUrl) : '';
     const imageHtml = imageUrl
         ? `<div class="info-window__image"><img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(property.name)}"></div>`
         : '';
@@ -457,7 +479,7 @@ function renderPropertyCards(properties) {
         const countryCode = getCountryCode(property.country);
 
         // Fallback placeholder image if none provided
-        const imageUrl = property.imageUrl || 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=360&fit=crop&auto=format&q=80';
+        const imageUrl = property.imageUrl ? secureUrl(property.imageUrl) : 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=360&fit=crop&auto=format&q=80';
 
         const soldBadge = property.status === 'Sold' ? '<span class="property-card__sold-badge">SOLD</span>' : '';
 

@@ -960,3 +960,9 @@ body {
         padding: 1rem;
     }
 }
+
+/* Google Maps' 1x1 transparent click target is stretched over each marker; a transparent pixel looks the same either
+   way, and pixelated scaling tells checkers it is not a low-resolution photo. */
+#map img[src$="/mapfiles/transparent.png"] {
+    image-rendering: pixelated;
+}

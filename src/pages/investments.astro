@@ -120,9 +120,21 @@ import Layout from '../layouts/Layout.astro';
     </section>
 <Fragment slot="scripts">
     <script is:inline src="investments.js"></script>
-    <script is:inline src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
-    <script is:inline async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c&callback=initMap&libraries=marker">
+    <!-- After first paint: the properties request, then the marker clusterer and Google Maps (fetched in parallel,
+         run in this order, as the two script tags here did); initMap renders as before. -->
+    <script is:inline>
+        afterFirstPaint(function () {
+            fetchProperties();
+            [
+                'https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js',
+                'https://maps.googleapis.com/maps/api/js?key=AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c&callback=initMap&libraries=marker'
+            ].forEach(function (src) {
+                var s = document.createElement('script');
+                s.src = src;
+                s.async = false;
+                document.body.appendChild(s);
+            });
+        });
     </script>
 </Fragment>
 </Layout>

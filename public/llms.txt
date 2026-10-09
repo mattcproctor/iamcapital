@@ -1,0 +1,22 @@
+# iAM Capital: Investment Portfolio
+
+> iAM Capital Group Ltd is a global alternative investment group with a portfolio of residential, commercial, hospitality and renewable energy assets across Italy, France and Spain. This site is its interactive investment map: every property, active and sold, on a Google Map and as cards that can be filtered by status, category and country.
+
+## Pages
+
+- [Investment Portfolio](https://iamcapital.vercel.app/investments): the map and the property cards, with links to the properties’ pages on iamcapital.com
+
+## iAM Capital
+
+- [About](https://iamcapital.com/about/)
+- [Team](https://iamcapital.com/team/)
+- [Responsibility](https://iamcapital.com/responsibility/)
+- [Investor Relations](https://iamcapital.com/investor-relations/)
+- [News](https://iamcapital.com/latest-news/)
+- [Contact](https://iamcapital.com/contact/)
+
+## Contact
+
+- iAM Capital Group Ltd, 4 Hill Street, London W1J 5NE, United Kingdom
+- Phone: [+44 20 7514 9200](tel:+442075149200)
+- Email: [info@iamcapital.com](mailto:info@iamcapital.com); investor relations: [ir@iamcapital.com](mailto:ir@iamcapital.com)
