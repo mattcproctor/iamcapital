@@ -1,0 +1,95 @@
+---
+// The page shell every page shares: the head (meta, social tags, fonts, styles, structured data, Vercel Web Analytics),
+// the header and the footer. Pages pass their own title, description and address, and their scripts in the
+// "scripts" slot, which comes after the footer.
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  socialTitle: string;
+  description: string;
+  url: string;
+}
+
+const { title, socialTitle, description, url } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href={url} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/branding/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/branding/favicon-192x192.png">
+    <link rel="apple-touch-icon" href="images/branding/apple-touch-icon.png">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content={socialTitle}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={url}>
+    <meta property="og:image" content="https://iamcapital.vercel.app/images/branding/favicon-192x192.png">
+    <meta property="og:site_name" content="iAM Capital">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content={socialTitle}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content="https://iamcapital.vercel.app/images/branding/favicon-192x192.png">
+
+    <!-- Preload critical assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://maps.googleapis.com">
+    <link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="investments.css">
+
+    <!-- Structured Data -->
+    <script is:inline type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "iAM Capital Group Ltd",
+        "url": "https://iamcapital.com",
+        "logo": "https://iamcapital.vercel.app/images/branding/iam-capital-logo.webp",
+        "description": "A global alternative investment group with a portfolio spanning residential, commercial, hospitality, and renewable energy sectors across Europe.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4 Hill Street",
+            "addressLocality": "London",
+            "postalCode": "W1J 5NE",
+            "addressCountry": "GB"
+        },
+        "telephone": "+442075149200",
+        "email": "info@iamcapital.com",
+        "sameAs": [
+            "https://www.linkedin.com/company/iam-capital/"
+        ]
+    }
+    </script>
+
+    <!-- Vercel Web Analytics -->
+    <script is:inline>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script is:inline defer src="/_vercel/insights/script.js"></script>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <Header />
+    <slot />
+    <!-- Footer -->
+    <!-- Footer -->
+    <Footer />
+    <slot name="scripts" />
+</body>
+</html>

@@ -19,7 +19,7 @@ Professional investment property map page for iAM Capital displaying properties 
 - Deployment: ✅ GitHub, ✅ Vercel, ✅ Fully Operational
 
 **Technology Stack:**
-- Pure HTML5/CSS3/Vanilla JavaScript
+- Astro 7 (static build of the same hand-written HTML), CSS and vanilla JavaScript
 - Google Sheets (data storage/CMS with pre-geocoded coordinates)
 - Google Apps Script v2 (JSON API endpoint with lat/lng support)
 - Google Maps JavaScript API (map rendering)
@@ -63,13 +63,19 @@ FontAwesome SVG Markers + Property Cards
 
 ```
 iamcapital.com/
-├── index.html                    # Root redirect to investments page
-├── investments.html              # Main page with map and filters
-├── investments.css               # Styling (header, footer, cards, filters)
-├── investments.js                # Map logic, FA markers, filters, mobile menu
-├── vercel.json                   # Vercel configuration (clean URLs)
-├── .gitignore                    # Git ignore (working-files, .DS_Store, etc.)
-├── images/
+├── astro.config.mjs              # Astro: static build, build.format 'file' (investments.html), no HTML compression
+├── package.json                  # astro; `npm run build` writes dist/
+├── vercel.json                   # Build command, output dir (dist), / -> /investments redirect, clean URLs
+├── src/
+│   ├── layouts/Layout.astro      # <head> (meta, social, fonts, structured data, Vercel Analytics), header, footer
+│   ├── components/Header.astro   # Logo + navigation
+│   ├── components/Footer.astro   # Footer
+│   └── pages/investments.astro   # Main page with map and filters (builds to /investments)
+├── public/                       # Copied to dist/ as it is (same URLs as before the Astro port)
+│   ├── investments.css           # Styling (header, footer, cards, filters)
+│   ├── investments.js            # Map logic, FA markers, filters, mobile menu
+│   ├── robots.txt, sitemap.xml
+│   └── images/
 │   ├── hero/
 │   │   └── milan-cathedral-hero.webp  # Hero background (247KB WebP)
 │   ├── branding/
@@ -467,7 +473,7 @@ Edit CSS in investments.css:
 
 ### Updating Navigation
 
-Edit investments.html header section:
+Edit src/components/Header.astro:
 ```html
 <li class="nav__item"><a href="URL" class="nav__link">Link Text</a></li>
 ```
@@ -502,7 +508,7 @@ Edit investments.html header section:
 
 **Analytics:**
 - ✅ Vercel Web Analytics integrated (cookieless, privacy-friendly)
-- ⚠️ Analytics scripts are in `investments.html` `<head>` — must be preserved on any HTML updates
+- ⚠️ Analytics scripts are in `src/layouts/Layout.astro` `<head>` (marked `is:inline` so Astro leaves them as they are) — must be preserved on any HTML updates
 - Dashboard: Vercel project → Analytics tab
 
 **Commits:**
@@ -632,13 +638,13 @@ Edit investments.html header section:
 3. No code deployment needed
 
 **Update Styles:**
-1. Edit investments.css
-2. Test locally: `python3 -m http.server 8000`
+1. Edit public/investments.css
+2. Test locally: `npm install && npm run dev` (or `npm run build && npm run preview`)
 3. Commit + push to GitHub
 4. Vercel auto-deploys
 
 **Update JavaScript:**
-1. Edit investments.js
+1. Edit public/investments.js
 2. Test locally
 3. Check browser console for errors
 4. Commit + push
@@ -654,9 +660,8 @@ git push origin main
 ### File Organization
 
 **Production Files (in Git):**
-- index.html, investments.html
-- investments.css, investments.js
-- images/, vercel.json
+- src/ (layout, components, pages), public/ (css, js, images, robots.txt, sitemap.xml)
+- package.json, package-lock.json, astro.config.mjs, vercel.json
 - .gitignore, CLAUDE.md
 
 **Working Files (not in Git):**

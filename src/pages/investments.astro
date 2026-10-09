@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Investment Portfolio - iAM Capital | Global Alternative Investment Group"
+  socialTitle="Investment Portfolio - iAM Capital"
+  description="Explore iAM Capital's investment portfolio across Italy, France, and Spain. 27 properties spanning residential, commercial, hospitality, and renewable energy sectors."
+  url="https://iamcapital.vercel.app/investments"
+>
+    <h1 class="sr-only">iAM Capital Investment Portfolio</h1>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-section__container">
+            <!-- Filter Toggle Button (mobile only) -->
+            <button id="filterToggle" class="filter-toggle" aria-label="Toggle filters">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+                Filters
+            </button>
+
+            <!-- Filter Pills (floating overlay) -->
+            <div id="filterPills" class="filter-pills">
+                <!-- JavaScript populates filters here -->
+            </div>
+
+            <div id="map" class="map-section__map">
+                <!-- Google Maps renders here -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="mapLoading" class="map-section__loading">
+                <div class="loading-spinner"></div>
+                <p>Loading investment properties...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="mapError" class="map-section__error" style="display: none;">
+                <p>Unable to load property map. Please try again later.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Cards Section -->
+    <section class="properties-section">
+        <div class="properties-section__container">
+            <h2 class="properties-section__title">Investment Portfolio</h2>
+
+            <!-- Category Filters -->
+            <div class="category-filters" id="categoryFilters">
+                <div class="category-filters__group">
+                    <span class="category-filters__label">Status:</span>
+                    <button class="category-filter-btn category-filter-btn--active" data-filter-type="status" data-filter-value="all">All</button>
+                    <button class="category-filter-btn" data-filter-type="status" data-filter-value="Active">Active</button>
+                    <button class="category-filter-btn" data-filter-type="status" data-filter-value="Sold">Sold</button>
+                </div>
+                <div class="category-filters__group">
+                    <span class="category-filters__label">Category:</span>
+                    <button class="category-filter-btn category-filter-btn--active" data-filter-type="category" data-filter-value="all">All</button>
+                    <!-- Dynamic category buttons will be added here by JavaScript -->
+                </div>
+            </div>
+
+            <div id="propertiesGrid" class="properties-grid">
+                <!-- JavaScript populates cards here -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="propertiesLoading" class="properties-section__loading">
+                <p>Loading property details...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="propertiesError" class="properties-section__error" style="display: none;">
+                <p>Unable to load property details.</p>
+            </div>
+
+            <!-- Static content for search engines (hidden when JS loads) -->
+            <noscript>
+                <div class="properties-noscript">
+                    <h3>Active Investments</h3>
+                    <ul>
+                        <li><strong>Canizares</strong> – Madrid, Spain – Hospitality</li>
+                        <li><strong>Cordoba</strong> – Cordoba, Spain – Commercial</li>
+                        <li><strong>San Sebastian</strong> – San Sebastian, Spain – Commercial</li>
+                        <li><strong>Sirtori</strong> – <a href="https://iamcapital.com/sirtori/">Milan, Italy</a> – Residential &amp; Office – 891 sqm</li>
+                        <li><strong>Gobetti</strong> – <a href="https://iamcapital.com/gobetti/">Cernusco, Italy</a> – Office – 10,497 sqm</li>
+                        <li><strong>Murat</strong> – <a href="https://iamcapital.com/murat/">Milan, Italy</a> – Office – 2,549 sqm</li>
+                        <li><strong>Sanzio</strong> – <a href="https://iamcapital.com/sanzio/">Rome, Italy</a> – Hospitality – 5,719 sqm</li>
+                        <li><strong>Capo Mimosa</strong> – <a href="https://iamcapital.com/capo-mimosa/">Cervo, Italy</a> – Hospitality – 55,000 sqm</li>
+                        <li><strong>Patay</strong> – <a href="https://iamcapital.com/patay/">Paris, France</a> – Office &amp; Retail – 1,960 sqm</li>
+                    </ul>
+                    <h3>Sold Investments</h3>
+                    <ul>
+                        <li><strong>Govone</strong> – <a href="https://iamcapital.com/govone/">Milan, Italy</a> – Residential &amp; Retail – 2,203 sqm</li>
+                        <li><strong>Bressanone</strong> – <a href="https://iamcapital.com/bressanone/">Milan, Italy</a> – Office – 2,364 sqm</li>
+                        <li><strong>Repubblica</strong> – <a href="https://iamcapital.com/repubblica/">Milan, Italy</a> – Residential – 308 sqm</li>
+                        <li><strong>Bourbon</strong> – <a href="https://iamcapital.com/quai-bourbon/">Paris, France</a> – Residential – 185 sqm</li>
+                        <li><strong>Depretis</strong> – <a href="https://iamcapital.com/depretis/">Rome, Italy</a> – Office – 6,870 sqm</li>
+                        <li><strong>Fulvio Testi</strong> – <a href="https://iamcapital.com/fulvio-testi/">Milan, Italy</a> – Office – 2,626 sqm</li>
+                        <li><strong>Roquette</strong> – <a href="https://iamcapital.com/roquette/">Paris, France</a> – Residential &amp; Retail – 1,156 sqm</li>
+                        <li><strong>Berthe &amp; Ravignan</strong> – <a href="https://iamcapital.com/ravignan-berthe/">Paris, France</a> – Residential – 422 sqm</li>
+                        <li><strong>Sevres</strong> – <a href="https://iamcapital.com/sevres/">Paris, France</a> – Residential – 56 sqm</li>
+                        <li><strong>Temple</strong> – <a href="https://iamcapital.com/temple/">Paris, France</a> – Residential – 486 sqm</li>
+                        <li><strong>Via Torino</strong> – <a href="https://iamcapital.com/torino/">Milan, Italy</a> – Retail &amp; Office – 5,919 sqm</li>
+                        <li><strong>Abruzzi</strong> – <a href="https://iamcapital.com/abruzzi/">Milan, Italy</a> – Residential &amp; Retail – 9,179 sqm</li>
+                        <li><strong>Terre Rares</strong> – Paris, France – Residential &amp; Office – 4,058 sqm</li>
+                        <li><strong>Saint Ouen</strong> – <a href="https://iamcapital.com/saint-ouen/">Paris, France</a> – Residential &amp; Retail – 780 sqm</li>
+                        <li><strong>Galerie</strong> – <a href="https://iamcapital.com/galerie-st-marc/">Paris, France</a> – Residential &amp; Retail – 335 sqm</li>
+                        <li><strong>Valassina</strong> – <a href="https://iamcapital.com/valassina/">Milan, Italy</a> – Residential – 1,503 sqm</li>
+                        <li><strong>Sirtori</strong> – <a href="https://iamcapital.com/sirtori/">Milan, Italy</a> – Residential – 1,489 sqm</li>
+                        <li><strong>Bourbon</strong> – <a href="https://iamcapital.com/quai-bourbon/">Paris, France</a> – Residential – 61 sqm</li>
+                    </ul>
+                </div>
+            </noscript>
+        </div>
+    </section>
+<Fragment slot="scripts">
+    <script is:inline src="investments.js"></script>
+    <script is:inline src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+    <script is:inline async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFOA9PrQdFW1bI-l9DIuWrIFhC8uozN0c&callback=initMap&libraries=marker">
+    </script>
+</Fragment>
+</Layout>
