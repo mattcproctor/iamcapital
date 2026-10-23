@@ -1,0 +1,617 @@
+[
+ {
+  "from": "/2006-annual-report/",
+  "to": "/wp-content/uploads/2018/11/iam_ar06_low_res.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2007-annual-report/",
+  "to": "/wp-content/uploads/2018/11/annualreport07.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2008-annual-report/",
+  "to": "/wp-content/uploads/2018/11/annual_report_2008.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2009-annual-report/",
+  "to": "/wp-content/uploads/2018/11/annualreport2009.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2010-annual-report/",
+  "to": "/wp-content/uploads/2018/11/2010_final_accounts.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2011-annual-report/",
+  "to": "/wp-content/uploads/2018/11/2011_iam_accounts.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2011-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2018/11/iam_notice_of_agm.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2012-annual-report/",
+  "to": "/wp-content/uploads/2018/11/2012_iam_accounts_12613.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2012-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2018/11/integrated_circular-9-august-2012-final.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2013-annual-report/",
+  "to": "/wp-content/uploads/2018/11/iam_2013_accounts.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2013-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2018/11/integrated-agm-notice-2013.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2014-annual-report/",
+  "to": "/wp-content/uploads/2018/11/2014-iam-accounts-1715.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2014-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2018/11/2014_notice_of_agm.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2014-mandatory-cash-offer/",
+  "to": "/wp-content/uploads/2018/11/0035r_-_integrated_asset_management_plc_-_latest.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2014-mandatory-cash-offer-update-1/",
+  "to": "/wp-content/uploads/2018/11/mandatory_cash_offer_-_update_1.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2014-mandatory-cash-offer-update-2/",
+  "to": "/wp-content/uploads/2018/11/announcement_of_posting_of_offer_document_v2_on_iam_lttrhead.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2014-mandatory-offer-closing/",
+  "to": "/wp-content/uploads/2018/11/mandatory_offer_closing_-_final_130115.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2015-annual-report/",
+  "to": "/wp-content/uploads/2018/11/2015-iam-accounts.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2015-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2018/11/integrated-agm-notice-2015-for-website.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2016-annual-report/",
+  "to": "/wp-content/uploads/2018/11/2016-annual-report.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2016-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2018/11/2016-iam-agm-notice.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2017-annual-report/",
+  "to": "/wp-content/uploads/2019/01/iAMCapital-Annual-Report-2017.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2017-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2018/11/2017-iam-notice-of-agm.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2018-iam-capital-name-change/",
+  "to": "/wp-content/uploads/2018/11/iam-capital-group-plc-press-release-may-16-2018.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2018-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2018/11/agm_notice_2018-final.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2019-annual-report/",
+  "to": "/wp-content/uploads/2020/11/iAM-Capital-AR-2019_interactive-3.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2019-iam-capital-financial-statements/",
+  "to": "/wp-content/uploads/2020/08/iAM-Financial-Statements-2019.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2019-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2019/07/IAM-2018-AGM-Notice.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2020-annual-report/",
+  "to": "/wp-content/uploads/2022/03/iAM-Capital-Annual-Report-2020-1.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2020-iam-capital-financial-statements/",
+  "to": "/wp-content/uploads/2021/08/iAM-Financial-Statements-2020.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2020-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2020/08/AGM-Notice-2019.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2021-annual-report/",
+  "to": "/wp-content/uploads/2022/08/iAM-Capital-Annual-Report-2021.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2021-iam-capital-financial-statements/",
+  "to": "/wp-content/uploads/2022/07/iAM-Capital-Group-Plc-Full-31-12-2021.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2021-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2021/08/IAM-Capital-Group-plc-2021-AGM-Notice.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2022-iam-capital-group-limited-financial-report-2/",
+  "to": "/wp-content/uploads/2023/10/iAM-Capital-Group-Ltd-Full-Accounts-no-DPL-31.12.2022.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2022-iam-capital-name-change/",
+  "to": "/wp-content/uploads/2023/02/20221219-iAM-Capital-Group-Ltd-Re-registration-Certificate.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2022-iam-invest-limited-financial-report/",
+  "to": "/wp-content/uploads/2023/10/IAI-Audited-accounts-31-December-2022_signed.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2022-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2022/08/notice_of_AGM.DOCX.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2023-iam-capital-group-limited-financial-report/",
+  "to": "/wp-content/uploads/2024/10/iAM-Capital-Group-Limited-Full-31-12-23-signed-no-DPL.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2023-iam-invest-limited-financial-report/",
+  "to": "/wp-content/uploads/2024/10/IAM-Invest-Limited-FCA-copy-31-12-23.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2023-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2023/10/IAM-Capital-Group-Ltd_Notice-of-AGM-2023.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2024-iam-capital-group-limited-financial-report-2/",
+  "to": "/wp-content/uploads/2025/10/IAM-Capital-Group-Limited-Full-no-PL-31-12-24.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2024-iam-invest-limited-financial-report/",
+  "to": "/wp-content/uploads/2026/03/IAM-Invest-Limited-Full-FCA-Copy-31-12-24.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2024-notice-of-agm/",
+  "to": "/wp-content/uploads/2026/03/IAM-Capital-Group-Ltd_Notice-of-AGM-2023-YE-Signed.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2025-iam-invest-limited-financial-report/",
+  "to": "/wp-content/uploads/2026/10/iAM_Invest_Ltd_2025_FS.pdf",
+  "status": 301
+ },
+ {
+  "from": "/2025-iam-notice-of-agm/",
+  "to": "/wp-content/uploads/2025/10/IAM-Capital-Group-Ltd_Notice-of-AGM-2024-YE.pdf",
+  "status": 301
+ },
+ {
+  "from": "/3348-2/",
+  "to": "/wp-content/uploads/2021/03/Insurance-Startup-Hippo-to-Go-Public-in-5-Billion-SPAC-Merger-WSJ.pdf",
+  "status": 301
+ },
+ {
+  "from": "/akinova-goes-for-growth-and-unveils-another-series-a-investor/",
+  "to": "https://mailchi.mp/afb7be1361eb/akinova-goes-for-growth-and-unveils-another-series-a-investor?e=86a661f33c",
+  "status": 301
+ },
+ {
+  "from": "/bebeez-ef-solare-italia-reports-31-photovoltaic-plants-from-integrated-energy-holdings/",
+  "to": "https://bebeez.it/2019/01/11/ef-solare-italia-rileva-31-impianti-da-integrated-energy-holding/",
+  "status": 301
+ },
+ {
+  "from": "/emanuel-arbib-quoted-in-forbes-italy-3-09-2018%e2%80%8b/",
+  "to": "https://forbes.it/2018/09/05/gli-italiani-buoni-come-buffet-e-gates/",
+  "status": 301
+ },
+ {
+  "from": "/energia-mercato-integrated-energy-holdings-cede-a-ef-solare-italia-un-portafoglio-di-impianti-fotovoltaici-da-344-mwp/",
+  "to": "https://www.energiamercato.it/project-finance/integrated-energy-holdings-cede-a-ef-solare-italia-un-portafoglio-di-impianti-fotovoltaici-da-344-mwp",
+  "status": 301
+ },
+ {
+  "from": "/equities-com-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy/",
+  "to": "https://www.equities.com/news/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy",
+  "status": 301
+ },
+ {
+  "from": "/fintlv-participates-in-250-million-series-d-financing-by-next-insurance-at-a-valuation-of-over-2-billion/",
+  "to": "https://finance.yahoo.com/news/next-insurance-raises-250-million-130000247.html",
+  "status": 301
+ },
+ {
+  "from": "/fintlv-sponsors-fintech-week-tel-aviv-2019/",
+  "to": "https://www.telaviv.fintechweek.com/home",
+  "status": 301
+ },
+ {
+  "from": "/forbes-italia-como-cambia-il-mercato-del-fotovoltaico-in-italia/",
+  "to": "https://forbes.it/2019/01/10/quali-sono-i-possibili-scenari-per-il-fotovoltaico/",
+  "status": 301
+ },
+ {
+  "from": "/forbes-italia-conviene-ancora-investire-sul-fotovoltaico/",
+  "to": "https://forbes.it/2018/03/29/conviene-ancora-investire-sul-fotovoltaico/#37dcd5e9333c",
+  "status": 301
+ },
+ {
+  "from": "/forbes-italia-investire-nel-fintech-dallinterno-della-innovation-zone/",
+  "to": "https://forbes.it/2018/02/08/investire-nel-fintech-dallinterno-della-innovation-zone/#d0ccce0cee4a",
+  "status": 301
+ },
+ {
+  "from": "/forbes-italia-le-opporrtunita-del-fintech-nella-startup-nation/",
+  "to": "https://forbes.it/2018/01/29/le-opportunita-del-fintech-nella-startup-nation/#83cc0e47a080",
+  "status": 301
+ },
+ {
+  "from": "/gm-notice/",
+  "to": "/wp-content/uploads/2022/08/shareholder-circular.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iai-2016-annual-report/",
+  "to": "/wp-content/uploads/2018/11/iai-2016-accounts.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-acquires-a-4-5-mwp-italian-solar-pv-portfolio/",
+  "to": "/wp-content/uploads/2021/07/iAM-Capital-Acquires-a-4.5-MWp-Italian-solar-PV-portfolio24.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-acquires-a-new-3-5-mwp-italian-solar-pv-portfolio/",
+  "to": "/wp-content/uploads/2022/12/Prothea-PR-IAM-BHN-_-221222-final.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-acquires-a-portfolio-of-hospitality-assets-in-spain-through-its-ice-iii-fund-in-partnership-with-cats-hostels/",
+  "to": "/wp-content/uploads/2026/01/Hospitality-iAM-Capital-PR.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-acquires-beachfront-property-on-the-italian-riviera/",
+  "to": "/wp-content/uploads/2023/04/iAM-Capital-Acquires-Capo-Mimosa-on-the-Italian-Riviera-1.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-acquires-castel-porrona-a-historic-hospitality-asset-in-tuscany-through-its-ice-iii-fund/",
+  "to": "/wp-content/uploads/2026/03/Castel-Porrona-iAM-Capital-PR-w.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-acquires-trophy-asset-in-rome/",
+  "to": "/wp-content/uploads/2022/10/iAM-HOSPITALITY-FUND-ACQUIRES-TROPHY-ASSET-IN-ROME.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-announce-first-closing-of-its-latest-european-real-estate-fund-ice-ii/",
+  "to": "/wp-content/uploads/2020/12/ICE-II-Closing-Press-Release.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-announces-the-opening-of-the-five-star-luxury-rome-hotel-palazzo-sanzio-as-a-radisson-collection-hotel/",
+  "to": "/wp-content/uploads/2026/04/OPENING-OF-THE-FIVE-STAR-LUXURY-ROME-HOTEL-PALAZZO-SANZIO-AS-A-RADISSON-COLLECTION-HOTEL-.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-annual-report-2018/",
+  "to": "/wp-content/uploads/2019/09/iAM-Capital-RA-2018.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-ceo-emanuel-arbibs-podcast-interview-from-italian-motorbikes-to-green-energy/",
+  "to": "https://www.podomatic.com/podcasts/fiftyfaces/episodes/2020-10-20T23_22_01-07_00",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-group-extends-relationship-with-tecma-by-subscribing-to-new-rights-issue/",
+  "to": "/wp-content/uploads/2022/06/TECMA-Solutions-completa-aumento-capitale_-eccesso-domanda-da-investitori-qualificati-Borsa-Italiana.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-group-plc-and-cs-capital-launch-a-real-estate-platform/",
+  "to": "/wp-content/uploads/2021/12/iAM-Capital-CSC-PR-Residential-platform-1.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-group-sells-solar-energy-portfolio-to-ef-solare/",
+  "to": "/wp-content/uploads/2019/01/iAM-Capital-Group-sells-Solar-Energy-portfolio-to-EF-Solare.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-italia-1-fund-completed-the-purchase-of-a-22357sqm-real-estate-portfolio-in-milan-and-rome-from-coima-sgr/",
+  "to": "/wp-content/uploads/2021/08/PR-Release-1.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-presenting-at-scenari-immobiliari-hospitality-event/",
+  "to": "https://www.scenari-immobiliari.it/2022/07/08/hospitality-forum-2022-la-galleria-fotografica-dellevento-del-7-luglio-a-milano/",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-secures-e20-9m-financing-from-banco-bpm/",
+  "to": "/wp-content/uploads/2023/07/iAM-Capital-secures-20.9M-financing-from-Banco-BPM.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-sponsored-fintlv-investment-next-insurance-buys-ap-intego-doubling-revenue/",
+  "to": "/wp-content/uploads/2021/03/en.globes.co_.il-Next-Insurance-buys-AP-Intego-doubling-revenue.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-sponsored-fintlv-investment-next-insurance-raises-250m-at-4b-valuation/",
+  "to": "/wp-content/uploads/2021/04/en.globes.co_.il-Next-Insurance-raises-250m-at-4b-valuation.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-sponsored-fintlv-invests-in-carbynes-25-million-series-b1-after-350-growth-in-revenue/",
+  "to": "https://news.crunchbase.com/news/carbyne-secures-series-b1-after-350-growth/?utm_source=cb_daily&utm_medium=email&utm_campaign=20210113&utm_content=intro&utm_term=content",
+  "status": 301
+ },
+ {
+  "from": "/iam-capitals-ceo-discusses-the-investment-choices-of-italians-in-the-city-of-london/",
+  "to": "https://bfcvideo.com/2020/04/23/assetandthecity-puntata-35/",
+  "status": 301
+ },
+ {
+  "from": "/iam-invest-2017-annual-report/",
+  "to": "/wp-content/uploads/2018/11/2017-iam-invest-annual-accounts.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-invest-2018-annual-report/",
+  "to": "/wp-content/uploads/2019/07/iAM-Invest-2018-Annual-Report.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-invest-2019-annual-report/",
+  "to": "/wp-content/uploads/2020/05/iAM-Invest-2019-Annual-Report.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-invest-2020-annual-report/",
+  "to": "/wp-content/uploads/2021/05/iAM-Invest-2020-Financial-Statements.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-invest-2021-annual-report/",
+  "to": "/wp-content/uploads/2022/04/iAM-Invest-Limited-Annual-Accounts-31-12-21.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-leading-with-near-zero-emissions-residential-building-in-milan/",
+  "to": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+  "status": 301
+ },
+ {
+  "from": "/iam-s-johanna-arbib-brings-reale-mutua-assicurazioni-to-israel/",
+  "to": "/wp-content/uploads/2020/10/assinews.it-Reale-a-Tel-Aviv-per-linsurtech.pdf",
+  "status": 301
+ },
+ {
+  "from": "/israelis-discover-tech-insurance-clal-psagot-and-hapoalim-will-invest-60-million-in-hippo-at-a-value-of-1-5-billion/",
+  "to": "https://www.linkedin.com/posts/fintlv_home-insurance-tech-startup-hippo-raises-activity-6691409336779997184-FgFh",
+  "status": 301
+ },
+ {
+  "from": "/jrj-group-one-of-iam-capitals-early-proprietary-investments-begins-ipo-process-in-london-for-their-major-commodities-broker-marex-spectron/",
+  "to": "https://news-sky-com.cdn.ampproject.org/c/s/news.sky.com/story/amp/ex-lehman-bankers-target-float-of-commodities-trader-marex-spectron-12129183",
+  "status": 301
+ },
+ {
+  "from": "/market-watch-integrated-asset-management-plc-leads-acquisition-of-eurro-127-million-34mw-pv-portfolio-in-italy/",
+  "to": "https://www.marketwatch.com/press-release/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy-2016-07-04",
+  "status": 301
+ },
+ {
+  "from": "/our-miami-based-partner-cgi-ink-deal-with-a-rod-in-new-hotel-investment-fund/",
+  "to": "/wp-content/uploads/2020/12/Wall-Street-Journal-December-16-2020-A-Rod-Swings-for-the-Fences-With-New-Hotel-Real-Estate-Fund.pdf",
+  "status": 301
+ },
+ {
+  "from": "/prothea-acted-as-advisor-of-integrated-energy-holdings-on-the-successful-sale-of-a-34-4-mwp-italian-solar-pv-portfolio-to-ef-solare-italia/",
+  "to": "/wp-content/uploads/2019/03/Prothea-ER1-EF-Solare-Italia-34_4_MWp-Press-Release.pdf",
+  "status": 301
+ },
+ {
+  "from": "/puri-negri-launches-a-e100m-fund-in-the-residential-sector/",
+  "to": "https://www.monitorimmobiliare.it/puri-negri-lancia-fondo-da-100-mln-nel-residenziale_20217161642",
+  "status": 301
+ },
+ {
+  "from": "/renewables-now-efsi-becomes-solar-leader-in-italy-consolidation-continues/",
+  "to": "https://renewablesnow.com/news/interview-efsi-becomes-solar-leader-in-italy-consolidation-continues-639197/",
+  "status": 301
+ },
+ {
+  "from": "/renewables-now-over-87-mw-of-italian-pv-assets-change-hands-in-2-recent-deals/",
+  "to": "https://renewablesnow.com/news/over-87-mw-of-italian-pv-assets-change-hands-in-2-recent-deals-639080/",
+  "status": 301
+ },
+ {
+  "from": "/successful-sale-of-solar-portfolio-in-italy/",
+  "to": "/wp-content/uploads/2021/12/Bhndue-S.r.l.-Sale-Press-Release.pdf",
+  "status": 301
+ },
+ {
+  "from": "/tecma-solutions-announce-a-strategic-partnership-with-iam-capital-on-international-real-estate/",
+  "to": "/wp-content/uploads/2021/06/Tecma-Solutions_-strategic-partnership-with-iAm-CApital-on-international-real-estate-Borsa-Italiana.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wall-street-online-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy/",
+  "to": "https://www.wallstreet-online.de/nachricht/8733403-integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-italy",
+  "status": 301
+ },
+ {
+  "from": "/watch-sweet-inn-director-david-zaghdoun-discusses-the-airbnb-revolution-on-lci/",
+  "to": "https://www.youtube.com/watch?v=GKCRYAoYUYI",
+  "status": 301
+ },
+ {
+  "from": "/yahoo-finance-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy/",
+  "to": "https://www.prnewswire.co.uk/news-releases/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy-585446281.html",
+  "status": 301
+ },
+ {
+  "from": "/calle-canizares/",
+  "to": "/canizares/",
+  "status": 301
+ },
+ {
+  "from": "/cordoba/",
+  "to": "/santa-marta/",
+  "status": 301
+ },
+ {
+  "from": "/2024-iam-invest-limited-full-fca-copy/",
+  "to": "/wp-content/uploads/2026/03/IAM-Invest-Limited-Full-FCA-Copy-31-12-24.pdf",
+  "status": 301
+ },
+ {
+  "from": "/rue-de-sevres/",
+  "to": "/sevres/",
+  "status": 301
+ },
+ {
+  "from": "/rue-du-temple/",
+  "to": "/temple/",
+  "status": 301
+ },
+ {
+  "from": "/via-sirtori/",
+  "to": "/sirtori/",
+  "status": 301
+ },
+ {
+  "from": "/quai-bourbon-b/",
+  "to": "/quai-bourbon/",
+  "status": 301
+ },
+ {
+  "from": "/viale-abruzzi/",
+  "to": "/abruzzi/",
+  "status": 301
+ },
+ {
+  "from": "/fulvio-testi-7/",
+  "to": "/fulvio-testi/",
+  "status": 301
+ },
+ {
+  "from": "/via-torino/",
+  "to": "/torino/",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-acquires-unique-beachfront-property-on-the-italian-riviera/",
+  "to": "/wp-content/uploads/2026/01/Hospitality-iAM-Capital-PR.pdf",
+  "status": 301
+ },
+ {
+  "from": "/san-sebastian/",
+  "to": "/pasealekua/",
+  "status": 301
+ },
+ {
+  "from": "/homepage/",
+  "to": "/",
+  "status": 301
+ },
+ {
+  "from": "/home-new/",
+  "to": "/",
+  "status": 301
+ },
+ {
+  "from": "/about-new/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/contact-2/",
+  "to": "/contact/",
+  "status": 301
+ },
+ {
+  "from": "/iam-capital-board/",
+  "to": "/team/",
+  "status": 301
+ },
+ {
+  "from": "/events/",
+  "to": "/latest-news/#events",
+  "status": 301
+ },
+ {
+  "from": "/category/press/",
+  "to": "/latest-news/",
+  "status": 301
+ },
+ {
+  "from": "/category/events/",
+  "to": "/latest-news/#events",
+  "status": 301
+ },
+ {
+  "from": "/category/annual-reports/",
+  "to": "/investor-relations/#reports",
+  "status": 301
+ },
+ {
+  "from": "/category/shareholder-notices/",
+  "to": "/investor-relations/#shareholder",
+  "status": 301
+ },
+ {
+  "from": "/feed/",
+  "to": "/",
+  "status": 301
+ }
+]

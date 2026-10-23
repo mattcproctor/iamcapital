@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/Banner.astro';
+import Icon from '../components/Icon.astro';
+import team from '../data/team.json';
+import { upload } from '../lib/images';
+
+// Anchors as on the old site (#directors, #investments, #operations)
+const groups = [
+  { id: 'directors', label: 'Board of Directors' },
+  { id: 'investments', label: 'Investments & Fundraising' },
+  { id: 'operations', label: 'Operations' },
+].map((g) => ({ ...g, people: team.filter((t) => t.group === g.label) }));
+
+// "Chairman iAM Capital" on the card reads as role "Chairman" over company "iAM Capital"
+const split = (p: (typeof team)[number]) => {
+  const role = p.title ?? p.role ?? '';
+  const company = p.role && p.title && p.role.startsWith(p.title) ? p.role.slice(p.title.length).trim() : '';
+  return { role, company };
+};
+const id = (name: string) => 'bio-' + name.toLowerCase().replace(/[^a-z]+/g, '-');
+---
+<Layout
+  title="Team"
+  description="The Board of Directors and the investment, fundraising and operations team of iAM Capital and iAM Invest Ltd."
+  image="2023/01/team-banner.jpg"
+  subnav={groups.map(({ id, label }) => ({ id, label }))}
+>
+  <Banner title="Team" image="2023/01/team-banner.jpg" shade={0.2} />
+
+  {groups.map((g) => (
+    <section id={g.id} class="section">
+      <div class="container">
+        <h2 class="title">{g.label}</h2>
+        <ul class="people">
+          {g.people.map((p) => {
+            const { role, company } = split(p);
+            return (
+              <li>
+                <button type="button" class="person" data-open={id(p.name)}>
+                  {p.photo && <Image src={upload(p.photo)} alt="" widths={[263, 526]} sizes="263px" class="person__photo" />}
+                  <h6>{p.name}</h6>
+                  <p>{role}</p>
+                  {company && <p>{company}</p>}
+                </button>
+                <dialog id={id(p.name)} class="bio" aria-label={p.name}>
+                  <button type="button" class="bio__close" data-close aria-label="Close"><Icon name="x" class="bio__x" /></button>
+                  <div class="bio__inner">
+                    {p.photo && <Image src={upload(p.photo)} alt={`Portrait of ${p.name}`} widths={[290, 580]} sizes="290px" class="bio__photo" />}
+                    <div class="bio__text">
+                      <h3>{p.name}</h3>
+                      <p class="bio__role">{role}</p>
+                      {p.bio.map((b) => <p set:html={b} />)}
+                    </div>
+                  </div>
+                </dialog>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  ))}
+</Layout>
+
+<script>
+  // Each card opens the person's biography in a pop-up, as on the old site; clicking outside or Esc closes it
+  document.querySelectorAll<HTMLButtonElement>('[data-open]').forEach((b) => {
+    const dialog = document.getElementById(b.dataset.open!) as HTMLDialogElement;
+    b.addEventListener('click', () => dialog.showModal());
+    dialog.querySelector('[data-close]')!.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  });
+</script>
+
+<style>
+  .people { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding-inline: 15px; margin-top: 55px; }
+  .person { display: block; width: 100%; text-align: left; background: none; border: 0; padding: 0; cursor: pointer; }
+  .person :global(.person__photo) { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top; filter: grayscale(1); margin-bottom: 10px; }
+  .person h6 { margin-bottom: 10px; }
+  .person:hover h6 { color: var(--navy); }
+
+  .bio { margin: auto; border: 0; padding: 0; max-width: 800px; width: calc(100% - 40px); overflow: visible; background: var(--white); }
+  .bio::backdrop { background: rgb(0 0 0 / 0.75); }
+  .bio__close { position: absolute; top: -45px; left: -45px; background: none; border: 0; color: var(--white); cursor: pointer; }
+  .bio :global(.bio__x) { width: 32px; height: 32px; stroke-width: 1.5; }
+  .bio__inner { display: grid; grid-template-columns: 290px 1fr; max-height: calc(100vh - 80px); }
+  .bio :global(.bio__photo) { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(1); }
+  .bio__text { padding: 50px 25px 30px; overflow-y: auto; font-size: 13px; line-height: 2; }
+  .bio__text h3 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+  .bio__role { font-size: 15px; margin-bottom: 30px; }
+  .bio__role::after { content: ''; display: block; width: 100px; height: 1px; background: var(--black); margin-top: 25px; }
+  .bio__text p + p { margin-top: 12px; }
+
+  @media (max-width: 991px) { .people { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 767px) {
+    .people { grid-template-columns: 1fr 1fr; padding-inline: 0; }
+    .bio__inner { grid-template-columns: 1fr; overflow-y: auto; }
+    .bio :global(.bio__photo) { height: 260px; }
+    .bio__close { top: -45px; left: auto; right: 0; }
+  }
+</style>

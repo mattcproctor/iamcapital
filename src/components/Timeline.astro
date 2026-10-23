@@ -1,0 +1,50 @@
+---
+// "Our History", laid out as the WP Timelines plugin did on the old site: newest first, a centre line with a navy
+// calendar badge for each year, the year on a tab beside it and the entry in a card on alternating sides.
+import Icon from './Icon.astro';
+
+interface Props { items: { year: string; title: string; points: string[] }[] }
+const items = [...Astro.props.items].reverse();
+---
+<ol class="timeline">
+  {items.map((t, i) => (
+    <li class:list={['tl', i % 2 ? 'tl--right' : 'tl--left']}>
+      <span class="tl__badge"><Icon name="faCalendar" class="tl__icon" /></span>
+      <span class="tl__year">{t.year}</span>
+      <div class="tl__card">
+        <h3>{t.title}</h3>
+        <div class="tl__text">{t.points.map((p) => <p>{p}</p>)}</div>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .timeline { position: relative; font-family: var(--font-timeline); padding: 40px 0 20px; }
+  .timeline::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: #d9dde3; }
+  .tl { position: relative; display: grid; grid-template-columns: 1fr 1fr; column-gap: 60px; margin-bottom: 30px; }
+  .tl__badge {
+    position: absolute; left: 50%; top: 0; width: 40px; height: 40px; margin-left: -20px; border-radius: 50%;
+    background: var(--navy); color: var(--white); display: grid; place-items: center; box-shadow: 0 0 0 4px var(--white);
+  }
+  .tl :global(.tl__icon) { width: 18px; height: 18px; stroke-width: 2; }
+  .tl__year {
+    align-self: start; justify-self: start; margin-top: 5px; min-width: 150px; padding: 4px 12px;
+    background: #bcc5d2; color: var(--white); font-size: 18px; line-height: 22px;
+  }
+  .tl__card { border-top: 2px solid #c6ccd5; padding: 20px; background: var(--white); box-shadow: 0 1px 0 rgb(0 0 0 / 0.04); }
+  .tl__card h3 { font-family: var(--font-timeline); font-size: 18px; line-height: 1.2; font-weight: 700; letter-spacing: 0; color: #101010; margin-bottom: 10px; }
+  .tl__text { border-top: 1px solid rgb(0 0 0 / 0.15); padding-top: 9px; font-size: 16px; line-height: 1.4; font-weight: 300; color: #101010; }
+  .tl__text p + p { margin-top: 12px; }
+  .tl--left .tl__card { grid-column: 1; grid-row: 1; }
+  .tl--left .tl__year { grid-column: 2; grid-row: 1; }
+  .tl--right .tl__card { grid-column: 2; grid-row: 1; }
+  .tl--right .tl__year { grid-column: 1; grid-row: 1; justify-self: end; text-align: right; }
+  @media (max-width: 767px) {
+    .timeline::before { left: 20px; }
+    .tl { grid-template-columns: 1fr; padding-left: 60px; }
+    .tl__badge { left: 20px; }
+    .tl--left .tl__card, .tl--right .tl__card { grid-column: 1; grid-row: 2; margin-top: 10px; }
+    .tl--left .tl__year, .tl--right .tl__year { grid-column: 1; grid-row: 1; justify-self: start; text-align: left; }
+  }
+</style>

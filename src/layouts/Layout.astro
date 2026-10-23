@@ -1,115 +1,106 @@
 ---
-// The page shell every page shares: the head (meta, social tags, fonts, styles, structured data, Vercel Web Analytics),
-// the header and the footer. Pages pass their own title, description and address, and their scripts in the
-// "scripts" slot, which comes after the footer.
+// The page shell every page shares: the head (meta, social tags, fonts, structured data),
+// the header and the footer. Pages pass their title, description and, optionally, a social image and whether the
+// header sits over a full-bleed photo. Extra head tags go in the "head" slot and page scripts in the "scripts" slot.
+import '@fontsource/overpass/400-italic.css';
+import '@fontsource/lato/400.css';
+import '@fontsource/lato/700.css';
+import '@fontsource/source-sans-3/300.css';
+import '@fontsource/source-sans-3/400.css';
+import '@fontsource/source-sans-3/700.css';
+import fontFaces from '../styles/overpass.css?raw';
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-// Fonts and styles go inline, so the first paint waits for no stylesheet request. Overpass is self-hosted with
-// Google Fonts' own @font-face rules and files (src/styles/overpass.css); public/investments.css stays served as it was.
-import fontFaces from '../styles/overpass.css?raw';
-import styles from '../../public/investments.css?raw';
+import { upload } from '../lib/images';
+import { contact } from '../data/site';
 
 interface Props {
   title: string;
-  socialTitle: string;
   description: string;
-  url: string;
+  image?: string; // a path in src/assets/uploads
+  overlay?: boolean;
+  subnav?: { id: string; label: string }[];
+  noindex?: boolean;
 }
 
-const { title, socialTitle, description, url } = Astro.props;
+const { title, description, image = '2023/01/pexels-john-smith-726484.jpg', overlay = false, subnav = [], noindex = false } = Astro.props;
+const fullTitle = title === 'iAM Capital' ? 'iAM Capital | A Global Alternative Investment Group' : `${title} - iAM Capital`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const social = await getImage({ src: upload(image), width: 1200, format: 'jpg' });
+const socialUrl = new URL(social.src, Astro.site);
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
-    <meta name="description" content={description}>
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href={url} />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow" />}
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#19375f" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="images/branding/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="images/branding/favicon-192x192.png">
-    <link rel="apple-touch-icon" href="images/branding/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/branding/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/branding/favicon-192x192.png" />
+  <link rel="apple-touch-icon" href="/images/branding/apple-touch-icon.png" />
+  <link rel="sitemap" href="/sitemap.xml" />
 
-    <!-- Open Graph / Social -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content={socialTitle}>
-    <meta property="og:description" content={description}>
-    <meta property="og:url" content={url}>
-    <meta property="og:image" content="https://iamcapital.vercel.app/images/branding/favicon-192x192.png">
-    <meta property="og:site_name" content="iAM Capital">
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="iAM Capital" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={socialUrl} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={socialUrl} />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content={socialTitle}>
-    <meta name="twitter:description" content={description}>
-    <meta name="twitter:image" content="https://iamcapital.vercel.app/images/branding/favicon-192x192.png">
+  <link rel="preload" href="/fonts/overpass/qFdH35WCmI96Ajtm81GlU9vgwBcI.woff2" as="font" type="font/woff2" crossorigin />
+  <style is:inline set:html={fontFaces}></style>
 
-    <!-- Preload critical assets (the Latin font at low priority: text paints in the fallback first, as before) -->
-    <link rel="preconnect" href="https://maps.googleapis.com">
-    <link rel="preconnect" href="https://maps.gstatic.com" crossorigin>
-    <link rel="preload" href="/fonts/overpass/qFdH35WCmI96Ajtm81GlU9vgwBcI.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low">
+  <script is:inline>
+    document.documentElement.classList.add('js');
+    // afterFirstPaint(fn): runs fn once the page has painted (the investments page loads Google Maps then)
+    window.afterFirstPaint = function (fn) {
+      var done = false;
+      function run() { if (!done) { done = true; setTimeout(fn, 0); } }
+      try {
+        new PerformanceObserver(function (list) {
+          if (list.getEntriesByName('first-contentful-paint').length) run();
+        }).observe({ type: 'paint', buffered: true });
+      } catch (e) { addEventListener('load', run); }
+      setTimeout(run, 3000);
+    };
+  </script>
 
-    <!-- Stylesheets -->
-    <style is:inline set:html={fontFaces}></style>
-    <style is:inline set:html={styles}></style>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: contact.company,
+    url: 'https://iamcapital.com',
+    logo: new URL('/images/branding/favicon-192x192.png', Astro.site).href,
+    description: 'A European private equity investment group specialising in real estate and hospitality-led strategies.',
+    foundingDate: '1997',
+    address: { '@type': 'PostalAddress', streetAddress: contact.street, addressLocality: contact.city, postalCode: contact.postcode, addressCountry: 'GB' },
+    telephone: contact.phones[0].replace(/\s/g, ''),
+    email: contact.emails.general,
+    sameAs: [contact.linkedin],
+  })} />
 
-    <!-- afterFirstPaint(fn): runs fn once the page has painted (the Google Map and its data load then, behind the
-         loading overlay that covers the map until the properties arrive) -->
-    <script is:inline>
-        window.afterFirstPaint = function (fn) {
-            var done = false;
-            function run() { if (!done) { done = true; setTimeout(fn, 0); } }
-            try {
-                new PerformanceObserver(function (list) {
-                    if (list.getEntriesByName('first-contentful-paint').length) run();
-                }).observe({ type: 'paint', buffered: true });
-            } catch (e) { addEventListener('load', run); }
-            setTimeout(run, 3000);
-        };
-    </script>
-
-    <!-- Structured Data -->
-    <script is:inline type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "iAM Capital Group Ltd",
-        "url": "https://iamcapital.com",
-        "logo": "https://iamcapital.vercel.app/images/branding/iam-capital-logo.webp",
-        "description": "A global alternative investment group with a portfolio spanning residential, commercial, hospitality, and renewable energy sectors across Europe.",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "4 Hill Street",
-            "addressLocality": "London",
-            "postalCode": "W1J 5NE",
-            "addressCountry": "GB"
-        },
-        "telephone": "+442075149200",
-        "email": "info@iamcapital.com",
-        "sameAs": [
-            "https://www.linkedin.com/company/iam-capital/"
-        ]
-    }
-    </script>
-
-    <!-- Vercel Web Analytics -->
-    <script is:inline>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <script is:inline defer src="/_vercel/insights/script.js"></script>
+  <!-- Analytics: turn on Cloudflare Web Analytics for the Pages project in the Cloudflare dashboard, which adds its
+       cookieless beacon to every page; nothing is needed here. -->
+  <slot name="head" />
 </head>
 <body>
-    <!-- Header/Navigation -->
-    <Header />
-    <main>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <Header overlay={overlay} subnav={subnav} />
+  <main id="main">
     <slot />
-    </main>
-    <!-- Footer -->
-    <!-- Footer -->
-    <Footer />
-    <slot name="scripts" />
+  </main>
+  <Footer />
+  <slot name="scripts" />
 </body>
 </html>

@@ -1,21 +1,125 @@
-<header class="header">
-        <div class="header__container">
-            <a href="https://iamcapital.com/" class="logo">
-                <img src="images/branding/iam-capital-logo.webp" alt="iAM Capital" width="665" height="230" />
-            </a>
+---
+// The site header as on the old site: logo left, the seven main links right, and on most inner pages a second row of
+// in-page links under them. On the home page it sits over the photo in white and turns white once the page scrolls.
+import { Image } from 'astro:assets';
+import { nav } from '../data/site';
+import { upload } from '../lib/images';
 
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+interface Props { overlay?: boolean; subnav?: { id: string; label: string }[] }
+const { overlay = false, subnav = [] } = Astro.props;
+---
+<header class:list={['header', { 'header--overlay': overlay, 'header--sub': subnav.length > 0 }]} data-header>
+  <div class="header__inner">
+    <a href="/" class="header__logo" aria-label="iAM Capital home">
+      <Image class="logo-dark" src={upload('2023/01/logo.png')} alt="" widths={[181, 362]} sizes="181px" loading="eager" />
+      <Image class="logo-light" src={upload('2022/12/iAMCapital.png')} alt="" widths={[181, 362]} sizes="181px" loading="eager" />
+    </a>
+    <button class="header__toggle" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+      <span class="sr-only">Menu</span><span class="bars" aria-hidden="true"></span>
+    </button>
+    <div class="header__menus" id="site-nav">
+      <nav aria-label="Main">
+        <ul class="menu">{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+      </nav>
+      {subnav.length > 0 && (
+        <nav aria-label="On this page" class="submenu-desktop">
+          <ul class="submenu">{subnav.map((s) => <li><a href={`#${s.id}`}>{s.label}</a></li>)}</ul>
+        </nav>
+      )}
+    </div>
+  </div>
+  {subnav.length > 0 && (
+    <nav aria-label="On this page" class="submenu-mobile">
+      <ul class="submenu">{subnav.map((s) => <li><a href={`#${s.id}`}>{s.label}</a></li>)}</ul>
+    </nav>
+  )}
+</header>
 
-            <nav class="nav" aria-label="Main navigation">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="https://iamcapital.com/about/" class="nav__link">About</a></li>
-                    <li class="nav__item"><a href="https://iamcapital.vercel.app/investments" class="nav__link">Investments</a></li>
-                    <li class="nav__item"><a href="https://iamcapital.com/team/" class="nav__link">Team</a></li>
-                    <li class="nav__item"><a href="https://iamcapital.com/responsibility/" class="nav__link">Responsibility</a></li>
-                    <li class="nav__item"><a href="https://iamcapital.com/investor-relations/" class="nav__link">Investor Relations</a></li>
-                    <li class="nav__item"><a href="https://iamcapital.com/latest-news/" class="nav__link">News</a></li>
-                    <li class="nav__item"><a href="https://iamcapital.com/contact/" class="nav__link">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = header.querySelector<HTMLButtonElement>('[data-nav-toggle]')!;
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+  onScroll();
+  addEventListener('scroll', onScroll, { passive: true });
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    header.classList.toggle('is-open', open);
+  });
+  header.querySelectorAll('.header__menus a').forEach((a) =>
+    a.addEventListener('click', () => { toggle.setAttribute('aria-expanded', 'false'); header.classList.remove('is-open'); }),
+  );
+</script>
+
+<style>
+  .header { position: sticky; top: 0; z-index: 50; background: var(--white); height: 80px; transition: background 0.3s ease, box-shadow 0.3s ease; }
+  .header--sub { height: var(--header-h); }
+  .header.is-scrolled { box-shadow: 0 1px 12px rgb(0 0 0 / 0.08); }
+  .header__inner {
+    width: min(100% - 30px, 1140px); margin-inline: auto; height: 100%;
+    display: flex; justify-content: space-between; align-items: flex-start; padding-top: 15px;
+  }
+  .header:not(.header--sub) .header__inner { align-items: center; padding-top: 0; }
+  .header__logo { display: block; width: 181px; flex: none; }
+  .header__logo :global(img) { width: 181px; height: auto; }
+  .logo-light { display: none; }
+
+  .header__menus { display: flex; flex-direction: column; align-items: flex-end; }
+  .menu { display: flex; gap: 20px; }
+  .menu a { font-weight: 600; font-size: 16px; line-height: 30.4px; color: var(--navy); display: block; transition: opacity 0.2s; }
+  .menu a:hover { opacity: 0.7; }
+  .submenu { display: flex; gap: 10px; margin-top: 10px; }
+  .submenu a { font-size: 15px; line-height: 28.5px; color: var(--black); }
+  .submenu a:hover { color: var(--navy); }
+
+  /* Home: transparent over the photo, logo and links white, until the page scrolls */
+  .header--overlay { position: fixed; inset: 0 0 auto; height: 150px; background: transparent; }
+  .header--overlay .header__inner { align-items: flex-start; padding-top: 56px; }
+  .header--overlay .menu a { color: var(--white); }
+  .header--overlay .logo-dark { display: none; }
+  .header--overlay .logo-light { display: block; }
+  .header--overlay.is-scrolled, .header--overlay.is-open { height: 80px; background: var(--white); }
+  .header--overlay.is-scrolled .header__inner, .header--overlay.is-open .header__inner { padding-top: 0; align-items: center; }
+  .header--overlay.is-scrolled .menu a, .header--overlay.is-open .menu a { color: var(--navy); }
+  .header--overlay.is-scrolled .logo-dark, .header--overlay.is-open .logo-dark { display: block; }
+  .header--overlay.is-scrolled .logo-light, .header--overlay.is-open .logo-light { display: none; }
+
+  .header__toggle { display: none; }
+  .submenu-mobile { display: none; }
+
+  @media (max-width: 991px) {
+    .header, .header--sub, .header--overlay { height: 78px; }
+    .header--sub { height: auto; }
+    .header--sub .header__inner { height: 78px; }
+    .header__inner, .header--overlay .header__inner { align-items: center; padding-top: 0; }
+    /* On phones the in-page links stay in the header under the logo, as on the old site */
+    .submenu-desktop { display: none; }
+    .submenu-mobile { display: block; width: min(100% - 30px, 1140px); margin-inline: auto; padding-bottom: 10px; }
+    .submenu-mobile .submenu { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 0 10px; margin: 0; }
+    .submenu-mobile .submenu a { font-size: 14px; padding: 4px 0; }
+    .is-open .submenu-mobile { display: none; }
+    .header__logo, .header__logo :global(img) { width: 110px; }
+    .header__toggle {
+      display: grid; place-items: center; width: 44px; height: 44px; background: none; border: 0; cursor: pointer;
+    }
+    .bars, .bars::before, .bars::after { display: block; width: 24px; height: 2px; background: var(--navy); content: ''; transition: transform 0.3s, background 0.3s; }
+    .bars { position: relative; }
+    .bars::before { position: absolute; top: -7px; }
+    .bars::after { position: absolute; top: 7px; }
+    .header--overlay:not(.is-scrolled, .is-open) .bars,
+    .header--overlay:not(.is-scrolled, .is-open) .bars::before,
+    .header--overlay:not(.is-scrolled, .is-open) .bars::after { background: var(--white); }
+    .is-open .bars { background: transparent !important; }
+    .is-open .bars::before { transform: translateY(7px) rotate(45deg); }
+    .is-open .bars::after { transform: translateY(-7px) rotate(-45deg); }
+    .header__menus {
+      position: fixed; top: 78px; left: 0; right: 0; bottom: 0; background: var(--white); overflow-y: auto;
+      align-items: stretch; padding: 10px 15px 30px; display: none;
+    }
+    .is-open .header__menus { display: flex; }
+    .menu, .submenu { flex-direction: column; gap: 0; }
+    .menu a, .header--overlay .menu a { color: var(--navy); font-size: 18px; padding: 12px 0; border-bottom: 1px solid #e6e6e6; }
+    .submenu { margin-top: 15px; }
+    .submenu a { padding: 6px 0; }
+  }
+</style>

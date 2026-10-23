@@ -1,0 +1,286 @@
+{
+  "intros": {
+    "active:Real Estate Funds": "iAM Capital brings over five decades of experience in real estate investment and fund management. We leverage deep local market insight to source off-market opportunities, unlock underutilised assets, and execute focused co-investments and direct acquisitions. Through structured financing and strong funding partnerships, we target distressed assets in recovering markets with clear, achievable exit strategies and compelling risk-adjusted returns.",
+    "active:Alternatives": "This alternative investment complements our real estate strategy by providing exposure to a differentiated asset class. It enhances overall portfolio diversification while maintaining a disciplined, risk-adjusted return profile.",
+    "exited:Real Estate Funds": "Our strategy centres on hands-on asset management and selective exit timing. By crystallising value at the appropriate point in the market cycle, we aim to optimise returns for our investors.",
+    "exited:Renewable Energy": "iAM Capital creates value in renewable energy by consolidating and refinancing fragmented secondary assets in a rapidly growing sector driven by global demand and energy market volatility. These projects offer uncorrelated real-asset exposure, long-term revenue stability, and attractive exit potential.",
+    "exited:Alternatives": "iAM Capital’s track record in alternative investments spans over two decades. The company was listed on the London Stock Exchange between 1997 and 2009. In 2009, iAM Capital sold its onshore hedge fund business to Deutsche Bank and has since broadened its investment activities."
+  },
+  "funds": [
+    {
+      "portfolio": "active",
+      "category": "Real Estate Funds",
+      "image": "2026/02/france.jpg",
+      "name": "iAM Capital Europe II (“ICE II”) Fund",
+      "launched": "2020",
+      "summary": [
+        "ICE II is iAM Capital’s second-generation real estate fund that has successfully deployed its capital across hospitality and residential investments in Rome, Milan and Paris, with a total transaction value of c. €70M as of year-end 2022.",
+        "The fund has successfully returned significant capital back to its investors during the investment period."
+      ],
+      "facts": [
+        {
+          "label": "First Close",
+          "value": "Q4 2020"
+        },
+        {
+          "label": "Investment Manager",
+          "value": "iAM Invest Ltd / Fundsight S.A. (AIFM)"
+        },
+        {
+          "label": "Fund Type",
+          "value": "Closed-end"
+        },
+        {
+          "label": "Industry Emphasis",
+          "value": "Hospitality, Mixed-use & Residential real estate assets"
+        },
+        {
+          "label": "Investment Style",
+          "value": "Value-add"
+        },
+        {
+          "label": "Geographical Focus",
+          "value": "Italy and France"
+        },
+        {
+          "label": "Investment Strategy",
+          "value": "Syndications and co-investments with local investors and partners, who invest their own funds and proactively manage the properties"
+        }
+      ]
+    },
+    {
+      "portfolio": "active",
+      "category": "Real Estate Funds",
+      "image": "2026/02/italy-scaled.jpeg",
+      "name": "iAM Capital Europe III (“ICE III”) Fund",
+      "launched": "2023",
+      "summary": [
+        "Following on from the success of IREO and ICE II, we launched our third-generation real estate fund that focuses on creating long-term capital growth through value-add strategies focused on the Southern European market."
+      ],
+      "facts": [
+        {
+          "label": "First Close",
+          "value": "Q3 2023"
+        },
+        {
+          "label": "Investment Manager",
+          "value": "iAM Invest Ltd / Fundsight S.A. (AIFM)"
+        },
+        {
+          "label": "Fund Type",
+          "value": "Closed-end"
+        },
+        {
+          "label": "Industry Emphasis",
+          "value": "Hospitality, Mixed-use & Residential real estate assets"
+        },
+        {
+          "label": "Investment Style",
+          "value": "Value-add"
+        },
+        {
+          "label": "Geographical Focus",
+          "value": "Southern Europe"
+        },
+        {
+          "label": "Investment Strategy",
+          "value": "Acquisition of controlling stake in real estate assets with a view to repurpose or reposition existing assets and to refurbish aged stock"
+        }
+      ]
+    },
+    {
+      "portfolio": "active",
+      "category": "Alternatives",
+      "image": "2026/02/NJ.png",
+      "name": "iAM Capital U.S. Tax Lien Program SPV",
+      "launched": "2019",
+      "summary": [
+        "As part of our Special Situations platform, iAM Capital sponsors dedicated U.S. investment vehicles focused on municipal tax sale certificates in New Jersey.",
+        "This strategy provides capital to local authorities to recover unpaid property taxes, supporting public services and neighbourhood stabilisation, while offering investors asset-backed exposure with structured downside protection.<br>The investment approach prioritises redemption outcomes and responsible asset management, with foreclosure pursued only where necessary and in full compliance with statutory protections."
+      ],
+      "facts": [
+        {
+          "label": "Inception Date",
+          "value": "2019"
+        },
+        {
+          "label": "Vehicle Types",
+          "value": "Special Purpose Investment Vehicles (SPVs)"
+        },
+        {
+          "label": "Industry Focus",
+          "value": "Municipal tax certificates / Asset-backed real estate credit"
+        },
+        {
+          "label": "Investment Style",
+          "value": "Asset-backed special situations"
+        },
+        {
+          "label": "Geographical Focus",
+          "value": "United States (East Coast)"
+        },
+        {
+          "label": "Investment Strategy",
+          "value": "Acquisition of municipal tax sale certificates secured against residential and mixed-use real estate assets."
+        }
+      ]
+    },
+    {
+      "portfolio": "exited",
+      "category": "Real Estate Funds",
+      "image": "2026/02/luxombourg.jpg",
+      "name": "Integrated Real Estate Opportunities (“IREO”) Fund",
+      "launched": "2015",
+      "summary": [
+        "The IREO fund is a closed-end fund launched in April 2015 and incorporated in Luxembourg. IREO invests in a diversified portfolio of residential, retail, office and mixed-use assets in highly liquid markets and in attractively priced locations where we have strong and established partnerships.",
+        "The fund’s real estate investments include a portfolio of properties in Italy, France and the US."
+      ],
+      "facts": [
+        {
+          "label": "Inception Date",
+          "value": "April 2015"
+        },
+        {
+          "label": "Investment Manager",
+          "value": "iAM Invest Ltd / Lemanik (AIFM)"
+        },
+        {
+          "label": "Fund Type",
+          "value": "Closed-end"
+        },
+        {
+          "label": "Industry Emphasis",
+          "value": "Real Estate – Residential, retail, hospitality, and mixed-use assets"
+        },
+        {
+          "label": "Investment Style",
+          "value": "Value-add"
+        },
+        {
+          "label": "Geographical Focus",
+          "value": "Central and Southern Europe, and selectively East Coast US"
+        },
+        {
+          "label": "Investment Strategy",
+          "value": "Syndications and co-investments with local investors and partners, who invest their own funds and proactively manage the properties"
+        }
+      ]
+    },
+    {
+      "portfolio": "exited",
+      "category": "Renewable Energy",
+      "image": "2026/02/Solar.jpg",
+      "name": "Integrated Green Opportunities (“IGO”) Fund",
+      "launched": "2015",
+      "summary": [
+        "The IGO fund was a closed-end fund launched in September 2015. In one of the Italy’s largest solar transactions of 2016, iAM Capital, through IGO and other investment vehicles, concluded the €127M acquisition of a portfolio of 11 solar energy companies (located in 30 separate sites) owning photovoltaic installations spread across Italy with a total output of 34.5MWp.",
+        "This portfolio was sold in 2019 and IGO was fully liquidated in 2020. iAM Capital has since continued its investments into solar PV plants through separate vehicles and intends to sustain this strategy in 2023 and beyond."
+      ],
+      "facts": [
+        {
+          "label": "Inception Date",
+          "value": "September 2015"
+        },
+        {
+          "label": "Investment Manager",
+          "value": "iAM Invest Ltd / Lemanik (AIFM)"
+        },
+        {
+          "label": "Fund Type",
+          "value": "Closed-end"
+        },
+        {
+          "label": "Industry Emphasis",
+          "value": "Renewable Energy – Solar Photovoltaic Plants"
+        },
+        {
+          "label": "Geographical Focus",
+          "value": "Southern Europe, particularly Italy"
+        },
+        {
+          "label": "Investment Strategy",
+          "value": "Investing in proprietary green energy projects along with local partners through syndications, direct investments, SPVs and various debt structures"
+        }
+      ]
+    },
+    {
+      "portfolio": "exited",
+      "category": "Alternatives",
+      "image": "2026/02/AdobeStock_588733664-scaled.jpeg",
+      "name": "Integrated Alternative Opportunities (“IAO”) Fund",
+      "launched": "2014",
+      "summary": [
+        "The IAO Fund is an open-ended fund launched in August 2014. IAO offers total return exposure to the alternatives market through a concentrated portfolio of hedge funds, real estate and green energy funds, equity and debt securities.",
+        "The fund pursues opportunistic strategies by identifying and capitalising on market anomalies and arbitrage opportunities. The fund seeks to deliver attractive and sustainable risk-adjusted returns with low volatility across a full market cycle."
+      ],
+      "facts": [
+        {
+          "label": "Inception Date",
+          "value": "August 2014"
+        },
+        {
+          "label": "Investment Manager",
+          "value": "iAM Invest Ltd / Lemanik (AIFM)"
+        },
+        {
+          "label": "Fund Type",
+          "value": "Open-end"
+        },
+        {
+          "label": "Investment Style",
+          "value": "Alternative multi-strategy"
+        },
+        {
+          "label": "Risk Profile",
+          "value": "Sustainable, risk-adjusted returns with low volatility"
+        },
+        {
+          "label": "Investment Portfolio",
+          "value": "Hedge funds, real estate and renewable energy funds, single stocks and debt securities"
+        },
+        {
+          "label": "Investment Strategy",
+          "value": "Value Add – identifying market anomalies and arbitrages"
+        }
+      ]
+    },
+    {
+      "portfolio": "exited",
+      "category": "Alternatives",
+      "image": "2026/02/Fintech.jpg",
+      "name": "FinTLV Ventures L.P. Fund",
+      "launched": "2018",
+      "summary": [
+        "iAM Capital, together with Kidron Corporate Advisors (New York), sponsored a FinTech fund in collaboration with FinTLV, a venture capital partner that provides financial investment primarily to Fintech Proof-of-Concept (“POC”) stage start-ups.",
+        "FinTLV is headquartered in Tel Aviv, Israel, and hosts innovation zones across the globe (Tel Aviv, New York, and Cologne). The innovation zones provide a forum for start-ups and for FinTech companies to share space and meet with insurance companies and financial institutions actively seeking proprietary technology solutions.",
+        "The FinTLV Fintech Fund is now closed to new investors, having been oversubscribed."
+      ],
+      "facts": [
+        {
+          "label": "Inception Date",
+          "value": "September 2018"
+        },
+        {
+          "label": "Investment Manager",
+          "value": "FinTLV"
+        },
+        {
+          "label": "Fund Type",
+          "value": "Value Add – identifying market anomalies and arbitrages"
+        },
+        {
+          "label": "Industry Emphasis",
+          "value": "Early & growth stage companies operating in the FinTech and InsureTech sectors"
+        },
+        {
+          "label": "Geographical Focus",
+          "value": "Israel, whilst proactively exploring opportunities in the US and UK"
+        },
+        {
+          "label": "Investment Strategy",
+          "value": "Early stage and Series A investments in companies with a distinctive technology edge, where the Fund can add value through its strategic partnerships and creative financial deal structures"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/Banner.astro';
+import PostGrid from '../components/PostGrid.astro';
+import documents from '../data/documents.json';
+---
+<Layout
+  title="Investor Relations"
+  description="iAM Capital shareholder notices, AGM and EGM notices, annual reports and financial statements."
+  image="2018/11/annualreports.jpg"
+  subnav={[{ id: 'shareholder', label: 'Shareholder Notices' }, { id: 'reports', label: 'Annual Reports' }]}
+>
+  <Banner title="Investor Relations" image="2018/11/annualreports.jpg" shade={0.37} />
+
+  <section class="intro">
+    <div class="container">
+      <p>iAM Capital believes in transparency and accessibility for its investors through the fair, accurate and transparent assessment of iAM Capital’s performance. Current financial information and annual reports are readily available for all shareholders and interested parties.</p>
+    </div>
+  </section>
+
+  <section id="shareholder" class="section list">
+    <div class="container">
+      <h2 class="title title--wide">Shareholder Notices</h2>
+      <PostGrid docs={documents.shareholderNotices} />
+    </div>
+  </section>
+
+  <section id="reports" class="section list">
+    <div class="container">
+      <h2 class="title title--wide">Annual Reports</h2>
+      <PostGrid docs={documents.annualReports} />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .intro { padding: 85px 0 10px; text-align: justify; }
+  .list { padding-bottom: 40px; }
+</style>

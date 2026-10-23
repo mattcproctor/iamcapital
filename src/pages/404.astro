@@ -1,0 +1,20 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/Banner.astro';
+import { nav } from '../data/site';
+---
+<Layout title="Page not found" description="The page you were looking for could not be found." noindex>
+  <Banner title="Page not found" image="2023/01/about.jpg" shade={0.3} />
+  <section class="section">
+    <div class="container">
+      <p class="lead">The page you were looking for has moved or no longer exists. Try one of these instead:</p>
+      <ul class="links">{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .links { display: flex; flex-wrap: wrap; gap: 10px 30px; margin-top: 25px; }
+  .links a { color: var(--navy); font-weight: 600; }
+  .links a:hover { opacity: 0.7; }
+</style>

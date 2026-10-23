@@ -1,0 +1,73 @@
+---
+// The four-across grid of documents used for notices, reports, press and events on the old site: title, month, a navy
+// rule and "Read more", eight to a page with numbered pages under the grid.
+import Icon from './Icon.astro';
+import { monthYear, isExternal } from '../lib/format';
+
+interface Doc { title: string; date: string; url: string; kind: string }
+interface Props { docs: Doc[]; perPage?: number; cards?: boolean }
+const { docs, perPage = 8, cards = false } = Astro.props;
+const pages = Math.ceil(docs.length / perPage);
+const newTab = (d: Doc) => d.kind === 'pdf' || isExternal(d.url);
+---
+<div class="posts" data-posts data-per-page={perPage}>
+  <ul class:list={['posts__grid', { 'posts__grid--cards': cards }]}>
+    {docs.map((d, i) => (
+      <li class="post" data-page={Math.floor(i / perPage) + 1}>
+        <p class="post__title">{d.title}</p>
+        <p class="post__date">{monthYear(d.date)}</p>
+        <a class="post__more" href={d.url} {...(newTab(d) ? { target: '_blank', rel: 'noopener' } : {})}>
+          Read more <Icon name="arrowRight" class="post__arrow" />
+          <span class="sr-only">: {d.title}{newTab(d) ? ' (opens in a new tab)' : ''}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  {pages > 1 && (
+    <nav class="pager" aria-label="Pages" hidden>
+      {Array.from({ length: pages }, (_, i) => <button type="button" data-goto={i + 1} aria-current={i === 0 ? 'page' : undefined}>{i + 1}</button>)}
+    </nav>
+  )}
+</div>
+
+<script>
+  // Without JavaScript every document shows; with it, eight per page as on the old site
+  document.querySelectorAll<HTMLElement>('[data-posts]').forEach((box) => {
+    const pager = box.querySelector<HTMLElement>('.pager');
+    if (!pager) return;
+    const items = [...box.querySelectorAll<HTMLElement>('[data-page]')];
+    const buttons = [...pager.querySelectorAll<HTMLButtonElement>('[data-goto]')];
+    const show = (n: number) => {
+      items.forEach((it) => (it.hidden = it.dataset.page !== String(n)));
+      buttons.forEach((b) => (b.dataset.goto === String(n) ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current')));
+    };
+    pager.hidden = false;
+    show(1);
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      show(Number(b.dataset.goto));
+      box.scrollIntoView({ block: 'start' });
+    }));
+  });
+</script>
+
+<style>
+  .posts { scroll-margin-top: calc(var(--header-h) + 20px); }
+  .posts__grid { display: grid; grid-template-columns: repeat(4, 263px); justify-content: center; }
+  .post { min-height: 285px; padding: 10px 20px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; text-align: center; }
+  .post[hidden] { display: none; }
+  .post__date { color: var(--navy); margin-top: 10px; }
+  .post__date::after { content: ''; display: block; width: 190px; height: 5px; background: var(--navy); margin: 20px auto 0; }
+  .post__more { display: inline-flex; align-items: center; gap: 10px; text-transform: uppercase; padding: 14px 42px; margin-top: 10px; }
+  .post__more:hover { color: var(--navy); }
+  .post :global(.post__arrow) { width: 16px; height: 16px; transition: transform 0.2s; }
+  .post__more:hover :global(.post__arrow) { transform: translateX(3px); }
+  .posts__grid--cards { gap: 0 20px; justify-content: start; }
+  .posts__grid--cards .post { background: var(--white); min-height: 300px; }
+
+  .pager { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+  .pager button { min-width: 32px; height: 44px; background: none; border: 0; color: var(--navy); cursor: pointer; }
+  .pager button[aria-current] { color: rgb(25 55 95 / 0.25); border: 1px solid rgb(25 55 95 / 0.15); cursor: default; }
+
+  @media (max-width: 1099px) { .posts__grid { grid-template-columns: repeat(2, minmax(0, 263px)); } }
+  @media (max-width: 575px) { .posts__grid { grid-template-columns: minmax(0, 300px); } .post { min-height: 0; padding-top: 30px; } .post__title { font-weight: 700; } }
+</style>

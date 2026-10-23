@@ -1,0 +1,61 @@
+---
+// Icons. Where the old site used Font Awesome, these are the same Font Awesome Free glyphs (CC BY 4.0; the licence
+// note stays inside each SVG). Where it used Brizy's licensed Nucleo set, the closest Font Awesome Free glyph (for its
+// solid icons) or Lucide outline icon (ISC licence, for its outline icons) stands in.
+import mapPin from 'lucide-static/icons/map-pin.svg?raw';
+import earth from 'lucide-static/icons/earth.svg?raw';
+import gantt from 'lucide-static/icons/chart-no-axes-gantt.svg?raw';
+import binoculars from 'lucide-static/icons/binoculars.svg?raw';
+import scale from 'lucide-static/icons/scale.svg?raw';
+import building from 'lucide-static/icons/building-2.svg?raw';
+import landmark from 'lucide-static/icons/landmark.svg?raw';
+import shield from 'lucide-static/icons/shield-check.svg?raw';
+import search from 'lucide-static/icons/search.svg?raw';
+import check from 'lucide-static/icons/check.svg?raw';
+import clipboard from 'lucide-static/icons/clipboard-list.svg?raw';
+import presentation from 'lucide-static/icons/presentation.svg?raw';
+import trending from 'lucide-static/icons/trending-up.svg?raw';
+import phone from 'lucide-static/icons/phone.svg?raw';
+import printer from 'lucide-static/icons/printer.svg?raw';
+import mail from 'lucide-static/icons/mail.svg?raw';
+import arrowRight from 'lucide-static/icons/arrow-right.svg?raw';
+import arrowLeft from 'lucide-static/icons/arrow-left.svg?raw';
+import calendar from 'lucide-static/icons/calendar.svg?raw';
+import x from 'lucide-static/icons/x.svg?raw';
+import chevronDown from 'lucide-static/icons/chevron-down.svg?raw';
+import chevronLeft from 'lucide-static/icons/chevron-left.svg?raw';
+import chevronRight from 'lucide-static/icons/chevron-right.svg?raw';
+import circleChevronDown from 'lucide-static/icons/circle-chevron-down.svg?raw';
+import faCircleChevronDown from '@fortawesome/fontawesome-free/svgs/solid/circle-chevron-down.svg?raw';
+import faLinkedin from '@fortawesome/fontawesome-free/svgs/brands/linkedin-in.svg?raw';
+import faSearch from '@fortawesome/fontawesome-free/svgs/solid/magnifying-glass.svg?raw';
+import faCheck from '@fortawesome/fontawesome-free/svgs/solid/check.svg?raw';
+import faFile from '@fortawesome/fontawesome-free/svgs/solid/file-lines.svg?raw';
+import faVideo from '@fortawesome/fontawesome-free/svgs/solid/video.svg?raw';
+import faChart from '@fortawesome/fontawesome-free/svgs/solid/chart-column.svg?raw';
+import faPin from '@fortawesome/fontawesome-free/svgs/solid/location-dot.svg?raw';
+import faPhone from '@fortawesome/fontawesome-free/svgs/solid/phone.svg?raw';
+import faPrint from '@fortawesome/fontawesome-free/svgs/solid/print.svg?raw';
+import faEnvelope from '@fortawesome/fontawesome-free/svgs/solid/envelope.svg?raw';
+import faCalendar from '@fortawesome/fontawesome-free/svgs/solid/calendar-days.svg?raw';
+const fa = (svg: string) => svg.replace('<svg ', '<svg fill="currentColor" ');
+
+
+const icons = {
+  mapPin, earth, gantt, binoculars, scale, building, landmark, shield, search, check, clipboard, presentation,
+  trending, phone, printer, mail, arrowRight, arrowLeft, calendar, x, chevronDown, chevronLeft, chevronRight,
+  circleChevronDown,
+  linkedin: fa(faLinkedin), faCircleChevronDown: fa(faCircleChevronDown), faSearch: fa(faSearch), faCheck: fa(faCheck),
+  faFile: fa(faFile), faVideo: fa(faVideo), faChart: fa(faChart), faPin: fa(faPin), faPhone: fa(faPhone),
+  faPrint: fa(faPrint), faEnvelope: fa(faEnvelope), faCalendar: fa(faCalendar),
+};
+export type IconName = keyof typeof icons;
+
+interface Props { name: IconName; class?: string; label?: string }
+const { name, class: cls = 'icon', label } = Astro.props;
+const svg = icons[name]
+  .replace(/<svg([^>]*)class="[^"]*"/, '<svg$1')
+  .replace('<svg', `<svg class="${cls}" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}`)
+  .replace(/ width="24" height="24"/, '');
+---
+<Fragment set:html={svg} />

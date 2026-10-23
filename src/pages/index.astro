@@ -1,0 +1,188 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { upload } from '../lib/images';
+
+const counters = [
+  { end: 50, prefix: '', suffix: '+', label: 'Transactions' },
+  { end: 120000, prefix: '', suffix: '+', label: 'sqm of Real Estate Assets' },
+  { end: 7, prefix: '', suffix: '+', label: 'Major European cities and resorts' },
+  { end: 300, prefix: '€', suffix: 'M+', label: 'Transaction Value' },
+];
+
+const features = [
+  { title: 'Local Market Expertise', text: 'Deep knowledge of Southern European markets with on-the-ground presence and relationships.' },
+  { title: 'Sector Specialisation', text: 'Dedicated focus on hospitality and real estate, with proven operational capabilities.' },
+  { title: 'Operational Excellence', text: 'Active asset management approach driving performance improvements and value creation.' },
+  { title: 'Strategic Partnerships', text: 'Established relationships with premier operators and service providers across our markets.' },
+];
+
+const columns = [
+  { icon: 'earth', title: 'Geographic Focus', points: ['Active expansion across Southern Europe', 'Strong presence in Italy, France, with an expanding footprint in Spain', 'Prime locations in cultural and tourism hubs'] },
+  { icon: 'gantt', title: 'Recent Activity', points: ['Recent acquisitions in Madrid, Córdoba, and San Sebastián', 'Strategic partnership with CATS Hostels', 'Active repositioning initiatives across the portfolio'] },
+  { icon: 'binoculars', title: 'Forward Outlook', points: ['Continued focus on hospitality and mixed-use platforms', 'Scaling operations with best-in-class partners', 'Value creation through renovation and repositioning'] },
+] as const;
+const fmt = (n: number) => n.toLocaleString('en-GB');
+---
+<Layout
+  title="iAM Capital"
+  description="iAM Capital is a European private equity investment group aiming to generate value for investors by deploying capital into alternative investment strategies with a focus on real estate and hospitality-led investment strategies."
+  overlay
+>
+  <section class="hero">
+    <Image src={upload('2023/01/pexels-john-smith-726484.jpg')} alt="" widths={[768, 1440, 1920]} sizes="100vw" loading="eager" fetchpriority="high" class="hero__img" />
+    <div class="hero__video" data-vimeo="794267898"></div>
+    <div class="hero__shade"></div>
+    <div class="container hero__text">
+      <h1>A Private Equity Investment Group Specialising in Real Estate and Hospitality-led Strategies</h1>
+      <a href="#intro" class="hero__down" aria-label="Scroll down"><Icon name="faCircleChevronDown" class="hero__chevron" /></a>
+    </div>
+  </section>
+
+  <section id="intro" class="intro">
+    <div class="container">
+      <p class="lead intro__text">iAM Capital is a European private equity investment group aiming to generate value for investors by deploying capital into alternative investment strategies with a focus on real estate and hospitality-led investment strategies.</p>
+      <div class="counters">
+        {counters.map((c) => (
+          <div class="counter">
+            <p class="counter__value">{c.prefix}<span data-count={c.end}>{fmt(c.end)}</span>{c.suffix}</p>
+            <h4>{c.label}</h4>
+          </div>
+        ))}
+      </div>
+      <p class="note">*Includes real estate deals through dedicated funds and solar deals since 2015 only. Figures for other discretionary funds, direct deals and alternative investments not disclosed.</p>
+      <p class="note note--dark">Our fully owned subsidiary, iAM Invest Ltd is authorised and regulated by the UK Financial Conduct Authority (FCA).</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <Image src={upload('2026/02/AdobeStock_588733664-scaled.jpeg')} alt="" widths={[768, 1440, 1920]} sizes="100vw" class="band__img" />
+    <div class="band__shade"></div>
+    <div class="band__inner">
+      <div class="band__left"><h3>Disciplined Local Insight Combined with Focused Execution to Deliver Exceptional Returns.</h3></div>
+      <div class="band__right">
+        {features.map((f) => (
+          <div class="band__item">
+            <h4>{f.title}</h4>
+            <p>{f.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="columns">
+    <div class="columns__grid">
+      {columns.map((c) => (
+        <div class="column">
+          <div class="column__head"><Icon name={c.icon} /><h4>{c.title}</h4></div>
+          <ul>{c.points.map((p) => <li>{p}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // The hero's background film (Vimeo, as on the old site), added after the page has painted so the photo shows first.
+  // Muted, looping, no controls, Vimeo's do-not-track mode; left out for visitors who ask for reduced motion.
+  const holder = document.querySelector<HTMLElement>('[data-vimeo]');
+  if (holder && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    addEventListener('load', () => {
+      const f = document.createElement('iframe');
+      f.src = `https://player.vimeo.com/video/${holder.dataset.vimeo}?background=1&autoplay=1&loop=1&muted=1&dnt=1`;
+      f.title = 'Aerial view of London';
+      f.allow = 'autoplay; fullscreen; picture-in-picture';
+      f.tabIndex = -1;
+      // Show the film only once Vimeo reports it playing, so a player error never covers the photo
+      const origin = 'https://player.vimeo.com';
+      addEventListener('message', (e) => {
+        if (e.origin !== origin || e.source !== f.contentWindow) return;
+        let data = e.data;
+        try { if (typeof data === 'string') data = JSON.parse(data); } catch { return; }
+        if (data?.event === 'ready') f.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: 'play' }), origin);
+        if (data?.event === 'play') holder.classList.add('is-ready');
+      });
+      holder.append(f);
+    });
+  }
+
+  // The counters count up from zero when they come into view, as on the old site
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        io.unobserve(e.target);
+        const el = e.target as HTMLElement;
+        const end = Number(el.dataset.count);
+        const start = performance.now();
+        const tick = (t: number) => {
+          const k = Math.min(1, (t - start) / 1800);
+          el.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString('en-GB');
+          if (k < 1) requestAnimationFrame(tick);
+        };
+        el.textContent = '0';
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: 0.5 });
+    document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => io.observe(el));
+  }
+</script>
+
+<style>
+  .hero { position: relative; height: 100vh; min-height: 560px; display: flex; align-items: center; color: var(--white); overflow: hidden; }
+  .hero :global(.hero__img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero__video { position: absolute; inset: 0; overflow: hidden; opacity: 0; transition: opacity 1s ease; pointer-events: none; }
+  .hero__video.is-ready { opacity: 1; }
+  .hero__video :global(iframe) {
+    position: absolute; top: 50%; left: 50%; border: 0;
+    width: max(100%, 177.78vh); height: max(100%, 56.25vw); transform: translate(-50%, -50%);
+  }
+  .hero__shade { position: absolute; inset: 0; background: rgb(0 0 0 / 0.3); }
+  .hero__text { position: relative; text-align: center; padding-top: 120px; }
+  .hero h1 { max-width: 1000px; margin-inline: auto; }
+  .hero__down { display: inline-block; margin-top: 60px; }
+  .hero :global(.hero__chevron) { width: 48px; height: 48px; stroke-width: 1.5; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__down { animation: bob 2s ease-in-out infinite; }
+    @keyframes bob { 50% { transform: translateY(6px); } }
+  }
+
+  .intro { padding: 60px 0; text-align: center; }
+  .intro__text { max-width: 970px; margin: 0 auto 75px; }
+  .counters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding-inline: 15px; }
+  .counter__value { font-family: var(--font-figures); font-size: 72px; line-height: 1.3; white-space: nowrap; }
+  .counter h4 { color: var(--navy); margin-top: 10px; }
+  .note { font-size: 14px; line-height: 1.9; font-style: italic; color: var(--grey-light); margin-top: 25px; }
+  .note--dark { color: var(--grey-dark); margin-top: 20px; }
+
+  .band { position: relative; color: var(--white); overflow: hidden; }
+  .band :global(.band__img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .band__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 0 0 / 0) 0%, var(--navy) 64%); }
+  .band__inner { position: relative; display: grid; grid-template-columns: 50% 1fr; min-height: 595px; }
+  .band__left { display: flex; align-items: center; justify-content: center; padding: 50px 45px; text-align: center; }
+  .band__left h3 { max-width: 624px; }
+  .band__right { padding: 50px 36px 50px 103px; display: grid; gap: 25px; align-content: center; }
+  .band__item p { margin-top: 10px; }
+
+  .columns { padding: 50px 0; }
+  .columns__grid { width: min(100% - 30px, 1120px); margin-inline: auto; display: grid; grid-template-columns: 340fr 365fr 366fr; gap: 25px; }
+  .column { padding: 15px; }
+  .column__head { display: flex; align-items: center; gap: 20px; color: var(--navy); margin-bottom: 15px; }
+  .column ul { list-style: disc; padding-left: 34px; }
+  .column li::marker { font-size: 12px; }
+
+  @media (max-width: 991px) {
+    .counters { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+    .counter__value { font-size: 56px; }
+    .band__inner { grid-template-columns: 1fr; }
+    .band__shade { background: rgb(25 55 95 / 0.85); }
+    .band__right { padding: 0 30px 50px; }
+    .columns__grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 575px) {
+    .counters { grid-template-columns: 1fr; }
+    .counter__value { font-size: 56px; }
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+// A fund on the About page, as on the old site: photo with the fund name and launch year over a dark fade, and a
+// "View details" accordion under it holding the description and the fact table.
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { upload } from '../lib/images';
+
+interface Props {
+  fund: { name: string; launched: string | null; summary: string[] | null; image: string | null; facts: { label: string; value: string }[] };
+}
+const { fund } = Astro.props;
+---
+<article class="fund">
+  <div class="fund__photo">
+    {fund.image && <Image src={upload(fund.image)} alt="" widths={[535, 1070]} sizes="(min-width: 1200px) 535px, 100vw" class="fund__img" />}
+    <div class="fund__fade"></div>
+    <div class="fund__caption">
+      <h4>{fund.name}</h4>
+      {fund.launched && <p>Launched {fund.launched}</p>}
+    </div>
+  </div>
+  <details class="fund__details">
+    <summary>View details <Icon name="chevronDown" class="fund__chevron" /></summary>
+    <div class="fund__body">
+      {fund.summary?.map((s) => <p set:html={s} />)}
+      <dl class="fund__facts">
+        {fund.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+      </dl>
+    </div>
+  </details>
+</article>
+
+<style>
+  .fund { align-self: start; }
+  .fund__photo { position: relative; height: 203px; overflow: hidden; color: var(--white); background: var(--navy); }
+  .fund :global(.fund__img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .fund__fade { position: absolute; inset: 0; background: linear-gradient(rgb(0 0 0 / 0) 0%, rgb(0 0 0 / 0.83) 97%); }
+  .fund__caption { position: absolute; left: 15px; right: 15px; bottom: 25px; }
+  .fund__caption p { margin-top: 10px; }
+  .fund__details { background: var(--white); box-shadow: 0 10px 20px rgb(0 0 0 / 0.12); }
+  summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    font-size: 22px; line-height: 1.5; font-weight: 600; letter-spacing: -0.5px; color: var(--navy);
+    padding: 22px 30px 23px 35px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  .fund :global(.fund__chevron) { width: 22px; height: 22px; stroke-width: 3; transition: transform 0.3s ease; }
+  details[open] :global(.fund__chevron) { transform: rotate(180deg); }
+  .fund__body { padding: 0 35px 30px; }
+  .fund__body > p { margin-bottom: 30px; }
+  .fund__facts { font-family: var(--font-figures); display: grid; gap: 20px; padding-inline: 25px; }
+  .fund__facts div { display: grid; grid-template-columns: 148px 1fr; gap: 30px; }
+  .fund__facts dt { font-weight: 700; color: var(--navy); text-transform: uppercase; }
+  .fund__facts dd { margin: 0; }
+  @media (max-width: 575px) {
+    summary { padding: 18px 20px; font-size: 20px; }
+    .fund__body { padding: 0 20px 25px; }
+    .fund__facts { padding-inline: 0; }
+    .fund__facts div { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>

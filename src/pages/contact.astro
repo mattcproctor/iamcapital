@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/Banner.astro';
+import Icon from '../components/Icon.astro';
+import { contact, tel } from '../data/site';
+const mapSrc = 'https://www.google.com/maps?q=' + encodeURIComponent('4 Hill Street, London W1J 5NE, UK') + '&z=16&output=embed';
+---
+<Layout
+  title="Contact"
+  description="Contact iAM Capital: 4 Hill Street, London W1J 5NE. Telephone +44 20 7514 9200, info@iamcapital.com, ir@iamcapital.com."
+  image="2023/01/Contact-Us-Copy-scaled.jpg"
+>
+  <Banner title="Contact" image="2023/01/Contact-Us-Copy-scaled.jpg" shade={0.13} />
+
+  <section class="contact">
+    <div class="contact__map">
+      <iframe src={mapSrc} title="Map of 4 Hill Street, London" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="contact__details">
+      <h3 class="contact__city">London</h3>
+      <div class="row">
+        <Icon name="faPin" class="row__icon" />
+        <p>{contact.street}<br />{contact.city}<br />{contact.postcode}</p>
+      </div>
+      <a class="directions" href={contact.directions} target="_blank" rel="noopener"><Icon name="arrowRight" class="directions__icon" /> Get directions</a>
+      <div class="row"><Icon name="faPhone" class="row__icon" /><a href={tel(contact.phones[0])}>{contact.phones[0]}</a></div>
+      <div class="row"><Icon name="faPrint" class="row__icon" /><span>{contact.phones[1]}</span></div>
+      <div class="row">
+        <Icon name="faEnvelope" class="row__icon" />
+        <p><a href={`mailto:${contact.emails.general}`}>{contact.emails.general}</a><br /><a href={`mailto:${contact.emails.investors}`}>{contact.emails.investors}</a></p>
+      </div>
+      <a class="linkedin" href={contact.linkedin} target="_blank" rel="noopener"><Icon name="linkedin" class="linkedin__icon" label="iAM Capital on LinkedIn" /></a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact { display: grid; grid-template-columns: 1fr 1fr; min-height: 670px; }
+  .contact__map { position: relative; background: #e5e5e5; }
+  .contact__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1); }
+  .contact__details { padding: 95px 15px 60px 100px; color: var(--black); }
+  .contact__city::after { content: ''; display: block; width: 50px; height: 4px; background: var(--black); margin: 7px 0 30px; }
+  .row { display: grid; grid-template-columns: 44px 1fr; align-items: center; margin-bottom: 20px; }
+  .contact :global(.row__icon) { width: 24px; height: 24px; color: var(--navy); }
+  .row p { line-height: 24px; }
+  .row a:hover, .directions:hover { color: var(--navy); opacity: 0.8; }
+  .directions { display: inline-flex; align-items: center; gap: 12px; color: var(--navy); padding: 11px 26px; margin: -5px 0 20px; line-height: 1; }
+  .contact :global(.directions__icon) { width: 18px; height: 18px; }
+  .linkedin { display: inline-block; color: var(--navy); margin-top: 10px; }
+  .contact :global(.linkedin__icon) { width: 28px; height: 28px; }
+  @media (max-width: 991px) {
+    .contact { grid-template-columns: 1fr; }
+    .contact__map { height: 360px; }
+    .contact__details { padding: 50px 15px; width: min(100% - 30px, 1170px); margin-inline: auto; }
+  }
+</style>

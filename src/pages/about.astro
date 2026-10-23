@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/Banner.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import FundCard from '../components/FundCard.astro';
+import Timeline from '../components/Timeline.astro';
+import fundData from '../data/funds.json';
+import timeline from '../data/timeline.json';
+
+// Anchors as on the old site (#who, #management, #activeportfolio, #exitedportfolio, #history)
+const subnav = [
+  { id: 'who', label: 'Who We Are' },
+  { id: 'management', label: 'Regulatory Framework' },
+  { id: 'activeportfolio', label: 'Active Portfolio' },
+  { id: 'exitedportfolio', label: 'Exited Portfolio' },
+  { id: 'history', label: 'Our History' },
+];
+
+const stats = [
+  { value: '1997', label: 'iAM Capital was founded' },
+  { value: '4', label: 'Decades of track record of team experience' },
+  { value: '30', label: 'Year history in alternative investment' },
+];
+
+const regulatory: { icon: IconName; text: string }[] = [
+  { icon: 'scale', text: 'FCA regulated in the United Kingdom' },
+  { icon: 'building', text: 'London-based investment management' },
+  { icon: 'landmark', text: 'Luxembourg domiciled AIFs' },
+  { icon: 'shield', text: 'Italian domiciled FIAs' },
+];
+
+type Fund = (typeof fundData.funds)[number];
+const portfolio = (which: string) => {
+  const groups = new Map<string, Fund[]>();
+  for (const f of fundData.funds.filter((f) => f.portfolio === which)) {
+    if (!groups.has(f.category)) groups.set(f.category, []);
+    groups.get(f.category)!.push(f);
+  }
+  return [...groups].map(([category, funds]) => ({ category, intro: (fundData.intros as Record<string, string>)[`${which}:${category}`], funds }));
+};
+---
+<Layout
+  title="About"
+  description="Founded in 1997, iAM Capital is a European private equity investment group focused on real estate investment strategies, with an emphasis on hospitality and residential assets in Southern European markets."
+  image="2023/01/about.jpg"
+  subnav={subnav}
+>
+  <Banner title="About iAM Capital" image="2023/01/about.jpg" shade={0.22} rule={100} />
+
+  <section id="who" class="section who">
+    <div class="container">
+      <h2 class="title">Who We Are</h2>
+      <div class="who__grid">
+        <div class="who__text lead">
+          <p>European private equity investment group with nearly 30 years of experience, focused on real estate investment strategies with a particular emphasis on hospitality and residential assets in Southern European markets.</p>
+          <p>Founded in 1997, we deploy capital across diversified asset classes, combining deep market expertise with active asset management to deliver exceptional results for our investors.</p>
+        </div>
+        <dl class="stats">
+          {stats.map((s) => <div><dt>{s.label}</dt><dd>{s.value}</dd></div>)}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="management" class="section section--navy">
+    <div class="container">
+      <h2 class="title">Regulatory Framework</h2>
+      <ul class="reg">
+        {regulatory.map((r) => <li><Icon name={r.icon} /><h4>{r.text}</h4></li>)}
+      </ul>
+    </div>
+  </section>
+
+  {[
+    { id: 'activeportfolio', title: 'Active Portfolio', groups: portfolio('active'), grey: false },
+    { id: 'exitedportfolio', title: 'Exited Portfolio', groups: portfolio('exited'), grey: true },
+  ].map((p) => (
+    <section id={p.id} class:list={['section', { 'section--grey': p.grey }]}>
+      <div class="container">
+        <h2 class="title">{p.title}</h2>
+        {p.groups.map((g) => (
+          <div class="group">
+            <h3>{g.category}</h3>
+            {g.intro && <p>{g.intro}</p>}
+            <div class="funds">{g.funds.map((f) => <FundCard fund={f} />)}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <section id="history" class="section">
+    <div class="container">
+      <h2 class="title">Our History</h2>
+      <Timeline items={timeline} />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .who { padding-top: 60px; }
+  .who__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 95px; padding-inline: 15px; }
+  .who__text p + p { margin-top: 32px; }
+  .stats { display: grid; gap: 14px; align-content: start; margin-top: -26px; }
+  .stats div { display: flex; flex-direction: column; }
+  .stats dd { order: 1; margin: 0; font-size: 36px; line-height: 1.3; font-weight: 700; letter-spacing: -1.5px; color: var(--navy); }
+  .stats dd::after { content: ''; display: block; width: 131px; height: 4px; background: var(--grey); margin: 7px 0 10px; }
+  .stats dt { order: 2; }
+
+  .reg { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; padding: 60px 15px 10px; text-align: center; }
+  .reg li { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+
+  .group + .group { margin-top: 60px; }
+  .group h3 { color: var(--navy); margin-bottom: 10px; }
+  .funds { display: grid; grid-template-columns: repeat(2, 535px); justify-content: center; gap: 50px; margin-top: 30px; }
+
+  @media (max-width: 1199px) { .funds { grid-template-columns: repeat(2, 1fr); gap: 30px; } }
+  @media (max-width: 767px) {
+    .who__grid, .funds { grid-template-columns: 1fr; padding-inline: 0; }
+    .stats { margin-top: 0; }
+    .reg { grid-template-columns: 1fr 1fr; padding-top: 20px; }
+  }
+</style>

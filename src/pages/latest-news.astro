@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Banner from '../components/Banner.astro';
+import PostGrid from '../components/PostGrid.astro';
+import documents from '../data/documents.json';
+---
+<Layout
+  title="News"
+  description="Press releases, media coverage and events from iAM Capital."
+  image="2018/11/press.jpg"
+  subnav={[{ id: 'press', label: 'Press' }, { id: 'events', label: 'Events' }]}
+>
+  <Banner title="News" image="2018/11/press.jpg" shade={0.27} />
+
+  <section id="press" class="section news">
+    <div class="news__inner">
+      <h2 class="title">Press</h2>
+      <PostGrid docs={documents.press} />
+    </div>
+  </section>
+
+  <section id="events" class="section section--grey news">
+    <div class="news__inner">
+      <h2 class="title">Events</h2>
+      <PostGrid docs={documents.events} cards />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .news { padding-top: 60px; }
+  .news__inner { width: min(100% - 30px, 1053px); margin-inline: auto; }
+</style>

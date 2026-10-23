@@ -1,0 +1,95 @@
+/* iAM Capital: the original Brizy site's design (fonts, colours, sizes and spacing measured from the live pages),
+   rebuilt as plain CSS. Page-specific layout lives in each page's <style>. */
+
+:root {
+  --navy: #19375f;
+  --black: #000;
+  --text: #000;
+  --grey: #7f7f7f;
+  --grey-light: #8e8e8e;
+  --grey-dark: #212121;
+  --bg-grey: #f2f2f2;
+  --white: #fff;
+
+  --font: 'Overpass', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-figures: 'Lato', 'Overpass', sans-serif;
+  --font-timeline: 'Source Sans 3', 'Source Sans Pro', 'Overpass', sans-serif;
+
+  --container: 1170px;
+  --gutter: 15px;
+  --section: 85px;
+  --header-h: 109px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--header-h) + 20px); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1; }
+img, svg { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+ul, ol { padding: 0; list-style: none; }
+
+/* Headings, as set in the Brizy theme */
+h1, .h1 { font-size: 46px; line-height: 1.3; font-weight: 700; letter-spacing: -0.7px; }
+h2, .h2 { font-size: 36px; line-height: 1.3; font-weight: 700; letter-spacing: -1.5px; }
+h3, .h3 { font-size: 28px; line-height: 1.4; font-weight: 600; letter-spacing: -1.5px; }
+h4, .h4 { font-size: 22px; line-height: 1.5; font-weight: 600; letter-spacing: -0.5px; }
+h5, .h5 { font-size: 20px; line-height: 1.6; font-weight: 700; }
+h6, .h6 { font-size: 16px; line-height: 1.5; font-weight: 700; }
+.lead { font-size: 20px; line-height: 1.6; }
+
+/* Phone sizes, as the old site set them */
+@media (max-width: 767px) {
+  h1, .h1 { font-size: 32px; }
+  h2, .h2 { font-size: 28px; letter-spacing: -1px; }
+  h3, .h3 { font-size: 22px; letter-spacing: -1px; }
+  :root { --section: 60px; --header-h: 140px; }
+}
+
+/* Layout */
+.container { width: min(100% - 30px, var(--container)); margin-inline: auto; }
+.section { padding-block: var(--section); }
+.section--grey { background: var(--bg-grey); }
+.section--navy { background: var(--navy); color: var(--white); }
+
+/* The short rule under each section title */
+.title { margin-bottom: 40px; }
+.title::after { content: ''; display: block; width: 100px; height: 4px; background: currentColor; margin-top: 7px; }
+.title--wide::after { width: 117px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 100; background: var(--navy); color: var(--white); padding: 0.6rem 1rem; }
+.skip-link:focus { top: 1rem; }
+
+/* Buttons and links */
+.link-arrow { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); padding: 11px 0; line-height: 1; }
+.link-arrow svg { width: 18px; height: 18px; transition: transform 0.25s ease; }
+.link-arrow:hover svg { transform: translateX(3px); }
+.btn-navy {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--navy); color: var(--white); border: 2px solid var(--navy);
+  font-size: 15px; line-height: 1.6; text-transform: uppercase; padding: 14px 70px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.btn-navy:hover { background: var(--white); color: var(--navy); }
+
+/* Icons drawn from lucide-static: stroke icons that take the text colour */
+.icon { width: 48px; height: 48px; stroke-width: 1.4; flex: none; }
