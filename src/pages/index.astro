@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import { upload } from '../lib/images';
+import heroPoster from '../assets/video/hero-poster.jpg';
 
 const counters = [
   { end: 50, prefix: '', suffix: '+', label: 'Transactions' },
@@ -31,8 +32,13 @@ const fmt = (n: number) => n.toLocaleString('en-GB');
   overlay
 >
   <section class="hero">
-    <Image src={upload('2023/01/pexels-john-smith-726484.jpg')} alt="" widths={[768, 1440, 1920]} sizes="100vw" loading="eager" fetchpriority="high" class="hero__img" />
-    <div class="hero__video" data-vimeo="794267898"></div>
+    <Image src={heroPoster} alt="" widths={[768, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" class="hero__img" />
+    <!-- The old site's background film (London, Milan, Rome), served from this site so it starts at once. The still
+         underneath is its first frame, so the change from picture to film is seamless. -->
+    <video class="hero__video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1" data-hero-video>
+      <source src="/video/hero-720.mp4" type="video/mp4" media="(max-width: 1024px)" />
+      <source src="/video/hero-1080.mp4" type="video/mp4" />
+    </video>
     <div class="hero__shade"></div>
     <div class="container hero__text">
       <h1>A Private Equity Investment Group Specialising in Real Estate and Hospitality-led Strategies</h1>
@@ -85,28 +91,9 @@ const fmt = (n: number) => n.toLocaleString('en-GB');
 </Layout>
 
 <script>
-  // The hero's background film (Vimeo, as on the old site), added after the page has painted so the photo shows first.
-  // Muted, looping, no controls, Vimeo's do-not-track mode; left out for visitors who ask for reduced motion.
-  const holder = document.querySelector<HTMLElement>('[data-vimeo]');
-  if (holder && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    addEventListener('load', () => {
-      const f = document.createElement('iframe');
-      f.src = `https://player.vimeo.com/video/${holder.dataset.vimeo}?background=1&autoplay=1&loop=1&muted=1&dnt=1`;
-      f.title = 'Aerial view of London';
-      f.allow = 'autoplay; fullscreen; picture-in-picture';
-      f.tabIndex = -1;
-      // Show the film only once Vimeo reports it playing, so a player error never covers the photo
-      const origin = 'https://player.vimeo.com';
-      addEventListener('message', (e) => {
-        if (e.origin !== origin || e.source !== f.contentWindow) return;
-        let data = e.data;
-        try { if (typeof data === 'string') data = JSON.parse(data); } catch { return; }
-        if (data?.event === 'ready') f.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: 'play' }), origin);
-        if (data?.event === 'play') holder.classList.add('is-ready');
-      });
-      holder.append(f);
-    });
-  }
+  // Visitors who ask for reduced motion keep the still frame instead of the moving film
+  const film = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+  if (film && matchMedia('(prefers-reduced-motion: reduce)').matches) { film.pause(); film.removeAttribute('autoplay'); film.hidden = true; }
 
   // The counters count up from zero when they come into view, as on the old site
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -133,12 +120,7 @@ const fmt = (n: number) => n.toLocaleString('en-GB');
 <style>
   .hero { position: relative; height: 100vh; min-height: 560px; display: flex; align-items: center; color: var(--white); overflow: hidden; }
   .hero :global(.hero__img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .hero__video { position: absolute; inset: 0; overflow: hidden; opacity: 0; transition: opacity 1s ease; pointer-events: none; }
-  .hero__video.is-ready { opacity: 1; }
-  .hero__video :global(iframe) {
-    position: absolute; top: 50%; left: 50%; border: 0;
-    width: max(100%, 177.78vh); height: max(100%, 56.25vw); transform: translate(-50%, -50%);
-  }
+  .hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
   .hero__shade { position: absolute; inset: 0; background: rgb(0 0 0 / 0.3); }
   .hero__text { position: relative; text-align: center; padding-top: 120px; }
   .hero h1 { max-width: 1000px; margin-inline: auto; }

@@ -34,7 +34,7 @@ src/
   components/           Header (main menu + per-page sub-menu), Footer, Banner (photo banner), PostGrid (document
                         cards, 8 per page), FundCard (accordion), Timeline, Icon (Font Awesome Free + Lucide)
   pages/
-    index.astro                 home (Vimeo background film 794267898 over the Tower Bridge photo)
+    index.astro                 home (background film public/video/hero-*.mp4, poster src/assets/video/hero-poster.jpg)
     about.astro                 who we are, regulatory, active/exited funds, history (anchors #who #management ...)
     investments.astro           the Google map + cards (see "Investments map")
     team.astro                  three groups; biographies open in a <dialog> pop-up
@@ -86,6 +86,11 @@ Unchanged from the standalone site apart from layout and styling:
 
 ## Notes
 
+- The home hero film is the old site's `uploads/2023/01/iamcapital-background.mp4` (the same film as Vimeo 794267898),
+  with its 0.7s fade from black trimmed and re-encoded for the web: `ffmpeg -ss 0.7 -i in.mp4 -an -c:v libx264
+  -preset slow -crf 27 -maxrate 2200k -bufsize 4400k -pix_fmt yuv420p -movflags +faststart hero-1080.mp4` (and
+  `-vf scale=1280:-2 -crf 28 -maxrate 1100k` for hero-720.mp4). The poster is its first frame.
+
 - The old site's Complianz cookie banner, Yoast, Burst, MetaSlider and SMTP plugins are not needed: there are no forms.
-  Third-party content: Vimeo (home hero, do-not-track), Google Maps (/investments/, /contact/), YouTube nocookie
+  Third-party content: Google Maps (/investments/, /contact/), YouTube nocookie
   (one event page). The cookie policy page is a draft describing exactly this.
