@@ -9,9 +9,11 @@ import { properties, location, status } from '../lib/properties';
 
 const active = properties.filter((p) => status(p) === 'Active');
 const sold = properties.filter((p) => status(p) === 'Sold');
+const other = properties.filter((p) => !status(p));
 ---
 <Layout
   title="Investment Portfolio"
+  pageType="CollectionPage"
   description="Explore iAM Capital's investment portfolio across Italy, France and Spain: residential, commercial, hospitality and renewable energy assets, active and sold."
   image="2026/03/CP1.jpg"
 >
@@ -61,14 +63,20 @@ const sold = properties.filter((p) => status(p) === 'Sold');
         <div id="propertiesLoading" class="properties-section__loading"><p>Loading property details...</p></div>
         <div id="propertiesError" class="properties-section__error" style="display: none;"><p>Unable to load property details.</p></div>
 
-        <noscript>
-          <div class="properties-noscript">
-            <h3>Active Investments</h3>
-            <ul>{active.map((p) => <li><strong>{p.name}</strong> – <a href={`/${p.slug}/`}>{location(p)}</a> – {p.category}</li>)}</ul>
-            <h3>Sold Investments</h3>
-            <ul>{sold.map((p) => <li><strong>{p.name}</strong> – <a href={`/${p.slug}/`}>{location(p)}</a> – {p.category}</li>)}</ul>
-          </div>
-        </noscript>
+        <!-- Every property as plain HTML, linked to its page: what search and AI crawlers that don't run JavaScript
+             read, and the list for visitors without it. Hidden once JavaScript runs, when the cards replace it. -->
+        <div class="properties-noscript properties-static">
+          <h3>Active Investments</h3>
+          <ul>{active.map((p) => <li><a href={`/${p.slug}/`}><strong>{p.name}</strong></a> – {location(p)} – {p.category}</li>)}</ul>
+          <h3>Sold Investments</h3>
+          <ul>{sold.map((p) => <li><a href={`/${p.slug}/`}><strong>{p.name}</strong></a> – {location(p)} – {p.category}</li>)}</ul>
+          {other.length > 0 && (
+            <>
+              <h3>Renewable Energy</h3>
+              <ul>{other.map((p) => <li><a href={`/${p.slug}/`}><strong>{p.name}</strong></a> – {location(p)} – {p.category}</li>)}</ul>
+            </>
+          )}
+        </div>
       </div>
     </section>
   </div>

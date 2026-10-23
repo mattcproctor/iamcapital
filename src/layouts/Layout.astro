@@ -14,22 +14,63 @@ import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { upload } from '../lib/images';
-import { contact } from '../data/site';
+import { clip, organization, website, SITE } from '../lib/seo';
 
 interface Props {
   title: string;
+  seoTitle?: string; // the full <title>, when it should differ from "Title - iAM Capital"
   description: string;
+  crumbs?: { name: string; path: string }[]; // breadcrumb trail after Home, for structured data
+  pageType?: string; // schema.org WebPage type: AboutPage, ContactPage, CollectionPage ...
+  extraLd?: Record<string, unknown>[]; // more structured data for this page (people, places ...)
   image?: string; // a path in src/assets/uploads
   overlay?: boolean;
   subnav?: { id: string; label: string }[];
   noindex?: boolean;
 }
 
-const { title, description, image = '2023/01/pexels-john-smith-726484.jpg', overlay = false, subnav = [], noindex = false } = Astro.props;
-const fullTitle = title === 'iAM Capital' ? 'iAM Capital | A Global Alternative Investment Group' : `${title} - iAM Capital`;
+const {
+  title, seoTitle, image = '2023/01/pexels-john-smith-726484.jpg', overlay = false, subnav = [], noindex = false,
+  pageType = 'WebPage', extraLd = [],
+} = Astro.props;
+const description = clip(Astro.props.description);
+const fullTitle = seoTitle ?? (title === 'iAM Capital' ? 'iAM Capital | A Global Alternative Investment Group' : `${title} - iAM Capital`);
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const isHome = Astro.url.pathname === '/';
+const crumbs = Astro.props.crumbs ?? (isHome ? [] : [{ name: title, path: Astro.url.pathname }]);
 const social = await getImage({ src: upload(image), width: 1200, format: 'jpg' });
 const socialUrl = new URL(social.src, Astro.site);
+
+// One JSON-LD graph per page: the company, the website, this page, its breadcrumb trail and anything page-specific
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organization,
+    website,
+    {
+      '@type': pageType,
+      '@id': `${canonical.href}#webpage`,
+      url: canonical.href,
+      name: fullTitle,
+      description,
+      inLanguage: 'en-GB',
+      isPartOf: { '@id': `${SITE}/#website` },
+      about: { '@id': `${SITE}/#organization` },
+      primaryImageOfPage: socialUrl.href,
+      ...(crumbs.length ? { breadcrumb: { '@id': `${canonical.href}#breadcrumb` } } : {}),
+    },
+    ...(crumbs.length
+      ? [{
+          '@type': 'BreadcrumbList',
+          '@id': `${canonical.href}#breadcrumb`,
+          itemListElement: [{ name: 'Home', path: '/' }, ...crumbs].map((c, i) => ({
+            '@type': 'ListItem', position: i + 1, name: c.name, item: new URL(c.path, SITE).href,
+          })),
+        }]
+      : []),
+    ...extraLd,
+  ],
+};
 ---
 <!DOCTYPE html>
 <html lang="en-GB">
@@ -41,6 +82,8 @@ const socialUrl = new URL(social.src, Astro.site);
   {noindex ? <meta name="robots" content="noindex, follow" /> : <meta name="robots" content="index, follow" />}
   <link rel="canonical" href={canonical} />
   <meta name="theme-color" content="#19375f" />
+  <!-- Google Search Console ownership of iamcapital.com, carried over from the old site (Yoast) -->
+  <meta name="google-site-verification" content="Ne6vE6PAIIUyx3_sdoBi4PwNLsE4ZfWapL5u_JZZP5c" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="/images/branding/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/images/branding/favicon-192x192.png" />
@@ -49,6 +92,7 @@ const socialUrl = new URL(social.src, Astro.site);
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="iAM Capital" />
+  <meta property="og:locale" content="en_GB" />
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
@@ -76,19 +120,7 @@ const socialUrl = new URL(social.src, Astro.site);
     };
   </script>
 
-  <script is:inline type="application/ld+json" set:html={JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: contact.company,
-    url: 'https://iamcapital.com',
-    logo: new URL('/images/branding/favicon-192x192.png', Astro.site).href,
-    description: 'A European private equity investment group specialising in real estate and hospitality-led strategies.',
-    foundingDate: '1997',
-    address: { '@type': 'PostalAddress', streetAddress: contact.street, addressLocality: contact.city, postalCode: contact.postcode, addressCountry: 'GB' },
-    telephone: contact.phones[0].replace(/\s/g, ''),
-    email: contact.emails.general,
-    sameAs: [contact.linkedin],
-  })} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />
 
   <!-- Analytics: turn on Cloudflare Web Analytics for the Pages project in the Cloudflare dashboard, which adds its
        cookieless beacon to every page; nothing is needed here. -->

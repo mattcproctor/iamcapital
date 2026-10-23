@@ -18,11 +18,14 @@ const cloudflareRedirects = {
   name: 'cloudflare-redirects',
   hooks: {
     'astro:build:done': ({ dir, logger }) => {
-      const lines = [];
+      // Exact addresses first, each with and without the trailing slash; wildcard rules (/timeline/*) after them
+      const exact = [], wildcard = [];
       for (const r of redirects) {
-        const sources = r.from === '/' ? ['/'] : [r.from, r.from.replace(/\/$/, '')];
-        for (const s of new Set(sources)) lines.push(`${s} ${r.to} ${r.status}`);
+        if (r.from.includes('*')) { wildcard.push(`${r.from} ${r.to} ${r.status}`); continue; }
+        const sources = r.from === '/' || /\.[a-z0-9]+$/i.test(r.from) ? [r.from] : [r.from, r.from.replace(/\/$/, '')];
+        for (const s of new Set(sources)) exact.push(`${s} ${r.to} ${r.status}`);
       }
+      const lines = [...exact, ...wildcard];
       writeFileSync(fileURLToPath(new URL('_redirects', dir)), lines.join('\n') + '\n');
       logger.info(`wrote _redirects (${lines.length} rules)`);
     },
@@ -34,7 +37,7 @@ export default defineConfig({
   trailingSlash: 'always',
   build: { format: 'directory' },
   redirects: Object.fromEntries(
-    redirects.filter((r) => r.to.startsWith('/') && r.from !== '/').map((r) => [r.from.replace(/\/$/, ''), r.to]),
+    redirects.filter((r) => r.to.startsWith('/') && r.from !== '/' && !r.from.includes('*') && !/\.[a-z0-9]+$/i.test(r.from)).map((r) => [r.from.replace(/\/$/, ''), r.to]),
   ),
   integrations: [cloudflareRedirects],
 });

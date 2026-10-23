@@ -43,7 +43,8 @@ src/
     latest-news.astro           press, events (#press, #events)
     contact.astro, cookie-policy.astro (DRAFT, noindex), 404.astro
     [slug].astro                28 property pages + 2 event pages at the WordPress addresses (/castel-porrona/ ...)
-    sitemap.xml.ts
+    sitemap.xml.ts              pages + linked PDFs, with dates
+    llms.txt.ts, llms-full.txt.ts   plain-text site guide and full content for AI search (from src/lib/llms.ts)
   data/                 content extracted from WordPress (edit these to change content)
     documents.json      shareholderNotices, annualReports, press, events: {title, date, url, kind: pdf|external|page}
     properties.json     28 properties: description (paragraph HTML, links kept), facts, gallery, cover, status
@@ -56,6 +57,8 @@ public/
   wp-content/uploads/   the ~90 PDFs (and 4 map images) at their original paths, so old links keep working
   scripts/investments.js, images/ (branding, map property images), fonts/overpass/, robots.txt, llms.txt
 tools/wordpress-import/ the scripts that produced src/data from the backup (see its README)
+tools/seo/              old-urls.txt (600 old addresses) and check-urls.py (checks they all still work)
+docs/SEO-LAUNCH.md      the domain switch checklist (DNS on Route 53, Mimecast email, Search Console)
 ```
 
 ## Adding content
@@ -84,6 +87,10 @@ Unchanged from the standalone site apart from layout and styling:
 - Card badge colours: Residential #2ECC71, Office/Commercial/Retail #000, Hospitality #7B68EE, Renewable #FFC107.
 
 ## Notes
+
+- SEO: titles/descriptions per page (`seoTitle`, `description` props; descriptions clipped to 155 characters),
+  JSON-LD graph in `Layout.astro` (`src/lib/seo.ts`), Search Console verification meta tag from the old site. When
+  a page or PDF moves, add the old address to `redirects.json` and run `tools/seo/check-urls.py`.
 
 - The home hero film is the old site's `uploads/2023/01/iamcapital-background.mp4` (the same film as Vimeo 794267898),
   with its 0.7s fade from black trimmed and re-encoded for the web: `ffmpeg -ss 0.7 -i in.mp4 -an -c:v libx264

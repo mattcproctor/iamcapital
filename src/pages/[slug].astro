@@ -22,10 +22,16 @@ const slides = p ? [...new Set(p.gallery.length ? p.gallery : [p.cover].filter(B
 const bannerImage = p?.cover ?? slides[0] ?? '2023/01/pexels-john-smith-726484.jpg';
 const title = p?.name ?? e!.title;
 const description = p
-  ? `${p.name}, ${location(p)}. ${(p.description[0] ?? '').replace(/<[^>]+>/g, '').slice(0, 140)}`
+  ? `${p.name}, ${location(p)}: ${(p.description[0] ?? '').replace(/<[^>]+>/g, '')}`
   : e!.headline || e!.title;
 ---
-<Layout title={title} description={description} image={bannerImage}>
+<Layout
+  title={title}
+  seoTitle={p ? `${p.name}, ${location(p)} - iAM Capital` : `${title} - iAM Capital`}
+  description={description}
+  image={bannerImage}
+  crumbs={p ? [{ name: 'Investments', path: '/investments/' }, { name: title, path: `/${p.slug}/` }] : [{ name: 'News', path: '/latest-news/' }, { name: title, path: `/${e!.slug}/` }]}
+>
   <Banner title={title} image={bannerImage} shade={0.2} height={400} tag="h1" italic rule={75} />
 
   <section class="detail">

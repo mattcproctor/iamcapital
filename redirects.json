@@ -613,5 +613,540 @@
   "from": "/feed/",
   "to": "/",
   "status": 301
+ },
+ {
+  "from": "/sitemap_index.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/post-sitemap.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/page-sitemap.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/category-sitemap.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/author-sitemap.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/wp-timeline-sitemap.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/e-landing-page-sitemap.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/oceanwp_library-sitemap.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/wp-sitemap.xml",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/site-map/",
+  "to": "/sitemap.xml",
+  "status": 301
+ },
+ {
+  "from": "/home-old/",
+  "to": "/",
+  "status": 301
+ },
+ {
+  "from": "/home-page-new/",
+  "to": "/",
+  "status": 301
+ },
+ {
+  "from": "/index.php",
+  "to": "/",
+  "status": 301
+ },
+ {
+  "from": "/comments/feed/",
+  "to": "/",
+  "status": 301
+ },
+ {
+  "from": "/category/uncategorized/",
+  "to": "/",
+  "status": 301
+ },
+ {
+  "from": "/about-us/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/who-we-are/",
+  "to": "/about/#who",
+  "status": 301
+ },
+ {
+  "from": "/about-us/who-we-are/",
+  "to": "/about/#who",
+  "status": 301
+ },
+ {
+  "from": "/our-history/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/about-us/our-history/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/timeline/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/timeline/*",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/our-expertise/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/about-us/our-expertise/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/our-business/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/our-business/*",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/consultancy/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/merchant-banking/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/investment-management/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/wealth-management/",
+  "to": "/about/",
+  "status": 301
+ },
+ {
+  "from": "/real-estate/",
+  "to": "/about/#activeportfolio",
+  "status": 301
+ },
+ {
+  "from": "/alternatives/",
+  "to": "/about/#activeportfolio",
+  "status": 301
+ },
+ {
+  "from": "/ireo/",
+  "to": "/about/#exitedportfolio",
+  "status": 301
+ },
+ {
+  "from": "/ireo-ii/",
+  "to": "/about/#activeportfolio",
+  "status": 301
+ },
+ {
+  "from": "/igo-fund/",
+  "to": "/about/#exitedportfolio",
+  "status": 301
+ },
+ {
+  "from": "/iao-fund/",
+  "to": "/about/#exitedportfolio",
+  "status": 301
+ },
+ {
+  "from": "/green-energy/",
+  "to": "/about/#exitedportfolio",
+  "status": 301
+ },
+ {
+  "from": "/fintech/",
+  "to": "/about/#exitedportfolio",
+  "status": 301
+ },
+ {
+  "from": "/Fintech/",
+  "to": "/about/#exitedportfolio",
+  "status": 301
+ },
+ {
+  "from": "/fintlv-ventures-l-p/",
+  "to": "/about/#exitedportfolio",
+  "status": 301
+ },
+ {
+  "from": "/2010-2/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/2011-2/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/2012-2/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/2013-2/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/2014-2/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/2015-2/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/2016-2/",
+  "to": "/about/#history",
+  "status": 301
+ },
+ {
+  "from": "/leadership/",
+  "to": "/team/",
+  "status": 301
+ },
+ {
+  "from": "/leadership/*",
+  "to": "/team/",
+  "status": 301
+ },
+ {
+  "from": "/iam-invest-board-management/",
+  "to": "/team/",
+  "status": 301
+ },
+ {
+  "from": "/author/*",
+  "to": "/team/",
+  "status": 301
+ },
+ {
+  "from": "/about-us/corporate-governance/the-board/",
+  "to": "/team/#directors",
+  "status": 301
+ },
+ {
+  "from": "/corporate-governance/",
+  "to": "/responsibility/#legal",
+  "status": 301
+ },
+ {
+  "from": "/about-us/corporate-governance/",
+  "to": "/responsibility/#legal",
+  "status": 301
+ },
+ {
+  "from": "/about-us/corporate-governance/*",
+  "to": "/responsibility/#legal",
+  "status": 301
+ },
+ {
+  "from": "/disclaimer/",
+  "to": "/wp-content/uploads/2026/03/2_Clean_iAM-Capital-Disclaimer.pdf",
+  "status": 301
+ },
+ {
+  "from": "/fraud-awareness/",
+  "to": "/wp-content/uploads/2026/03/4_Clean_iAM-Capital-Fraud-Awareness-Policy.pdf",
+  "status": 301
+ },
+ {
+  "from": "/privacy-policy/",
+  "to": "/wp-content/uploads/2026/03/iAM-Capital-Privacy-Policy_v2-clean-v.pdf",
+  "status": 301
+ },
+ {
+  "from": "/regulatory/",
+  "to": "/wp-content/uploads/2023/01/iAM-Capital-Regulatory-Statement.pdf",
+  "status": 301
+ },
+ {
+  "from": "/investors/",
+  "to": "/investor-relations/",
+  "status": 301
+ },
+ {
+  "from": "/investor-relations-2/",
+  "to": "/investor-relations/",
+  "status": 301
+ },
+ {
+  "from": "/annual-reports/",
+  "to": "/investor-relations/#reports",
+  "status": 301
+ },
+ {
+  "from": "/investor-relations/annual-reports/",
+  "to": "/investor-relations/#reports",
+  "status": 301
+ },
+ {
+  "from": "/category/annual-reports/*",
+  "to": "/investor-relations/#reports",
+  "status": 301
+ },
+ {
+  "from": "/shareholders-notices/",
+  "to": "/investor-relations/#shareholder",
+  "status": 301
+ },
+ {
+  "from": "/shareholders-notices/*",
+  "to": "/investor-relations/#shareholder",
+  "status": 301
+ },
+ {
+  "from": "/investor-relations/shareholders-notices/",
+  "to": "/investor-relations/#shareholder",
+  "status": 301
+ },
+ {
+  "from": "/category/shareholder-notices/*",
+  "to": "/investor-relations/#shareholder",
+  "status": 301
+ },
+ {
+  "from": "/investor-relations/bpage/*",
+  "to": "/investor-relations/",
+  "status": 301
+ },
+ {
+  "from": "/media/*",
+  "to": "/investor-relations/",
+  "status": 301
+ },
+ {
+  "from": "/news/",
+  "to": "/latest-news/",
+  "status": 301
+ },
+ {
+  "from": "/press/",
+  "to": "/latest-news/#press",
+  "status": 301
+ },
+ {
+  "from": "/press/*",
+  "to": "/latest-news/#press",
+  "status": 301
+ },
+ {
+  "from": "/press-2/",
+  "to": "/latest-news/#press",
+  "status": 301
+ },
+ {
+  "from": "/press-2/*",
+  "to": "/latest-news/#press",
+  "status": 301
+ },
+ {
+  "from": "/blog-2/",
+  "to": "/latest-news/",
+  "status": 301
+ },
+ {
+  "from": "/blog-2/*",
+  "to": "/latest-news/",
+  "status": 301
+ },
+ {
+  "from": "/category/news-blog/",
+  "to": "/latest-news/",
+  "status": 301
+ },
+ {
+  "from": "/category/news-blog/*",
+  "to": "/latest-news/",
+  "status": 301
+ },
+ {
+  "from": "/category/press/*",
+  "to": "/latest-news/#press",
+  "status": 301
+ },
+ {
+  "from": "/events-2/",
+  "to": "/latest-news/#events",
+  "status": 301
+ },
+ {
+  "from": "/latest-news/bpage/*",
+  "to": "/latest-news/",
+  "status": 301
+ },
+ {
+  "from": "/events/fintlv-investors-event/",
+  "to": "/fintlv-investors-event/",
+  "status": 301
+ },
+ {
+  "from": "/events/npl-nuove-opportunita-per-il-mercato-finanziario/",
+  "to": "/npl-nuove-opportunita-per-il-mercato-finanziario-2/",
+  "status": 301
+ },
+ {
+  "from": "/npl-nuove-opportunita-per-il-mercato-finanziario/",
+  "to": "/npl-nuove-opportunita-per-il-mercato-finanziario-2/",
+  "status": 301
+ },
+ {
+  "from": "/investment-opportunities/",
+  "to": "/investments/",
+  "status": 301
+ },
+ {
+  "from": "/terre-rares/",
+  "to": "/investments/",
+  "status": 301
+ },
+ {
+  "from": "/category/hospitality/",
+  "to": "/investments/",
+  "status": 301
+ },
+ {
+  "from": "/category/hospitality/*",
+  "to": "/investments/",
+  "status": 301
+ },
+ {
+  "from": "/category/residential/",
+  "to": "/investments/",
+  "status": 301
+ },
+ {
+  "from": "/category/commercial/",
+  "to": "/investments/",
+  "status": 301
+ },
+ {
+  "from": "/category/renewable-energy/",
+  "to": "/investments/",
+  "status": 301
+ },
+ {
+  "from": "/category/investments/",
+  "to": "/investments/",
+  "status": 301
+ },
+ {
+  "from": "/contact.php",
+  "to": "/contact/",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/01/iAM-Capital-Corporate-Governance-Policy.pdf",
+  "to": "/wp-content/uploads/2026/03/1_Clean_iAM-Capital-Corporate-Governance-Policy.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/01/iAM-Capital-Disclaimer.pdf",
+  "to": "/wp-content/uploads/2026/03/2_Clean_iAM-Capital-Disclaimer.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/01/iAM-Capital-ESG-Policy.pdf",
+  "to": "/wp-content/uploads/2026/03/3_Clean_iAM-Capital-ESG-and-Sustainability-Risk-Policy.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/01/iAM-Capital-Sustainability-Risks-Policy.pdf",
+  "to": "/wp-content/uploads/2026/03/3_Clean_iAM-Capital-ESG-and-Sustainability-Risk-Policy.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/01/iAM-Capital-Sustainability-Risks-Policy-1.pdf",
+  "to": "/wp-content/uploads/2026/03/3_Clean_iAM-Capital-ESG-and-Sustainability-Risk-Policy.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2021/02/IAM-ESG-Policy-Jan-2021.pdf",
+  "to": "/wp-content/uploads/2026/03/3_Clean_iAM-Capital-ESG-and-Sustainability-Risk-Policy.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/01/iAM-Capital-Fraud-Awareness-Policy.pdf",
+  "to": "/wp-content/uploads/2026/03/4_Clean_iAM-Capital-Fraud-Awareness-Policy.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/01/iAM-Capital-Privacy-Policy.pdf",
+  "to": "/wp-content/uploads/2026/03/iAM-Capital-Privacy-Policy_v2-clean-v.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/01/iAM-Capital-Pillar-III-Statement.pdf",
+  "to": "/wp-content/uploads/2026/10/iAM-Invest-Limited-Public-Disclosure-SNI-2025.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2023/04/iAM-Capital-Pillar-III-Statement.pdf",
+  "to": "/wp-content/uploads/2026/10/iAM-Invest-Limited-Public-Disclosure-SNI-2025.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2022/03/IAM-Invest-Limited-Pillar-3-MiFID-Disclosure-2021-FINAL.pdf",
+  "to": "/wp-content/uploads/2026/10/iAM-Invest-Limited-Public-Disclosure-SNI-2025.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2024/10/MIFIDPRU-Public-Disclosure-Document-1.pdf",
+  "to": "/wp-content/uploads/2026/10/iAM-Invest-Limited-Public-Disclosure-SNI-2025.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2020/11/IAM-Invest-Limited-Modern-Slavery-Statement.pdf",
+  "to": "/wp-content/uploads/2023/01/iAM-Capital-Modern-Slavery-and-Human-Trafficking-Statement.pdf",
+  "status": 301
  }
 ]

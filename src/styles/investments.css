@@ -496,3 +496,6 @@
 .investments-page .maplibregl-popup-close-button:hover { background: transparent; color: #000; }
 .investments-page .maplibregl-ctrl-attrib { font-size: 11px; }
 .investments-page .maplibregl-canvas { outline: none; }
+
+/* The plain property list is for crawlers and no-JavaScript visitors; the live cards replace it */
+.js .investments-page .properties-static { display: none; }

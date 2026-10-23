@@ -5,6 +5,7 @@ import Banner from '../components/Banner.astro';
 import Icon from '../components/Icon.astro';
 import team from '../data/team.json';
 import { upload } from '../lib/images';
+import { clip } from '../lib/seo';
 
 // Anchors as on the old site (#directors, #investments, #operations)
 const groups = [
@@ -20,10 +21,26 @@ const split = (p: (typeof team)[number]) => {
   return { role, company };
 };
 const id = (name: string) => 'bio-' + name.toLowerCase().replace(/[^a-z]+/g, '-');
+
+// Each person as schema.org Person, for search and AI answers ("who runs iAM Capital")
+const people = team.map((p) => {
+  const { role, company } = split(p);
+  return {
+    '@type': 'Person',
+    name: p.name,
+    jobTitle: role,
+    worksFor: /iAM Invest/.test(company) && !/iAM Capital/.test(company)
+      ? { '@type': 'Organization', name: 'iAM Invest Ltd' }
+      : { '@id': 'https://iamcapital.com/#organization' },
+    description: clip(p.bio[0] ?? '', 300),
+  };
+});
 ---
 <Layout
   title="Team"
-  description="The Board of Directors and the investment, fundraising and operations team of iAM Capital and iAM Invest Ltd."
+  seoTitle="Team & Board of Directors - iAM Capital"
+  description="The Board of Directors and the investment, fundraising and operations team of iAM Capital and its FCA-regulated subsidiary iAM Invest Ltd."
+  extraLd={people}
   image="2023/01/team-banner.jpg"
   subnav={groups.map(({ id, label }) => ({ id, label }))}
 >
