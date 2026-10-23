@@ -426,7 +426,7 @@
  },
  {
   "from": "/iam-leading-with-near-zero-emissions-residential-building-in-milan/",
-  "to": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+  "to": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
   "status": 301
  },
  {
@@ -1147,6 +1147,11 @@
  {
   "from": "/wp-content/uploads/2020/11/IAM-Invest-Limited-Modern-Slavery-Statement.pdf",
   "to": "/wp-content/uploads/2023/01/iAM-Capital-Modern-Slavery-and-Human-Trafficking-Statement.pdf",
+  "status": 301
+ },
+ {
+  "from": "/wp-content/uploads/2022/03/Cosi%CC%80-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+  "to": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
   "status": 301
  }
 ]
