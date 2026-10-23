@@ -1,6 +1,6 @@
 // ===================================
 // iAM Capital - Investment Properties
-// Google Maps & Data Integration
+// MapLibre map (OpenFreeMap tiles) & Google Sheet data
 // ===================================
 
 // Configuration
@@ -36,9 +36,9 @@ function localiseProperty(property) {
 
 // Global state
 let map;
-let markers = [];
-let markerCluster;
-let geocoder;
+let mapReady;            // resolves once the map's style has loaded (MapLibre)
+let popup;               // the one open property pop-up
+let features = [];       // one GeoJSON point per property with coordinates
 let allProperties = [];
 let activeFilters = {
     category: 'all',
@@ -64,102 +64,94 @@ function getUniqueCategories(properties) {
 }
 
 // ===================================
-// Map Initialization
+// Map (MapLibre GL with OpenFreeMap tiles: free, no API key, no cookies)
 // ===================================
 
+const MAP_STYLE = 'https://tiles.openfreemap.org/styles/positron';
+const PIN_HEIGHT = () => (window.innerWidth <= 768 ? 40 : 32);
+
 /**
- * Initialize Google Maps
- * Called by Google Maps API callback
+ * Create the map. Called once MapLibre has loaded (see investments.astro). The property data loads in parallel
+ * and is added when both are ready, so the cards never wait for the map.
  */
 function initMap() {
-    // Center on Europe (Italy/France focus)
-    const defaultCenter = { lat: 45.0, lng: 10.0 };
-
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 5,
-        center: defaultCenter,
-        styles: getMapStyles(),
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: true,
-        zoomControl: true,
-        minZoom: 5,  // Allow Europe overview
-        maxZoom: 17  // Allow cluster expansion while preventing street-level detail
-    });
-
-    geocoder = new google.maps.Geocoder();
-
-    // Cluster markers are buttons with no name: give each one an invisible label for screen readers
-    new MutationObserver(() => {
-        document.querySelectorAll('#map [role="button"]').forEach(el => {
-            if (!el.getAttribute('aria-label') && !el.getAttribute('title')) el.setAttribute('aria-label', 'Property cluster: zoom in');
+    try {
+        map = new maplibregl.Map({
+            container: 'map',
+            style: MAP_STYLE,
+            center: [10.0, 45.0],   // Europe (Italy/France focus)
+            zoom: 4,
+            minZoom: 3.5,           // Europe overview
+            maxZoom: 16,            // allow cluster expansion while preventing street-level detail
+            attributionControl: { compact: true },
+            cooperativeGestures: false,
         });
-    }).observe(document.getElementById('map'), { childList: true, subtree: true, attributes: true, attributeFilter: ['role', 'aria-label'] });
+    } catch (error) {
+        console.error('Map could not start:', error);
+        showMapError();
+        return;
+    }
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
+    map.addControl(new maplibregl.FullscreenControl(), 'top-right');
+    map.getCanvas().setAttribute('aria-label', 'Map of iAM Capital properties. The same properties are listed below the map.');
 
-    // Load properties after map initializes
+    mapReady = new Promise((resolve) => {
+        map.on('load', () => {
+            applyBlueTheme();
+            addPinImage().then(resolve);
+        });
+    });
+    map.on('error', (e) => console.warn('Map:', e && e.error ? e.error.message : e));
+
     loadProperties();
 }
 
 /**
- * Custom map styling - Clean blue theme
+ * The map's own colours, as the Google version had them: blue land, deep blue water, light blue roads, white place
+ * names; no road names, points of interest or transit.
  */
-function getMapStyles() {
-    return [
-        // Blue base map color
-        {
-            "featureType": "all",
-            "elementType": "geometry",
-            "stylers": [{ "color": "#2c5f8d" }]
-        },
-        // Lighter blue for landscape
-        {
-            "featureType": "landscape",
-            "elementType": "geometry",
-            "stylers": [{ "color": "#3d7099" }]
-        },
-        // Deep blue water
-        {
-            "featureType": "water",
-            "elementType": "geometry",
-            "stylers": [{ "color": "#1a4d6d" }]
-        },
-        // Roads in lighter blue
-        {
-            "featureType": "road",
-            "elementType": "geometry",
-            "stylers": [{ "color": "#4a87b3" }]
-        },
-        // Hide road labels/numbers
-        {
-            "featureType": "road",
-            "elementType": "labels",
-            "stylers": [{ "visibility": "off" }]
-        },
-        // White text for labels
-        {
-            "featureType": "all",
-            "elementType": "labels.text.fill",
-            "stylers": [{ "color": "#ffffff" }]
-        },
-        // Blue text stroke
-        {
-            "featureType": "all",
-            "elementType": "labels.text.stroke",
-            "stylers": [{ "color": "#2c5f8d" }, { "weight": 2 }]
-        },
-        // Hide all POIs (airports, parks, businesses, etc.)
-        {
-            "featureType": "poi",
-            "elementType": "all",
-            "stylers": [{ "visibility": "off" }]
-        },
-        // Hide transit stations and labels
-        {
-            "featureType": "transit",
-            "elementType": "all",
-            "stylers": [{ "visibility": "off" }]
+function applyBlueTheme() {
+    const set = (id, prop, value) => { try { map.setPaintProperty(id, prop, value); } catch (e) { /* layer lacks it */ } };
+    for (const layer of map.getStyle().layers) {
+        const id = layer.id;
+        if (layer.type === 'background') set(id, 'background-color', '#2c5f8d');
+        else if (layer.type === 'fill') {
+            if (/water/.test(id)) set(id, 'fill-color', '#1a4d6d');
+            else if (/aeroway|pier/.test(id)) map.setLayoutProperty(id, 'visibility', 'none');
+            else { set(id, 'fill-color', '#3d7099'); set(id, 'fill-opacity', /building/.test(id) ? 0.5 : 0.35); }
+        } else if (layer.type === 'line') {
+            if (/water/.test(id)) set(id, 'line-color', '#1a4d6d');
+            else if (/railway|aeroway|pier|path/.test(id)) map.setLayoutProperty(id, 'visibility', 'none');
+            else if (/boundary/.test(id)) set(id, 'line-color', '#8fb3d4');
+            else set(id, 'line-color', '#4a87b3');
+        } else if (layer.type === 'symbol') {
+            if (/highway|road|shield|airport|poi|transit|waterway/.test(id)) map.setLayoutProperty(id, 'visibility', 'none');
+            else { set(id, 'text-color', '#ffffff'); set(id, 'text-halo-color', '#2c5f8d'); set(id, 'text-halo-width', 1.5); }
+        } else if (layer.type === 'raster' || layer.type === 'hillshade') {
+            map.setLayoutProperty(id, 'visibility', 'none');
         }
-    ];
+    }
+}
+
+/**
+ * The grey location pin (Font Awesome Free "location-dot") with a white outline, drawn at twice the size for
+ * sharp screens
+ */
+function addPinImage() {
+    const pinPath = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z';
+    const h = PIN_HEIGHT() * 2, w = h * 0.75;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="-12 -12 408 536"><path d="${pinPath}" fill="#A7A6A7" stroke="white" stroke-width="24"/></svg>`;
+    return new Promise((resolve) => {
+        const img = new Image(w, h);
+        img.onload = () => { if (!map.hasImage('pin')) map.addImage('pin', img, { pixelRatio: 2 }); resolve(); };
+        img.onerror = () => resolve();
+        img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    });
+}
+
+function showMapError() {
+    document.getElementById('mapLoading').style.display = 'none';
+    document.getElementById('mapError').style.display = 'flex';
 }
 
 // ===================================
@@ -171,204 +163,127 @@ function getMapStyles() {
  */
 async function loadProperties() {
     const mapLoading = document.getElementById('mapLoading');
-    const mapError = document.getElementById('mapError');
     const propertiesLoading = document.getElementById('propertiesLoading');
     const propertiesError = document.getElementById('propertiesError');
 
     try {
         const response = await fetchProperties();
-
-        if (!response.ok) {
-            throw new Error('Failed to fetch properties');
-        }
-
+        if (!response.ok) throw new Error('Failed to fetch properties');
         const data = await response.json();
+        if (data.error) throw new Error(data.message);
 
-        // Handle API error response
-        if (data.error) {
-            throw new Error(data.message);
-        }
-
-        // Hide loading states
-        mapLoading.style.display = 'none';
         propertiesLoading.style.display = 'none';
 
-        // Process properties
         if (data.properties && data.properties.length > 0) {
             data.properties = data.properties.map(localiseProperty);
             allProperties = data.properties;
-            await geocodeAndRenderProperties(data.properties);
+            features = toFeatures(data.properties);
             renderPropertyCards(data.properties);
             renderFilterPills(data.properties);
             renderCategoryFilterButtons(data.properties);
+            if (mapReady) {
+                await mapReady;
+                addPropertiesToMap();
+            }
+            mapLoading.style.display = 'none';
         } else {
-            // No properties case
-            mapError.style.display = 'flex';
+            showMapError();
             propertiesError.style.display = 'block';
         }
-
     } catch (error) {
         console.error('Properties load error:', error);
-        mapLoading.style.display = 'none';
-        mapError.style.display = 'flex';
+        showMapError();
         propertiesLoading.style.display = 'none';
         propertiesError.style.display = 'block';
     }
 }
 
 // ===================================
-// Geocoding & Markers
+// Markers, clusters and pop-ups
 // ===================================
 
 /**
- * Get classic location pin marker icon colored by category
+ * One point per property. Positions are moved randomly by about 0.5-1 km so exact assets aren't shown.
  */
-function getMarkerIcon(category, status) {
-    // Classic location-dot pin path (FA Free)
-    const pinPath = 'M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z';
+function toFeatures(properties) {
+    return properties.map((property, index) => {
+        if (!property.latitude || !property.longitude) {
+            console.warn(`No coordinates for ${property.name}; add latitude and longitude in the sheet.`);
+            return null;
+        }
+        const lat = Number(property.latitude) + (Math.random() - 0.5) * 0.04;
+        const lng = Number(property.longitude) + (Math.random() - 0.5) * 0.04;
+        return { type: 'Feature', id: index, geometry: { type: 'Point', coordinates: [lng, lat] }, properties: { index, name: property.name } };
+    }).filter(Boolean);
+}
 
-    const color = '#A7A6A7';
+function fitPadding() {
+    return window.innerWidth <= 768
+        ? { top: 120, right: 20, bottom: 20, left: 20 }    // Mobile
+        : { top: 80, right: 80, bottom: 80, left: 280 };   // Desktop (room for the filter panel)
+}
 
-    // Responsive size (pin is 384×512, ratio 0.75)
-    const height = window.innerWidth <= 768 ? 40 : 32;
-    const width = height * 0.75;
-
-    return {
-        url: 'data:image/svg+xml;utf-8,' + encodeURIComponent(`
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                <path d="${pinPath}" fill="${color}" stroke="white" stroke-width="16"/>
-            </svg>
-        `),
-        scaledSize: new google.maps.Size(width, height),
-        anchor: new google.maps.Point(width / 2, height)
-    };
+function fitTo(list) {
+    if (!list.length) return;
+    const bounds = new maplibregl.LngLatBounds();
+    list.forEach((f) => bounds.extend(f.geometry.coordinates));
+    map.fitBounds(bounds, { padding: fitPadding(), maxZoom: 11, duration: 600 });
 }
 
 /**
- * Geocode addresses and add map markers
- * Uses pre-geocoded coordinates if available (fast), falls back to geocoding (slow)
+ * Add the properties as a clustered source: navy circles with a count where pins overlap, grey pins otherwise
  */
-async function geocodeAndRenderProperties(properties) {
-    const bounds = new google.maps.LatLngBounds();
-
-    for (let i = 0; i < properties.length; i++) {
-        const property = properties[i];
-
-        try {
-            let position;
-
-            // Use pre-geocoded coordinates if available (FAST PATH)
-            // Jitter position ~500m-1km to protect exact asset locations
-            if (property.latitude && property.longitude) {
-                const jitterLat = (Math.random() - 0.5) * 0.04;
-                const jitterLng = (Math.random() - 0.5) * 0.04;
-                position = new google.maps.LatLng(
-                    property.latitude + jitterLat,
-                    property.longitude + jitterLng
-                );
-            } else {
-                // Fall back to geocoding if coordinates missing (SLOW PATH)
-                position = await geocodeAddress(property.fullAddress);
-            }
-
-            if (position) {
-                // Staggered drop animation for visual effect
-                setTimeout(() => {
-                    // Create marker with drop animation (FontAwesome icon)
-                    const marker = new google.maps.Marker({
-                        position: position,
-                        map: map,
-                        title: property.name,
-                        animation: google.maps.Animation.DROP,
-                        icon: getMarkerIcon(property.category, property.status),
-                        label: '', // Prevent any label from appearing
-                        opacity: 1.0
-                    });
-
-                // Create info window
-                const infoWindow = new google.maps.InfoWindow({
-                    content: createInfoWindowContent(property)
-                });
-
-                // Marker click handler
-                marker.addListener('click', () => {
-                    // Close all other info windows
-                    markers.forEach(m => {
-                        if (m.infoWindow) {
-                            m.infoWindow.close();
-                        }
-                    });
-                    infoWindow.open(map, marker);
-                });
-
-                    marker.infoWindow = infoWindow;
-                    markers.push(marker);
-                    bounds.extend(position);
-                }, i * 100); // 100ms delay between each marker
-            }
-        } catch (error) {
-            console.warn(`Failed to render marker for ${property.name}:`, error);
-            // Continue with other properties
-        }
-    }
-
-    // Fit map to show all markers (wait for animation to complete)
-    setTimeout(() => {
-        if (markers.length > 0) {
-            // Add padding to account for filter overlay (especially on mobile)
-            const padding = window.innerWidth <= 768 ?
-                { top: 120, right: 20, bottom: 20, left: 20 } :  // Mobile
-                { top: 80, right: 80, bottom: 80, left: 280 };    // Desktop
-
-            map.fitBounds(bounds, padding);
-
-            // Adjust zoom if too close
-            const listener = google.maps.event.addListener(map, 'idle', () => {
-                if (map.getZoom() > 12) map.setZoom(12);
-                google.maps.event.removeListener(listener);
-            });
-
-            // Initialize marker clusterer
-            markerCluster = new markerClusterer.MarkerClusterer({
-                map,
-                markers: markers,
-                renderer: {
-                    render: ({ count, position }) => {
-                        return new google.maps.Marker({
-                            position,
-                            icon: {
-                                url: 'data:image/svg+xml;utf-8,' + encodeURIComponent(`
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
-                                        <circle cx="30" cy="30" r="28" fill="#19375F" stroke="white" stroke-width="4"/>
-                                        <text x="30" y="38" font-family="'Overpass', -apple-system, BlinkMacSystemFont, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">${count}</text>
-                                    </svg>
-                                `),
-                                scaledSize: new google.maps.Size(60, 60),
-                                anchor: new google.maps.Point(30, 30)
-                            },
-                            label: '',
-                            zIndex: 1000
-                        });
-                    }
-                }
-            });
-        }
-    }, properties.length * 100 + 200);
-}
-
-/**
- * Geocode single address
- */
-function geocodeAddress(address) {
-    return new Promise((resolve, reject) => {
-        geocoder.geocode({ address: address }, (results, status) => {
-            if (status === 'OK' && results[0]) {
-                resolve(results[0].geometry.location);
-            } else {
-                reject(new Error(`Geocoding failed: ${status}`));
-            }
-        });
+function addPropertiesToMap() {
+    map.addSource('properties', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features },
+        cluster: true,
+        clusterRadius: 45,
+        clusterMaxZoom: 14,
     });
+    map.addLayer({
+        id: 'clusters', type: 'circle', source: 'properties', filter: ['has', 'point_count'],
+        paint: { 'circle-color': '#19375F', 'circle-radius': 26, 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 3 },
+    });
+    map.addLayer({
+        id: 'cluster-count', type: 'symbol', source: 'properties', filter: ['has', 'point_count'],
+        layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-font': ['Noto Sans Bold'], 'text-size': 18, 'text-allow-overlap': true },
+        paint: { 'text-color': '#ffffff' },
+    });
+    map.addLayer({
+        id: 'pins', type: 'symbol', source: 'properties', filter: ['!', ['has', 'point_count']],
+        layout: { 'icon-image': 'pin', 'icon-anchor': 'bottom', 'icon-allow-overlap': true },
+    });
+
+    map.on('click', 'clusters', async (e) => {
+        const f = map.queryRenderedFeatures(e.point, { layers: ['clusters'] })[0];
+        const zoom = await map.getSource('properties').getClusterExpansionZoom(f.properties.cluster_id);
+        map.easeTo({ center: f.geometry.coordinates, zoom });
+    });
+    map.on('click', 'pins', (e) => {
+        const f = e.features[0];
+        openPopup(f.properties.index, f.geometry.coordinates);
+    });
+    for (const layer of ['clusters', 'pins']) {
+        map.on('mouseenter', layer, () => { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', layer, () => { map.getCanvas().style.cursor = ''; });
+    }
+    fitTo(features);
+}
+
+function openPopup(index, coordinates) {
+    if (popup) popup.remove();
+    // The pin is anchored at its tip: a pop-up above it clears the pin's height, one below starts at the tip
+    const h = PIN_HEIGHT();
+    const offset = {
+        'bottom': [0, -h], 'bottom-left': [0, -h], 'bottom-right': [0, -h],
+        'top': [0, 0], 'top-left': [0, 0], 'top-right': [0, 0],
+        'left': [10, -h / 2], 'right': [-10, -h / 2], 'center': [0, -h / 2],
+    };
+    popup = new maplibregl.Popup({ offset, maxWidth: '300px', focusAfterOpen: false })
+        .setLngLat(coordinates)
+        .setHTML(createInfoWindowContent(allProperties[index]))
+        .addTo(map);
 }
 
 /**
@@ -512,29 +427,13 @@ function renderPropertyCards(properties) {
             </div>
         `;
 
-        // Card click handler - zoom to marker on map
+        // Card click: fly to the property on the map and open its pop-up
         card.addEventListener('click', () => {
-            const marker = markers.find(m => m.title === property.name);
-            if (marker) {
-                map.panTo(marker.getPosition());
-                map.setZoom(12);
-
-                // Close all info windows
-                markers.forEach(m => {
-                    if (m.infoWindow) {
-                        m.infoWindow.close();
-                    }
-                });
-
-                // Open this marker's info window
-                marker.infoWindow.open(map, marker);
-
-                // Smooth scroll to map
-                document.getElementById('map').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            }
+            const feature = features.find(f => allProperties[f.properties.index] === property);
+            if (!feature || !map || !map.getSource('properties')) return;
+            map.flyTo({ center: feature.geometry.coordinates, zoom: 11 });
+            map.once('moveend', () => openPopup(feature.properties.index, feature.geometry.coordinates));
+            document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
         grid.appendChild(card);
@@ -570,15 +469,6 @@ function escapeHtml(text) {
 // ===================================
 // Error Handling
 // ===================================
-
-/**
- * Handle Google Maps loading errors
- */
-window.gm_authFailure = function() {
-    console.error('Google Maps authentication failed');
-    document.getElementById('mapLoading').style.display = 'none';
-    document.getElementById('mapError').style.display = 'flex';
-};
 
 // ===================================
 // Filter Pills Rendering
@@ -689,44 +579,15 @@ function applyFilters() {
         return categoryMatch && countryMatch && statusMatch;
     });
 
-    // Update markers visibility
-    markers.forEach(marker => {
-        const property = allProperties.find(p => p.name === marker.title);
-        if (property) {
-            const propertyCats = parseCategories(property.category);
-            const categoryMatch = activeFilters.category === 'all' || propertyCats.includes(activeFilters.category);
-            const countryMatch = activeFilters.country === 'all' || property.country === activeFilters.country;
-            const statusMatch = activeFilters.status === 'all' || property.status === activeFilters.status;
-            marker.setVisible(categoryMatch && countryMatch && statusMatch);
-        }
-    });
-
-    // Update clusterer with visible markers only
-    if (markerCluster) {
-        markerCluster.clearMarkers();
-        const visibleMarkers = markers.filter(m => m.getVisible());
-        markerCluster.addMarkers(visibleMarkers);
-    }
-
     // Update property cards
     renderPropertyCards(filtered);
 
-    // Fit map to visible markers
-    const bounds = new google.maps.LatLngBounds();
-    let hasVisibleMarkers = false;
-    markers.forEach(marker => {
-        if (marker.getVisible()) {
-            bounds.extend(marker.getPosition());
-            hasVisibleMarkers = true;
-        }
-    });
-    if (hasVisibleMarkers) {
-        // Add padding to account for filter overlay
-        const padding = window.innerWidth <= 768 ?
-            { top: 120, right: 20, bottom: 20, left: 20 } :  // Mobile
-            { top: 80, right: 80, bottom: 80, left: 280 };    // Desktop
-
-        map.fitBounds(bounds, padding);
+    // Show only the matching pins, and fit the map to them
+    if (map && map.getSource('properties')) {
+        if (popup) popup.remove();
+        const visible = features.filter(f => filtered.includes(allProperties[f.properties.index]));
+        map.getSource('properties').setData({ type: 'FeatureCollection', features: visible });
+        fitTo(visible);
     }
 }
 
@@ -788,5 +649,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Filter button listeners will be attached after data loads
 });
 
-// Note: initMap() is called by Google Maps API callback
-// No DOMContentLoaded needed - async defer script handles timing
+// Note: initMap() is called once MapLibre has loaded (see src/pages/investments.astro)

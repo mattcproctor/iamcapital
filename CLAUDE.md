@@ -7,7 +7,7 @@ built from GitHub.
 - **Repository**: https://github.com/Brightwork-Digital/iamcapital (branch `full-site` holds the rebuild; `main` is
   still the map-only site. If the old Vercel project is still connected to the repo, a push to `main` redeploys it.)
 - **Hosting**: Cloudflare Pages, Git integration. Build command `npm run build`, output directory `dist`, Node 22
-  (`.node-version`). Optional variable `PUBLIC_GOOGLE_MAPS_API_KEY` (see `.env.example`). Turn on Web Analytics for
+  (`.node-version`). No environment variables are needed. Turn on Web Analytics for
   the project in the Cloudflare dashboard (cookieless; it injects its own beacon).
 - **Design**: a faithful rebuild of the original Brizy design (see `.impeccable.md`), not a redesign. Measure against
   the archived pages before changing layout or styles.
@@ -76,13 +76,12 @@ Unchanged from the standalone site apart from layout and styling:
 - `localiseProperty()` turns the sheet's absolute links and image URLs on iamcapital.com / iamcapital.vercel.app into
   paths, so the map links to this site's property pages wherever it is served. `/cordoba/` and `/san-sebastian/`
   redirect to `/santa-marta/` and `/pasealekua/` (renamed in WordPress).
-- Google Maps API key (`PUBLIC_GOOGLE_MAPS_API_KEY`, falling back to the key in `src/pages/investments.astro`) is
-  HTTP-referrer restricted. It allows iamcapital.vercel.app only, so the map shows "Unable to load property map" on
-  localhost, Cloudflare previews and iamcapital.com until these are added to the key's Website restrictions in
-  Google Cloud Console (APIs & Services > Credentials): `https://iamcapital.com/*`, `https://www.iamcapital.com/*`,
-  `https://*.iamcapital.pages.dev/*` and `https://iamcapital.pages.dev/*` (use the real Pages project name), and
-  `http://localhost:4321/*` for development. The property cards still load without it.
-- Marker colours: Residential #2ECC71, Office/Commercial/Retail #000, Hospitality #7B68EE, Renewable #FFC107.
+- The map is MapLibre GL (npm `maplibre-gl`, bundled and loaded after first paint) with OpenFreeMap's free vector
+  tiles (`tiles.openfreemap.org`, style "positron" recoloured to the old Google map's blue theme in
+  `applyBlueTheme()`). No API key, account, billing or cookies. It replaced Google Maps in October 2026 because the
+  Google key was restricted to iamcapital.vercel.app and its owner had left the project. Pins are clustered by the
+  map source (navy circles); positions are offset by ~0.5-1 km on purpose so exact assets aren't shown.
+- Card badge colours: Residential #2ECC71, Office/Commercial/Retail #000, Hospitality #7B68EE, Renewable #FFC107.
 
 ## Notes
 
@@ -92,5 +91,5 @@ Unchanged from the standalone site apart from layout and styling:
   `-vf scale=1280:-2 -crf 28 -maxrate 1100k` for hero-720.mp4). The poster is its first frame.
 
 - The old site's Complianz cookie banner, Yoast, Burst, MetaSlider and SMTP plugins are not needed: there are no forms.
-  Third-party content: Google Maps (/investments/, /contact/), YouTube nocookie
+  Third-party content: OpenFreeMap tiles (/investments/, no cookies), Google Maps embed (/contact/), YouTube nocookie
   (one event page). The cookie policy page is a draft describing exactly this.

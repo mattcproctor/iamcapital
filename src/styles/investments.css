@@ -487,3 +487,12 @@
 #map img[src$="/mapfiles/transparent.png"] {
     image-rendering: pixelated;
 }
+
+/* MapLibre pop-up and controls, styled like the Google Maps info window the map used before */
+.investments-page .maplibregl-popup-content {
+    padding: 12px; border-radius: 8px; box-shadow: 0 2px 7px 1px rgb(0 0 0 / 0.3); font-family: var(--font-family);
+}
+.investments-page .maplibregl-popup-close-button { font-size: 20px; width: 28px; height: 28px; right: 2px; top: 2px; color: #555; }
+.investments-page .maplibregl-popup-close-button:hover { background: transparent; color: #000; }
+.investments-page .maplibregl-ctrl-attrib { font-size: 11px; }
+.investments-page .maplibregl-canvas { outline: none; }
