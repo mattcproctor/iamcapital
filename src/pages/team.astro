@@ -99,7 +99,8 @@ const people = team.map((p) => {
   .person:hover h6 { color: var(--navy); }
 
   .bio { margin: auto; border: 0; padding: 0; max-width: 800px; width: calc(100% - 40px); overflow: visible; background: var(--white); }
-  .bio::backdrop { background: rgb(0 0 0 / 0.75); }
+  /* The page behind darkens and blurs */
+  .bio::backdrop { background: rgb(0 0 0 / 0.6); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
   /* The pop-up and its shade fade in and out (and the card rises slightly), where the browser supports it */
   .bio, .bio::backdrop { transition: opacity 0.3s var(--ease-out), translate 0.3s var(--ease-out), overlay 0.3s allow-discrete, display 0.3s allow-discrete; }
   .bio:not([open]), .bio:not([open])::backdrop { opacity: 0; }

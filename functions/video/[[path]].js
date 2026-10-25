@@ -31,8 +31,11 @@ export async function onRequest({ request, env }) {
   const range = parseRange(request.headers.get('Range'), size);
   if (!range) {
     // No (usable) Range header, or the size is unknown: send the whole file
-    if (size) headers.set('Content-Length', String(size));
-    return new Response(request.method === 'HEAD' ? null : asset.body, { status: 200, headers });
+    if (request.method === 'HEAD' || !size) return new Response(request.method === 'HEAD' ? null : asset.body, { status: 200, headers });
+    headers.set('Content-Length', String(size));
+    const { readable, writable } = new FixedLengthStream(size);
+    asset.body.pipeTo(writable);
+    return new Response(readable, { status: 200, headers });
   }
   if (range === 'unsatisfiable') {
     asset.body.cancel();
@@ -47,7 +50,12 @@ export async function onRequest({ request, env }) {
     asset.body.cancel();
     return new Response(null, { status: 206, headers });
   }
-  return new Response(slice(asset.body, start, end), { status: 206, headers });
+  // A FixedLengthStream keeps the Content-Length header: without it Cloudflare sends the part "chunked", which
+  // Safari's video player won't play
+  const length = end - start + 1;
+  const { readable, writable } = new FixedLengthStream(length);
+  slice(asset.body, start, end).pipeTo(writable);
+  return new Response(readable, { status: 206, headers });
 }
 
 // "bytes=START-END", "bytes=START-" or "bytes=-SUFFIX" (a single range); null when absent or not usable

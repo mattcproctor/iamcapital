@@ -95,6 +95,14 @@ const fmt = (n: number) => n.toLocaleString('en-GB');
   // Visitors who ask for reduced motion keep the still frame instead of the moving film
   const film = document.querySelector<HTMLVideoElement>('[data-hero-video]');
   if (film && matchMedia('(prefers-reduced-motion: reduce)').matches) { film.pause(); film.removeAttribute('autoplay'); film.hidden = true; }
+  // Safari can skip the autoplay attribute; start the (muted) film from script too. If the browser still refuses
+  // (low-power mode, a "never auto-play" setting), the poster frame underneath stays.
+  else if (film) {
+    film.muted = true;
+    const play = () => { if (film.paused) film.play().catch(() => {}); };
+    play();
+    film.addEventListener('canplay', play, { once: true });
+  }
 
   // The counters count up from zero when they come into view, as on the old site
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
