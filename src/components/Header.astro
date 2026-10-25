@@ -52,7 +52,7 @@ const { overlay = false, subnav = [] } = Astro.props;
 </script>
 
 <style>
-  .header { position: sticky; top: 0; z-index: 50; background: var(--white); height: 80px; transition: background 0.3s ease, box-shadow 0.3s ease; }
+  .header { position: sticky; top: 0; z-index: 50; background: var(--white); height: 80px; transition: background-color 0.3s ease, box-shadow 0.3s ease; }
   .header--sub { height: var(--header-h); }
   .header.is-scrolled { box-shadow: 0 1px 12px rgb(0 0 0 / 0.08); }
   .header__inner {
@@ -60,29 +60,36 @@ const { overlay = false, subnav = [] } = Astro.props;
     display: flex; justify-content: space-between; align-items: flex-start; padding-top: 15px;
   }
   .header:not(.header--sub) .header__inner { align-items: center; padding-top: 0; }
-  .header__logo { display: block; width: 181px; flex: none; }
-  .header__logo :global(img) { width: 181px; height: auto; }
-  .logo-light { display: none; }
+  .header__logo { display: block; position: relative; width: 181px; flex: none; }
+  .header__logo :global(img) { display: block; width: 181px; height: auto; transition: opacity 0.4s ease; }
+  /* The white logo is shorter; centred on the navy one so the two crossfade in place */
+  .header__logo :global(.logo-light) { position: absolute; left: 0; top: 50%; translate: 0 -50%; opacity: 0; }
 
   .header__menus { display: flex; flex-direction: column; align-items: flex-end; }
   .menu { display: flex; gap: 20px; }
-  .menu a { font-weight: 600; font-size: 16px; line-height: 30.4px; color: var(--navy); display: block; transition: opacity 0.2s; }
+  .menu a { font-weight: 600; font-size: 16px; line-height: 30.4px; color: var(--navy); display: block; transition: opacity 0.2s, color 0.4s ease; }
   .menu a:hover { opacity: 0.7; }
   .submenu { display: flex; gap: 10px; margin-top: 10px; }
   .submenu a { font-size: 15px; line-height: 28.5px; color: var(--black); }
   .submenu a:hover { color: var(--navy); }
 
-  /* Home: transparent over the photo, logo and links white, until the page scrolls */
-  .header--overlay { position: fixed; inset: 0 0 auto; height: 150px; background: transparent; }
-  .header--overlay .header__inner { align-items: flex-start; padding-top: 56px; }
+  /* Home: transparent over the photo, logo and links white, until the page scrolls; then it eases down to the
+     white 80px bar, the two logos crossfading */
+  .header--overlay {
+    position: fixed; inset: 0 0 auto; height: 150px; background-color: transparent;
+    transition: height 0.4s var(--ease-out), background-color 0.3s ease, box-shadow 0.3s ease;
+  }
   .header--overlay .menu a { color: var(--white); }
-  .header--overlay .logo-dark { display: none; }
-  .header--overlay .logo-light { display: block; }
-  .header--overlay.is-scrolled, .header--overlay.is-open { height: 80px; background: var(--white); }
-  .header--overlay.is-scrolled .header__inner, .header--overlay.is-open .header__inner { padding-top: 0; align-items: center; }
+  .header--overlay :global(.logo-dark) { opacity: 0; }
+  .header--overlay :global(.logo-light) { opacity: 1; }
+  .header--overlay.is-scrolled, .header--overlay.is-open { height: 80px; background-color: var(--white); }
   .header--overlay.is-scrolled .menu a, .header--overlay.is-open .menu a { color: var(--navy); }
-  .header--overlay.is-scrolled .logo-dark, .header--overlay.is-open .logo-dark { display: block; }
-  .header--overlay.is-scrolled .logo-light, .header--overlay.is-open .logo-light { display: none; }
+  .header--overlay.is-scrolled :global(.logo-dark), .header--overlay.is-open :global(.logo-dark) { opacity: 1; }
+  .header--overlay.is-scrolled :global(.logo-light), .header--overlay.is-open :global(.logo-light) { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .header--overlay { transition-property: background-color, box-shadow; }
+    .header__menus { transform: none !important; }
+  }
 
   .header__toggle { display: none; }
   .submenu-mobile { display: none; }
@@ -112,11 +119,17 @@ const { overlay = false, subnav = [] } = Astro.props;
     .is-open .bars { background: transparent !important; }
     .is-open .bars::before { transform: translateY(7px) rotate(45deg); }
     .is-open .bars::after { transform: translateY(-7px) rotate(-45deg); }
+    /* The menu fades down into place and back; hidden from keyboard and screen readers while closed */
     .header__menus {
       position: fixed; top: 78px; left: 0; right: 0; bottom: 0; background: var(--white); overflow-y: auto;
-      align-items: stretch; padding: 10px 15px 30px; display: none;
+      align-items: stretch; padding: 10px 15px 30px;
+      visibility: hidden; opacity: 0; transform: translateY(-8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
     }
-    .is-open .header__menus { display: flex; }
+    .is-open .header__menus {
+      visibility: visible; opacity: 1; transform: none;
+      transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out), visibility 0s;
+    }
     .menu, .submenu { flex-direction: column; gap: 0; }
     .menu a, .header--overlay .menu a { color: var(--navy); font-size: 18px; padding: 12px 0; border-bottom: 1px solid #e6e6e6; }
     .submenu { margin-top: 15px; }

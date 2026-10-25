@@ -49,10 +49,10 @@ const fmt = (n: number) => n.toLocaleString('en-GB');
 
   <section id="intro" class="intro">
     <div class="container">
-      <p class="lead intro__text">iAM Capital is a European private equity investment group aiming to generate value for investors by deploying capital into alternative investment strategies with a focus on real estate and hospitality-led investment strategies.</p>
+      <p class="lead intro__text" data-reveal>iAM Capital is a European private equity investment group aiming to generate value for investors by deploying capital into alternative investment strategies with a focus on real estate and hospitality-led investment strategies.</p>
       <div class="counters">
-        {counters.map((c) => (
-          <div class="counter">
+        {counters.map((c, i) => (
+          <div class="counter" data-reveal style={`--i: ${i}`}>
             <p class="counter__value">{c.prefix}<span data-count={c.end}>{fmt(c.end)}</span>{c.suffix}</p>
             <h4>{c.label}</h4>
           </div>
@@ -67,10 +67,10 @@ const fmt = (n: number) => n.toLocaleString('en-GB');
     <Image src={upload('2026/02/AdobeStock_588733664-scaled.jpeg')} alt="" widths={[768, 1440, 1920]} sizes="100vw" class="band__img" />
     <div class="band__shade"></div>
     <div class="band__inner">
-      <div class="band__left"><h3>Disciplined Local Insight Combined with Focused Execution to Deliver Exceptional Returns.</h3></div>
+      <div class="band__left" data-reveal="left"><h3>Disciplined Local Insight Combined with Focused Execution to Deliver Exceptional Returns.</h3></div>
       <div class="band__right">
-        {features.map((f) => (
-          <div class="band__item">
+        {features.map((f, i) => (
+          <div class="band__item" data-reveal style={`--i: ${i + 1}`}>
             <h4>{f.title}</h4>
             <p>{f.text}</p>
           </div>
@@ -81,8 +81,8 @@ const fmt = (n: number) => n.toLocaleString('en-GB');
 
   <section class="columns">
     <div class="columns__grid">
-      {columns.map((c) => (
-        <div class="column">
+      {columns.map((c, i) => (
+        <div class="column" data-reveal style={`--i: ${i}`}>
           <div class="column__head"><Icon name={c.icon} /><h4>{c.title}</h4></div>
           <ul>{c.points.map((p) => <li>{p}</li>)}</ul>
         </div>
@@ -127,8 +127,11 @@ const fmt = (n: number) => n.toLocaleString('en-GB');
   .hero h1 { max-width: 1000px; margin-inline: auto; }
   .hero__down { display: inline-block; margin-top: 60px; }
   .hero :global(.hero__chevron) { width: 48px; height: 48px; stroke-width: 1.5; }
+  /* The headline fades in over the film, as on the old site (there after a 1s wait; here at once and quicker) */
   @media (prefers-reduced-motion: no-preference) {
-    .hero__down { animation: bob 2s ease-in-out infinite; }
+    .hero h1 { animation: hero-in 1s var(--ease-out) 0.15s both; }
+    .hero__down { animation: hero-in 1s var(--ease-out) 0.5s both, bob 2s ease-in-out 1.5s infinite; }
+    @keyframes hero-in { from { opacity: 0; transform: translateY(14px); } }
     @keyframes bob { 50% { transform: translateY(6px); } }
   }
 

@@ -33,15 +33,15 @@ const steps: { title: string; icon: IconName; text: string }[] = [
     <div class="container">
       <h2 class="title title--wide">Environmental, Social &amp; Governance Principles</h2>
       <ol class="steps">
-        {steps.map((s) => (
-          <li>
+        {steps.map((s, i) => (
+          <li data-reveal="zoom" style={`--i: ${i}`}>
             <h5>{s.title}</h5>
             <span class="steps__icon"><Icon name={s.icon} class="steps__glyph" /></span>
             <p>{s.text}</p>
           </li>
         ))}
       </ol>
-      <div class="certs">
+      <div class="certs" data-reveal="fade">
         <Image src={upload('2026/03/LEED-logo-scaled.png')} alt="LEED" widths={[200, 400]} sizes="200px" />
         <Image src={upload('2026/03/well-gold-solid-new.png')} alt="WELL Gold" widths={[200, 400]} sizes="200px" />
       </div>

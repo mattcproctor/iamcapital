@@ -53,7 +53,7 @@ const description = p
       </div>
 
       {slides.length > 0 && (
-        <div class="slider" data-slider>
+        <div class="slider" data-slider data-reveal>
           <ul class="slider__track" aria-label={`${title} photos`}>
             {slides.map((s, i) => (
               <li><Image src={upload(s)} alt={`${title}, photo ${i + 1} of ${slides.length}`} widths={[565, 1130]} sizes="(min-width: 992px) 565px, 100vw" /></li>
@@ -69,7 +69,7 @@ const description = p
         </div>
       )}
     </div>
-    <a class="back" href={p ? '/investments/' : '/latest-news/#events'} data-back><Icon name="arrowLeft" class="back__icon" /> Back</a>
+    <a class="back" href={p ? '/investments/' : '/latest-news/#events'} data-back data-reveal="fade"><Icon name="arrowLeft" class="back__icon" /> Back</a>
   </section>
 </Layout>
 
@@ -108,7 +108,8 @@ const description = p
   .video iframe { width: 100%; height: 100%; border: 0; }
 
   .slider { position: relative; overflow: hidden; }
-  .slider__track { display: flex; transition: transform 0.6s ease; }
+  .slider__track { display: flex; }
+  @media (prefers-reduced-motion: no-preference) { .slider__track { transition: transform 0.6s var(--ease-out); } }
   .slider__track li { flex: 0 0 100%; }
   .slider__track :global(img) { width: 100%; aspect-ratio: 565 / 480; object-fit: cover; }
   .slider__btn { position: absolute; top: calc(50% - 30px); width: 28px; height: 28px; border-radius: 50%; border: 0; background: rgb(0 0 0 / 0.75); color: var(--white); display: grid; place-items: center; cursor: pointer; }

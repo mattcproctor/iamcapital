@@ -51,10 +51,10 @@ const people = team.map((p) => {
       <div class="container">
         <h2 class="title">{g.label}</h2>
         <ul class="people">
-          {g.people.map((p) => {
+          {g.people.map((p, i) => {
             const { role, company } = split(p);
             return (
-              <li>
+              <li data-reveal="zoom" style={`--i: ${i % 4}`}>
                 <button type="button" class="person" data-open={id(p.name)}>
                   {p.photo && <Image src={upload(p.photo)} alt="" widths={[263, 526]} sizes="263px" class="person__photo" />}
                   <h6>{p.name}</h6>
@@ -100,6 +100,14 @@ const people = team.map((p) => {
 
   .bio { margin: auto; border: 0; padding: 0; max-width: 800px; width: calc(100% - 40px); overflow: visible; background: var(--white); }
   .bio::backdrop { background: rgb(0 0 0 / 0.75); }
+  /* The pop-up and its shade fade in and out (and the card rises slightly), where the browser supports it */
+  .bio, .bio::backdrop { transition: opacity 0.3s var(--ease-out), translate 0.3s var(--ease-out), overlay 0.3s allow-discrete, display 0.3s allow-discrete; }
+  .bio:not([open]), .bio:not([open])::backdrop { opacity: 0; }
+  @starting-style { .bio[open], .bio[open]::backdrop { opacity: 0; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .bio:not([open]) { translate: 0 12px; }
+    @starting-style { .bio[open] { translate: 0 12px; } }
+  }
   .bio__close { position: absolute; top: -45px; left: -45px; background: none; border: 0; color: var(--white); cursor: pointer; }
   .bio :global(.bio__x) { width: 32px; height: 32px; stroke-width: 1.5; }
   .bio__inner { display: grid; grid-template-columns: 290px 1fr; max-height: calc(100vh - 80px); }

@@ -92,6 +92,10 @@ Unchanged from the standalone site apart from layout and styling:
   JSON-LD graph in `Layout.astro` (`src/lib/seo.ts`), Search Console verification meta tag from the old site. When
   a page or PDF moves, add the old address to `redirects.json` and run `tools/seo/check-urls.py`.
 
+- Motion: scroll-in animations follow the old site's (which elements, in which order) but shorter and gentler. Mark an
+  element `data-reveal` (`up` default, `left`, `fade`, `zoom`) and stagger grid items with `style="--i: n"`; the CSS
+  is in `global.css`, the observer in `Layout.astro`. All motion is off for visitors who ask for reduced motion.
+
 - The home hero film is the old site's `uploads/2023/01/iamcapital-background.mp4` (the same film as Vimeo 794267898),
   with its 0.7s fade from black trimmed and re-encoded for the web: `ffmpeg -ss 0.7 -i in.mp4 -an -c:v libx264
   -preset slow -crf 27 -maxrate 2200k -bufsize 4400k -pix_fmt yuv420p -movflags +faststart hero-1080.mp4` (and

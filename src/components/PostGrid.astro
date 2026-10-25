@@ -13,7 +13,7 @@ const newTab = (d: Doc) => d.kind === 'pdf' || isExternal(d.url);
 <div class="posts" data-posts data-per-page={perPage}>
   <ul class:list={['posts__grid', { 'posts__grid--cards': cards }]}>
     {docs.map((d, i) => (
-      <li class="post" data-page={Math.floor(i / perPage) + 1}>
+      <li class="post" data-page={Math.floor(i / perPage) + 1} data-reveal style={`--i: ${i % 4}`}>
         <p class="post__title">{d.title}</p>
         <p class="post__date">{monthYear(d.date)}</p>
         <a class="post__more" href={d.url} {...(newTab(d) ? { target: '_blank', rel: 'noopener' } : {})}>

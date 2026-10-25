@@ -15,7 +15,8 @@
     --font-family: 'Overpass', -apple-system, BlinkMacSystemFont, sans-serif;
     --container-max: 1400px;
     --container-padding: 2rem;
-    --transition-base: 0.3s ease;
+    /* Colour and shadow only: the hover states change nothing else */
+    --transition-colors: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     font-family: var(--font-family);
     line-height: 1.6;
     color: var(--color-gray-700);
@@ -96,11 +97,10 @@
     font-weight: 600;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transition: all var(--transition-base);
+    transition: var(--transition-colors);
 }
 .filter-toggle:hover {
     background: var(--color-black);
-    transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 .filter-toggle svg {
@@ -131,7 +131,7 @@
     font-size: 0.8125rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: var(--transition-colors);
     border-radius: 20px;
     white-space: nowrap;
 }
@@ -204,7 +204,7 @@
     font-weight: 500;
     font-family: var(--font-family);
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: var(--transition-colors);
     border-radius: 6px;
     text-transform: none;
 }
@@ -241,13 +241,12 @@
     border-radius: 6px;
     overflow: hidden;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: var(--transition-colors);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 .property-card:hover {
     border-color: var(--color-gray-300);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transform: translateY(-3px);
 }
 .property-card__image {
     width: 100%;
@@ -324,7 +323,7 @@
     font-weight: 500;
     font-family: var(--font-family);
     border-radius: 6px;
-    transition: all var(--transition-base);
+    transition: var(--transition-colors);
 }
 .property-card__view-btn:hover {
     background: var(--color-black);
@@ -399,7 +398,7 @@
     font-size: 0.875rem;
     font-weight: 600;
     border-radius: 4px;
-    transition: all var(--transition-base);
+    transition: var(--transition-colors);
 }
 .info-window__button:hover {
     background: var(--color-black);
