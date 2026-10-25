@@ -1,7 +1,7 @@
 // Helpers for titles, descriptions and structured data (schema.org JSON-LD).
 import { contact } from '../data/site';
 
-export const SITE = 'https://iamcapital.com';
+export const SITE = 'https://www.iamcapital.com';
 
 // Google shows roughly 155 characters of a description: cut at a word boundary and end cleanly
 export function clip(text: string, max = 155): string {

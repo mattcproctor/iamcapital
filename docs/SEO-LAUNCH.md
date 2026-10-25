@@ -22,44 +22,31 @@ iamcapital.com onto it without losing search rankings, links or email.
 - **AI search (AIO)**: `/llms.txt` (site guide) and `/llms-full.txt` (all facts: funds, history, team, properties,
   documents), generated from the site's data; the Investments page has a plain-HTML list of all 28 properties for
   crawlers that don't run JavaScript; all content is server-rendered.
-- Canonical URLs are `https://iamcapital.com/...` everywhere, so the pages.dev copy is not treated as the original.
+- Canonical URLs are `https://www.iamcapital.com/...` everywhere, so the pages.dev copy is not treated as the original.
 
 ## Monday: domain
 
-iamcapital.com's DNS is on **AWS Route 53** today (A record 35.178.128.7, the old Lightsail server). Cloudflare Pages
-can only serve the bare domain (`iamcapital.com`, without www) when the domain's DNS is on Cloudflare, so the DNS
-moves to Cloudflare.
+DNS stays on **AWS Route 53**; only the website moves. Route 53 can't point the bare iamcapital.com at Cloudflare
+Pages (no CNAME at the apex; its "alias" records only reach AWS), so the site's address is **www.iamcapital.com**
+(`site` in `astro.config.mjs`, `SITE` in `src/lib/seo.ts`) and the bare domain forwards to it from AWS.
+Step-by-step instructions for both sides are in the shared doc "iamcapital.com go-live: DNS and Cloudflare". In short:
 
-**Email runs through Mimecast. Copy every record exactly or email stops.**
+1. **Cloudflare**: Pages → iamcapital → Custom domains → add `www.iamcapital.com`.
+2. **Route 53** (domain owners): `www` → CNAME `iamcapital.pages.dev` (plus any TXT record Cloudflare asks for).
+   No other record changes; email (Mimecast MX, SPF, DMARC, DKIM) is untouched.
+3. **Route 53 + CloudFront** (domain owners): an ACM certificate for `iamcapital.com` (us-east-1), a CloudFront
+   distribution with a viewer-request CloudFront Function that 301s every request to
+   `https://www.iamcapital.com` + path + query, and the apex A record switched to an alias of that distribution.
+   The old Lightsail server (35.178.128.7, already answering 503) can then be retired.
+4. **Cloudflare**: make sure AI-crawler blocking is off; turn on Web Analytics.
 
-1. **Export the Route 53 zone first** (Route 53 → Hosted zones → iamcapital.com → export, or list every record).
-   As of 23 Oct 2026 it includes at least:
-   - MX `10 eu-smtp-inbound-1.mimecast.com`, `10 eu-smtp-inbound-2.mimecast.com`
-   - TXT SPF `v=spf1 ip4:205.201.128.0/20 ip4:198.2.128.0/18 ip4:148.105.0.0/16 include:eu._netblocks.mimecast.com ~all`
-   - TXT `MS=ms88679439`, `cisco-ci-domain-verification=…`, `knowbe4-site-verification=…` and four other tokens
-   - `_dmarc` TXT `v=DMARC1; p=quarantine; …`
-   - plus any DKIM (`*._domainkey`), `autodiscover`, `selector1/selector2`, Mimecast or other subdomain records that
-     only the full export shows.
-2. **Cloudflare → Add a domain → iamcapital.com** (free plan). Compare the imported records with the export line by
-   line and add anything missing. Set the mail-related records to **DNS only** (grey cloud).
-3. **Change the nameservers** at the registrar to the two Cloudflare gives. Keep Route 53 untouched until Cloudflare
-   shows the domain Active and email is confirmed working (send and receive a test message).
-4. **Pages → iamcapital → Custom domains**: add `iamcapital.com` and `www.iamcapital.com`. Cloudflare creates the
-   records and the certificates.
-5. **Redirects** (Rules → Redirect Rules or Bulk Redirects, 301, keep path and query string):
-   - `www.iamcapital.com/*` → `https://iamcapital.com/$1`
-   - `iamcapital.pages.dev/*` → `https://iamcapital.com/$1` (so the pages.dev copy can't compete in search)
-6. **SSL/TLS**: Always Use HTTPS on; minimum TLS 1.2.
-7. **AI crawlers**: Cloudflare can block AI crawlers by default on new domains. Under Security → Bots (AI Crawl
-   Control / "Block AI bots"), make sure AI crawlers are **allowed** and that no managed robots.txt adds `Disallow`
-   rules, otherwise ChatGPT, Perplexity, Claude and Google's AI features can't read the site.
-8. **Web Analytics**: turn it on for the Pages project.
+Old addresses on iamcapital.com reach their page in at most two steps (bare → www, then the old-address redirect).
 
 ## Monday: after the switch
 
 - Run `python3 tools/seo/check-urls.py https://iamcapital.com`; it should report nothing unexpected broken.
-- **Google Search Console** (property iamcapital.com, already verified): Sitemaps → submit
-  `https://iamcapital.com/sitemap.xml` and remove the old `sitemap_index.xml`. URL Inspection → Request indexing for
+- **Google Search Console**: add the property `https://www.iamcapital.com/` (the verification meta tag on every page
+  verifies it for the same Google account), submit `https://www.iamcapital.com/sitemap.xml`, and request indexing for
   `/`, `/about/`, `/investments/`, `/team/`, `/investor-relations/`. No "Change of address" (same domain).
 - **Bing Webmaster Tools**: import the site from Search Console and submit the sitemap (Bing feeds ChatGPT search and
   Copilot).

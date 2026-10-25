@@ -33,7 +33,7 @@ const cloudflareRedirects = {
 };
 
 export default defineConfig({
-  site: 'https://iamcapital.com',
+  site: 'https://www.iamcapital.com',
   trailingSlash: 'always',
   build: { format: 'directory' },
   redirects: Object.fromEntries(

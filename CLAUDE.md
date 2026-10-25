@@ -25,7 +25,7 @@ npx wrangler pages dev dist   # serve dist/ exactly as Cloudflare does (redirect
 ## Structure
 
 ```
-astro.config.mjs        site https://iamcapital.com, trailing slashes, folder output; writes dist/_redirects after build
+astro.config.mjs        site https://www.iamcapital.com, trailing slashes, folder output; writes dist/_redirects after build
 redirects.json          123 redirects from old WordPress addresses (to pages, PDFs or external articles)
 wrangler.jsonc          Cloudflare Pages project settings (name, output directory)
 public/_headers         security headers, long caching for /_astro/* and /fonts/*
