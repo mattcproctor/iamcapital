@@ -27,10 +27,7 @@ content:
     type: file
     path: src/data/shareholder-notices.json
     format: json
-    list: &doc-list
-      collapsible:
-        collapsed: true
-        summary: "{date} · {title}"
+    list: true
     fields: &doc-fields
       - name: title
         label: Title
@@ -62,7 +59,7 @@ content:
     type: file
     path: src/data/annual-reports.json
     format: json
-    list: *doc-list
+    list: true
     fields: *doc-fields
 
   - name: press
@@ -71,7 +68,7 @@ content:
     type: file
     path: src/data/press.json
     format: json
-    list: *doc-list
+    list: true
     fields: *doc-fields
 
   - name: events-news
@@ -80,7 +77,7 @@ content:
     type: file
     path: src/data/events-news.json
     format: json
-    list: *doc-list
+    list: true
     fields: *doc-fields
 
   - name: team
@@ -89,10 +86,7 @@ content:
     type: file
     path: src/data/team.json
     format: json
-    list:
-      collapsible:
-        collapsed: true
-        summary: "{name} · {title}"
+    list: true
     fields:
       - name: name
         label: Name
@@ -134,10 +128,7 @@ content:
     type: file
     path: src/data/legal.json
     format: json
-    list:
-      collapsible:
-        collapsed: true
-        summary: "{title}"
+    list: true
     fields:
       - name: title
         label: Title
