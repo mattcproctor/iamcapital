@@ -14,7 +14,7 @@ iamcapital.com onto it without losing search rankings, links or email.
   Re-check any time: `python3 tools/seo/check-urls.py https://iamcapital.com`
 - **Search Console stays verified**: the old site's `google-site-verification` meta tag is in every page's head.
 - **Sitemap**: `/sitemap.xml` lists 38 pages and 84 PDFs (reports, notices, press releases, policies) with dates.
-- **robots.txt** allows everything and points to the sitemap. The cookie policy and 404 are `noindex`.
+- **robots.txt** allows everything and points to the sitemap. The 404 page is `noindex`.
 - **Titles and descriptions**: unique on every page, 20–65 and 70–160 characters.
 - **Structured data** (JSON-LD) on every page: Organization (with iAM Invest Ltd as FCA-regulated subsidiary,
   contact points, LinkedIn), WebSite, WebPage (AboutPage, ContactPage, CollectionPage), BreadcrumbList; Person for

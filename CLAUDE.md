@@ -41,7 +41,7 @@ src/
     responsibility.astro        ESG steps, certifications, legal PDFs (#esg, #legal)
     investor-relations.astro    shareholder notices, annual reports (#shareholder, #reports)
     latest-news.astro           press, events (#press, #events)
-    contact.astro, cookie-policy.astro (DRAFT, noindex), 404.astro
+    contact.astro, cookie-policy.astro (approved by iAM, October 2026), 404.astro
     [slug].astro                28 property pages + 2 event pages at the WordPress addresses (/castel-porrona/ ...)
     sitemap.xml.ts              pages + linked PDFs, with dates
     llms.txt.ts, llms-full.txt.ts   plain-text site guide and full content for AI search (from src/lib/llms.ts)
@@ -116,5 +116,5 @@ in step with `.pages.yml`. Pull before editing these files in code, since iAM ma
   `-vf scale=1280:-2 -crf 28 -maxrate 1100k` for hero-720.mp4). The poster is its first frame.
 
 - The old site's Complianz cookie banner, Yoast, Burst, MetaSlider and SMTP plugins are not needed: there are no forms.
-  Third-party content: OpenFreeMap tiles (/investments/, no cookies), Google Maps embed (/contact/), YouTube nocookie
-  (one event page). The cookie policy page is a draft describing exactly this.
+  Third-party content: OpenFreeMap tiles (/investments/ and /contact/, no cookies), YouTube nocookie (one event page).
+  The cookie policy page describes exactly this; update it if a new outside service is added.

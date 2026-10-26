@@ -4,8 +4,8 @@ import events from '../data/events.json';
 import { documents, legal } from '../lib/content';
 
 // Every indexable page, plus the PDFs the site links to (reports, notices, press releases, policies), which Google
-// indexes as documents. lastmod is given where the content carries a real date. The cookie policy and 404 are
-// left out (noindex).
+// indexes as documents. lastmod is given where the content carries a real date. The 404 page is left out
+// (noindex).
 
 type Entry = { path: string; lastmod?: string };
 
@@ -22,6 +22,7 @@ export const GET: APIRoute = ({ site }) => {
     { path: '/investor-relations/', lastmod: newest([...documents.shareholderNotices, ...documents.annualReports].map((d) => d.date)) },
     { path: '/latest-news/', lastmod: newest([...documents.press, ...documents.events].map((d) => d.date)) },
     { path: '/contact/' },
+    { path: '/cookie-policy/' },
     ...listed.map((p) => ({ path: `/${p.slug}/`, lastmod: p.date })),
     ...events.map((e) => ({ path: `/${e.slug}/`, lastmod: e.date })),
   ];
