@@ -1,8 +1,7 @@
 import type { APIRoute } from 'astro';
 import { listed } from '../lib/properties';
 import events from '../data/events.json';
-import documents from '../data/documents.json';
-import legal from '../data/legal.json';
+import { documents, legal } from '../lib/content';
 
 // Every indexable page, plus the PDFs the site links to (reports, notices, press releases, policies), which Google
 // indexes as documents. lastmod is given where the content carries a real date. The cookie policy and 404 are

@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Banner from '../components/Banner.astro';
 import Icon from '../components/Icon.astro';
-import team from '../data/team.json';
+import { team } from '../lib/content';
 import { upload } from '../lib/images';
 import { clip, SITE } from '../lib/seo';
 
@@ -14,12 +14,8 @@ const groups = [
   { id: 'operations', label: 'Operations' },
 ].map((g) => ({ ...g, people: team.filter((t) => t.group === g.label) }));
 
-// "Chairman iAM Capital" on the card reads as role "Chairman" over company "iAM Capital"
-const split = (p: (typeof team)[number]) => {
-  const role = p.title ?? p.role ?? '';
-  const company = p.role && p.title && p.role.startsWith(p.title) ? p.role.slice(p.title.length).trim() : '';
-  return { role, company };
-};
+// Each card: job title over company ("Chairman" / "iAM Capital"), as on the old site
+const split = (p: (typeof team)[number]) => ({ role: p.title, company: p.company });
 const id = (name: string) => 'bio-' + name.toLowerCase().replace(/[^a-z]+/g, '-');
 
 // Each person as schema.org Person, for search and AI answers ("who runs iAM Capital")

@@ -46,10 +46,12 @@ src/
     sitemap.xml.ts              pages + linked PDFs, with dates
     llms.txt.ts, llms-full.txt.ts   plain-text site guide and full content for AI search (from src/lib/llms.ts)
   data/                 content extracted from WordPress (edit these to change content)
-    documents.json      shareholderNotices, annualReports, press, events: {title, date, url, kind: pdf|external|page}
+    shareholder-notices.json, annual-reports.json, press.json, events-news.json
+                        documents (edited in Pages CMS): {title, date, pdf | link}; read via src/lib/content.ts
     properties.json     28 properties: description (paragraph HTML, links kept), facts, gallery, cover, status
     funds.json          the About page's funds and category intros
-    team.json, timeline.json, legal.json, events.json, site.ts (nav, contact, footer links)
+    team.json, legal.json   team and policies (edited in Pages CMS), also read via src/lib/content.ts
+    timeline.json, events.json, site.ts (nav, contact, footer links)
   lib/                  images.ts (upload('2023/01/x.jpg') -> optimised image), properties.ts, format.ts
   assets/uploads/       the 162 images the site uses, at their WordPress year/month paths (Astro optimises them)
   styles/               global.css (original fonts, colours, headings), investments.css (map), overpass.css (font)
@@ -63,12 +65,18 @@ docs/SEO-LAUNCH.md      the domain switch checklist (DNS on Route 53, Mimecast e
 
 ## Adding content
 
-- **Press release / report / notice**: put the PDF in `public/wp-content/uploads/YYYY/MM/` and add an entry at the top
-  of the right list in `src/data/documents.json` (`kind: "pdf"`, `url: "/wp-content/uploads/YYYY/MM/file.pdf"`).
-  External articles use `kind: "external"` and the full URL.
+iAM edits documents, the team and policies themselves in **Pages CMS** (https://app.pagescms.org, configured in
+`.pages.yml`): each save commits to `main` and Cloudflare publishes it in about two minutes. Uploaded PDFs go to
+`public/wp-content/uploads/documents/`, photos to `src/assets/uploads/team/`. `src/lib/content.ts` turns the editor's
+shapes into what the pages use (sorting documents newest first, skipping half-filled entries), so keep the JSON shapes
+in step with `.pages.yml`. Pull before editing these files in code, since iAM may have changed them.
+
+- **Press release / report / notice** (in code): an entry `{title, date, pdf}` in the right file
+  (`shareholder-notices.json`, `annual-reports.json`, `press.json`, `events-news.json`), or `{title, date, link}` for
+  an article on another site.
 - **Property page**: add an object to `src/data/properties.json` (images under `src/assets/uploads/`) and a row in
   the map's Google Sheet with Portfolio URL `https://iamcapital.com/<slug>/`.
-- **Team member**: `src/data/team.json` (photo under `src/assets/uploads/`).
+- **Team member** (in code): `src/data/team.json`, `{name, title, company, group, photo: "/uploads/...", bio: "<p>...</p>"}`.
 
 ## Investments map
 

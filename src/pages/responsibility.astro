@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Banner from '../components/Banner.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
-import legal from '../data/legal.json';
+import { legal } from '../lib/content';
 import { upload } from '../lib/images';
 
 const steps: { title: string; icon: IconName; text: string }[] = [

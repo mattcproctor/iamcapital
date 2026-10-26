@@ -63,6 +63,8 @@ for p in posts:
     for c in cats[int(p['ID'])]:
         if c in catmap: documents[catmap[c]].append(doc(p))
 for k in documents: documents[k].sort(key=lambda d: d['date'], reverse=True)
+# NOTE: since October 2026 the site keeps these lists in four files in the Pages CMS shape ({title, date, pdf | link})
+# and iAM edits them; don't re-run this over src/data, or it will undo their changes.
 json.dump(documents, open(f'{DATA}/documents.json', 'w'), indent=2, ensure_ascii=False)
 
 # ---------- events with their own pages ----------

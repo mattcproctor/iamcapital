@@ -3,9 +3,7 @@
 import { listed, location, status } from './properties';
 import fundData from '../data/funds.json';
 import timeline from '../data/timeline.json';
-import team from '../data/team.json';
-import documents from '../data/documents.json';
-import legal from '../data/legal.json';
+import { team, documents, legal } from './content';
 import { contact } from '../data/site';
 import { monthYear } from './format';
 

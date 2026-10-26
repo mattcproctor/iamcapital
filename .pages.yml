@@ -1,0 +1,152 @@
+# Pages CMS (https://app.pagescms.org): the editing screens iAM Capital uses to update the site without code.
+# Each save is a commit to this repository, and Cloudflare rebuilds and publishes the site in about two minutes.
+# The pages read these files through src/lib/content.ts. Properties, funds and the rest of the site are edited in code.
+
+media:
+  - name: documents
+    label: Documents (PDF)
+    input: public/wp-content/uploads
+    output: /wp-content/uploads
+    extensions: [pdf]
+    rename: safe
+  - name: images
+    label: Photos
+    input: src/assets/uploads
+    output: /uploads
+    extensions: [jpg, jpeg, png, webp]
+    rename: safe
+
+settings:
+  commit:
+    identity: user
+
+content:
+  - name: shareholder-notices
+    label: Shareholder notices
+    description: Investor Relations page. Newest first on the site, whatever the order here.
+    type: file
+    path: src/data/shareholder-notices.json
+    format: json
+    list: &doc-list
+      collapsible:
+        collapsed: true
+        summary: "{date} · {title}"
+    fields: &doc-fields
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: As shown on the card, e.g. "2026 iAM Notice of AGM".
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+        description: Shown as month and year; the list is sorted by this date.
+      - name: pdf
+        label: PDF
+        type: file
+        options:
+          media: documents
+          path: public/wp-content/uploads/documents
+        description: Upload the PDF here. Leave empty if this item is a link instead.
+      - name: link
+        label: Or a link
+        type: string
+        description: Only when there is no PDF, e.g. an article on another website ("https://...").
+
+  - name: annual-reports
+    label: Annual reports
+    description: Investor Relations page. Newest first on the site, whatever the order here.
+    type: file
+    path: src/data/annual-reports.json
+    format: json
+    list: *doc-list
+    fields: *doc-fields
+
+  - name: press
+    label: News (press)
+    description: News page, Press section. Newest first on the site, whatever the order here.
+    type: file
+    path: src/data/press.json
+    format: json
+    list: *doc-list
+    fields: *doc-fields
+
+  - name: events-news
+    label: News (events)
+    description: News page, Events section. Newest first on the site, whatever the order here.
+    type: file
+    path: src/data/events-news.json
+    format: json
+    list: *doc-list
+    fields: *doc-fields
+
+  - name: team
+    label: Team
+    description: Team page. People appear in each group in the order of this list (drag to reorder).
+    type: file
+    path: src/data/team.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{name} · {title}"
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: title
+        label: Job title
+        type: string
+        required: true
+        description: e.g. "Director" or "Senior Investment Analyst".
+      - name: company
+        label: Company
+        type: string
+        description: Optional second line, e.g. "iAM Capital" or "iAM Capital & iAM Invest".
+      - name: group
+        label: Section
+        type: select
+        required: true
+        options:
+          values: [Board of Directors, Investments & Fundraising, Operations]
+      - name: photo
+        label: Photo
+        type: image
+        options:
+          media: images
+          path: src/assets/uploads/team
+        description: A portrait, ideally square or taller than wide; it is shown in black and white.
+      - name: bio
+        label: Biography
+        type: rich-text
+        options:
+          format: html
+          media: false
+        description: Shown in the pop-up when the card is clicked.
+
+  - name: policies
+    label: Policies (legal disclosures)
+    description: Responsibility page, Legal Disclosures, in the order of this list.
+    type: file
+    path: src/data/legal.json
+    format: json
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{title}"
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: pdf
+        label: PDF
+        type: file
+        required: true
+        options:
+          media: documents
+          path: public/wp-content/uploads/documents
