@@ -100,6 +100,12 @@ in step with `.pages.yml`. Pull before editing these files in code, since iAM ma
   JSON-LD graph in `Layout.astro` (`src/lib/seo.ts`), Search Console verification meta tag from the old site. When
   a page or PDF moves, add the old address to `redirects.json` and run `tools/seo/check-urls.py`.
 
+- Security: a Content Security Policy is built into every page by Astro (`security.csp` in `astro.config.mjs`), with
+  hashes for each page's own scripts and styles; `public/_headers` adds HSTS, frame-ancestors/X-Frame-Options,
+  Permissions-Policy and COOP. A new outside service (a script, an embed, an image or data host) must be added to the
+  CSP directives there or the browser will block it. Inline `onclick=` handlers are blocked: use addEventListener.
+  MapLibre 6 loads its worker from `maplibre-gl-worker.mjs?url` via `setWorkerUrl()` on both map pages.
+
 - Motion: scroll-in animations follow the old site's (which elements, in which order) but shorter and gentler. Mark an
   element `data-reveal` (`up` default, `left`, `fade`, `zoom`) and stagger grid items with `style="--i: n"`; the CSS
   is in `global.css`, the observer in `Layout.astro`. All motion is off for visitors who ask for reduced motion.

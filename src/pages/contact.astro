@@ -41,12 +41,15 @@ const office = { lng: -0.14764, lat: 51.50934 };
 
 <script>
   import 'maplibre-gl/dist/maplibre-gl.css';
+  import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
   const el = document.querySelector<HTMLElement>('[data-office-map]');
   if (el) {
     const io = new IntersectionObserver(async ([e]) => {
       if (!e.isIntersecting) return;
       io.disconnect();
-      const { default: maplibregl } = await import('maplibre-gl');
+      const maplibregl = await import('maplibre-gl');
+      // MapLibre 6 runs its tile work in a separate file; ship it with the site and point MapLibre at it
+      maplibregl.setWorkerUrl(workerUrl);
       const center: [number, number] = [Number(el.dataset.lng), Number(el.dataset.lat)];
       // Two fingers (or Ctrl/Cmd + scroll) to move the map, so it never traps the page scroll
       const map = new maplibregl.Map({

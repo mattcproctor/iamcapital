@@ -105,9 +105,12 @@ const sold = listed.filter((p) => status(p) === 'Sold');
          map; the cards are drawn from the built-in data straight away -->
     <script>
       import 'maplibre-gl/dist/maplibre-gl.css';
+      import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
       (window as any).afterFirstPaint(async () => {
         try {
-          const { default: maplibregl } = await import('maplibre-gl');
+          const maplibregl = await import('maplibre-gl');
+          // MapLibre 6 runs its tile work in a separate file; ship it with the site and point MapLibre at it
+          maplibregl.setWorkerUrl(workerUrl);
           (window as any).maplibregl = maplibregl;
           (window as any).initMap();
         } catch (error) {

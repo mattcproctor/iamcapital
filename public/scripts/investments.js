@@ -414,12 +414,14 @@ function renderPropertyCards(properties) {
             </div>
             <div class="property-card__body">
                 <span class="property-card__category" data-category="${escapeHtml(property.category)}">${escapeHtml(property.category)}</span>
-                ${property.portfolioUrl ? `<a href="${escapeHtml(property.portfolioUrl)}" class="property-card__view-btn" onclick="event.stopPropagation()">View Property &rarr;</a>` : ''}
+                ${property.portfolioUrl ? `<a href="${escapeHtml(property.portfolioUrl)}" class="property-card__view-btn">View Property &rarr;</a>` : ''}
             </div>
         `;
 
         // Card click: fly to the property on the map and open its pop-up
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (event) => {
+            // "View Property" goes to the page; a click anywhere else on the card shows it on the map
+            if (event.target.closest('a')) return;
             const feature = features.find(f => allProperties[f.properties.index] === property);
             if (!feature || !map || !map.getSource('properties')) return;
             map.flyTo({ center: feature.geometry.coordinates, zoom: 11 });

@@ -40,4 +40,29 @@ export default defineConfig({
     redirects.filter((r) => r.to.startsWith('/') && r.from !== '/' && !r.from.includes('*') && !/\.[a-z0-9]+$/i.test(r.from)).map((r) => [r.from.replace(/\/$/, ''), r.to]),
   ),
   integrations: [cloudflareRedirects],
+  // No code blocks on the site; Shiki's inline styles would also clash with the CSP below
+  markdown: { syntaxHighlight: false },
+  // Content Security Policy: Astro writes a <meta> policy into each page with the hashes of that page's own scripts and
+  // styles, so nothing else can run. Other sources: the map tiles (OpenFreeMap), the YouTube embeds on one event page
+  // and Cloudflare Web Analytics (if it's switched on). Inline style="" attributes stay allowed (grid animation
+  // delays, the map's cards). Framing is refused by the frame-ancestors header in public/_headers, which a <meta>
+  // policy can't set.
+  security: {
+    csp: {
+      directives: [
+        "default-src 'self'",
+        "img-src 'self' data: blob: https://tiles.openfreemap.org",
+        "font-src 'self' data:",
+        "connect-src 'self' https://tiles.openfreemap.org https://cloudflareinsights.com",
+        "worker-src 'self' blob:",
+        "media-src 'self'",
+        "frame-src https://www.youtube-nocookie.com",
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+      ],
+      scriptDirective: { resources: ["'self'", 'https://static.cloudflareinsights.com'] },
+      styleDirective: { resources: ["'self'", { resource: "'unsafe-inline'", kind: 'attribute' }] },
+    },
+  },
 });
