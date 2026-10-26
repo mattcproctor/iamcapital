@@ -1,11 +1,35 @@
 ---
-// The portfolio map (first built as iamcapital.vercel.app): the markers and cards come from the Google Sheet through
-// the Apps Script endpoint in public/scripts/investments.js. The map is MapLibre GL (bundled with the site) drawing
-// OpenFreeMap's free vector tiles: no API key, no account, no cookies. The list in <noscript> comes from this site's
-// own property pages, for search engines and visitors without JavaScript.
+// The portfolio map (first built as iamcapital.vercel.app). Its markers and cards come from the property files iAM
+// edits in Pages CMS (src/lib/properties.ts), built into the page as JSON for public/scripts/investments.js; this
+// replaced the Google Sheet in October 2026. The map is MapLibre GL (bundled with the site) drawing OpenFreeMap's free
+// vector tiles: no API key, no account, no cookies. The plain list below is for search engines and visitors without
+// JavaScript.
+import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import '../styles/investments.css';
-import { listed, location, status } from '../lib/properties';
+import { listed, location, status, pins, shortMonth } from '../lib/properties';
+import { upload } from '../lib/images';
+
+// One entry per pin, in the shape the map script has always read (the Sheet's columns), with a card-sized photo
+const cardPhotos = new Map<string, string>();
+for (const p of listed) {
+  if (p.cardPhoto && !cardPhotos.has(p.cardPhoto)) {
+    cardPhotos.set(p.cardPhoto, (await getImage({ src: upload(p.cardPhoto), width: 700, format: 'webp' })).src);
+  }
+}
+const mapData = pins.map(({ property: p, status, category, size, acquired }) => ({
+  name: p.name,
+  city: p.city,
+  country: p.country,
+  category,
+  status,
+  sizeSqm: size ?? '',
+  acquisitionDate: shortMonth(acquired),
+  imageUrl: cardPhotos.get(p.cardPhoto) ?? '',
+  portfolioUrl: `/${p.slug}/`,
+  latitude: p.latitude,
+  longitude: p.longitude,
+}));
 
 const active = listed.filter((p) => status(p) === 'Active');
 const sold = listed.filter((p) => status(p) === 'Sold');
@@ -75,13 +99,13 @@ const sold = listed.filter((p) => status(p) === 'Sold');
   </div>
 
   <Fragment slot="scripts">
+    <script type="application/json" id="map-data" set:html={JSON.stringify({ properties: mapData }).replace(/</g, '\\u003c')} />
     <script is:inline src="/scripts/investments.js"></script>
-    <!-- After first paint: the properties request starts, MapLibre loads (a separate file Astro bundles from
-         node_modules), then initMap draws the map -->
+    <!-- After first paint: MapLibre loads (a separate file Astro bundles from node_modules), then initMap draws the
+         map; the cards are drawn from the built-in data straight away -->
     <script>
       import 'maplibre-gl/dist/maplibre-gl.css';
       (window as any).afterFirstPaint(async () => {
-        (window as any).fetchProperties();
         try {
           const { default: maplibregl } = await import('maplibre-gl');
           (window as any).maplibregl = maplibregl;

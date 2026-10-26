@@ -1,0 +1,46 @@
+{
+  "name": "Santa Marta",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Hospitality"
+  ],
+  "city": "Cordoba",
+  "country": "Spain",
+  "latitude": 37.8870136,
+  "longitude": -4.775517,
+  "size": 1048,
+  "acquired": "2025-12",
+  "cover": "/uploads/2026/02/Cordoba-1.webp",
+  "cardPhoto": "/uploads/map/Cordoba-1-700x600.webp",
+  "gallery": [
+    "/uploads/2026/02/Cordoba-1.webp",
+    "/uploads/2026/02/Cordoba-2.webp",
+    "/uploads/2026/02/Cordoba-3.png"
+  ],
+  "description": "<p>In December 2025, iAM Capital acquired a hostel asset in Córdoba’s historic centre. CATS Hostels will operate the property going forward. The asset features a traditional Cordoban patio with an outdoor swimming pool and benefits from a prime location within walking distance of key cultural landmarks. The strategy focuses on operational improvements and repositioning.</p>",
+  "facts": [
+    {
+      "label": "Acquisition Date",
+      "value": "December 2025"
+    },
+    {
+      "label": "Location",
+      "value": "Córdoba, Spain"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE III"
+    },
+    {
+      "label": "# of Beds",
+      "value": "128"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2026-02-09"
+}

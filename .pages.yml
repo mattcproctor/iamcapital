@@ -80,6 +80,145 @@ content:
     list: true
     fields: *doc-fields
 
+  - name: properties
+    label: Properties
+    description: Each property's page and its pin on the Investments map, in one entry. Saving updates both.
+    type: collection
+    path: src/data/properties
+    format: json
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      primary: name
+      fields: [name, status, city, acquired]
+      sort: [name, acquired]
+      default:
+        sort: acquired
+        order: desc
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+        description: The page heading and the name on the map, e.g. "Castel Porrona". When you create a property, the file name under it becomes the page's web address (castel-porrona → iamcapital.com/castel-porrona/); it can't be changed later.
+      - name: listed
+        label: Show on the Investments map and list
+        type: boolean
+        default: true
+        description: Switch off to keep the page online without listing it (as for the solar portfolios).
+      - name: status
+        label: Status
+        type: select
+        options:
+          values: [Active, Sold]
+      - name: category
+        label: Category
+        type: select
+        options:
+          values: [Residential, Hospitality, Office, Retail, Renewable Energy]
+          multiple: true
+        description: One or more. Used for the map filters and the card's label, e.g. "Residential & Retail".
+      - name: city
+        label: City
+        type: string
+      - name: country
+        label: Country
+        type: string
+        description: In English, e.g. Italy, France, Spain.
+      - name: latitude
+        label: Map position, latitude
+        type: number
+        description: In Google Maps, right-click the building and click the two numbers at the top of the menu to copy them. Paste the first number here (e.g. 45.4725) and the second into longitude.
+      - name: longitude
+        label: Map position, longitude
+        type: number
+        description: The second number, e.g. 9.2083. (The map shows the pin about half a kilometre off on purpose, so the exact building isn't revealed.)
+      - name: size
+        label: Size (sqm)
+        type: number
+        options:
+          min: 0
+        description: Shown on the map card.
+      - name: acquired
+        label: Acquired
+        type: date
+        options:
+          format: yyyy-MM
+        description: Month of acquisition; any day in the month will do. Shown on the map card as e.g. "Mar-26".
+      - name: cover
+        label: Banner photo
+        type: image
+        options:
+          media: images
+          path: src/assets/uploads/properties
+        description: The wide photo at the top of the property's page; a landscape photo works best.
+      - name: cardPhoto
+        label: Map card photo
+        type: image
+        options:
+          media: images
+          path: src/assets/uploads/properties
+        description: Optional. The photo on the Investments page card and map pop-up; if empty, the banner photo is used.
+      - name: gallery
+        label: Photo slider
+        type: image
+        options:
+          media: images
+          path: src/assets/uploads/properties
+          multiple: true
+        description: The photos in the slider on the property's page, in this order.
+      - name: description
+        label: Description
+        type: rich-text
+        options:
+          format: html
+          media: false
+        description: The text on the property's page.
+      - name: facts
+        label: Key facts table
+        type: object
+        list: true
+        description: The table beside the description, one row each, e.g. Acquisition Date / March 2026, Country/city / Milan, Italy, Fund Name / ICE III, Sqm / 1,489, Strategy / Repositioning.
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: value
+            label: Value
+            type: string
+      - name: otherPins
+        label: Other investments in the same building
+        type: object
+        list: true
+        description: Rarely needed. A second map card for a separate investment in the same building (e.g. Sirtori, where one part was sold). It shares the position, photo and page above.
+        fields:
+          - name: status
+            label: Status
+            type: select
+            options:
+              values: [Active, Sold]
+          - name: category
+            label: Category
+            type: select
+            options:
+              values: [Residential, Hospitality, Office, Retail, Renewable Energy]
+              multiple: true
+          - name: size
+            label: Size (sqm)
+            type: number
+          - name: acquired
+            label: Acquired
+            type: date
+            options:
+              format: yyyy-MM
+      - name: added
+        label: Date added
+        type: date
+        hidden: true
+        options:
+          format: yyyy-MM-dd
+
   - name: team
     label: Team
     description: Team page. People appear in each group in the order of this list (drag to reorder).

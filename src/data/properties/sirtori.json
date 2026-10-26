@@ -1,0 +1,57 @@
+{
+  "name": "Sirtori",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Residential",
+    "Office"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.4725358,
+  "longitude": 9.20827,
+  "size": 891,
+  "acquired": "2021-07",
+  "cover": "/uploads/2023/01/Sirtori-scaled.jpg",
+  "cardPhoto": "/uploads/map/sirtori.webp",
+  "gallery": [
+    "/uploads/2023/04/Sirtori-Facade-scaled.jpg",
+    "/uploads/2023/04/Sirtori-Living-Room-2-scaled.jpg",
+    "/uploads/2023/04/Sirtori-Living-Room-scaled.jpg",
+    "/uploads/2023/04/Sirtori-Bathroom-scaled.jpg"
+  ],
+  "description": "<p>In mid-July 2021, we acquired the asset at Via Sirtori, which consisted of eight unfinished residential units and a loft area with extra high ceilings across c. 850 sqm.</p><p>Following the CapEx works, we created six residential units and a state of the art office unit. We have since leased the residential units to Sweetstay, a leading short-term rental operator, to capitalize on the post-pandemic travel boom and put the office space up for sale.</p>",
+  "facts": [
+    {
+      "label": "Acquisition Date",
+      "value": "July 2021"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "1,489"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [
+    {
+      "status": "Sold",
+      "category": [
+        "Residential"
+      ],
+      "size": 1489,
+      "acquired": "2019-01"
+    }
+  ],
+  "added": "2023-01-18"
+}

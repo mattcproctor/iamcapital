@@ -1,0 +1,49 @@
+{
+  "name": "Capo Mimosa",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Hospitality"
+  ],
+  "city": "Cervo",
+  "country": "Italy",
+  "latitude": 43.9334593,
+  "longitude": 8.1316882,
+  "size": 55000,
+  "acquired": "2023-04",
+  "cover": "/uploads/2023/04/777b9da5-6b79-4fad-9b22-0e822944f375.jpg",
+  "cardPhoto": "/uploads/map/capo-mimosa.webp",
+  "gallery": [
+    "/uploads/2024/07/5264a31e-376a-4da5-82d7-1f186e39135a.jpg",
+    "/uploads/2024/07/1e9cab18-7bd1-43ba-bcf8-76544ae21542.jpg",
+    "/uploads/2023/07/Copertina.jpg",
+    "/uploads/2023/07/pagano-3.jpg",
+    "/uploads/2023/07/Rendering-9.jpeg",
+    "/uploads/2023/07/Rendering4.jpg"
+  ],
+  "description": "<p>In March 2023, we acquired Capo Mimosa, a beachfront property in Cervo, Liguria to develop a contemporary, five-star beach resort with 90 suites, as well as a beach club, a restaurant and state of the art spa facilities.'</p><p>The asset is situated on 5.5 hectares of prime seafront land on a hill with unobstructed, panoramic views of the Mediterranean sea.</p>",
+  "facts": [
+    {
+      "label": "Acquisition Date",
+      "value": "March 2023"
+    },
+    {
+      "label": "Location",
+      "value": "Cervo, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE III"
+    },
+    {
+      "label": "Sqm",
+      "value": "55,000"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-04-19"
+}

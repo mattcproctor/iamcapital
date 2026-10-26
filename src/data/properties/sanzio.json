@@ -1,0 +1,50 @@
+{
+  "name": "Palazzo Sanzio",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Hospitality"
+  ],
+  "city": "Rome",
+  "country": "Italy",
+  "latitude": 41.8903474,
+  "longitude": 12.4732537,
+  "size": 5719,
+  "acquired": "2022-08",
+  "cover": "/uploads/2023/01/Sanzio-Facade-1-scaled.jpg",
+  "cardPhoto": "/uploads/map/sanzio.webp",
+  "gallery": [
+    "/uploads/2024/07/image001.png",
+    "/uploads/2023/04/Sanzio-Facade-scaled.jpg",
+    "/uploads/2026/09/D-74947_B-1-scaled.jpg",
+    "/uploads/2026/09/D-75004_B-1-scaled.jpg",
+    "/uploads/2026/09/image00001-1.png",
+    "/uploads/2024/07/image002.png",
+    "/uploads/2024/07/image007.png"
+  ],
+  "description": "<p>In August 2022, we acquired a trophy asset in Rome, a c. 6,000 sqm building over five floors located at Lungotevere Raffaello Sanzio.</p><p>Situated opposite the Isola Tiberina, one of the most popular neighborhoods of the Italian capital, the investment strategy entails conversion into 5-star luxury hotel with a rooftop restaurant, where 360 views of the city center and the Vatican are available.<br><a href=\"https://www.radissonhotels.com/en-us/hotels/radisson-collection-palazzo-sanzio-rome\" target=\"_blank\" rel=\"noopener\">Reservations though Palazzo Sanzio Radisson Collection.</a></p>",
+  "facts": [
+    {
+      "label": "Acquisition Date",
+      "value": "August 2022"
+    },
+    {
+      "label": "Country/city",
+      "value": "Rome, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "# of Rooms And Suites",
+      "value": "71"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

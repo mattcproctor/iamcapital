@@ -1,0 +1,47 @@
+{
+  "name": "Ravignan & Berthe",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential"
+  ],
+  "city": "Paris",
+  "country": "France",
+  "latitude": 48.8860324,
+  "longitude": 2.3386463,
+  "size": 422,
+  "acquired": "2017-03",
+  "cover": "/uploads/2023/01/Ravignan-Berthe-Oustide.png",
+  "cardPhoto": "/uploads/map/berthe-ravignan.webp",
+  "gallery": [
+    "/uploads/2023/01/Ravignan-Berthe-scaled.jpg",
+    "/uploads/2023/04/Ravignan-bedroom.jpg",
+    "/uploads/2023/04/Ravignan-living-room.jpg",
+    "/uploads/2023/04/Ravignan-bathroom.jpg"
+  ],
+  "description": "<p>In early 2017, we acquired two apartment units in Rue de Ravignan and Rue Berthe, central Paris, both located in the Montmartre district.</p><p>Following the acquisition, the strategy is to repurpose these two residential units and re-let them at market rates to a leading short-term letting business.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "February 2017"
+    },
+    {
+      "label": "Country/city",
+      "value": "Paris, France"
+    },
+    {
+      "label": "Fund Name",
+      "value": "IREO"
+    },
+    {
+      "label": "Sqm",
+      "value": "422"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

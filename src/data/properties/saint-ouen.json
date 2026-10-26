@@ -1,0 +1,47 @@
+{
+  "name": "Saint Ouen",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential",
+    "Retail"
+  ],
+  "city": "Paris",
+  "country": "France",
+  "latitude": 48.8884532,
+  "longitude": 2.3255376,
+  "size": 780,
+  "acquired": "2018-12",
+  "cover": "/uploads/2023/01/Saint-Ouen.png",
+  "cardPhoto": "/uploads/map/saint-ouen.webp",
+  "gallery": [
+    "/uploads/2023/01/St-Ouen-scaled.jpg",
+    "/uploads/2023/04/St-Ouen-interior.jpg",
+    "/uploads/2023/04/St-Ouen2.jpg"
+  ],
+  "description": "<p>At the end of 2018, we completed the acquisition of a property located at 11 Avenue de Saint Ouen in Paris.</p><p>With a total of 790sqm, their previous rents were quite below market and following the purchase, our objective was to carry out extensive renovation works and to resell the units independently within 2 years of purchase.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "December 2018"
+    },
+    {
+      "label": "Country/city",
+      "value": "Paris, France"
+    },
+    {
+      "label": "Fund Name",
+      "value": "IREO"
+    },
+    {
+      "label": "Sqm",
+      "value": "780"
+    },
+    {
+      "label": "Strategy",
+      "value": "Refurbishing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

@@ -1,0 +1,47 @@
+{
+  "name": "Govone",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential",
+    "Retail"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.4896462,
+  "longitude": 9.1674515,
+  "size": 2203,
+  "acquired": "2021-07",
+  "cover": "/uploads/2023/01/Govone-scaled.jpg",
+  "cardPhoto": "/uploads/map/govone.webp",
+  "gallery": [
+    "/uploads/2023/04/Govone-Facade-scaled.jpg",
+    "/uploads/2023/04/Govone-Living-Room-scaled.jpg",
+    "/uploads/2023/04/Govone-Bathroom-scaled.jpg"
+  ],
+  "description": "<p>The asset, acquired in July 2021, consists of 2,203 gross sqm (1,844 net sqm) over five floors spread across two buildings in Northern Milan. One building comprised of three retail spaces on the ground floor and 14 residential units above. The second building included 400 sqm of office and laboratory space.</p><p>We exited our investment in December of 2022.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "December 2020"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "2,203"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

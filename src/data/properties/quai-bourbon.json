@@ -1,0 +1,75 @@
+{
+  "name": "Quai Bourbon",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Residential"
+  ],
+  "city": "Paris",
+  "country": "France",
+  "latitude": 48.8524693,
+  "longitude": 2.356675,
+  "size": 185,
+  "acquired": "2021-07",
+  "cover": "/uploads/2023/01/7-Quai-de-Bourbon-75004-Paris-5-scaled.jpeg",
+  "cardPhoto": "/uploads/map/bourbon.webp",
+  "gallery": [
+    "/uploads/2023/04/Image.jpeg",
+    "/uploads/2023/04/Bourbon-interior.jpg",
+    "/uploads/2023/04/Bourbon-living-room.jpg",
+    "/uploads/2023/04/Bourbon-view.jpg",
+    "/uploads/2024/07/7-Quai-de-Bourbon-75004-Paris-1-scaled.jpeg",
+    "/uploads/2024/07/7-Quai-de-Bourbon-75004-Paris-3-scaled.jpeg",
+    "/uploads/2024/07/7-Quai-de-Bourbon-75004-Paris-6-scaled.jpeg",
+    "/uploads/2024/07/7-Quai-de-Bourbon-75004-Paris-12-scaled.jpeg",
+    "/uploads/2024/07/7-Quai-de-Bourbon-75004-Paris-16-scaled.jpeg",
+    "/uploads/2024/07/7-Quai-de-Bourbon-75004-Paris-17-scaled.jpeg",
+    "/uploads/2024/07/quai-bourbon-ii-1.webp",
+    "/uploads/2024/07/quai-bourbon-ii-3.webp",
+    "/uploads/2024/07/quai-bourbon-ii-7.webp",
+    "/uploads/2024/07/quai-bourbon-ii-8.webp",
+    "/uploads/2024/07/quai-bourbon-ii-9.webp",
+    "/uploads/2024/07/quai-bourbon-ii-10.webp",
+    "/uploads/2024/07/quai-bourbon-ii-11.webp",
+    "/uploads/2024/07/quai-bourbon-ii-13.webp",
+    "/uploads/2024/07/quai-bourbon-ii-14.webp",
+    "/uploads/2024/07/quai-bourbon-ii-15.webp",
+    "/uploads/2024/07/quai-bourbon-ii-16.jpg",
+    "/uploads/2024/07/quai-bourbon-ii-17.webp",
+    "/uploads/2024/07/quai-bourbon-ii-18.webp"
+  ],
+  "description": "<p>In early July 2021, we completed the acquisition of two super-prime trophy assets. The combined asset consists of 185 gross sqm across 3 floors.</p><p>The second-floor unit has been refurbished to a very high standard, which is now going to be rented out to a leading short-term letting business. The remaining two units will follow the same strategy.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "February 2019"
+    },
+    {
+      "label": "Country/city",
+      "value": "Paris, France"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "185"
+    },
+    {
+      "label": "Strategy",
+      "value": "Refurbishing"
+    }
+  ],
+  "otherPins": [
+    {
+      "status": "Sold",
+      "category": [
+        "Residential"
+      ],
+      "size": 61,
+      "acquired": "2019-02"
+    }
+  ],
+  "added": "2023-01-18"
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Valassina",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.5011098,
+  "longitude": 9.187941,
+  "size": 1503,
+  "acquired": "2020-01",
+  "cover": "/uploads/2023/01/Valassina.png",
+  "cardPhoto": "/uploads/map/valassina.webp",
+  "gallery": [
+    "/uploads/2023/04/Valassina-Facade-1.jpeg"
+  ],
+  "description": "<p>In early 2020, we acquired a five-story building, in Via Valassina, Milan. The building comprises 1,503 sqm with retail units at ground level and 4 floors with 12 residential units.</p><p>The strategy consists of restructuring the common parts and recovering the attic floor.</p><p>We exited our investment in May of 2022.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "January 2020"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "1,503"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

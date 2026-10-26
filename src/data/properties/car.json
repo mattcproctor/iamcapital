@@ -1,0 +1,41 @@
+{
+  "name": "CAR Portfolio",
+  "listed": false,
+  "status": "",
+  "category": [
+    "Renewable Energy"
+  ],
+  "city": "",
+  "country": "",
+  "acquired": "",
+  "cover": "/uploads/2023/01/Unknown.jpg",
+  "cardPhoto": "",
+  "gallery": [
+    "/uploads/2023/01/Unknown.jpg"
+  ],
+  "description": "<p>In June 2021 iAM Capital acquired a 4.5 MWp solar PV portfolio in Southern Italy comprised of 5 PV fields. The plan was to improve the efficiency of the assets on the technical side through soft works and production maximization.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "June 2021"
+    },
+    {
+      "label": "Country",
+      "value": "Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "Direct"
+    },
+    {
+      "label": "Capacity",
+      "value": "4.5 MWp"
+    },
+    {
+      "label": "Strategy",
+      "value": "Production Maximization"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

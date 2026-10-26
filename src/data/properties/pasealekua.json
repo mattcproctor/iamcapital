@@ -1,0 +1,46 @@
+{
+  "name": "Pasealekua",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Hospitality"
+  ],
+  "city": "San Sebastian",
+  "country": "Spain",
+  "latitude": 43.3110397,
+  "longitude": -2.001062,
+  "size": 1433,
+  "acquired": "2025-12",
+  "cover": "/uploads/2026/02/San-Sebastian-3.jpeg",
+  "cardPhoto": "/uploads/map/San-Sebastian-3-700x600.jpeg",
+  "gallery": [
+    "/uploads/2026/02/San-Sebastian-3.jpeg",
+    "/uploads/2026/02/San-Sebastian-2.webp",
+    "/uploads/2026/02/San-Sebastian-1.webp"
+  ],
+  "description": "<p>In December 2025, iAM Capital acquired a hostel asset in San Sebastián, located approximately five minutes from Playa de Ondarreta. CATS Hostels will operate the property going forward. The asset benefits from strong tourism demand and a prime coastal micro-location within walking distance of the city’s most popular beaches. The business plan targets operational efficiencies and guest-experience upgrades.</p>",
+  "facts": [
+    {
+      "label": "Acquisition Date",
+      "value": "December 2025"
+    },
+    {
+      "label": "Location",
+      "value": "San Sebastián, Spain"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE III"
+    },
+    {
+      "label": "# of Beds",
+      "value": "133"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2026-02-09"
+}

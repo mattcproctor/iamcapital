@@ -213,6 +213,8 @@ for p in posts:
                        'status': (live[0]['status'] if live else None),
                        'city': (live[0].get('city') if live else None), 'country': (live[0].get('country') if live else None)})
 properties.sort(key=lambda x: x['name'])
+# NOTE: since October 2026 each property is its own file in src/data/properties (page and map pin together), edited
+# by iAM in Pages CMS; don't re-run this over src/data.
 json.dump(properties, open(f'{DATA}/properties.json', 'w'), indent=2, ensure_ascii=False)
 
 # ---------- redirects from renamed posts ----------

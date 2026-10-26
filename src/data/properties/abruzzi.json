@@ -1,0 +1,48 @@
+{
+  "name": "Abruzzi",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential",
+    "Retail"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.4840649,
+  "longitude": 9.2173089,
+  "size": 9179,
+  "acquired": "2018-10",
+  "cover": "/uploads/2023/01/Abruzzi-scaled.jpg",
+  "cardPhoto": "/uploads/map/abruzzi.webp",
+  "gallery": [
+    "/uploads/2023/04/Abruzzi-Facade-scaled.jpg",
+    "/uploads/2023/04/Abruzzi-Kitchen-scaled.jpg",
+    "/uploads/2023/04/Abruzzi-Bathroom-scaled.jpg",
+    "/uploads/2023/04/Abruzzi-Pateo-1.jpg"
+  ],
+  "description": "<p>In October 2018 we acquired a seven-story terraced building with mixed-use units in Vialle Abruzzi, Milan, situated close to the central station.</p><p>Following the purchase, our strategy was to refurbish the common areas and façades in addition to elevating the roof and creating 15 residential units.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "October 2018"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "IREO"
+    },
+    {
+      "label": "Sqm",
+      "value": "9,422"
+    },
+    {
+      "label": "Strategy",
+      "value": "Refurbishing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

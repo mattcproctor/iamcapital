@@ -1,0 +1,46 @@
+{
+  "name": "Sevres",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential"
+  ],
+  "city": "Paris",
+  "country": "France",
+  "latitude": 48.8472518,
+  "longitude": 2.3180909,
+  "size": 56,
+  "acquired": "2017-03",
+  "cover": "/uploads/2023/01/Sevres-Outside.png",
+  "cardPhoto": "/uploads/map/sevres.webp",
+  "gallery": [
+    "/uploads/2023/04/Sevres-Entrance.jpg",
+    "/uploads/2023/04/Picture2.png",
+    "/uploads/2023/04/Sevres-Bedroom.jpg"
+  ],
+  "description": "<p>In early 2017, we acquired one apartment unit in Rue de Sevres, central Paris, located in the Saint-Germain-des-Prés district.</p><p>Following the acquisition, the strategy is to renovate the apartment and re-let this out at market rates to a leading short-term letting business.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "February 2017"
+    },
+    {
+      "label": "Country/city",
+      "value": "Paris, France"
+    },
+    {
+      "label": "Fund Name",
+      "value": "IREO"
+    },
+    {
+      "label": "Sqm",
+      "value": "56"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

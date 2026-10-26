@@ -1,0 +1,48 @@
+{
+  "name": "Bressanone",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Office",
+    "Residential"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.4985698,
+  "longitude": 9.1291365,
+  "size": 2364,
+  "acquired": "2021-07",
+  "cover": "/uploads/2023/01/Bressanone-scaled.jpg",
+  "cardPhoto": "/uploads/map/bressanone.webp",
+  "gallery": [
+    "/uploads/2023/04/Bressanone-facade-1-scaled.jpg",
+    "/uploads/2023/01/Bressanone-scaled.jpg",
+    "/uploads/2023/04/Bressanone-rooftop-1-scaled.jpg",
+    "/uploads/2023/04/Bressanone-rooftop-2-scaled.jpg"
+  ],
+  "description": "<p>The asset located at Via Bressanone comprises of 2,364 gross sqm (1,994 net sqm) of office space over 4 floors in a semi-central area of Milan to the Northwest of the city.</p><p>The building was vacant at purchase and offered the opportunity both for conversion into modern loft-style office space or residential use.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "July 2021"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "2,364"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

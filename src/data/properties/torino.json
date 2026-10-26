@@ -1,0 +1,43 @@
+{
+  "name": "Torino",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Office",
+    "Retail"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.4606813,
+  "longitude": 9.182062,
+  "size": 5919,
+  "acquired": "2017-05",
+  "cover": "/uploads/2023/01/Torino-scaled.jpg",
+  "cardPhoto": "/uploads/map/via-torino.webp",
+  "gallery": [],
+  "description": "<p>In May 2017, we acquired a mixed-use seven-story building, located in one of Milan’s shopping districts, that comprises eight office units and three retail spaces.</p><p>The strategy is to refurbish and re-let the retail space to comprise three state-of-the-art shops and sell the office units as-is.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "May 2017"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "IREO"
+    },
+    {
+      "label": "Sqm",
+      "value": "5,919"
+    },
+    {
+      "label": "Strategy",
+      "value": "Refurbishment"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

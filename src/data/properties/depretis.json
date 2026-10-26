@@ -1,0 +1,47 @@
+{
+  "name": "Depretis",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Hospitality"
+  ],
+  "city": "Rome",
+  "country": "Italy",
+  "latitude": 41.9004433,
+  "longitude": 12.4936008,
+  "size": 6870,
+  "acquired": "2021-07",
+  "cover": "/uploads/2023/01/Depretis.png",
+  "cardPhoto": "/uploads/map/depretis.webp",
+  "gallery": [
+    "/uploads/2023/01/Depretis-1-scaled.jpg",
+    "/uploads/2023/01/Depretis-6-scaled.jpg",
+    "/uploads/2023/01/Depretis-2-scaled.jpg",
+    "/uploads/2023/01/Depretis-4-scaled.jpg"
+  ],
+  "description": "<p>The asset located at Via Depretis comprised of a trophy building containing c. 7,000 sqm of prime office space in Rome.</p><p>In parallel to the negotiations with the vendor and the incumbent lender, we identified two strategies; conversion into high quality residential units, or hotel use. Following the negotiations with a German hotel operator that was looking for a prime location in Rome, the asset was sold 3 months after closing at a significant premium to the acquisition price.</p>",
+  "facts": [
+    {
+      "label": "Acquisition",
+      "value": "July 2021"
+    },
+    {
+      "label": "Country/city",
+      "value": "Rome, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "7,000"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

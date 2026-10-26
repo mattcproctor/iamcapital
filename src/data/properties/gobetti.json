@@ -1,0 +1,45 @@
+{
+  "name": "Gobetti",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Office"
+  ],
+  "city": "Cernusco",
+  "country": "Italy",
+  "latitude": 45.5194782,
+  "longitude": 9.3452577,
+  "size": 10497,
+  "acquired": "2021-07",
+  "cover": "/uploads/2023/01/Gobetti.jpg",
+  "cardPhoto": "/uploads/map/gobetti.webp",
+  "gallery": [
+    "/uploads/2023/04/Gobetti-facade-2.png",
+    "/uploads/2023/04/Gobetti-facade.png"
+  ],
+  "description": "<p>The asset at Via Gobetti is a 10,497 gross sqm office building in an office park located 15km from the city of Milan in Cernusco sul Naviglio.</p><p>Our strategy was to lightly renew the interior in order to re-lease the space and exit upon stabilisation.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "July 2021"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "10,497"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

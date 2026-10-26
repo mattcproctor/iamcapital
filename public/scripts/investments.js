@@ -1,19 +1,13 @@
 // ===================================
 // iAM Capital - Investment Properties
-// MapLibre map (OpenFreeMap tiles) & Google Sheet data
+// MapLibre map (OpenFreeMap tiles) & the site's own property data
 // ===================================
 
-// Configuration
-const PROPERTIES_API_URL = 'https://script.google.com/macros/s/AKfycbzd8F3e1nlUPY8ybszTpiopyWpLU8pZ3JL15tWHBArrWvCWFyGuZydFAStZPp6MIOPzMQ/exec';
-
-// The properties request, started once with the map script (after first paint) so it runs in parallel with it
-let propertiesRequest;
-function fetchProperties() {
-    if (!propertiesRequest) {
-        propertiesRequest = fetch(PROPERTIES_API_URL);
-        propertiesRequest.catch(() => {}); // a failure is reported by loadProperties, which awaits it
-    }
-    return propertiesRequest;
+// The properties, built into the page (<script id="map-data">) from the property files iAM edits in Pages CMS. Until
+// October 2026 they came from a Google Sheet through Apps Script; the entries keep that sheet's field names.
+function readProperties() {
+    const el = document.getElementById('map-data');
+    return el ? JSON.parse(el.textContent) : { properties: [] };
 }
 
 // Image addresses from the sheet over https (the browser already upgrades http ones; this avoids the mixed-content warning)
@@ -167,10 +161,7 @@ async function loadProperties() {
     const propertiesError = document.getElementById('propertiesError');
 
     try {
-        const response = await fetchProperties();
-        if (!response.ok) throw new Error('Failed to fetch properties');
-        const data = await response.json();
-        if (data.error) throw new Error(data.message);
+        const data = readProperties();
 
         propertiesLoading.style.display = 'none';
 

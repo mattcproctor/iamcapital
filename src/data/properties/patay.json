@@ -1,0 +1,43 @@
+{
+  "name": "Patay",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Office",
+    "Retail"
+  ],
+  "city": "Paris",
+  "country": "France",
+  "latitude": 48.825598,
+  "longitude": 2.374188,
+  "size": 1960,
+  "acquired": "2021-10",
+  "cover": "/uploads/2023/01/Patay.png",
+  "cardPhoto": "/uploads/map/patay.webp",
+  "gallery": [],
+  "description": "<p>In October 2021, we finalized the acquisition of one of our earliest pipeline assets for ICE II, located in southeast Paris, at Rue de Patay. The asset consists of 1,960 gross sqm of mixed-use office and retail space that was underlet at purchase.</p><p>The investment strategy is to vacate and re-let the asset at market rent.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "March 2021"
+    },
+    {
+      "label": "Country/city",
+      "value": "Paris, France"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "1,960"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-04-17"
+}

@@ -1,0 +1,47 @@
+{
+  "name": "Murat",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Residential"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.5032281,
+  "longitude": 9.1900961,
+  "size": 2549,
+  "acquired": "2021-12",
+  "cover": "/uploads/2023/01/Picture17-e1674819316377.png",
+  "cardPhoto": "/uploads/map/murat.webp",
+  "gallery": [
+    "/uploads/2023/04/Picture36.png",
+    "/uploads/2023/04/4.png",
+    "/uploads/2023/04/2.png",
+    "/uploads/2023/04/3.png"
+  ],
+  "description": "<p>In early December 2021, we acquired the building at Via Gioacchino Murat. Located in northern Milan, the office asset was a 2,549 gross sqm building over three floors and six parking spaces.</p><p>The building was identified as a strong candidate for conversion into residences since the building was well suited for fractioning into separate units.</p><p>The conversion works have now been completed, successfully transforming the asset into high-quality residential units in line with our initial repositioning strategy.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "November 2021"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "2,549"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Roquette",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential",
+    "Retail"
+  ],
+  "city": "Paris",
+  "country": "France",
+  "latitude": 48.8545665,
+  "longitude": 2.3724252,
+  "size": 1156,
+  "acquired": "2015-11",
+  "cover": "/uploads/2023/01/Roquette-Outside-e1675439936618.jpg",
+  "cardPhoto": "/uploads/map/roquette.webp",
+  "gallery": [
+    "/uploads/2023/01/Roquette-scaled.jpg"
+  ],
+  "description": "<p>In November 2015 we completed the acquisition of a building comprised of 3 shops and approximately 20 residential units.</p><p>Our strategy is to extensively renovate the property, and then break/up and sell the units independently at a premium.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "November 2015"
+    },
+    {
+      "label": "Country/city",
+      "value": "Paris, France"
+    },
+    {
+      "label": "Fund Name",
+      "value": "IREO"
+    },
+    {
+      "label": "Sqm",
+      "value": "1,156"
+    },
+    {
+      "label": "Strategy",
+      "value": "Refurbishing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-17"
+}

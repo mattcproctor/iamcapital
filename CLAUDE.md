@@ -48,7 +48,8 @@ src/
   data/                 content extracted from WordPress (edit these to change content)
     shareholder-notices.json, annual-reports.json, press.json, events-news.json
                         documents (edited in Pages CMS): {title, date, pdf | link}; read via src/lib/content.ts
-    properties.json     28 properties: description (paragraph HTML, links kept), facts, gallery, cover, status
+    properties/         one file per property (edited in Pages CMS): page content and map pin together;
+                        the file name is the page address; read via src/lib/properties.ts
     funds.json          the About page's funds and category intros
     team.json, legal.json   team and policies (edited in Pages CMS), also read via src/lib/content.ts
     timeline.json, events.json, site.ts (nav, contact, footer links)
@@ -74,24 +75,23 @@ in step with `.pages.yml`. Pull before editing these files in code, since iAM ma
 - **Press release / report / notice** (in code): an entry `{title, date, pdf}` in the right file
   (`shareholder-notices.json`, `annual-reports.json`, `press.json`, `events-news.json`), or `{title, date, link}` for
   an article on another site.
-- **Property page**: add an object to `src/data/properties.json` (images under `src/assets/uploads/`) and a row in
-  the map's Google Sheet with Portfolio URL `https://iamcapital.com/<slug>/`.
+- **Property** (normally done by iAM in Pages CMS → Properties): a file `src/data/properties/<slug>.json` holds the
+  page (cover, gallery, description, facts) and the map pin (status, category list, city, country, latitude,
+  longitude, size, acquired `YYYY-MM`, optional cardPhoto, optional otherPins for a second investment in the same
+  building). `listed: false` keeps the page but leaves it off the map and lists (the solar portfolios).
 - **Team member** (in code): `src/data/team.json`, `{name, title, company, group, photo: "/uploads/...", bio: "<p>...</p>"}`.
 
 ## Investments map
 
-Unchanged from the standalone site apart from layout and styling:
-
-- Data comes live from a Google Sheet through Apps Script (`PROPERTIES_API_URL` in `public/scripts/investments.js`).
-  Editing the sheet updates the map within minutes, no deploy needed.
-- `localiseProperty()` turns the sheet's absolute links and image URLs on iamcapital.com / iamcapital.vercel.app into
-  paths, so the map links to this site's property pages wherever it is served. `/cordoba/` and `/san-sebastian/`
-  redirect to `/santa-marta/` and `/pasealekua/` (renamed in WordPress).
+- The pins and cards come from the property files (`src/lib/properties.ts` → `pins`), built into the Investments page
+  as JSON (`<script id="map-data">`) in the field names of the Google Sheet the map used until October 2026, which
+  `public/scripts/investments.js` reads. The Sheet and its Apps Script are no longer used. Cards list active
+  properties first, then by acquisition date, newest first; card photos are resized to 700px WebP at build.
 - The map is MapLibre GL (npm `maplibre-gl`, bundled and loaded after first paint) with OpenFreeMap's free vector
   tiles (`tiles.openfreemap.org`, style "positron" recoloured to the old Google map's blue theme in
-  `applyBlueTheme()`). No API key, account, billing or cookies. It replaced Google Maps in October 2026 because the
-  Google key was restricted to iamcapital.vercel.app and its owner had left the project. Pins are clustered by the
-  map source (navy circles); positions are offset by ~0.5-1 km on purpose so exact assets aren't shown.
+  `applyBlueTheme()`). No API key, account, billing or cookies. Pins are clustered by the map source (navy circles);
+  positions are offset by ~0.5-1 km on purpose so exact assets aren't shown.
+- The Contact page uses the same MapLibre/OpenFreeMap setup, in grey, for the office.
 - Card badge colours: Residential #2ECC71, Office/Commercial/Retail #000, Hospitality #7B68EE, Renewable #FFC107.
 
 ## Notes

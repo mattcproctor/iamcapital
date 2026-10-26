@@ -1,0 +1,41 @@
+{
+  "name": "Apollo Portfolio",
+  "listed": false,
+  "status": "",
+  "category": [
+    "Renewable Energy"
+  ],
+  "city": "",
+  "country": "",
+  "acquired": "",
+  "cover": "/uploads/2023/01/Unknown-2.jpg",
+  "cardPhoto": "",
+  "gallery": [
+    "/uploads/2023/01/Unknown-2.jpg"
+  ],
+  "description": "<p>In June 2016 iAM Capital acquired and consolidated a portfolio of 31 solar energy fields located in southern and northern Italy with an installed capacity of 34.5 MWp.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "June 2016"
+    },
+    {
+      "label": "Country",
+      "value": "Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "Direct"
+    },
+    {
+      "label": "Capacity",
+      "value": "34.5 MWp"
+    },
+    {
+      "label": "Strategy",
+      "value": "Consolidation"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-19"
+}

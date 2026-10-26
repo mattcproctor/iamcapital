@@ -1,0 +1,47 @@
+{
+  "name": "Repubblica",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.4786358,
+  "longitude": 9.1985872,
+  "size": 308,
+  "acquired": "2021-12",
+  "cover": "/uploads/2023/01/Repubblica-scaled.jpg",
+  "cardPhoto": "/uploads/map/repubblica.webp",
+  "gallery": [
+    "/uploads/2023/02/Facade-scaled.jpg",
+    "/uploads/2023/02/Living-Room-scaled.jpg",
+    "/uploads/2023/02/Dining-scaled.jpg",
+    "/uploads/2023/02/Bathroom-scaled.jpg"
+  ],
+  "description": "<p>Just before the end of 2021, we acquired a small 2-unit residential asset located at Piazza Repubblica, one of Milan’s most exclusive residential areas, within walking distance from the central station. The asset consists of c. 300 sqm on the second floor of a well-maintained building, a balcony, a parking space, and two cellars and a loft.</p><p>Our strategy for the asset is to break-up the 2 apartments into 3 residential units to be fitted out and leased to a short-term rental operator, given the excellent location.</p>",
+  "facts": [
+    {
+      "label": "Acquisition Date",
+      "value": "December 2021"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "308"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

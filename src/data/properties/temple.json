@@ -1,0 +1,47 @@
+{
+  "name": "Temple",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential"
+  ],
+  "city": "Paris",
+  "country": "France",
+  "latitude": 48.8619854,
+  "longitude": 2.3559016,
+  "size": 486,
+  "acquired": "2017-03",
+  "cover": "/uploads/2023/01/Rue-du-Temple.png",
+  "cardPhoto": "/uploads/map/temple.webp",
+  "gallery": [
+    "/uploads/2023/01/Temple-scaled.jpg",
+    "/uploads/2023/04/Temple-Unit-1-scaled.jpeg",
+    "/uploads/2023/04/Temple-Bedroom-scaled.jpeg",
+    "/uploads/2023/04/Temple-Entrance.png"
+  ],
+  "description": "<p>In early 2017, we acquired 4 ground floor apartments in Rue de Temple, central Paris, in the sought-after Marais district. Following the acquisition, the strategy was to renovate the units and re-let this out at market rates to a leading short-term letting business.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "February 2017"
+    },
+    {
+      "label": "Country/city",
+      "value": "Paris, France"
+    },
+    {
+      "label": "Fund Name",
+      "value": "IREO"
+    },
+    {
+      "label": "Sqm",
+      "value": "486"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

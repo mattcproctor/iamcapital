@@ -1,0 +1,48 @@
+{
+  "name": "Fulvio Testi",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Office",
+    "Residential"
+  ],
+  "city": "Milan",
+  "country": "Italy",
+  "latitude": 45.5031013,
+  "longitude": 9.1982385,
+  "size": 2626,
+  "acquired": "2021-07",
+  "cover": "/uploads/2023/01/Fulvio-Testi-7.png",
+  "cardPhoto": "/uploads/map/fulvio-testi.webp",
+  "gallery": [
+    "/uploads/2023/04/Fulvio-Facade.jpeg",
+    "/uploads/2023/04/Fulvio-Interior-scaled.jpg",
+    "/uploads/2023/04/Fulvio-Connection-scaled.jpg",
+    "/uploads/2023/04/Fulvio-Rooftop.jpeg"
+  ],
+  "description": "<p>The asset located at Viale Fulvio Testi consisted of 2,626 gross sqm (1,972 net sqm) of office space located on the outskirts of Bicocca, a semi-central neighborhood of Milan.</p><p>The strategy was to convert the asset into residential.<br>We exited our investment in May of 2022.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "July 2021"
+    },
+    {
+      "label": "Country/city",
+      "value": "Milan, Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE II"
+    },
+    {
+      "label": "Sqm",
+      "value": "2,626"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

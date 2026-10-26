@@ -1,0 +1,45 @@
+{
+  "name": "Galerie St. Marc",
+  "listed": true,
+  "status": "Sold",
+  "category": [
+    "Residential",
+    "Retail"
+  ],
+  "city": "Paris",
+  "country": "France",
+  "latitude": 48.8612067,
+  "longitude": 2.3411855,
+  "size": 335,
+  "acquired": "2019-08",
+  "cover": "/uploads/2023/01/Galerie-scaled.jpg",
+  "cardPhoto": "/uploads/map/galerie.webp",
+  "gallery": [
+    "/uploads/2023/01/Galerie-scaled.jpg"
+  ],
+  "description": "<p>In August 2019, we acquired a property in Galerie Saint Marc, Paris, comprised of the Basement, Ground, First, and Second floors of the building.</p><p>Following the capex works our strategy was to refurbish into 5 short-term units and lease to an operating partner.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "August 2019"
+    },
+    {
+      "label": "Country/city",
+      "value": "Paris, France"
+    },
+    {
+      "label": "Fund Name",
+      "value": "IREO"
+    },
+    {
+      "label": "Sqm",
+      "value": "335"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repurposing"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-18"
+}

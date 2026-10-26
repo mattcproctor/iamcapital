@@ -1,0 +1,41 @@
+{
+  "name": "UMJA Portfolio",
+  "listed": false,
+  "status": "",
+  "category": [
+    "Renewable Energy"
+  ],
+  "city": "",
+  "country": "",
+  "acquired": "",
+  "cover": "/uploads/2023/01/Unknown-3.jpg",
+  "cardPhoto": "",
+  "gallery": [
+    "/uploads/2023/01/Unknown-3.jpg"
+  ],
+  "description": "<p>Project UMJA is part of the iAM Capital buy and build strategy in the solar market through the consolidation of 4 plants singularly acquired and then combined into a larger 3.5 MWp portfolio. The portfolio’s larger size will make the transaction appealing to players with larger investment tickets.</p>",
+  "facts": [
+    {
+      "label": "Date",
+      "value": "2022"
+    },
+    {
+      "label": "Country",
+      "value": "Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "Direct"
+    },
+    {
+      "label": "Capacity",
+      "value": "3.5 MWp"
+    },
+    {
+      "label": "Strategy",
+      "value": "Consolidation"
+    }
+  ],
+  "otherPins": [],
+  "added": "2023-01-13"
+}

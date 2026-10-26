@@ -1,0 +1,48 @@
+{
+  "name": "Castel Porrona",
+  "listed": true,
+  "status": "Active",
+  "category": [
+    "Hospitality"
+  ],
+  "city": "Porrona",
+  "country": "Italy",
+  "latitude": 42.910256,
+  "longitude": 11.4079451,
+  "size": 4500,
+  "acquired": "2026-03",
+  "cover": "/uploads/2026/03/CP1.jpg",
+  "cardPhoto": "/uploads/map/CP2.png",
+  "gallery": [
+    "/uploads/2026/03/CP1.jpg",
+    "/uploads/2026/03/CP2.png",
+    "/uploads/2026/03/CP3.jpg",
+    "/uploads/2026/03/CP4.jpg",
+    "/uploads/2026/03/CP5.jpg"
+  ],
+  "description": "<p>In March 2026, we acquired Castel Porrona, a historic hospitality asset located in the Tuscan countryside near Montalcino, through our ICE III Fund. The property is a fortified borgo dating back to the 15th century, comprising a central tower and a collection of traditional stone buildings enclosed within the original medieval village walls.</p><p>The asset includes approximately 30 rooms and suites, together with a restaurant, spa and wellness facilities, and an outdoor swimming pool.</p>",
+  "facts": [
+    {
+      "label": "Acquisition Date",
+      "value": "March 2026"
+    },
+    {
+      "label": "Country/city",
+      "value": "Tuscany (Porrona), Italy"
+    },
+    {
+      "label": "Fund Name",
+      "value": "ICE III"
+    },
+    {
+      "label": "# of Suites And Apartments",
+      "value": "30"
+    },
+    {
+      "label": "Strategy",
+      "value": "Repositioning"
+    }
+  ],
+  "otherPins": [],
+  "added": "2026-03-10"
+}
