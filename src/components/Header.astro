@@ -7,6 +7,9 @@ import { upload } from '../lib/images';
 
 interface Props { overlay?: boolean; subnav?: { id: string; label: string }[] }
 const { overlay = false, subnav = [] } = Astro.props;
+// The menu link for the section this page is in, which keeps its underline
+const path = Astro.url.pathname;
+const current = (href: string) => href !== '/' && path.startsWith(href);
 ---
 <header class:list={['header', { 'header--overlay': overlay, 'header--sub': subnav.length > 0 }]} data-header>
   <div class="header__inner">
@@ -19,7 +22,7 @@ const { overlay = false, subnav = [] } = Astro.props;
     </button>
     <div class="header__menus" id="site-nav">
       <nav aria-label="Main">
-        <ul class="menu">{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+        <ul class="menu">{nav.map((n) => <li><a href={n.href} aria-current={current(n.href) ? 'page' : undefined}>{n.label}</a></li>)}</ul>
       </nav>
       {subnav.length > 0 && (
         <nav aria-label="On this page" class="submenu-desktop">
@@ -67,8 +70,13 @@ const { overlay = false, subnav = [] } = Astro.props;
 
   .header__menus { display: flex; flex-direction: column; align-items: flex-end; }
   .menu { display: flex; gap: 20px; }
-  .menu a { font-weight: 600; font-size: 16px; line-height: 30.4px; color: var(--navy); display: block; transition: opacity 0.2s, color 0.4s ease; }
-  .menu a:hover { opacity: 0.7; }
+  .menu a { position: relative; font-weight: 600; font-size: 16px; line-height: 30.4px; color: var(--navy); display: block; transition: color 0.4s ease; }
+  /* Hover draws a thin line under the link from the left; the current section keeps it */
+  .menu a::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: currentColor;
+    transform: scaleX(0); transform-origin: right; transition: transform 0.35s var(--ease-out);
+  }
+  .menu a:hover::after, .menu a:focus-visible::after, .menu a[aria-current]::after { transform: scaleX(1); transform-origin: left; }
   .submenu { display: flex; gap: 10px; margin-top: 10px; }
   .submenu a { font-size: 15px; line-height: 28.5px; color: var(--black); }
   .submenu a:hover { color: var(--navy); }
@@ -132,6 +140,7 @@ const { overlay = false, subnav = [] } = Astro.props;
     }
     .menu, .submenu { flex-direction: column; gap: 0; }
     .menu a, .header--overlay .menu a { color: var(--navy); font-size: 18px; padding: 12px 0; border-bottom: 1px solid #e6e6e6; }
+    .menu a::after { display: none; }
     .submenu { margin-top: 15px; }
     .submenu a { padding: 6px 0; }
   }
