@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { properties } from '../lib/properties';
+import { listed } from '../lib/properties';
 import events from '../data/events.json';
 import documents from '../data/documents.json';
 import legal from '../data/legal.json';
@@ -17,13 +17,13 @@ export const GET: APIRoute = ({ site }) => {
   const entries: Entry[] = [
     { path: '/', lastmod: newest(documents.press.map((d) => d.date)) },
     { path: '/about/' },
-    { path: '/investments/', lastmod: newest(properties.map((p) => p.date)) },
+    { path: '/investments/', lastmod: newest(listed.map((p) => p.date)) },
     { path: '/team/' },
     { path: '/responsibility/' },
     { path: '/investor-relations/', lastmod: newest([...documents.shareholderNotices, ...documents.annualReports].map((d) => d.date)) },
     { path: '/latest-news/', lastmod: newest([...documents.press, ...documents.events].map((d) => d.date)) },
     { path: '/contact/' },
-    ...properties.map((p) => ({ path: `/${p.slug}/`, lastmod: p.date })),
+    ...listed.map((p) => ({ path: `/${p.slug}/`, lastmod: p.date })),
     ...events.map((e) => ({ path: `/${e.slug}/`, lastmod: e.date })),
   ];
 

@@ -407,8 +407,8 @@ function renderPropertyCards(properties) {
         const formattedSize = property.sizeSqm ? parseInt(property.sizeSqm).toLocaleString() : '';
         const countryCode = getCountryCode(property.country);
 
-        // Fallback placeholder image if none provided
-        const imageUrl = property.imageUrl ? secureUrl(property.imageUrl) : 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=360&fit=crop&auto=format&q=80';
+        // Placeholder (served from this site) when the sheet gives no image
+        const imageUrl = property.imageUrl ? secureUrl(property.imageUrl) : '/images/hero/milan-cathedral-hero.webp';
 
         const soldBadge = property.status === 'Sold' ? '<span class="property-card__sold-badge">SOLD</span>' : '';
 

@@ -5,16 +5,15 @@
 // own property pages, for search engines and visitors without JavaScript.
 import Layout from '../layouts/Layout.astro';
 import '../styles/investments.css';
-import { properties, location, status } from '../lib/properties';
+import { listed, location, status } from '../lib/properties';
 
-const active = properties.filter((p) => status(p) === 'Active');
-const sold = properties.filter((p) => status(p) === 'Sold');
-const other = properties.filter((p) => !status(p));
+const active = listed.filter((p) => status(p) === 'Active');
+const sold = listed.filter((p) => status(p) === 'Sold');
 ---
 <Layout
   title="Investment Portfolio"
   pageType="CollectionPage"
-  description="Explore iAM Capital's investment portfolio across Italy, France and Spain: residential, commercial, hospitality and renewable energy assets, active and sold."
+  description="Explore iAM Capital's investment portfolio across Italy, France and Spain: residential, commercial and hospitality assets, active and sold."
   image="2026/03/CP1.jpg"
 >
   <link slot="head" rel="preconnect" href="https://tiles.openfreemap.org" crossorigin />
@@ -70,12 +69,6 @@ const other = properties.filter((p) => !status(p));
           <ul>{active.map((p) => <li><a href={`/${p.slug}/`}><strong>{p.name}</strong></a> – {location(p)} – {p.category}</li>)}</ul>
           <h3>Sold Investments</h3>
           <ul>{sold.map((p) => <li><a href={`/${p.slug}/`}><strong>{p.name}</strong></a> – {location(p)} – {p.category}</li>)}</ul>
-          {other.length > 0 && (
-            <>
-              <h3>Renewable Energy</h3>
-              <ul>{other.map((p) => <li><a href={`/${p.slug}/`}><strong>{p.name}</strong></a> – {location(p)} – {p.category}</li>)}</ul>
-            </>
-          )}
         </div>
       </div>
     </section>

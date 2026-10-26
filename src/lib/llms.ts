@@ -1,6 +1,6 @@
 // Plain-text versions of the site for AI assistants and answer engines (llms.txt convention: https://llmstxt.org).
 // Generated from the same data as the pages, so they always match the site.
-import { properties, location, status } from './properties';
+import { listed, location, status } from './properties';
 import fundData from '../data/funds.json';
 import timeline from '../data/timeline.json';
 import team from '../data/team.json';
@@ -35,7 +35,7 @@ Key figures (real estate deals through dedicated funds and solar deals since 201
 
 ## Properties
 
-${properties.map((p) => `- [${p.name}](${S}/${p.slug}/): ${p.category}, ${location(p)}${status(p) ? `, ${status(p)}` : ''}`).join('\n')}
+${listed.map((p) => `- [${p.name}](${S}/${p.slug}/): ${p.category}, ${location(p)}${status(p) ? `, ${status(p)}` : ''}`).join('\n')}
 
 ## Legal and regulatory documents
 
@@ -71,7 +71,7 @@ export function llmsFullTxt(): string {
 
   out.push(`## Team\n\nSource: ${S}/team/\n\n${team.map((p) => `### ${p.name}, ${p.title ?? ''} (${p.group})\n\n${p.bio.map(text).join('\n\n')}`).join('\n\n')}`);
 
-  out.push(`## Properties\n\nSource: ${S}/investments/\n\n${properties.map((p) => `### ${p.name}\n\nURL: ${S}/${p.slug}/\nCategory: ${p.category}. Location: ${location(p)}.${status(p) ? ` Status: ${status(p)}.` : ''}\n\n${p.description.map(text).join('\n\n')}\n\n${p.facts.map((f) => `- ${f.label}: ${f.value}`).join('\n')}`).join('\n\n')}`);
+  out.push(`## Properties\n\nSource: ${S}/investments/\n\n${listed.map((p) => `### ${p.name}\n\nURL: ${S}/${p.slug}/\nCategory: ${p.category}. Location: ${location(p)}.${status(p) ? ` Status: ${status(p)}.` : ''}\n\n${p.description.map(text).join('\n\n')}\n\n${p.facts.map((f) => `- ${f.label}: ${f.value}`).join('\n')}`).join('\n\n')}`);
 
   out.push(`## Responsibility (ESG)\n\niAM Capital considers ESG factors in its decision making and with regards to all asset management activities, and strives to uphold the principles of responsible investing and attain globally recognized efficiency certifications (LEED, WELL).\n\n- Screening: confirm each opportunity is consistent with our criteria\n- Due diligence: complete ESG due diligence on every new investment\n- Planning: implement sustainability factors in each business plan\n- Monitoring: actively monitor ESG performance with management teams\n- Exit: assess ESG performance and lessons learned after each divestment\n\nLegal disclosures:\n${legal.map((d) => `- ${d.title}: ${abs(d.url)}`).join('\n')}`);
 

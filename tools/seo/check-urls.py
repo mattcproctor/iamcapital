@@ -12,7 +12,8 @@ Known and expected failures are listed in EXPECTED_404 (pre-WordPress images tha
 """
 import re, sys, urllib.parse, http.client, collections, os
 
-EXPECTED_404 = re.compile(r'^/(assets|media|images|photos)/|\.php$|^/captcha/|^/min/|^/burak-test/|\.mp4$')
+# ... and photos of people removed from the Team page at iAM's request (Alessandro Rossi, October 2026)
+EXPECTED_404 = re.compile(r'^/(assets|media|images|photos)/|\.php$|^/captcha/|^/min/|^/burak-test/|\.mp4$|Alessandro-Rossi')
 
 def fetch(base, path, hops=0):
     u = urllib.parse.urlparse(base)

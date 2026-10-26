@@ -9,6 +9,10 @@ export function location(p: Property): string {
   return f?.value ?? [p.city, p.country].filter(Boolean).join(', ');
 }
 
+// The properties the site lists (Investments page, sitemap, AI-search files). The solar portfolios keep their pages at
+// the old addresses, but iAM hid the Investments page's Renewable Energy section on the old site, so they aren't listed.
+export const listed = properties.filter((p) => p.category !== 'Renewable Energy');
+
 export const bySlug = (slug: string) => properties.find((p) => p.slug === slug)!;
 
 // Active or Sold, from the portfolio map's Google Sheet when the data was extracted. The solar portfolios are not on
