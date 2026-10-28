@@ -1,14 +1,15 @@
 # iAM Capital website
 
 The full iamcapital.com site in Astro, rebuilt in October 2026 from the Brizy/WordPress backup, with the investments
-map (previously its own site on iamcapital.vercel.app) as one of its pages. Static output, hosted on Cloudflare Pages,
-built from GitHub.
+map (previously its own site on iamcapital.vercel.app) as one of its pages. Static output, hosted on Vercel (iAM
+Capital's Pro team), built from GitHub. Moved from Cloudflare Pages in October 2026.
 
-- **Repository**: https://github.com/Brightwork-Digital/iamcapital (branch `full-site` holds the rebuild; `main` is
-  still the map-only site. If the old Vercel project is still connected to the repo, a push to `main` redeploys it.)
-- **Hosting**: Cloudflare Pages, Git integration. Build command `npm run build`, output directory `dist`, Node 22
-  (`.node-version`). No environment variables are needed. Turn on Web Analytics for
-  the project in the Cloudflare dashboard (cookieless; it injects its own beacon).
+- **Repository**: https://github.com/mattcproctor/iamcapital, branch `main` (production).
+- **Hosting**: Vercel, Git integration. Framework Astro, build command `npm run build`, output directory `dist`, Node
+  22.x (`vercel.json`, `package.json` engines). No environment variables are needed. Every push to `main` publishes;
+  other branches get preview addresses. The production domain is the bare **iamcapital.com**; www.iamcapital.com
+  redirects to it (301). Turn on Web Analytics in the project's Analytics tab (cookieless; `@vercel/analytics`'s
+  `<Analytics />` in `Layout.astro`).
 - **Design**: a faithful rebuild of the original Brizy design (see `.impeccable.md`), not a redesign. Measure against
   the archived pages before changing layout or styles.
 
@@ -19,16 +20,17 @@ npm install
 npm run dev       # http://localhost:4321
 npm run build     # writes dist/ (about 160 MB, mostly PDFs and optimised images)
 npm run preview
-npx wrangler pages dev dist   # serve dist/ exactly as Cloudflare does (redirects, headers)
+vercel dev        # serve the site with vercel.json's redirects and headers (needs `vercel link` first)
 ```
 
 ## Structure
 
 ```
-astro.config.mjs        site https://www.iamcapital.com, trailing slashes, folder output; writes dist/_redirects after build
-redirects.json          123 redirects from old WordPress addresses (to pages, PDFs or external articles)
-wrangler.jsonc          Cloudflare Pages project settings (name, output directory)
-public/_headers         security headers, long caching for /_astro/* and /fonts/*
+astro.config.mjs        site https://iamcapital.com, trailing slashes, folder output; keeps vercel.json's redirects in step
+                        with redirects.json (a local build rewrites them; a Vercel build stops if they're out of date)
+redirects.json          the redirects from old WordPress addresses (to pages, PDFs or external articles): edit this one
+vercel.json             Vercel settings: build, trailing slashes, security headers, long caching for /_astro/*, /fonts/*
+                        and /video/*, and the redirects (generated: www -> bare domain, then redirects.json)
 src/
   layouts/Layout.astro  <head> (SEO, social image, fonts, JSON-LD), header, footer
   components/           Header (main menu + per-page sub-menu), Footer, Banner (photo banner), PostGrid (document
@@ -67,7 +69,7 @@ docs/SEO-LAUNCH.md      the domain switch checklist (DNS on Route 53, Mimecast e
 ## Adding content
 
 iAM edits documents, the team and policies themselves in **Pages CMS** (https://app.pagescms.org, configured in
-`.pages.yml`): each save commits to `main` and Cloudflare publishes it in about two minutes. Uploaded PDFs go to
+`.pages.yml`): each save commits to `main` and Vercel publishes it in about two minutes. Uploaded PDFs go to
 `public/wp-content/uploads/documents/`, photos to `src/assets/uploads/team/`. `src/lib/content.ts` turns the editor's
 shapes into what the pages use (sorting documents newest first, skipping half-filled entries), so keep the JSON shapes
 in step with `.pages.yml`. Pull before editing these files in code, since iAM may have changed them.
@@ -98,10 +100,11 @@ in step with `.pages.yml`. Pull before editing these files in code, since iAM ma
 
 - SEO: titles/descriptions per page (`seoTitle`, `description` props; descriptions clipped to 155 characters),
   JSON-LD graph in `Layout.astro` (`src/lib/seo.ts`), Search Console verification meta tag from the old site. When
-  a page or PDF moves, add the old address to `redirects.json` and run `tools/seo/check-urls.py`.
+  a page or PDF moves, add the old address to `redirects.json`, run `npm run build` (which updates `vercel.json`),
+  commit both, and run `tools/seo/check-urls.py`.
 
 - Security: a Content Security Policy is built into every page by Astro (`security.csp` in `astro.config.mjs`), with
-  hashes for each page's own scripts and styles; `public/_headers` adds HSTS, frame-ancestors/X-Frame-Options,
+  hashes for each page's own scripts and styles; the headers in `vercel.json` add HSTS, frame-ancestors/X-Frame-Options,
   Permissions-Policy and COOP. A new outside service (a script, an embed, an image or data host) must be added to the
   CSP directives there or the browser will block it. Inline `onclick=` handlers are blocked: use addEventListener.
   MapLibre 6 loads its worker from `maplibre-gl-worker.mjs?url` via `setWorkerUrl()` on both map pages.
@@ -113,8 +116,9 @@ in step with `.pages.yml`. Pull before editing these files in code, since iAM ma
 - The home hero film is the old site's `uploads/2023/01/iamcapital-background.mp4` (the same film as Vimeo 794267898),
   with its 0.7s fade from black trimmed and re-encoded for the web: `ffmpeg -ss 0.7 -i in.mp4 -an -c:v libx264
   -preset slow -crf 27 -maxrate 2200k -bufsize 4400k -pix_fmt yuv420p -movflags +faststart hero-1080.mp4` (and
-  `-vf scale=1280:-2 -crf 28 -maxrate 1100k` for hero-720.mp4). The poster is its first frame.
+  `-vf scale=1280:-2 -crf 28 -maxrate 1100k` for hero-720.mp4). The poster is its first frame. Vercel serves
+  /video/* with HTTP Range support (206), which Safari needs to play it; on Cloudflare this took a Pages Function.
 
 - The old site's Complianz cookie banner, Yoast, Burst, MetaSlider and SMTP plugins are not needed: there are no forms.
-  Third-party content: OpenFreeMap tiles (/investments/ and /contact/, no cookies), YouTube nocookie (one event page).
+  Third-party content: Vercel Web Analytics (cookieless, same-origin), OpenFreeMap tiles (/investments/ and /contact/, no cookies), YouTube nocookie (one event page).
   The cookie policy page describes exactly this; update it if a new outside service is added.

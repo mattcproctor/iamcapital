@@ -1,0 +1,2197 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'none'"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        }
+      ]
+    },
+    {
+      "source": "/_astro/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/video/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.iamcapital.com"
+        }
+      ],
+      "destination": "https://iamcapital.com/:path*",
+      "statusCode": 301
+    },
+    {
+      "source": "/2006-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/iam_ar06_low_res.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2006-annual-report",
+      "destination": "/wp-content/uploads/2018/11/iam_ar06_low_res.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2007-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/annualreport07.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2007-annual-report",
+      "destination": "/wp-content/uploads/2018/11/annualreport07.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2008-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/annual_report_2008.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2008-annual-report",
+      "destination": "/wp-content/uploads/2018/11/annual_report_2008.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2009-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/annualreport2009.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2009-annual-report",
+      "destination": "/wp-content/uploads/2018/11/annualreport2009.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2010-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/2010_final_accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2010-annual-report",
+      "destination": "/wp-content/uploads/2018/11/2010_final_accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2011-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/2011_iam_accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2011-annual-report",
+      "destination": "/wp-content/uploads/2018/11/2011_iam_accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2011-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2018/11/iam_notice_of_agm.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2011-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2018/11/iam_notice_of_agm.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2012-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/2012_iam_accounts_12613.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2012-annual-report",
+      "destination": "/wp-content/uploads/2018/11/2012_iam_accounts_12613.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2012-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2018/11/integrated_circular-9-august-2012-final.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2012-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2018/11/integrated_circular-9-august-2012-final.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2013-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/iam_2013_accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2013-annual-report",
+      "destination": "/wp-content/uploads/2018/11/iam_2013_accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2013-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2018/11/integrated-agm-notice-2013.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2013-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2018/11/integrated-agm-notice-2013.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/2014-iam-accounts-1715.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-annual-report",
+      "destination": "/wp-content/uploads/2018/11/2014-iam-accounts-1715.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2018/11/2014_notice_of_agm.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2018/11/2014_notice_of_agm.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-mandatory-cash-offer/",
+      "destination": "/wp-content/uploads/2018/11/0035r_-_integrated_asset_management_plc_-_latest.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-mandatory-cash-offer",
+      "destination": "/wp-content/uploads/2018/11/0035r_-_integrated_asset_management_plc_-_latest.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-mandatory-cash-offer-update-1/",
+      "destination": "/wp-content/uploads/2018/11/mandatory_cash_offer_-_update_1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-mandatory-cash-offer-update-1",
+      "destination": "/wp-content/uploads/2018/11/mandatory_cash_offer_-_update_1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-mandatory-cash-offer-update-2/",
+      "destination": "/wp-content/uploads/2018/11/announcement_of_posting_of_offer_document_v2_on_iam_lttrhead.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-mandatory-cash-offer-update-2",
+      "destination": "/wp-content/uploads/2018/11/announcement_of_posting_of_offer_document_v2_on_iam_lttrhead.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-mandatory-offer-closing/",
+      "destination": "/wp-content/uploads/2018/11/mandatory_offer_closing_-_final_130115.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-mandatory-offer-closing",
+      "destination": "/wp-content/uploads/2018/11/mandatory_offer_closing_-_final_130115.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2015-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/2015-iam-accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2015-annual-report",
+      "destination": "/wp-content/uploads/2018/11/2015-iam-accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2015-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2018/11/integrated-agm-notice-2015-for-website.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2015-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2018/11/integrated-agm-notice-2015-for-website.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2016-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/2016-annual-report.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2016-annual-report",
+      "destination": "/wp-content/uploads/2018/11/2016-annual-report.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2016-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2018/11/2016-iam-agm-notice.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2016-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2018/11/2016-iam-agm-notice.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2017-annual-report/",
+      "destination": "/wp-content/uploads/2019/01/iAMCapital-Annual-Report-2017.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2017-annual-report",
+      "destination": "/wp-content/uploads/2019/01/iAMCapital-Annual-Report-2017.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2017-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2018/11/2017-iam-notice-of-agm.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2017-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2018/11/2017-iam-notice-of-agm.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2018-iam-capital-name-change/",
+      "destination": "/wp-content/uploads/2018/11/iam-capital-group-plc-press-release-may-16-2018.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2018-iam-capital-name-change",
+      "destination": "/wp-content/uploads/2018/11/iam-capital-group-plc-press-release-may-16-2018.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2018-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2018/11/agm_notice_2018-final.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2018-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2018/11/agm_notice_2018-final.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2019-annual-report/",
+      "destination": "/wp-content/uploads/2020/11/iAM-Capital-AR-2019_interactive-3.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2019-annual-report",
+      "destination": "/wp-content/uploads/2020/11/iAM-Capital-AR-2019_interactive-3.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2019-iam-capital-financial-statements/",
+      "destination": "/wp-content/uploads/2020/08/iAM-Financial-Statements-2019.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2019-iam-capital-financial-statements",
+      "destination": "/wp-content/uploads/2020/08/iAM-Financial-Statements-2019.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2019-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2019/07/IAM-2018-AGM-Notice.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2019-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2019/07/IAM-2018-AGM-Notice.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2020-annual-report/",
+      "destination": "/wp-content/uploads/2022/03/iAM-Capital-Annual-Report-2020-1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2020-annual-report",
+      "destination": "/wp-content/uploads/2022/03/iAM-Capital-Annual-Report-2020-1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2020-iam-capital-financial-statements/",
+      "destination": "/wp-content/uploads/2021/08/iAM-Financial-Statements-2020.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2020-iam-capital-financial-statements",
+      "destination": "/wp-content/uploads/2021/08/iAM-Financial-Statements-2020.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2020-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2020/08/AGM-Notice-2019.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2020-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2020/08/AGM-Notice-2019.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2021-annual-report/",
+      "destination": "/wp-content/uploads/2022/08/iAM-Capital-Annual-Report-2021.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2021-annual-report",
+      "destination": "/wp-content/uploads/2022/08/iAM-Capital-Annual-Report-2021.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2021-iam-capital-financial-statements/",
+      "destination": "/wp-content/uploads/2022/07/iAM-Capital-Group-Plc-Full-31-12-2021.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2021-iam-capital-financial-statements",
+      "destination": "/wp-content/uploads/2022/07/iAM-Capital-Group-Plc-Full-31-12-2021.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2021-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2021/08/IAM-Capital-Group-plc-2021-AGM-Notice.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2021-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2021/08/IAM-Capital-Group-plc-2021-AGM-Notice.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2022-iam-capital-group-limited-financial-report-2/",
+      "destination": "/wp-content/uploads/2023/10/iAM-Capital-Group-Ltd-Full-Accounts-no-DPL-31.12.2022.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2022-iam-capital-group-limited-financial-report-2",
+      "destination": "/wp-content/uploads/2023/10/iAM-Capital-Group-Ltd-Full-Accounts-no-DPL-31.12.2022.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2022-iam-capital-name-change/",
+      "destination": "/wp-content/uploads/2023/02/20221219-iAM-Capital-Group-Ltd-Re-registration-Certificate.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2022-iam-capital-name-change",
+      "destination": "/wp-content/uploads/2023/02/20221219-iAM-Capital-Group-Ltd-Re-registration-Certificate.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2022-iam-invest-limited-financial-report/",
+      "destination": "/wp-content/uploads/2023/10/IAI-Audited-accounts-31-December-2022_signed.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2022-iam-invest-limited-financial-report",
+      "destination": "/wp-content/uploads/2023/10/IAI-Audited-accounts-31-December-2022_signed.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2022-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2022/08/notice_of_AGM.DOCX.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2022-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2022/08/notice_of_AGM.DOCX.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2023-iam-capital-group-limited-financial-report/",
+      "destination": "/wp-content/uploads/2024/10/iAM-Capital-Group-Limited-Full-31-12-23-signed-no-DPL.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2023-iam-capital-group-limited-financial-report",
+      "destination": "/wp-content/uploads/2024/10/iAM-Capital-Group-Limited-Full-31-12-23-signed-no-DPL.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2023-iam-invest-limited-financial-report/",
+      "destination": "/wp-content/uploads/2024/10/IAM-Invest-Limited-FCA-copy-31-12-23.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2023-iam-invest-limited-financial-report",
+      "destination": "/wp-content/uploads/2024/10/IAM-Invest-Limited-FCA-copy-31-12-23.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2023-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2023/10/IAM-Capital-Group-Ltd_Notice-of-AGM-2023.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2023-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2023/10/IAM-Capital-Group-Ltd_Notice-of-AGM-2023.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2024-iam-capital-group-limited-financial-report-2/",
+      "destination": "/wp-content/uploads/2025/10/IAM-Capital-Group-Limited-Full-no-PL-31-12-24.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2024-iam-capital-group-limited-financial-report-2",
+      "destination": "/wp-content/uploads/2025/10/IAM-Capital-Group-Limited-Full-no-PL-31-12-24.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2024-iam-invest-limited-financial-report/",
+      "destination": "/wp-content/uploads/2026/03/IAM-Invest-Limited-Full-FCA-Copy-31-12-24.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2024-iam-invest-limited-financial-report",
+      "destination": "/wp-content/uploads/2026/03/IAM-Invest-Limited-Full-FCA-Copy-31-12-24.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2024-notice-of-agm/",
+      "destination": "/wp-content/uploads/2026/03/IAM-Capital-Group-Ltd_Notice-of-AGM-2023-YE-Signed.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2024-notice-of-agm",
+      "destination": "/wp-content/uploads/2026/03/IAM-Capital-Group-Ltd_Notice-of-AGM-2023-YE-Signed.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2025-iam-invest-limited-financial-report/",
+      "destination": "/wp-content/uploads/2026/10/iAM_Invest_Ltd_2025_FS.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2025-iam-invest-limited-financial-report",
+      "destination": "/wp-content/uploads/2026/10/iAM_Invest_Ltd_2025_FS.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2025-iam-notice-of-agm/",
+      "destination": "/wp-content/uploads/2025/10/IAM-Capital-Group-Ltd_Notice-of-AGM-2024-YE.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2025-iam-notice-of-agm",
+      "destination": "/wp-content/uploads/2025/10/IAM-Capital-Group-Ltd_Notice-of-AGM-2024-YE.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/3348-2/",
+      "destination": "/wp-content/uploads/2021/03/Insurance-Startup-Hippo-to-Go-Public-in-5-Billion-SPAC-Merger-WSJ.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/3348-2",
+      "destination": "/wp-content/uploads/2021/03/Insurance-Startup-Hippo-to-Go-Public-in-5-Billion-SPAC-Merger-WSJ.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/akinova-goes-for-growth-and-unveils-another-series-a-investor/",
+      "destination": "https://mailchi.mp/afb7be1361eb/akinova-goes-for-growth-and-unveils-another-series-a-investor?e=86a661f33c",
+      "statusCode": 301
+    },
+    {
+      "source": "/akinova-goes-for-growth-and-unveils-another-series-a-investor",
+      "destination": "https://mailchi.mp/afb7be1361eb/akinova-goes-for-growth-and-unveils-another-series-a-investor?e=86a661f33c",
+      "statusCode": 301
+    },
+    {
+      "source": "/bebeez-ef-solare-italia-reports-31-photovoltaic-plants-from-integrated-energy-holdings/",
+      "destination": "https://bebeez.it/2019/01/11/ef-solare-italia-rileva-31-impianti-da-integrated-energy-holding/",
+      "statusCode": 301
+    },
+    {
+      "source": "/bebeez-ef-solare-italia-reports-31-photovoltaic-plants-from-integrated-energy-holdings",
+      "destination": "https://bebeez.it/2019/01/11/ef-solare-italia-rileva-31-impianti-da-integrated-energy-holding/",
+      "statusCode": 301
+    },
+    {
+      "source": "/emanuel-arbib-quoted-in-forbes-italy-3-09-2018%e2%80%8b/",
+      "destination": "https://forbes.it/2018/09/05/gli-italiani-buoni-come-buffet-e-gates/",
+      "statusCode": 301
+    },
+    {
+      "source": "/emanuel-arbib-quoted-in-forbes-italy-3-09-2018​/",
+      "destination": "https://forbes.it/2018/09/05/gli-italiani-buoni-come-buffet-e-gates/",
+      "statusCode": 301
+    },
+    {
+      "source": "/emanuel-arbib-quoted-in-forbes-italy-3-09-2018%e2%80%8b",
+      "destination": "https://forbes.it/2018/09/05/gli-italiani-buoni-come-buffet-e-gates/",
+      "statusCode": 301
+    },
+    {
+      "source": "/emanuel-arbib-quoted-in-forbes-italy-3-09-2018​",
+      "destination": "https://forbes.it/2018/09/05/gli-italiani-buoni-come-buffet-e-gates/",
+      "statusCode": 301
+    },
+    {
+      "source": "/energia-mercato-integrated-energy-holdings-cede-a-ef-solare-italia-un-portafoglio-di-impianti-fotovoltaici-da-344-mwp/",
+      "destination": "https://www.energiamercato.it/project-finance/integrated-energy-holdings-cede-a-ef-solare-italia-un-portafoglio-di-impianti-fotovoltaici-da-344-mwp",
+      "statusCode": 301
+    },
+    {
+      "source": "/energia-mercato-integrated-energy-holdings-cede-a-ef-solare-italia-un-portafoglio-di-impianti-fotovoltaici-da-344-mwp",
+      "destination": "https://www.energiamercato.it/project-finance/integrated-energy-holdings-cede-a-ef-solare-italia-un-portafoglio-di-impianti-fotovoltaici-da-344-mwp",
+      "statusCode": 301
+    },
+    {
+      "source": "/equities-com-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy/",
+      "destination": "https://www.equities.com/news/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy",
+      "statusCode": 301
+    },
+    {
+      "source": "/equities-com-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy",
+      "destination": "https://www.equities.com/news/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy",
+      "statusCode": 301
+    },
+    {
+      "source": "/fintlv-participates-in-250-million-series-d-financing-by-next-insurance-at-a-valuation-of-over-2-billion/",
+      "destination": "https://finance.yahoo.com/news/next-insurance-raises-250-million-130000247.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/fintlv-participates-in-250-million-series-d-financing-by-next-insurance-at-a-valuation-of-over-2-billion",
+      "destination": "https://finance.yahoo.com/news/next-insurance-raises-250-million-130000247.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/fintlv-sponsors-fintech-week-tel-aviv-2019/",
+      "destination": "https://www.telaviv.fintechweek.com/home",
+      "statusCode": 301
+    },
+    {
+      "source": "/fintlv-sponsors-fintech-week-tel-aviv-2019",
+      "destination": "https://www.telaviv.fintechweek.com/home",
+      "statusCode": 301
+    },
+    {
+      "source": "/forbes-italia-como-cambia-il-mercato-del-fotovoltaico-in-italia/",
+      "destination": "https://forbes.it/2019/01/10/quali-sono-i-possibili-scenari-per-il-fotovoltaico/",
+      "statusCode": 301
+    },
+    {
+      "source": "/forbes-italia-como-cambia-il-mercato-del-fotovoltaico-in-italia",
+      "destination": "https://forbes.it/2019/01/10/quali-sono-i-possibili-scenari-per-il-fotovoltaico/",
+      "statusCode": 301
+    },
+    {
+      "source": "/forbes-italia-conviene-ancora-investire-sul-fotovoltaico/",
+      "destination": "https://forbes.it/2018/03/29/conviene-ancora-investire-sul-fotovoltaico/#37dcd5e9333c",
+      "statusCode": 301
+    },
+    {
+      "source": "/forbes-italia-conviene-ancora-investire-sul-fotovoltaico",
+      "destination": "https://forbes.it/2018/03/29/conviene-ancora-investire-sul-fotovoltaico/#37dcd5e9333c",
+      "statusCode": 301
+    },
+    {
+      "source": "/forbes-italia-investire-nel-fintech-dallinterno-della-innovation-zone/",
+      "destination": "https://forbes.it/2018/02/08/investire-nel-fintech-dallinterno-della-innovation-zone/#d0ccce0cee4a",
+      "statusCode": 301
+    },
+    {
+      "source": "/forbes-italia-investire-nel-fintech-dallinterno-della-innovation-zone",
+      "destination": "https://forbes.it/2018/02/08/investire-nel-fintech-dallinterno-della-innovation-zone/#d0ccce0cee4a",
+      "statusCode": 301
+    },
+    {
+      "source": "/forbes-italia-le-opporrtunita-del-fintech-nella-startup-nation/",
+      "destination": "https://forbes.it/2018/01/29/le-opportunita-del-fintech-nella-startup-nation/#83cc0e47a080",
+      "statusCode": 301
+    },
+    {
+      "source": "/forbes-italia-le-opporrtunita-del-fintech-nella-startup-nation",
+      "destination": "https://forbes.it/2018/01/29/le-opportunita-del-fintech-nella-startup-nation/#83cc0e47a080",
+      "statusCode": 301
+    },
+    {
+      "source": "/gm-notice/",
+      "destination": "/wp-content/uploads/2022/08/shareholder-circular.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/gm-notice",
+      "destination": "/wp-content/uploads/2022/08/shareholder-circular.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iai-2016-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/iai-2016-accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iai-2016-annual-report",
+      "destination": "/wp-content/uploads/2018/11/iai-2016-accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-a-4-5-mwp-italian-solar-pv-portfolio/",
+      "destination": "/wp-content/uploads/2021/07/iAM-Capital-Acquires-a-4.5-MWp-Italian-solar-PV-portfolio24.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-a-4-5-mwp-italian-solar-pv-portfolio",
+      "destination": "/wp-content/uploads/2021/07/iAM-Capital-Acquires-a-4.5-MWp-Italian-solar-PV-portfolio24.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-a-new-3-5-mwp-italian-solar-pv-portfolio/",
+      "destination": "/wp-content/uploads/2022/12/Prothea-PR-IAM-BHN-_-221222-final.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-a-new-3-5-mwp-italian-solar-pv-portfolio",
+      "destination": "/wp-content/uploads/2022/12/Prothea-PR-IAM-BHN-_-221222-final.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-a-portfolio-of-hospitality-assets-in-spain-through-its-ice-iii-fund-in-partnership-with-cats-hostels/",
+      "destination": "/wp-content/uploads/2026/01/Hospitality-iAM-Capital-PR.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-a-portfolio-of-hospitality-assets-in-spain-through-its-ice-iii-fund-in-partnership-with-cats-hostels",
+      "destination": "/wp-content/uploads/2026/01/Hospitality-iAM-Capital-PR.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-beachfront-property-on-the-italian-riviera/",
+      "destination": "/wp-content/uploads/2023/04/iAM-Capital-Acquires-Capo-Mimosa-on-the-Italian-Riviera-1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-beachfront-property-on-the-italian-riviera",
+      "destination": "/wp-content/uploads/2023/04/iAM-Capital-Acquires-Capo-Mimosa-on-the-Italian-Riviera-1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-castel-porrona-a-historic-hospitality-asset-in-tuscany-through-its-ice-iii-fund/",
+      "destination": "/wp-content/uploads/2026/03/Castel-Porrona-iAM-Capital-PR-w.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-castel-porrona-a-historic-hospitality-asset-in-tuscany-through-its-ice-iii-fund",
+      "destination": "/wp-content/uploads/2026/03/Castel-Porrona-iAM-Capital-PR-w.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-trophy-asset-in-rome/",
+      "destination": "/wp-content/uploads/2022/10/iAM-HOSPITALITY-FUND-ACQUIRES-TROPHY-ASSET-IN-ROME.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-trophy-asset-in-rome",
+      "destination": "/wp-content/uploads/2022/10/iAM-HOSPITALITY-FUND-ACQUIRES-TROPHY-ASSET-IN-ROME.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-announce-first-closing-of-its-latest-european-real-estate-fund-ice-ii/",
+      "destination": "/wp-content/uploads/2020/12/ICE-II-Closing-Press-Release.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-announce-first-closing-of-its-latest-european-real-estate-fund-ice-ii",
+      "destination": "/wp-content/uploads/2020/12/ICE-II-Closing-Press-Release.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-announces-the-opening-of-the-five-star-luxury-rome-hotel-palazzo-sanzio-as-a-radisson-collection-hotel/",
+      "destination": "/wp-content/uploads/2026/04/OPENING-OF-THE-FIVE-STAR-LUXURY-ROME-HOTEL-PALAZZO-SANZIO-AS-A-RADISSON-COLLECTION-HOTEL-.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-announces-the-opening-of-the-five-star-luxury-rome-hotel-palazzo-sanzio-as-a-radisson-collection-hotel",
+      "destination": "/wp-content/uploads/2026/04/OPENING-OF-THE-FIVE-STAR-LUXURY-ROME-HOTEL-PALAZZO-SANZIO-AS-A-RADISSON-COLLECTION-HOTEL-.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-annual-report-2018/",
+      "destination": "/wp-content/uploads/2019/09/iAM-Capital-RA-2018.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-annual-report-2018",
+      "destination": "/wp-content/uploads/2019/09/iAM-Capital-RA-2018.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-ceo-emanuel-arbibs-podcast-interview-from-italian-motorbikes-to-green-energy/",
+      "destination": "https://www.podomatic.com/podcasts/fiftyfaces/episodes/2020-10-20T23_22_01-07_00",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-ceo-emanuel-arbibs-podcast-interview-from-italian-motorbikes-to-green-energy",
+      "destination": "https://www.podomatic.com/podcasts/fiftyfaces/episodes/2020-10-20T23_22_01-07_00",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-group-extends-relationship-with-tecma-by-subscribing-to-new-rights-issue/",
+      "destination": "/wp-content/uploads/2022/06/TECMA-Solutions-completa-aumento-capitale_-eccesso-domanda-da-investitori-qualificati-Borsa-Italiana.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-group-extends-relationship-with-tecma-by-subscribing-to-new-rights-issue",
+      "destination": "/wp-content/uploads/2022/06/TECMA-Solutions-completa-aumento-capitale_-eccesso-domanda-da-investitori-qualificati-Borsa-Italiana.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-group-plc-and-cs-capital-launch-a-real-estate-platform/",
+      "destination": "/wp-content/uploads/2021/12/iAM-Capital-CSC-PR-Residential-platform-1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-group-plc-and-cs-capital-launch-a-real-estate-platform",
+      "destination": "/wp-content/uploads/2021/12/iAM-Capital-CSC-PR-Residential-platform-1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-group-sells-solar-energy-portfolio-to-ef-solare/",
+      "destination": "/wp-content/uploads/2019/01/iAM-Capital-Group-sells-Solar-Energy-portfolio-to-EF-Solare.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-group-sells-solar-energy-portfolio-to-ef-solare",
+      "destination": "/wp-content/uploads/2019/01/iAM-Capital-Group-sells-Solar-Energy-portfolio-to-EF-Solare.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-italia-1-fund-completed-the-purchase-of-a-22357sqm-real-estate-portfolio-in-milan-and-rome-from-coima-sgr/",
+      "destination": "/wp-content/uploads/2021/08/PR-Release-1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-italia-1-fund-completed-the-purchase-of-a-22357sqm-real-estate-portfolio-in-milan-and-rome-from-coima-sgr",
+      "destination": "/wp-content/uploads/2021/08/PR-Release-1.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-presenting-at-scenari-immobiliari-hospitality-event/",
+      "destination": "https://www.scenari-immobiliari.it/2022/07/08/hospitality-forum-2022-la-galleria-fotografica-dellevento-del-7-luglio-a-milano/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-presenting-at-scenari-immobiliari-hospitality-event",
+      "destination": "https://www.scenari-immobiliari.it/2022/07/08/hospitality-forum-2022-la-galleria-fotografica-dellevento-del-7-luglio-a-milano/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-secures-e20-9m-financing-from-banco-bpm/",
+      "destination": "/wp-content/uploads/2023/07/iAM-Capital-secures-20.9M-financing-from-Banco-BPM.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-secures-e20-9m-financing-from-banco-bpm",
+      "destination": "/wp-content/uploads/2023/07/iAM-Capital-secures-20.9M-financing-from-Banco-BPM.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-sponsored-fintlv-investment-next-insurance-buys-ap-intego-doubling-revenue/",
+      "destination": "/wp-content/uploads/2021/03/en.globes.co_.il-Next-Insurance-buys-AP-Intego-doubling-revenue.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-sponsored-fintlv-investment-next-insurance-buys-ap-intego-doubling-revenue",
+      "destination": "/wp-content/uploads/2021/03/en.globes.co_.il-Next-Insurance-buys-AP-Intego-doubling-revenue.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-sponsored-fintlv-investment-next-insurance-raises-250m-at-4b-valuation/",
+      "destination": "/wp-content/uploads/2021/04/en.globes.co_.il-Next-Insurance-raises-250m-at-4b-valuation.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-sponsored-fintlv-investment-next-insurance-raises-250m-at-4b-valuation",
+      "destination": "/wp-content/uploads/2021/04/en.globes.co_.il-Next-Insurance-raises-250m-at-4b-valuation.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-sponsored-fintlv-invests-in-carbynes-25-million-series-b1-after-350-growth-in-revenue/",
+      "destination": "https://news.crunchbase.com/news/carbyne-secures-series-b1-after-350-growth/?utm_source=cb_daily&utm_medium=email&utm_campaign=20210113&utm_content=intro&utm_term=content",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-sponsored-fintlv-invests-in-carbynes-25-million-series-b1-after-350-growth-in-revenue",
+      "destination": "https://news.crunchbase.com/news/carbyne-secures-series-b1-after-350-growth/?utm_source=cb_daily&utm_medium=email&utm_campaign=20210113&utm_content=intro&utm_term=content",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capitals-ceo-discusses-the-investment-choices-of-italians-in-the-city-of-london/",
+      "destination": "https://bfcvideo.com/2020/04/23/assetandthecity-puntata-35/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capitals-ceo-discusses-the-investment-choices-of-italians-in-the-city-of-london",
+      "destination": "https://bfcvideo.com/2020/04/23/assetandthecity-puntata-35/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2017-annual-report/",
+      "destination": "/wp-content/uploads/2018/11/2017-iam-invest-annual-accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2017-annual-report",
+      "destination": "/wp-content/uploads/2018/11/2017-iam-invest-annual-accounts.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2018-annual-report/",
+      "destination": "/wp-content/uploads/2019/07/iAM-Invest-2018-Annual-Report.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2018-annual-report",
+      "destination": "/wp-content/uploads/2019/07/iAM-Invest-2018-Annual-Report.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2019-annual-report/",
+      "destination": "/wp-content/uploads/2020/05/iAM-Invest-2019-Annual-Report.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2019-annual-report",
+      "destination": "/wp-content/uploads/2020/05/iAM-Invest-2019-Annual-Report.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2020-annual-report/",
+      "destination": "/wp-content/uploads/2021/05/iAM-Invest-2020-Financial-Statements.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2020-annual-report",
+      "destination": "/wp-content/uploads/2021/05/iAM-Invest-2020-Financial-Statements.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2021-annual-report/",
+      "destination": "/wp-content/uploads/2022/04/iAM-Invest-Limited-Annual-Accounts-31-12-21.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-2021-annual-report",
+      "destination": "/wp-content/uploads/2022/04/iAM-Invest-Limited-Annual-Accounts-31-12-21.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-leading-with-near-zero-emissions-residential-building-in-milan/",
+      "destination": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-leading-with-near-zero-emissions-residential-building-in-milan",
+      "destination": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-s-johanna-arbib-brings-reale-mutua-assicurazioni-to-israel/",
+      "destination": "/wp-content/uploads/2020/10/assinews.it-Reale-a-Tel-Aviv-per-linsurtech.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-s-johanna-arbib-brings-reale-mutua-assicurazioni-to-israel",
+      "destination": "/wp-content/uploads/2020/10/assinews.it-Reale-a-Tel-Aviv-per-linsurtech.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/israelis-discover-tech-insurance-clal-psagot-and-hapoalim-will-invest-60-million-in-hippo-at-a-value-of-1-5-billion/",
+      "destination": "https://www.linkedin.com/posts/fintlv_home-insurance-tech-startup-hippo-raises-activity-6691409336779997184-FgFh",
+      "statusCode": 301
+    },
+    {
+      "source": "/israelis-discover-tech-insurance-clal-psagot-and-hapoalim-will-invest-60-million-in-hippo-at-a-value-of-1-5-billion",
+      "destination": "https://www.linkedin.com/posts/fintlv_home-insurance-tech-startup-hippo-raises-activity-6691409336779997184-FgFh",
+      "statusCode": 301
+    },
+    {
+      "source": "/jrj-group-one-of-iam-capitals-early-proprietary-investments-begins-ipo-process-in-london-for-their-major-commodities-broker-marex-spectron/",
+      "destination": "https://news-sky-com.cdn.ampproject.org/c/s/news.sky.com/story/amp/ex-lehman-bankers-target-float-of-commodities-trader-marex-spectron-12129183",
+      "statusCode": 301
+    },
+    {
+      "source": "/jrj-group-one-of-iam-capitals-early-proprietary-investments-begins-ipo-process-in-london-for-their-major-commodities-broker-marex-spectron",
+      "destination": "https://news-sky-com.cdn.ampproject.org/c/s/news.sky.com/story/amp/ex-lehman-bankers-target-float-of-commodities-trader-marex-spectron-12129183",
+      "statusCode": 301
+    },
+    {
+      "source": "/market-watch-integrated-asset-management-plc-leads-acquisition-of-eurro-127-million-34mw-pv-portfolio-in-italy/",
+      "destination": "https://www.marketwatch.com/press-release/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy-2016-07-04",
+      "statusCode": 301
+    },
+    {
+      "source": "/market-watch-integrated-asset-management-plc-leads-acquisition-of-eurro-127-million-34mw-pv-portfolio-in-italy",
+      "destination": "https://www.marketwatch.com/press-release/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy-2016-07-04",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-miami-based-partner-cgi-ink-deal-with-a-rod-in-new-hotel-investment-fund/",
+      "destination": "/wp-content/uploads/2020/12/Wall-Street-Journal-December-16-2020-A-Rod-Swings-for-the-Fences-With-New-Hotel-Real-Estate-Fund.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-miami-based-partner-cgi-ink-deal-with-a-rod-in-new-hotel-investment-fund",
+      "destination": "/wp-content/uploads/2020/12/Wall-Street-Journal-December-16-2020-A-Rod-Swings-for-the-Fences-With-New-Hotel-Real-Estate-Fund.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/prothea-acted-as-advisor-of-integrated-energy-holdings-on-the-successful-sale-of-a-34-4-mwp-italian-solar-pv-portfolio-to-ef-solare-italia/",
+      "destination": "/wp-content/uploads/2019/03/Prothea-ER1-EF-Solare-Italia-34_4_MWp-Press-Release.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/prothea-acted-as-advisor-of-integrated-energy-holdings-on-the-successful-sale-of-a-34-4-mwp-italian-solar-pv-portfolio-to-ef-solare-italia",
+      "destination": "/wp-content/uploads/2019/03/Prothea-ER1-EF-Solare-Italia-34_4_MWp-Press-Release.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/puri-negri-launches-a-e100m-fund-in-the-residential-sector/",
+      "destination": "https://www.monitorimmobiliare.it/puri-negri-lancia-fondo-da-100-mln-nel-residenziale_20217161642",
+      "statusCode": 301
+    },
+    {
+      "source": "/puri-negri-launches-a-e100m-fund-in-the-residential-sector",
+      "destination": "https://www.monitorimmobiliare.it/puri-negri-lancia-fondo-da-100-mln-nel-residenziale_20217161642",
+      "statusCode": 301
+    },
+    {
+      "source": "/renewables-now-efsi-becomes-solar-leader-in-italy-consolidation-continues/",
+      "destination": "https://renewablesnow.com/news/interview-efsi-becomes-solar-leader-in-italy-consolidation-continues-639197/",
+      "statusCode": 301
+    },
+    {
+      "source": "/renewables-now-efsi-becomes-solar-leader-in-italy-consolidation-continues",
+      "destination": "https://renewablesnow.com/news/interview-efsi-becomes-solar-leader-in-italy-consolidation-continues-639197/",
+      "statusCode": 301
+    },
+    {
+      "source": "/renewables-now-over-87-mw-of-italian-pv-assets-change-hands-in-2-recent-deals/",
+      "destination": "https://renewablesnow.com/news/over-87-mw-of-italian-pv-assets-change-hands-in-2-recent-deals-639080/",
+      "statusCode": 301
+    },
+    {
+      "source": "/renewables-now-over-87-mw-of-italian-pv-assets-change-hands-in-2-recent-deals",
+      "destination": "https://renewablesnow.com/news/over-87-mw-of-italian-pv-assets-change-hands-in-2-recent-deals-639080/",
+      "statusCode": 301
+    },
+    {
+      "source": "/successful-sale-of-solar-portfolio-in-italy/",
+      "destination": "/wp-content/uploads/2021/12/Bhndue-S.r.l.-Sale-Press-Release.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/successful-sale-of-solar-portfolio-in-italy",
+      "destination": "/wp-content/uploads/2021/12/Bhndue-S.r.l.-Sale-Press-Release.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/tecma-solutions-announce-a-strategic-partnership-with-iam-capital-on-international-real-estate/",
+      "destination": "/wp-content/uploads/2021/06/Tecma-Solutions_-strategic-partnership-with-iAm-CApital-on-international-real-estate-Borsa-Italiana.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/tecma-solutions-announce-a-strategic-partnership-with-iam-capital-on-international-real-estate",
+      "destination": "/wp-content/uploads/2021/06/Tecma-Solutions_-strategic-partnership-with-iAm-CApital-on-international-real-estate-Borsa-Italiana.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wall-street-online-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy/",
+      "destination": "https://www.wallstreet-online.de/nachricht/8733403-integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-italy",
+      "statusCode": 301
+    },
+    {
+      "source": "/wall-street-online-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy",
+      "destination": "https://www.wallstreet-online.de/nachricht/8733403-integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-italy",
+      "statusCode": 301
+    },
+    {
+      "source": "/watch-sweet-inn-director-david-zaghdoun-discusses-the-airbnb-revolution-on-lci/",
+      "destination": "https://www.youtube.com/watch?v=GKCRYAoYUYI",
+      "statusCode": 301
+    },
+    {
+      "source": "/watch-sweet-inn-director-david-zaghdoun-discusses-the-airbnb-revolution-on-lci",
+      "destination": "https://www.youtube.com/watch?v=GKCRYAoYUYI",
+      "statusCode": 301
+    },
+    {
+      "source": "/yahoo-finance-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy/",
+      "destination": "https://www.prnewswire.co.uk/news-releases/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy-585446281.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/yahoo-finance-integrarted-asset-management-plc-leads-aquisition-of-eurro-127-million-32mw-pv-portfolio-in-italy",
+      "destination": "https://www.prnewswire.co.uk/news-releases/integrated-asset-management-plc-leads-acquisition-of-euro-127-million-34mw-pv-portfolio-in-italy-585446281.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/calle-canizares/",
+      "destination": "/canizares/",
+      "statusCode": 301
+    },
+    {
+      "source": "/calle-canizares",
+      "destination": "/canizares/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cordoba/",
+      "destination": "/santa-marta/",
+      "statusCode": 301
+    },
+    {
+      "source": "/cordoba",
+      "destination": "/santa-marta/",
+      "statusCode": 301
+    },
+    {
+      "source": "/2024-iam-invest-limited-full-fca-copy/",
+      "destination": "/wp-content/uploads/2026/03/IAM-Invest-Limited-Full-FCA-Copy-31-12-24.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/2024-iam-invest-limited-full-fca-copy",
+      "destination": "/wp-content/uploads/2026/03/IAM-Invest-Limited-Full-FCA-Copy-31-12-24.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/rue-de-sevres/",
+      "destination": "/sevres/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rue-de-sevres",
+      "destination": "/sevres/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rue-du-temple/",
+      "destination": "/temple/",
+      "statusCode": 301
+    },
+    {
+      "source": "/rue-du-temple",
+      "destination": "/temple/",
+      "statusCode": 301
+    },
+    {
+      "source": "/via-sirtori/",
+      "destination": "/sirtori/",
+      "statusCode": 301
+    },
+    {
+      "source": "/via-sirtori",
+      "destination": "/sirtori/",
+      "statusCode": 301
+    },
+    {
+      "source": "/quai-bourbon-b/",
+      "destination": "/quai-bourbon/",
+      "statusCode": 301
+    },
+    {
+      "source": "/quai-bourbon-b",
+      "destination": "/quai-bourbon/",
+      "statusCode": 301
+    },
+    {
+      "source": "/viale-abruzzi/",
+      "destination": "/abruzzi/",
+      "statusCode": 301
+    },
+    {
+      "source": "/viale-abruzzi",
+      "destination": "/abruzzi/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fulvio-testi-7/",
+      "destination": "/fulvio-testi/",
+      "statusCode": 301
+    },
+    {
+      "source": "/fulvio-testi-7",
+      "destination": "/fulvio-testi/",
+      "statusCode": 301
+    },
+    {
+      "source": "/via-torino/",
+      "destination": "/torino/",
+      "statusCode": 301
+    },
+    {
+      "source": "/via-torino",
+      "destination": "/torino/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-unique-beachfront-property-on-the-italian-riviera/",
+      "destination": "/wp-content/uploads/2026/01/Hospitality-iAM-Capital-PR.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-acquires-unique-beachfront-property-on-the-italian-riviera",
+      "destination": "/wp-content/uploads/2026/01/Hospitality-iAM-Capital-PR.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/san-sebastian/",
+      "destination": "/pasealekua/",
+      "statusCode": 301
+    },
+    {
+      "source": "/san-sebastian",
+      "destination": "/pasealekua/",
+      "statusCode": 301
+    },
+    {
+      "source": "/homepage/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/homepage",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-new/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-new",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-new/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-new",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-2/",
+      "destination": "/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact-2",
+      "destination": "/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-board/",
+      "destination": "/team/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-capital-board",
+      "destination": "/team/",
+      "statusCode": 301
+    },
+    {
+      "source": "/events/",
+      "destination": "/latest-news/#events",
+      "statusCode": 301
+    },
+    {
+      "source": "/events",
+      "destination": "/latest-news/#events",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/press/",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/press",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/events/",
+      "destination": "/latest-news/#events",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/events",
+      "destination": "/latest-news/#events",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/annual-reports/",
+      "destination": "/investor-relations/#reports",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/annual-reports",
+      "destination": "/investor-relations/#reports",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/shareholder-notices/",
+      "destination": "/investor-relations/#shareholder",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/shareholder-notices",
+      "destination": "/investor-relations/#shareholder",
+      "statusCode": 301
+    },
+    {
+      "source": "/feed/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/sitemap_index.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/post-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/page-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/category-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/author-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-timeline-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/e-landing-page-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/oceanwp_library-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-sitemap.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/site-map/",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/site-map",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-old/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-old",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-page-new/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-page-new",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/index.php",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/comments/feed/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/comments/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/uncategorized/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/uncategorized",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/who-we-are/",
+      "destination": "/about/#who",
+      "statusCode": 301
+    },
+    {
+      "source": "/who-we-are",
+      "destination": "/about/#who",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/who-we-are/",
+      "destination": "/about/#who",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/who-we-are",
+      "destination": "/about/#who",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-history/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-history",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/our-history/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/our-history",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/timeline/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/timeline",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-expertise/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-expertise",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/our-expertise/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/our-expertise",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-business/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-business",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/consultancy/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/consultancy",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/merchant-banking/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/merchant-banking",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/investment-management/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/investment-management",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wealth-management/",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wealth-management",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/real-estate/",
+      "destination": "/about/#activeportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/real-estate",
+      "destination": "/about/#activeportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/alternatives/",
+      "destination": "/about/#activeportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/alternatives",
+      "destination": "/about/#activeportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/ireo/",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/ireo",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/ireo-ii/",
+      "destination": "/about/#activeportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/ireo-ii",
+      "destination": "/about/#activeportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/igo-fund/",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/igo-fund",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/iao-fund/",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/iao-fund",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/green-energy/",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/green-energy",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/fintech/",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/fintech",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/Fintech/",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/Fintech",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/fintlv-ventures-l-p/",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/fintlv-ventures-l-p",
+      "destination": "/about/#exitedportfolio",
+      "statusCode": 301
+    },
+    {
+      "source": "/2010-2/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2010-2",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2011-2/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2011-2",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2012-2/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2012-2",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2013-2/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2013-2",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-2/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2014-2",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2015-2/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2015-2",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2016-2/",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/2016-2",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/leadership/",
+      "destination": "/team/",
+      "statusCode": 301
+    },
+    {
+      "source": "/leadership",
+      "destination": "/team/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-board-management/",
+      "destination": "/team/",
+      "statusCode": 301
+    },
+    {
+      "source": "/iam-invest-board-management",
+      "destination": "/team/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/corporate-governance/the-board/",
+      "destination": "/team/#directors",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/corporate-governance/the-board",
+      "destination": "/team/#directors",
+      "statusCode": 301
+    },
+    {
+      "source": "/corporate-governance/",
+      "destination": "/responsibility/#legal",
+      "statusCode": 301
+    },
+    {
+      "source": "/corporate-governance",
+      "destination": "/responsibility/#legal",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/corporate-governance/",
+      "destination": "/responsibility/#legal",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/corporate-governance",
+      "destination": "/responsibility/#legal",
+      "statusCode": 301
+    },
+    {
+      "source": "/disclaimer/",
+      "destination": "/wp-content/uploads/2026/03/2_Clean_iAM-Capital-Disclaimer.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/disclaimer",
+      "destination": "/wp-content/uploads/2026/03/2_Clean_iAM-Capital-Disclaimer.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/fraud-awareness/",
+      "destination": "/wp-content/uploads/2026/03/4_Clean_iAM-Capital-Fraud-Awareness-Policy.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/fraud-awareness",
+      "destination": "/wp-content/uploads/2026/03/4_Clean_iAM-Capital-Fraud-Awareness-Policy.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/wp-content/uploads/2026/03/iAM-Capital-Privacy-Policy_v2-clean-v.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/wp-content/uploads/2026/03/iAM-Capital-Privacy-Policy_v2-clean-v.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/regulatory/",
+      "destination": "/wp-content/uploads/2023/01/iAM-Capital-Regulatory-Statement.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/regulatory",
+      "destination": "/wp-content/uploads/2023/01/iAM-Capital-Regulatory-Statement.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/investors/",
+      "destination": "/investor-relations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/investors",
+      "destination": "/investor-relations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/investor-relations-2/",
+      "destination": "/investor-relations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/investor-relations-2",
+      "destination": "/investor-relations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/annual-reports/",
+      "destination": "/investor-relations/#reports",
+      "statusCode": 301
+    },
+    {
+      "source": "/annual-reports",
+      "destination": "/investor-relations/#reports",
+      "statusCode": 301
+    },
+    {
+      "source": "/investor-relations/annual-reports/",
+      "destination": "/investor-relations/#reports",
+      "statusCode": 301
+    },
+    {
+      "source": "/investor-relations/annual-reports",
+      "destination": "/investor-relations/#reports",
+      "statusCode": 301
+    },
+    {
+      "source": "/shareholders-notices/",
+      "destination": "/investor-relations/#shareholder",
+      "statusCode": 301
+    },
+    {
+      "source": "/shareholders-notices",
+      "destination": "/investor-relations/#shareholder",
+      "statusCode": 301
+    },
+    {
+      "source": "/investor-relations/shareholders-notices/",
+      "destination": "/investor-relations/#shareholder",
+      "statusCode": 301
+    },
+    {
+      "source": "/investor-relations/shareholders-notices",
+      "destination": "/investor-relations/#shareholder",
+      "statusCode": 301
+    },
+    {
+      "source": "/news/",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/news",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/press/",
+      "destination": "/latest-news/#press",
+      "statusCode": 301
+    },
+    {
+      "source": "/press",
+      "destination": "/latest-news/#press",
+      "statusCode": 301
+    },
+    {
+      "source": "/press-2/",
+      "destination": "/latest-news/#press",
+      "statusCode": 301
+    },
+    {
+      "source": "/press-2",
+      "destination": "/latest-news/#press",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-2/",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-2",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/news-blog/",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/news-blog",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/events-2/",
+      "destination": "/latest-news/#events",
+      "statusCode": 301
+    },
+    {
+      "source": "/events-2",
+      "destination": "/latest-news/#events",
+      "statusCode": 301
+    },
+    {
+      "source": "/events/fintlv-investors-event/",
+      "destination": "/fintlv-investors-event/",
+      "statusCode": 301
+    },
+    {
+      "source": "/events/fintlv-investors-event",
+      "destination": "/fintlv-investors-event/",
+      "statusCode": 301
+    },
+    {
+      "source": "/events/npl-nuove-opportunita-per-il-mercato-finanziario/",
+      "destination": "/npl-nuove-opportunita-per-il-mercato-finanziario-2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/events/npl-nuove-opportunita-per-il-mercato-finanziario",
+      "destination": "/npl-nuove-opportunita-per-il-mercato-finanziario-2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/npl-nuove-opportunita-per-il-mercato-finanziario/",
+      "destination": "/npl-nuove-opportunita-per-il-mercato-finanziario-2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/npl-nuove-opportunita-per-il-mercato-finanziario",
+      "destination": "/npl-nuove-opportunita-per-il-mercato-finanziario-2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/investment-opportunities/",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/investment-opportunities",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/terre-rares/",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/terre-rares",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/hospitality/",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/hospitality",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/residential/",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/residential",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/commercial/",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/commercial",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/renewable-energy/",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/renewable-energy",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/investments/",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/investments",
+      "destination": "/investments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact.php",
+      "destination": "/contact/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/01/iAM-Capital-Corporate-Governance-Policy.pdf",
+      "destination": "/wp-content/uploads/2026/03/1_Clean_iAM-Capital-Corporate-Governance-Policy.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/01/iAM-Capital-Disclaimer.pdf",
+      "destination": "/wp-content/uploads/2026/03/2_Clean_iAM-Capital-Disclaimer.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/01/iAM-Capital-ESG-Policy.pdf",
+      "destination": "/wp-content/uploads/2026/03/3_Clean_iAM-Capital-ESG-and-Sustainability-Risk-Policy.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/01/iAM-Capital-Sustainability-Risks-Policy.pdf",
+      "destination": "/wp-content/uploads/2026/03/3_Clean_iAM-Capital-ESG-and-Sustainability-Risk-Policy.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/01/iAM-Capital-Sustainability-Risks-Policy-1.pdf",
+      "destination": "/wp-content/uploads/2026/03/3_Clean_iAM-Capital-ESG-and-Sustainability-Risk-Policy.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2021/02/IAM-ESG-Policy-Jan-2021.pdf",
+      "destination": "/wp-content/uploads/2026/03/3_Clean_iAM-Capital-ESG-and-Sustainability-Risk-Policy.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/01/iAM-Capital-Fraud-Awareness-Policy.pdf",
+      "destination": "/wp-content/uploads/2026/03/4_Clean_iAM-Capital-Fraud-Awareness-Policy.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/01/iAM-Capital-Privacy-Policy.pdf",
+      "destination": "/wp-content/uploads/2026/03/iAM-Capital-Privacy-Policy_v2-clean-v.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/01/iAM-Capital-Pillar-III-Statement.pdf",
+      "destination": "/wp-content/uploads/2026/10/iAM-Invest-Limited-Public-Disclosure-SNI-2025.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2023/04/iAM-Capital-Pillar-III-Statement.pdf",
+      "destination": "/wp-content/uploads/2026/10/iAM-Invest-Limited-Public-Disclosure-SNI-2025.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/03/IAM-Invest-Limited-Pillar-3-MiFID-Disclosure-2021-FINAL.pdf",
+      "destination": "/wp-content/uploads/2026/10/iAM-Invest-Limited-Public-Disclosure-SNI-2025.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2024/10/MIFIDPRU-Public-Disclosure-Document-1.pdf",
+      "destination": "/wp-content/uploads/2026/10/iAM-Invest-Limited-Public-Disclosure-SNI-2025.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2020/11/IAM-Invest-Limited-Modern-Slavery-Statement.pdf",
+      "destination": "/wp-content/uploads/2023/01/iAM-Capital-Modern-Slavery-and-Human-Trafficking-Statement.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/03/Cosi%CC%80-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+      "destination": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+      "destination": "/wp-content/uploads/2022/03/Così-il-nuovo-real-estate-milanese-sta-puntando-sullefficienza-energetica.pdf",
+      "statusCode": 301
+    },
+    {
+      "source": "/timeline/:path*",
+      "destination": "/about/#history",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-business/:path*",
+      "destination": "/about/",
+      "statusCode": 301
+    },
+    {
+      "source": "/leadership/:path*",
+      "destination": "/team/",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/:path*",
+      "destination": "/team/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/corporate-governance/:path*",
+      "destination": "/responsibility/#legal",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/annual-reports/:path*",
+      "destination": "/investor-relations/#reports",
+      "statusCode": 301
+    },
+    {
+      "source": "/shareholders-notices/:path*",
+      "destination": "/investor-relations/#shareholder",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/shareholder-notices/:path*",
+      "destination": "/investor-relations/#shareholder",
+      "statusCode": 301
+    },
+    {
+      "source": "/investor-relations/bpage/:path*",
+      "destination": "/investor-relations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/media/:path*",
+      "destination": "/investor-relations/",
+      "statusCode": 301
+    },
+    {
+      "source": "/press/:path*",
+      "destination": "/latest-news/#press",
+      "statusCode": 301
+    },
+    {
+      "source": "/press-2/:path*",
+      "destination": "/latest-news/#press",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog-2/:path*",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/news-blog/:path*",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/press/:path*",
+      "destination": "/latest-news/#press",
+      "statusCode": 301
+    },
+    {
+      "source": "/latest-news/bpage/:path*",
+      "destination": "/latest-news/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/hospitality/:path*",
+      "destination": "/investments/",
+      "statusCode": 301
+    }
+  ]
+}

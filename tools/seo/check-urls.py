@@ -6,7 +6,7 @@ records and its last archived sitemaps (about 600 addresses: pages, PDFs, images
 directly or after redirects. Run it against the live domain after the DNS change:
 
     python3 tools/seo/check-urls.py https://iamcapital.com
-    python3 tools/seo/check-urls.py http://localhost:8799        # npx wrangler pages dev dist --port 8799
+    python3 tools/seo/check-urls.py http://localhost:3000        # vercel dev (redirects and headers as on Vercel)
 
 Known and expected failures are listed in EXPECTED_404 (pre-WordPress images that no longer exist, hacking probes).
 """

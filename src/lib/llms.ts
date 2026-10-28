@@ -7,7 +7,7 @@ import { team, documents, legal } from './content';
 import { contact } from '../data/site';
 import { monthYear } from './format';
 
-const S = 'https://www.iamcapital.com';
+const S = 'https://iamcapital.com';
 const text = (h: string) => h.replace(/<br\s*\/?>/g, ' ').replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
 const abs = (u: string) => (u.startsWith('/') ? S + u : u);
 

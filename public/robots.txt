@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.iamcapital.com/sitemap.xml
+Sitemap: https://iamcapital.com/sitemap.xml

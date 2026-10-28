@@ -1,7 +1,0 @@
-// Cloudflare Pages project settings kept in the repository. With Git integration Cloudflare builds with
-// `npm run build` and publishes dist/, applying dist/_redirects and dist/_headers.
-{
-  "name": "iamcapital",
-  "pages_build_output_dir": "./dist",
-  "compatibility_date": "2026-10-01"
-}

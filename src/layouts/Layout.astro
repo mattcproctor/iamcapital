@@ -13,6 +13,7 @@ import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '@vercel/analytics/astro';
 import { upload } from '../lib/images';
 import { clip, organization, website, SITE } from '../lib/seo';
 
@@ -121,9 +122,6 @@ const ld = {
   </script>
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify(ld)} />
-
-  <!-- Analytics: turn on Cloudflare Web Analytics for the Pages project in the Cloudflare dashboard, which adds its
-       cookieless beacon to every page; nothing is needed here. -->
   <slot name="head" />
 </head>
 <body>
@@ -133,6 +131,9 @@ const ld = {
     <slot />
   </main>
   <Footer />
+  <!-- Vercel Web Analytics (cookieless): turn it on in the project's Analytics tab on Vercel. The script it loads is
+       served from the site itself (/_vercel/insights/), so the CSP's 'self' covers it. -->
+  <Analytics />
   <slot name="scripts" />
   <script>
     // Scroll-in motion (see global.css): mark each data-reveal element once it comes into view

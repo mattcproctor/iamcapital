@@ -1,5 +1,5 @@
 # Pages CMS (https://app.pagescms.org): the editing screens iAM Capital uses to update the site without code.
-# Each save is a commit to this repository, and Cloudflare rebuilds and publishes the site in about two minutes.
+# Each save is a commit to this repository, and Vercel rebuilds and publishes the site in about two minutes.
 # The pages read these files through src/lib/content.ts. Properties, funds and the rest of the site are edited in code.
 
 media:

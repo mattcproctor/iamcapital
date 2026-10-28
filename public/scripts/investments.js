@@ -17,7 +17,7 @@ function secureUrl(url) {
 
 // The sheet links to iamcapital.com and iamcapital.vercel.app by full address. This site now serves both the property
 // pages and those images itself, so links and images on either domain become paths on whichever host is serving
-// the page (local preview, a Cloudflare preview, or iamcapital.com). Renamed property pages redirect (redirects.json).
+// the page (local preview, a Vercel preview, or iamcapital.com). Renamed property pages redirect (redirects.json).
 const OWN_HOSTS = /^https?:\/\/(www\.)?(iamcapital\.com|iamcapital\.vercel\.app)(?=\/|$)/i;
 function localUrl(url) {
     if (!url) return url;
