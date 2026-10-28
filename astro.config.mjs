@@ -18,7 +18,9 @@ import redirects from './redirects.json' with { type: 'json' };
 const VERCEL_JSON = fileURLToPath(new URL('./vercel.json', import.meta.url));
 
 function vercelRedirects() {
-  const rule = (source, r) => ({ source, destination: r.to, statusCode: r.status });
+  // Destinations go out in the Location header, which must be ASCII: Vercel sends "Così" as raw bytes, which some
+  // clients misread, so non-ASCII destinations are %-encoded
+  const rule = (source, r) => ({ source, destination: /[^\x00-\x7f]/.test(r.to) ? encodeURI(r.to) : r.to, statusCode: r.status });
   const exact = [], wildcard = [];
   for (const r of redirects) {
     // "/timeline/*" becomes "/timeline/(.*)": anything under /timeline/, and /timeline/ itself (Vercel adds the slash to
