@@ -21,8 +21,9 @@ function vercelRedirects() {
   const rule = (source, r) => ({ source, destination: r.to, statusCode: r.status });
   const exact = [], wildcard = [];
   for (const r of redirects) {
-    // Cloudflare-style "/timeline/*" becomes "/timeline/:path*" (which also matches /timeline and /timeline/)
-    if (r.from.includes('*')) { wildcard.push(rule(r.from.replace(/\/\*$/, '/:path*'), r)); continue; }
+    // "/timeline/*" becomes "/timeline/(.*)": anything under /timeline/, and /timeline/ itself (Vercel adds the slash to
+    // /timeline first). Not ":path*", which with trailingSlash only matches /timeline/ on Vercel, not /timeline/2019/.
+    if (r.from.includes('*')) { wildcard.push(rule(r.from.replace(/\/\*$/, '/(.*)'), r)); continue; }
     const sources = r.from === '/' || /\.[a-z0-9]+$/i.test(r.from) ? [r.from] : [r.from, r.from.replace(/\/$/, '')];
     // Old addresses with %-escapes are also matched in their decoded form
     for (const s of new Set(sources)) {

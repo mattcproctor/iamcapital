@@ -2109,87 +2109,87 @@
       "statusCode": 301
     },
     {
-      "source": "/timeline/:path*",
+      "source": "/timeline/(.*)",
       "destination": "/about/#history",
       "statusCode": 301
     },
     {
-      "source": "/our-business/:path*",
+      "source": "/our-business/(.*)",
       "destination": "/about/",
       "statusCode": 301
     },
     {
-      "source": "/leadership/:path*",
+      "source": "/leadership/(.*)",
       "destination": "/team/",
       "statusCode": 301
     },
     {
-      "source": "/author/:path*",
+      "source": "/author/(.*)",
       "destination": "/team/",
       "statusCode": 301
     },
     {
-      "source": "/about-us/corporate-governance/:path*",
+      "source": "/about-us/corporate-governance/(.*)",
       "destination": "/responsibility/#legal",
       "statusCode": 301
     },
     {
-      "source": "/category/annual-reports/:path*",
+      "source": "/category/annual-reports/(.*)",
       "destination": "/investor-relations/#reports",
       "statusCode": 301
     },
     {
-      "source": "/shareholders-notices/:path*",
+      "source": "/shareholders-notices/(.*)",
       "destination": "/investor-relations/#shareholder",
       "statusCode": 301
     },
     {
-      "source": "/category/shareholder-notices/:path*",
+      "source": "/category/shareholder-notices/(.*)",
       "destination": "/investor-relations/#shareholder",
       "statusCode": 301
     },
     {
-      "source": "/investor-relations/bpage/:path*",
+      "source": "/investor-relations/bpage/(.*)",
       "destination": "/investor-relations/",
       "statusCode": 301
     },
     {
-      "source": "/media/:path*",
+      "source": "/media/(.*)",
       "destination": "/investor-relations/",
       "statusCode": 301
     },
     {
-      "source": "/press/:path*",
+      "source": "/press/(.*)",
       "destination": "/latest-news/#press",
       "statusCode": 301
     },
     {
-      "source": "/press-2/:path*",
+      "source": "/press-2/(.*)",
       "destination": "/latest-news/#press",
       "statusCode": 301
     },
     {
-      "source": "/blog-2/:path*",
+      "source": "/blog-2/(.*)",
       "destination": "/latest-news/",
       "statusCode": 301
     },
     {
-      "source": "/category/news-blog/:path*",
+      "source": "/category/news-blog/(.*)",
       "destination": "/latest-news/",
       "statusCode": 301
     },
     {
-      "source": "/category/press/:path*",
+      "source": "/category/press/(.*)",
       "destination": "/latest-news/#press",
       "statusCode": 301
     },
     {
-      "source": "/latest-news/bpage/:path*",
+      "source": "/latest-news/bpage/(.*)",
       "destination": "/latest-news/",
       "statusCode": 301
     },
     {
-      "source": "/category/hospitality/:path*",
+      "source": "/category/hospitality/(.*)",
       "destination": "/investments/",
       "statusCode": 301
     }
